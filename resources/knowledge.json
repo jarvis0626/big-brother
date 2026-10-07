@@ -1,7 +1,34 @@
 {
-  "version": "knowledge-2026-10-07-v1",
+  "version": "knowledge-2026-10-07-v2",
   "description": "Locally curated general documentation summaries. No attack-case labels or held-out incident answers.",
   "documents": [
+    {
+      "id": "mitre-t1003.001",
+      "title": "MITRE ATT&CK T1003.001: LSASS Memory",
+      "url": "https://attack.mitre.org/techniques/T1003/001/",
+      "source_version": "1.5, last modified 2026-05-12",
+      "retrieved_at": "2026-10-07",
+      "tags": ["lsass", "memory", "credential", "access", "T1003.001"],
+      "text": "Credential material can be present in LSASS process memory. Adversaries may target that memory, while legitimate security or administrative programs can also access the process. An access event records a relationship and rights; it does not establish that credentials were extracted. Review the recorded source, target and granted access with the software's expected purpose."
+    },
+    {
+      "id": "microsoft-process-rights",
+      "title": "Microsoft process security and access rights",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights",
+      "source_version": "official documentation accessed 2026-10-07",
+      "retrieved_at": "2026-10-07",
+      "tags": ["process", "access", "rights", "memory", "PROCESS_VM_READ", "PROCESS_VM_WRITE"],
+      "text": "Windows process handles have access rights. PROCESS_VM_READ is 0x0010 and PROCESS_VM_WRITE is 0x0020; query rights alone are different from memory access rights. A recorded granted-access mask is evidence about access permissions rather than proof of memory content retrieval or malicious intent."
+    },
+    {
+      "id": "mitre-t1055",
+      "title": "MITRE ATT&CK T1055: Process Injection",
+      "url": "https://attack.mitre.org/techniques/T1055/",
+      "source_version": "official technique page accessed 2026-10-07",
+      "retrieved_at": "2026-10-07",
+      "tags": ["process", "injection", "thread", "CreateRemoteThread", "T1055"],
+      "text": "Process injection can place code in another process. Recorded creation of a remote thread can support investigation, but legitimate debugging and instrumentation can also create such threads. Correlate source and target identity, recorded start location and surrounding events before interpreting the behavior."
+    },
     {
       "id": "mitre-t1547.001",
       "title": "MITRE ATT&CK T1547.001: Registry Run Keys / Startup Folder",

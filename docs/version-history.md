@@ -13,6 +13,8 @@ git worktree add '../Big Brother-v0.1.0' v0.1.0
 
 Use a new destination folder for a different historical commit. Each source checkpoint can be rebuilt with its own instructions and saved weights; generated package checksums identify the local delivered executables.
 
+The expanded iteration first pushed [a784f51](https://github.com/jarvis0626/big-brother/commit/a784f516eaeb0bfcf4cac6428cb04927eb77d6bd), adding real recorded-corpus imports, harmless simulator sources and the larger training infrastructure. Subsequent commits activate the frozen v2 model, strengthen import and promotion validation, add evidence references and record separate static-feature research. Each checkpoint describes the work completed at that time; generated binaries remain local.
+
 Source code, configuration, curated documentation, trained inference artifacts, experiment summaries and meaningful tests belong in Git. Dependency directories, raw public telemetry downloads, local observation databases, caches, development scratch files and generated installation packages are excluded. Private visibility does not make sensitive local telemetry or credentials suitable for source control.
 
 Run a source audit without a network request:

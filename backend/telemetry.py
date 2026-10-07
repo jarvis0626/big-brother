@@ -17,7 +17,7 @@ import psutil
 from backend.storage import now, poll_key, timestamp
 
 SYSMON_CHANNEL = "Microsoft-Windows-Sysmon/Operational"
-EVENT_KINDS = {1: "process_start", 3: "network", 5: "process_end", 9: "raw_access",
+EVENT_KINDS = {1: "process_start", 3: "network", 5: "process_end", 7: "image_load", 8: "remote_thread", 9: "raw_access",
                10: "process_access", 11: "file_create", 12: "registry", 13: "registry",
                14: "registry", 22: "dns", 23: "file_delete", 26: "file_delete"}
 NS = {"e": "http://schemas.microsoft.com/win/2004/08/events/event"}
@@ -483,7 +483,7 @@ class Collector:
                    "detail": "Process snapshots and creation-time identities. Short-lived children between polls can be missed; ancestry before watch may be incomplete."},
                   {"kind": "network", "status": "partial", "backend": "polling",
                    "detail": "Connection snapshots only. Brief connections, DNS and traffic contents are unavailable. Some protected processes deny access."}]
-        for kind in ("processes", "network", "dns", "files", "registry"):
+        for kind in ("processes", "network", "dns", "files", "registry", "process_access", "remote_thread", "image_load"):
             values.append({"kind": kind, "status": "configuration_unknown" if configured else "unavailable", "backend": "sysmon",
                            "detail": "Existing channel readable; event filters may exclude activity. Coverage is not guaranteed." if configured else self.reader.detail})
         values.append({"kind": "file_reads_and_encrypted_contents", "status": "unavailable", "backend": "all",

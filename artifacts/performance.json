@@ -4,21 +4,21 @@
   "logical_cpus": 16,
   "ram_gib": 31.384212493896484,
   "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
-  "measured_at": "2026-10-07T05:56:42Z",
+  "measured_at": "2026-10-07T07:00:46Z",
   "model": {
-    "name": "LANL temporal GRU event predictor",
-    "version": "lanl2015-v1-seed1984",
-    "threshold": 6.423330059051517,
+    "name": "Expanded LANL temporal GRU event predictor",
+    "version": "lanl2015-v2-gru-e16-h32-seed2026",
+    "threshold": 7.014227390289307,
     "limitations": [
       "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
-      "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+      "Expanded bounded2015 LANL enterprise host/network prefix; Windows application/session domain still differs.",
       "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
       "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
       "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
       "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
       "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
       "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
-      "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
+      "Training aggregates host-wide events; a watched process session is a narrower stream. DNS-port and other rare token groups have very limited support despite the expanded data. Unknown NetFlow destination ports are common and differ from direct Windows observations."
     ],
     "status": "available",
     "feature_schema": "lanl-host-events-port-category-v1",
@@ -30,8 +30,8 @@
       "network",
       "dns"
     ],
-    "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
-    "training_dataset": "LANL2015 bounded proc/flows/dns prefixes, public mirror revisiond7a15d0d504051bfe6cbc3f65377830704e824cc"
+    "artifact_sha256": "26adda072a62e5d6320686d04b7da98a2cbbdbe7c6a3559e37d8616bb025e95e",
+    "training_dataset": "LANL2015 expanded32MiB pinned proc/flows/dns prefixes; original-v1 time region excluded."
   },
   "notes": [
     "CPU100% = one logical core. Backend plus Windows Python launcher children; excludes Electron renderer.",
@@ -41,30 +41,30 @@
   "measurements": [
     {
       "workload": "idle: no selected session",
-      "seconds": 5.207665099999758,
-      "backend_cpu_percent_mean_one_core": 0.31,
-      "backend_cpu_percent_peak_one_core": 6.2,
-      "backend_rss_mib_mean": 35.0927734375,
-      "backend_rss_mib_peak": 35.09765625,
+      "seconds": 5.011359000000084,
+      "backend_cpu_percent_mean_one_core": 0.3105263157894737,
+      "backend_cpu_percent_peak_one_core": 5.9,
+      "backend_rss_mib_mean": 30.989720394736842,
+      "backend_rss_mib_peak": 30.9921875,
       "actions": 0
     },
     {
       "workload": "normal: selected benign temporary files, child, loopback HTTP",
-      "seconds": 7.04145200000039,
-      "backend_cpu_percent_mean_one_core": 3.2962962962962963,
-      "backend_cpu_percent_peak_one_core": 23.5,
-      "backend_rss_mib_mean": 36.135995370370374,
-      "backend_rss_mib_peak": 36.1640625,
+      "seconds": 7.099967500000275,
+      "backend_cpu_percent_mean_one_core": 2.6333333333333333,
+      "backend_cpu_percent_peak_one_core": 11.7,
+      "backend_rss_mib_mean": 32.16941550925926,
+      "backend_rss_mib_peak": 32.80859375,
       "actions": 0
     },
     {
       "workload": "replay: one13-event investigation session per250ms",
-      "seconds": 5.401409499999318,
-      "backend_cpu_percent_mean_one_core": 5.183333333333334,
-      "backend_cpu_percent_peak_one_core": 7.2,
-      "backend_rss_mib_mean": 36.432291666666664,
-      "backend_rss_mib_peak": 36.64453125,
-      "actions": 12
+      "seconds": 5.034045500000502,
+      "backend_cpu_percent_mean_one_core": 13.953333333333333,
+      "backend_cpu_percent_peak_one_core": 23.7,
+      "backend_rss_mib_mean": 32.66171875,
+      "backend_rss_mib_peak": 33.015625,
+      "actions": 15
     }
   ],
   "last_replay": {

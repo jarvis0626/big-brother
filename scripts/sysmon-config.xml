@@ -6,6 +6,10 @@
     <ProcessTerminate onmatch="exclude" />
     <NetworkConnect onmatch="exclude" />
     <DnsQuery onmatch="exclude" />
+    <CreateRemoteThread onmatch="exclude" />
+    <ProcessAccess onmatch="include">
+      <TargetImage condition="end with">\lsass.exe</TargetImage>
+    </ProcessAccess>
     <FileCreate onmatch="include">
       <TargetFilename condition="contains">\AppData\Local\Temp\</TargetFilename>
       <TargetFilename condition="contains">\Windows\Temp\</TargetFilename>

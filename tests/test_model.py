@@ -30,7 +30,8 @@ def test_real_trained_model_loads_and_scores_finite_values():
     model=BehavioralModel(ROOT/"resources/models")
     assert model.metadata["status"]=="available",model.metadata
     assert model.metadata["feature_schema"]==FEATURE_SCHEMA
-    assert model.metadata["version"]=="lanl2015-v1-seed1984"
+    active=json.loads((ROOT/"resources/models/active.json").read_text())
+    assert model.metadata["version"]==active["version"]
     probs=model.predict([0,3,2,4,1]*3+[0])
     assert len(probs)==len(TOKENS)
     assert math.isclose(sum(probs),1,abs_tol=1e-6)

@@ -32,6 +32,8 @@ def write(tmp_path, value):
     lambda v: v["events"][0].update(command_line="x"*8193),
     lambda v: v["events"][0].update(incident={"verdict": "malicious"}),
     lambda v: v["events"][0].update(details={"bad": float("nan")}),
+    lambda v: v["events"].append({**v["events"][0], "pid": 999}),
+    lambda v: v.update(events=[{**v["events"][0], "process_key": f"key-{i}"} for i in range(1001)]),
 ])
 def test_malformed_or_injected_recording_rejected_before_writes(tmp_path, mutate):
     value = example(); mutate(value)
@@ -53,6 +55,9 @@ def test_recording_keeps_disconnected_identity_provenance_and_inert_commands(tmp
         assert session["status"] == "recording"
         assert len(state["processes"]) == 2
         assert len(state["events"]) == 2
+        assert state["recording"]["input_events"] == 3
+        assert state["recording"]["imported_events"] == 2
+        assert state["recording"]["duplicate_events"] == 1
         assert all(e["source"].startswith("recording:") for e in state["events"])
         assert state["events"][0]["command_line"] == value["events"][0]["command_line"]
         assert state["recording"]["provenance"]["imported_file_sha256"]
@@ -89,4 +94,21 @@ def test_retention_removes_expired_recording_provenance(tmp_path):
         app.store.prune()
         assert app.store.sessions() == []
         assert app.store.get_meta("recording:"+session["id"]) is None
+    finally: app.close()
+
+def test_evidence_and_provenance_transaction_rolls_back_together(tmp_path, monkeypatch):
+    app = Application(ROOT/"resources", tmp_path/"data", start_collector=False)
+    original = app.store.ingest
+    calls = 0
+    def interrupted(event, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 2: raise OSError("Simulated storage failure")
+        return original(event, **kwargs)
+    monkeypatch.setattr(app.store, "ingest", interrupted)
+    try:
+        with pytest.raises(OSError): app.import_recording(str(write(tmp_path, example())))
+        assert app.store.sessions() == []
+        assert app.store.db.execute("SELECT count(*) FROM events").fetchone()[0] == 0
+        assert app.store.db.execute("SELECT count(*) FROM meta WHERE key LIKE 'recording:%'").fetchone()[0] == 0
     finally: app.close()

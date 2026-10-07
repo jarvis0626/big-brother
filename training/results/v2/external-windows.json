@@ -1,0 +1,3900 @@
+{
+  "purpose": "External domain-shift evaluation of frozen next-event predictors. No training or threshold/epoch retuning.",
+  "scenario_count": 264,
+  "scenario_sources": {
+    "OTRF Security-Datasets": 107,
+    "EVTX-ATTACK-SAMPLES": 157
+  },
+  "evaluated_complete_window_scenarios": 57,
+  "supported_event_counts": {
+    "network": 9963,
+    "process_start": 4715,
+    "dns": 2158,
+    "process_end": 3031
+  },
+  "ignored_event_counts": {
+    "registry": 385224,
+    "process_access": 399216,
+    "image_load": 157348,
+    "file_delete": 4212,
+    "file_create": 19907,
+    "remote_thread": 608
+  },
+  "models": {
+    "unchanged_v1": {
+      "next_event_nll_nats": 2.3059623286778366,
+      "predictions": 5800,
+      "windows": 725,
+      "threshold_exceedance_windows": 262,
+      "threshold_exceedance_fraction": 0.36137931034482756,
+      "model_version": "lanl2015-v1-seed1984",
+      "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+      "threshold": 6.423330059051517
+    },
+    "selected_v2": {
+      "next_event_nll_nats": 1.274351414509503,
+      "predictions": 5800,
+      "windows": 725,
+      "threshold_exceedance_windows": 90,
+      "threshold_exceedance_fraction": 0.12413793103448276,
+      "model_version": "lanl2015-v2-gru-e16-h32-seed2026",
+      "artifact_sha256": "26adda072a62e5d6320686d04b7da98a2cbbdbe7c6a3559e37d8616bb025e95e",
+      "threshold": 7.014227390289307
+    }
+  },
+  "scenarios": [
+    {
+      "name": "MSF Record Mic",
+      "source_sha256": "5ea8ac17aceb7a83273019235fcdee67dd0b21cdce6b5d00b2d7e1665444de9e",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/collection/host/msf_record_mic.zip",
+      "supported_events": 93,
+      "ignored_events": 3172,
+      "complete_disjoint_24_event_windows": 2,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.704140728339553,
+          "perplexity": 14.94147238915491,
+          "mean_window_max_nll_nats": 6.7271764278411865,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.0864857491105795,
+          "perplexity": 8.056552609753984,
+          "mean_window_max_nll_nats": 6.211299896240234,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Dumping NTDS.dit using NTDSutil",
+      "source_sha256": "4633882ab1e9eadd156b29a89a5a6e24b680ead1b11ee259fdbe0d19ddbf77cf",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/cmd_dumping_ntds_dit_file_ntdsutil.zip",
+      "supported_events": 110,
+      "ignored_events": 8689,
+      "complete_disjoint_24_event_windows": 4,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 4.9323909361846745,
+          "perplexity": 138.71076476713662,
+          "mean_window_max_nll_nats": 6.505180835723877,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.72051896690391,
+          "perplexity": 2.0554996701911747,
+          "mean_window_max_nll_nats": 3.2192665059119463,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "cmd dumping ntds dit file volume shadow copy",
+      "source_sha256": "aed847c1571ec3ef906f2b844d343bb3897eec4cf856b8f0939e934646348378",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/cmd_dumping_ntds_dit_file_volume_shadow_copy.zip",
+      "supported_events": 264,
+      "ignored_events": 15245,
+      "complete_disjoint_24_event_windows": 11,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 5.606954891911962,
+          "perplexity": 272.31374938195677,
+          "mean_window_max_nll_nats": 7.591912930661982,
+          "prediction_count": 88,
+          "window_count": 11,
+          "threshold_exceedance_windows": 10,
+          "threshold_exceedance_fraction": 0.9090909090909091,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.4105449174530804,
+          "perplexity": 4.098187969884688,
+          "mean_window_max_nll_nats": 4.7439323297955776,
+          "prediction_count": 88,
+          "window_count": 11,
+          "threshold_exceedance_windows": 3,
+          "threshold_exceedance_fraction": 0.2727272727272727,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Lsass Memory Dump via Syscalls",
+      "source_sha256": "a28dbf708685a80edfb0b3d2a00c9bf196dd394fc1d61a933878841f4872a7ed",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/cmd_lsass_memory_dumpert_syscalls.zip",
+      "supported_events": 2,
+      "ignored_events": 81,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Psexec Reg LSA Secrets Dump",
+      "source_sha256": "c52e6145fefe37373a5274e2976ccf6d62e4d33e13c55dc1a2ce17f00506d1a6",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/cmd_psexec_lsa_secrets_dump.zip",
+      "supported_events": 11,
+      "ignored_events": 203,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "SAM Copy via Esentutl VSS",
+      "source_sha256": "f7a71135778aeff605abcb88a14a076f0814ab5cb136d07103bdf13c45551b64",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/cmd_sam_copy_esentutl.zip",
+      "supported_events": 3,
+      "ignored_events": 389,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant DCSync",
+      "source_sha256": "ccbb0e91c03fa1d575b3bfccba59f3bba62479860bd9ee8b571a907333eb9082",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/covenant_dcsync_dcerpc_drsuapi_DsGetNCChanges.zip",
+      "supported_events": 31,
+      "ignored_events": 515,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire DCSync",
+      "source_sha256": "fe1fcc96c0ff0cbae8fd4ffaadf85f51e28475441774f6fda3d963d4e2962800",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_dcsync_dcerpc_drsuapi_DsGetNCChanges.zip",
+      "supported_events": 10,
+      "ignored_events": 380,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Mimikatz Backup Keys",
+      "source_sha256": "63ee26d89071b9026a2381c31cd9d5842435e3859e1c0d84825cdbb01475e4d8",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_backupkeys_dcerpc_smb_lsarpc.zip",
+      "supported_events": 16,
+      "ignored_events": 206,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Mimikatz Extract Kerberos Keys",
+      "source_sha256": "5511f426c3712d811b629451b852d3de014ddf3e01465e5ae380f5672968692f",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_extract_keys.zip",
+      "supported_events": 42,
+      "ignored_events": 3929,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.0606881752610207,
+          "perplexity": 7.851371070934429,
+          "mean_window_max_nll_nats": 8.977246284484863,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.66037829592824,
+          "perplexity": 14.301698349716883,
+          "mean_window_max_nll_nats": 11.960278511047363,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Mimikatz LogonPasswords",
+      "source_sha256": "bb4c057b62d781be5426e011872ba1a15070c07afbb24848a14458f4b22b06fb",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_logonpasswords.zip",
+      "supported_events": 103,
+      "ignored_events": 442,
+      "complete_disjoint_24_event_windows": 3,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.4966429291913907,
+          "perplexity": 4.466668948699018,
+          "mean_window_max_nll_nats": 5.103663921356201,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.0118384620485206,
+          "perplexity": 2.7506533411152514,
+          "mean_window_max_nll_nats": 4.655174255371094,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.3333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "empire mimikatz lsadump inject protected mode",
+      "source_sha256": "d15780ac0bac50557955085ba6ec0a47e4432366422ef85b390766ac518883c4",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_lsadump_inject_protected_mode.zip",
+      "supported_events": 44,
+      "ignored_events": 452,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 4.586436338722706,
+          "perplexity": 98.14405405683353,
+          "mean_window_max_nll_nats": 9.97717571258545,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 3.2132606357336044,
+          "perplexity": 24.860013664328594,
+          "mean_window_max_nll_nats": 13.359207153320312,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Mimikatz Lsadump LSA Patch",
+      "source_sha256": "552d5c8a3a41b8aae3118a855781b7a23cb497ebdc4afaa2127b46240356c132",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_lsadump_patch.zip",
+      "supported_events": 85,
+      "ignored_events": 658,
+      "complete_disjoint_24_event_windows": 2,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.305179573595524,
+          "perplexity": 10.025978491788802,
+          "mean_window_max_nll_nats": 3.8736013025045395,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.1326383319683373,
+          "perplexity": 3.1038346532295003,
+          "mean_window_max_nll_nats": 4.693383008241653,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Mimikatz SAM Extract Hashes",
+      "source_sha256": "1ed87bd1286fa8f9e01489ff49e913065e4d1a1956174eb64687c1159648fcad",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_sam_access.zip",
+      "supported_events": 6,
+      "ignored_events": 557,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Dumping NTDS.dit using NinjaCopy",
+      "source_sha256": "89bf86818a94eb093c8cc22482ea768b2595a807e86f8d557a44ce4c71bbe8c1",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_ninjacopy_dumping_ntds_dit_file.zip",
+      "supported_events": 344,
+      "ignored_events": 9486,
+      "complete_disjoint_24_event_windows": 14,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 6.165117573525224,
+          "perplexity": 475.8570878418065,
+          "mean_window_max_nll_nats": 7.683536563600812,
+          "prediction_count": 112,
+          "window_count": 14,
+          "threshold_exceedance_windows": 11,
+          "threshold_exceedance_fraction": 0.7857142857142857,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.544716676564089,
+          "perplexity": 4.686643602932249,
+          "mean_window_max_nll_nats": 3.501557519925492,
+          "prediction_count": 112,
+          "window_count": 14,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.14285714285714285,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Over-Pass-The-Hash",
+      "source_sha256": "daee42bbd9f7c6265e5614ce468ec868a399ee03877456dd01ec34e3e06479e7",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_over_pth_patch_lsass.zip",
+      "supported_events": 15,
+      "ignored_events": 467,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Powerdump Extract Hashes",
+      "source_sha256": "44fdafcbd7393d71936a4b81838b99bea19bfe12b0c2abdf1cd62dda14e4ce09",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_powerdump_sam_access.zip",
+      "supported_events": 14,
+      "ignored_events": 345,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Reg Dump SAM Hive",
+      "source_sha256": "5a8ee19860f35da6d4bcadf15178a085b469086c461d3d873d0f4adedba41f0a",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_shell_reg_dump_sam.zip",
+      "supported_events": 2,
+      "ignored_events": 167,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Rubeus Elevated ASKTGT CreateNetOnly",
+      "source_sha256": "3ed7d6d93ccadac94b0022151aa76ab54070c0ff7b977f6642bb4ee2f34b13da",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_shell_rubeus_asktgt_createnetonly.zip",
+      "supported_events": 32,
+      "ignored_events": 1708,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Rubeus Userland ASKTGT PTT",
+      "source_sha256": "a2ad97df3783fe2e911844111b3e4dabe0389502f52ea72525bb280b95e5394a",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/empire_shell_rubeus_asktgt_ptt.zip",
+      "supported_events": 9,
+      "ignored_events": 440,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "UI Prompt For Credentials Function",
+      "source_sha256": "768e3c32e39f202788f371d98f71b85694d813198f474939ba3e3d1112ebc08e",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/psh_input_capture_promptforcreds.zip",
+      "supported_events": 0,
+      "ignored_events": 141,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Lsass Memory Dump via Comsvcs.dll",
+      "source_sha256": "0af9e920220d746432f0972be83ad057629695540aecd68c15869d190786e1ae",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/psh_lsass_memory_dump_comsvcs.zip",
+      "supported_events": 4,
+      "ignored_events": 127,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Windows Vault Web Credentials",
+      "source_sha256": "09a374a4d434654025b844a721809ba7f6a21afa87e6d07a8168cb31e154228b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/psh_windows_vault_web_credentials.zip",
+      "supported_events": 0,
+      "ignored_events": 104,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "RDP TaskManager LSASS Dump",
+      "source_sha256": "a7761e64c891162e949afebf367084a6dddd2f3dac7b91bce870fcf9f6206fba",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/credential_access/host/rdp_interactive_taskmanager_lsass_dump.zip",
+      "supported_events": 48,
+      "ignored_events": 3300,
+      "complete_disjoint_24_event_windows": 2,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.8834932702593505,
+          "perplexity": 6.576438058425905,
+          "mean_window_max_nll_nats": 5.929553270339966,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.6676025427877903,
+          "perplexity": 5.299447356632195,
+          "mean_window_max_nll_nats": 6.47474217414856,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Disabling Windows Event Logging via Audit Policy Modification",
+      "source_sha256": "5eb1776e7e9f79060a87ed9efcce0eebbab7940f8f51db8b2d67368c64e2187d",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/auditpol_system_user_auditpolicy_modification.zip",
+      "supported_events": 37,
+      "ignored_events": 12411,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.8929259143769741,
+          "perplexity": 2.4422650658619123,
+          "mean_window_max_nll_nats": 1.3519350290298462,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.9548668339848518,
+          "perplexity": 2.5983245513536453,
+          "mean_window_max_nll_nats": 1.1864047050476074,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Bitsadmin Download Malicious File",
+      "source_sha256": "8fb7bc9f3d82f672dc39a55e50006137aa540c4a9860acdcc5d08a4fd609b594",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_bitsadmin_download_psh_script.zip",
+      "supported_events": 15,
+      "ignored_events": 278,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Mshta Javascript GetObject Sct",
+      "source_sha256": "976a705690dcc296ba132b9cd594c004265911e9e40d402c879dd06eddbbc057",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_mshta_javascript_getobject_sct.zip",
+      "supported_events": 8,
+      "ignored_events": 747,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Mshta VBScript Execute PowerShell",
+      "source_sha256": "f5f700bc986bbe73edcc209754b28a3e0ad38c56877f7fc5ed6fd04bc036d9f4",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_mshta_vbscript_execute_psh.zip",
+      "supported_events": 4,
+      "ignored_events": 777,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Netsh Open FW Proxy Ports",
+      "source_sha256": "3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+      "supported_events": 5,
+      "ignored_events": 477,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "cmd process herpaderping mimiexplorer",
+      "source_sha256": "674a88eac2ce1db4a3409c07669010f7181a2dbb589b3b8f25843158d3a14f23",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_process_herpaderping_mimiexplorer.zip",
+      "supported_events": 3,
+      "ignored_events": 232,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Process Herpaderping Mimikatz",
+      "source_sha256": "c3132a3d8f22c27ec57f4ae258f3d70c25a4dc7cc637cdd82de093d6ff50abff",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/cmd_process_herpaderping_snippingtool.zip",
+      "supported_events": 3,
+      "ignored_events": 252,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant ShellCmd InstallUtil",
+      "source_sha256": "9be5698bd46e2869b34d0a6ef712725d1e611eb32d87d2d29f37c9e34872fabe",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/covenant_installutil.zip",
+      "supported_events": 7,
+      "ignored_events": 834,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant Wuauclt CreateRemoteThread Execution",
+      "source_sha256": "56b6695152f4de18ed23afbbcab2402b03c1ffbbf7c5fd5f6f4e80ec621843ac",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/covenant_lolbin_wuauclt_createremotethread.zip",
+      "supported_events": 34,
+      "ignored_events": 558,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Invoke DLLInjection",
+      "source_sha256": "98071a478f57f2ca71530c4cb839f2054da0e6bd8b106caaa5d9518d1be0ccc8",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_dllinjection_LoadLibrary_CreateRemoteThread.zip",
+      "supported_events": 229,
+      "ignored_events": 3431,
+      "complete_disjoint_24_event_windows": 9,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.0653819453178182,
+          "perplexity": 2.901947157544705,
+          "mean_window_max_nll_nats": 3.950448335872756,
+          "prediction_count": 72,
+          "window_count": 9,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.1111111111111111,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.1494877187845607,
+          "perplexity": 3.156575441122155,
+          "mean_window_max_nll_nats": 3.9010302436848483,
+          "prediction_count": 72,
+          "window_count": 9,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.2222222222222222,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Regsvr32 Execution",
+      "source_sha256": "abeb5c52c75286386e5eb999d7423d738a624191f4a95fb62694b471a10b2dab",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_launcher_sct_regsvr32.zip",
+      "supported_events": 36,
+      "ignored_events": 1351,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.0044859871268272,
+          "perplexity": 7.4222777697507265,
+          "mean_window_max_nll_nats": 4.536436080932617,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.350040480494499,
+          "perplexity": 10.48599419436645,
+          "mean_window_max_nll_nats": 4.519095420837402,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Invoke InternalMonologue",
+      "source_sha256": "27d88aaccf5dbe2b917684eebe35afdfcc88953c70b27ee949e46204a23cda21",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_monologue_netntlm_downgrade.zip",
+      "supported_events": 70,
+      "ignored_events": 484,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.8307669153437018,
+          "perplexity": 2.2950781961847246,
+          "mean_window_max_nll_nats": 4.573212623596191,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.7806718880310655,
+          "perplexity": 2.1829384631086457,
+          "mean_window_max_nll_nats": 4.99111270904541,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Powerview Add-DomainObjectAcl",
+      "source_sha256": "6db5eac7fdab1fd1868047615caf590cb13b64a878e203bf3f253c2527229587",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_powerview_ldap_ntsecuritydescriptor.zip",
+      "supported_events": 56,
+      "ignored_events": 1203,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.773765690624714,
+          "perplexity": 16.01884258054457,
+          "mean_window_max_nll_nats": 5.308319091796875,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.473849892616272,
+          "perplexity": 11.868049729251771,
+          "mean_window_max_nll_nats": 4.828664302825928,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire PSInject",
+      "source_sha256": "ad6297ce8cfb908126e2ec1271d62f6cd8dcdac6006d7b6e5ecd377488b04df0",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_psinject_PEinjection.zip",
+      "supported_events": 105,
+      "ignored_events": 613,
+      "complete_disjoint_24_event_windows": 3,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.2586789280176163,
+          "perplexity": 3.5207672267958454,
+          "mean_window_max_nll_nats": 3.1157554239034653,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.3333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.6722733131609857,
+          "perplexity": 1.9586849675883713,
+          "mean_window_max_nll_nats": 3.9526163873573146,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.3333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "empire wmic add user backdoor",
+      "source_sha256": "4b18e693ed39cc75c429bc6f4b02400eda7dd01f336303e3edaf3cc3262bbac4",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/empire_wmic_add_user_backdoor.zip",
+      "supported_events": 139,
+      "ignored_events": 4256,
+      "complete_disjoint_24_event_windows": 4,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.0814296109601855,
+          "perplexity": 8.015920374402771,
+          "mean_window_max_nll_nats": 4.904992640018463,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.25,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.8162368014454842,
+          "perplexity": 6.148676168209018,
+          "mean_window_max_nll_nats": 3.7019267678260803,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "CMSTP Proxy Execution",
+      "source_sha256": "a653c698e8f779261ba0b3ac92bd604d4abe3a510cda8ab1f5ccdd421d013d4c",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_cmstp_execution_bypassuac.zip",
+      "supported_events": 214,
+      "ignored_events": 500,
+      "complete_disjoint_24_event_windows": 8,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.06580959219718352,
+          "perplexity": 1.068023337826989,
+          "mean_window_max_nll_nats": 0.09633376775309443,
+          "prediction_count": 64,
+          "window_count": 8,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.03982267598621547,
+          "perplexity": 1.040626229810877,
+          "mean_window_max_nll_nats": 0.05198379419744015,
+          "prediction_count": 64,
+          "window_count": 8,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Control Panel Execution",
+      "source_sha256": "d0c6ab023cb7c9db716dce58f68658d7ab25e7c8ebaaa6fe851a2fa01c55555a",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_control_panel_execution.zip",
+      "supported_events": 20,
+      "ignored_events": 874,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "HH Execution of Local Compiled HTML Payload",
+      "source_sha256": "c9967cde50a703fa3d139ca73520401bdb7c184930f7b4fb8305e9732167f764",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_hh_local_html_payload.zip",
+      "supported_events": 15,
+      "ignored_events": 821,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Mavinject Process DLL Injection",
+      "source_sha256": "262680222316edb2dc0d7dca380dfe75191fb96779b8dacc8aac8a1d8bdc046b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_mavinject_dll_notepad.zip",
+      "supported_events": 6,
+      "ignored_events": 419,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Mshta HTML Application (HTA) Execution",
+      "source_sha256": "f734cd8d2043da8f9f49d86bea7b5bf35a8c87445aa44975a107936a543ae840",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_mshta_html_application_execution.zip",
+      "supported_events": 13,
+      "ignored_events": 938,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Register-CimProvider Execute Dll",
+      "source_sha256": "a92085e34164be8ffc504270a9b0c4979a73f4e5c8ee5f717adc8525eb0b0109",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/psh_register_cimprovider_execute_dll.zip",
+      "supported_events": 13,
+      "ignored_events": 766,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "PurpleSharp PE Injection CreateRemoteThread",
+      "source_sha256": "d1cfff7404448fd9ac7558967837a9903bb474957949218c293c09fd56a5ca7a",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/purplesharp_pe_injection_createremotethread.zip",
+      "supported_events": 7,
+      "ignored_events": 530,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Disabling Process Command Line Logging via Registry Modification",
+      "source_sha256": "59ba811e1d268916b8ef0b65d0cd8ae3ffde0bb59a680ae72d8740eb36cd9b67",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/reg_cmd_process_commandline_logging_disabled.zip",
+      "supported_events": 13,
+      "ignored_events": 7893,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Disabling Process Command Line Logging via Registry Modification",
+      "source_sha256": "592e5214cf4b705051cbed79958a73ef50c9d5e9c71a8ebf84392265bc4cddd4",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/reg_meterpreter_process_commandline_logging_disabled.zip",
+      "supported_events": 12,
+      "ignored_events": 11944,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "WMIC Remote XSL Jscript Execution",
+      "source_sha256": "f5766221059189dafc8b826abeecd46708bb8e5b21a480ecad6aa0a37f382320",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/defense_evasion/host/wmic_remote_xsl_jscript.zip",
+      "supported_events": 10,
+      "ignored_events": 865,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Internet Explorer Version Discovery",
+      "source_sha256": "3215b22ff18ea946923431a51edc83e3e0ba5d4b559ff1d6b7d27c16cc5803da",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/cmd_discover_iexplorer_version_registry.zip",
+      "supported_events": 2,
+      "ignored_events": 51,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Seatbelt Group User Discovery",
+      "source_sha256": "d885d5c331641d24594869c62eaae563d1ff0c18a2d3c2ba71f48b10e663b1bc",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/cmd_seatbelt_group_user.zip",
+      "supported_events": 3,
+      "ignored_events": 297,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant GetDomainGroup Domain Admins",
+      "source_sha256": "af11d4d2140d8f9099cdeeb1b469af4dcfb94119f2c1072fb4c5f9e70d354876",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/covenant_getdomaingroup_ldap_searchrequest_domain_admins.zip",
+      "supported_events": 7,
+      "ignored_events": 154,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Find Local Admin Access",
+      "source_sha256": "b721c16e8463ff33ffed5415a9d3f874455c8b59d3ebd414ad224539d7892aec",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/empire_find_localadmin_smb_svcctl_OpenSCManager.zip",
+      "supported_events": 27,
+      "ignored_events": 1472,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.31777386367321,
+          "perplexity": 10.153047062859502,
+          "mean_window_max_nll_nats": 3.7565648555755615,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.405233308672905,
+          "perplexity": 11.08101527759263,
+          "mean_window_max_nll_nats": 4.629957675933838,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Remote Get Session",
+      "source_sha256": "43e39d48cbdd2c7c235240b19f7def568968a6abff0d8f355a76deedc7f75659",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/empire_getsession_dcerpc_smb_srvsvc_NetSessEnum.zip",
+      "supported_events": 21,
+      "ignored_events": 615,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Shell Net Domain Admins",
+      "source_sha256": "aa5c2a87fc3a38e419e3a3885a886a3f4ea3abb0c2b4e219e06f086c9b54eacb",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/empire_shell_rpc_samr_smb_group_domain_admins_standard_user.zip",
+      "supported_events": 9,
+      "ignored_events": 497,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Net Domain Users",
+      "source_sha256": "b37c022ce7aa5fed3ad7087e2ec1f37d7b1089ec9bfe7b196f974295d255506b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/discovery/host/empire_shell_samr_EnumDomainUsers.zip",
+      "supported_events": 7,
+      "ignored_events": 231,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "SharpView PCRE.NET",
+      "source_sha256": "314b1d08b9038dd327c8769c82564a44fd26fa1ba17ffa79e52b4683e2821dac",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/execution/host/cmd_sharpview_pcre_net.zip",
+      "supported_events": 6,
+      "ignored_events": 144,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire VBS Execution",
+      "source_sha256": "812da270cf8cda6f1948fb6275410f15dc1794d0bd6b623c9c25b2518285019c",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/execution/host/empire_launcher_vbs.zip",
+      "supported_events": 19,
+      "ignored_events": 829,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "PowerShell HTTP Listener",
+      "source_sha256": "506ba862fd76e0f8d43396e705ec6eebb7a01a5a2954bd70c9f47802d32f4843",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/execution/host/psh_powershell_httplistener.zip",
+      "supported_events": 1,
+      "ignored_events": 88,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Python HTTP Server",
+      "source_sha256": "58a62e35ee7a78e88cfca86e628e988a7192ec7fb24013b9d3b86766b25c8a17",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/execution/host/psh_python_webserver.zip",
+      "supported_events": 6,
+      "ignored_events": 636,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Export ADFS Database Configuration Remotely",
+      "source_sha256": "de1af624eb6cccaf9db82063ff2e27a444b178b1dd45889c50971c6fbf3d062e",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/aadinternals_export_adfsdatabaseconfig_remotely.zip",
+      "supported_events": 9,
+      "ignored_events": 147,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "covenant com wsman automation",
+      "source_sha256": "9b23288621db8a7548049bb2755da302b388b920e0a58310eca57a4746001060",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_com_wsman_automation.zip",
+      "supported_events": 24,
+      "ignored_events": 308,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant Remote File Copy",
+      "source_sha256": "a43e5f20cb412fc068c9e2449e5a7bd0cf8456ebe6a782e69301ea0905590871",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_copy_smb_CreateRequest.zip",
+      "supported_events": 6,
+      "ignored_events": 258,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DCOM ExecuteExcel4macro",
+      "source_sha256": "4dabf4be2b6103dadf27c29ad5734acf477003b3e1b1922e8e43871da7e0fdef",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_executeexcel4macro_allowed.zip",
+      "supported_events": 134,
+      "ignored_events": 5664,
+      "complete_disjoint_24_event_windows": 4,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.7335175089538097,
+          "perplexity": 15.38691555450726,
+          "mean_window_max_nll_nats": 4.628419756889343,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.3970463387668133,
+          "perplexity": 10.990665688320888,
+          "mean_window_max_nll_nats": 4.308582186698914,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "DCOM ExecuteExcel4macro",
+      "source_sha256": "41ccbd5197bd32c1e66d2faae7c2f34b7de71f5635887e2dd57ad3eb5726b5e9",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_executeexcel4macro_blocked.zip",
+      "supported_events": 16,
+      "ignored_events": 721,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant Remote DCOM Iertutil DLL Hijacking",
+      "source_sha256": "e03ad2075a74cc1fc22eb0d25eef740e88e114938e46c3f1c36071b78e18376d",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_iertutil_dll_hijack.zip",
+      "supported_events": 383,
+      "ignored_events": 27478,
+      "complete_disjoint_24_event_windows": 15,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.083206993341446,
+          "perplexity": 8.03018039905005,
+          "mean_window_max_nll_nats": 4.731711514790853,
+          "prediction_count": 120,
+          "window_count": 15,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.13333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.8607261240482331,
+          "perplexity": 6.42840289506566,
+          "mean_window_max_nll_nats": 4.213558340072632,
+          "prediction_count": 120,
+          "window_count": 15,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.13333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "DCOM RegisterXLL",
+      "source_sha256": "a18d37fe9d6d5f7cda35911070c94edbf8ab8876489780c6177d6294cab38b80",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_registerxll.zip",
+      "supported_events": 37,
+      "ignored_events": 1172,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.63067427277565,
+          "perplexity": 13.883127761991075,
+          "mean_window_max_nll_nats": 5.225475788116455,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.3051234036684036,
+          "perplexity": 10.025415349123598,
+          "mean_window_max_nll_nats": 3.5048038959503174,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant PowerShell Remoting Command",
+      "source_sha256": "4a2e0f9688c87a90b17b608ff38fb2230ceb7305ea0368703dcfe53269e3f096",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_psremoting_command.zip",
+      "supported_events": 70,
+      "ignored_events": 2340,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.145810127258301,
+          "perplexity": 8.548964181596267,
+          "mean_window_max_nll_nats": 4.358462333679199,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.4655417874455452,
+          "perplexity": 4.329888484152892,
+          "mean_window_max_nll_nats": 4.687016487121582,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "covenant psremoting grunt",
+      "source_sha256": "3a9b8dfaa1abf039279afc27b872e606bd4bed42f0a2de29254cce3d4126db76",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_psremoting_grunt.zip",
+      "supported_events": 326,
+      "ignored_events": 2247,
+      "complete_disjoint_24_event_windows": 12,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.8822021658221881,
+          "perplexity": 6.567952669008639,
+          "mean_window_max_nll_nats": 4.9358445952336,
+          "prediction_count": 96,
+          "window_count": 12,
+          "threshold_exceedance_windows": 5,
+          "threshold_exceedance_fraction": 0.4166666666666667,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.4929497472864266,
+          "perplexity": 4.450203152068859,
+          "mean_window_max_nll_nats": 4.474515621860822,
+          "prediction_count": 96,
+          "window_count": 12,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.16666666666666666,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant SC.exe Utility Query",
+      "source_sha256": "3975cdac314bbebb53721668229c9b7925206bac8f61447d154abaf0302a7c30",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sc_query_dcerpc_smb_svcctl.zip",
+      "supported_events": 22,
+      "ignored_events": 448,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant SharpSC Create",
+      "source_sha256": "77487bbd1fc7954adbc9ba07bfeeeb9d57192b0f0e0f54e1ee5a05c71a5be84a",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_create_dcerpc_smb_svcctl.zip",
+      "supported_events": 70,
+      "ignored_events": 1083,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.5464134477078915,
+          "perplexity": 12.761252708024356,
+          "mean_window_max_nll_nats": 6.67161226272583,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.7674945257604122,
+          "perplexity": 2.15436178827425,
+          "mean_window_max_nll_nats": 1.4593828916549683,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant SharpSC Query",
+      "source_sha256": "0d39ef84ead00e1d5e3bea173d00fcf7af1268ab64b6b82981301353878e665b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_query_dcerpc_smb_svcctl.zip",
+      "supported_events": 16,
+      "ignored_events": 169,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Covenant SharpSC Start",
+      "source_sha256": "a6cebf14f42f8f4e4f3ea457d88437ce16f0fce5b184ae70f097fcf48f68692c",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_start_dcerpc_smb_svcctl.zip",
+      "supported_events": 40,
+      "ignored_events": 2053,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.5882242694497108,
+          "perplexity": 4.895048918266557,
+          "mean_window_max_nll_nats": 4.185699462890625,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.6791167184710503,
+          "perplexity": 5.360818767090539,
+          "mean_window_max_nll_nats": 4.143049240112305,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant SharpSC Stop Service",
+      "source_sha256": "1b2254fde3573ef97f936070e07ed5167d632ed048c345c550cc743902b57d4c",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_stop_dcerpc_smb_svcctl.zip",
+      "supported_events": 35,
+      "ignored_events": 592,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.9710798636078835,
+          "perplexity": 19.512979579559047,
+          "mean_window_max_nll_nats": 9.344084739685059,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 3.386927582323551,
+          "perplexity": 29.574945950527294,
+          "mean_window_max_nll_nats": 12.293974876403809,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant SharpWMI Exec",
+      "source_sha256": "6ff5d99660a2ce3691d198e63398ea50d8112472c469c756eeb82b83440ce626",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpwmi_create_dcerpc_wmi.zip",
+      "supported_events": 58,
+      "ignored_events": 1023,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.6287176609039307,
+          "perplexity": 1.8752043889170635,
+          "mean_window_max_nll_nats": 1.6193547248840332,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.1209206320345402,
+          "perplexity": 3.067677105481459,
+          "mean_window_max_nll_nats": 1.6700108051300049,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant Remote WMI Eventing ActiveScriptEventConsumers",
+      "source_sha256": "6167815b2f1901a267d965335251dc035b211f2b6e0d2063903d764305b80415",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_wmi_remote_event_subscription_ActiveScriptEventConsumers.zip",
+      "supported_events": 67,
+      "ignored_events": 1950,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.4822921939194202,
+          "perplexity": 4.40302671372401,
+          "mean_window_max_nll_nats": 9.505375862121582,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.1943600922822952,
+          "perplexity": 3.3014444746177296,
+          "mean_window_max_nll_nats": 4.671912670135498,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Covenant Remote WMI Wbemcomn DLL Hijacking",
+      "source_sha256": "66d73cccd7918b12c840a29a2910cc773a7f9d5aeab9636dc219c257fd647874",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/covenant_wmi_wbemcomn_dll_hijack.zip",
+      "supported_events": 78,
+      "ignored_events": 3182,
+      "complete_disjoint_24_event_windows": 2,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.6610407661646605,
+          "perplexity": 14.31117593816735,
+          "mean_window_max_nll_nats": 5.984801769256592,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.277079474180937,
+          "perplexity": 9.748169016363674,
+          "mean_window_max_nll_nats": 5.277803897857666,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Invoke DCOM ShellWindows",
+      "source_sha256": "9ec1bcfffc46158565ad99a06b9a0a6bac97a152a513c32686be2084f54065c9",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_dcom_shellwindows_stager.zip",
+      "supported_events": 241,
+      "ignored_events": 22658,
+      "complete_disjoint_24_event_windows": 9,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.1827684968916907,
+          "perplexity": 8.870831162997312,
+          "mean_window_max_nll_nats": 5.579387611813015,
+          "prediction_count": 72,
+          "window_count": 9,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.2222222222222222,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.008484390253822,
+          "perplexity": 7.452014438371891,
+          "mean_window_max_nll_nats": 5.777906126446194,
+          "prediction_count": 72,
+          "window_count": 9,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.2222222222222222,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Invoke Execute MSBuild",
+      "source_sha256": "edbc2fdd9e118da0999d7b941c78501cd4142e2afe9e794aed4349101fb59ca8",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_msbuild_dcerpc_wmi_smb.zip",
+      "supported_events": 43,
+      "ignored_events": 1651,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.9296747669577599,
+          "perplexity": 6.887269909540629,
+          "mean_window_max_nll_nats": 6.295367240905762,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.657047376036644,
+          "perplexity": 5.243804979975346,
+          "mean_window_max_nll_nats": 3.7492570877075195,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Invoke PsExec",
+      "source_sha256": "8f40e7fc86bbbf31ebd50b3ba537cf0f4378392ae3e74de84bee00aeb0de1fa5",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_psexec_dcerpc_tcp_svcctl.zip",
+      "supported_events": 27,
+      "ignored_events": 1673,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Invoke PSRemoting",
+      "source_sha256": "214355730c8cf903f4423c96aa7459fed7b74258e2a6766b794ba316e9d3a46e",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_psremoting_stager.zip",
+      "supported_events": 17,
+      "ignored_events": 1311,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "IKEEXT Remote Service DLL Hijack",
+      "source_sha256": "59265c906bf2fdac09b876cfa137f6e81e645d85d550c5b4efdebb8f3f491428",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_shell_dcerpc_smb_service_dll_hijack.zip",
+      "supported_events": 50,
+      "ignored_events": 1445,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.5981083810329437,
+          "perplexity": 13.438293845709817,
+          "mean_window_max_nll_nats": 4.688705921173096,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.395155608654022,
+          "perplexity": 10.969904938416596,
+          "mean_window_max_nll_nats": 3.7804336547851562,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Invoke SMBExec",
+      "source_sha256": "c0fc435c9ce0ecdc7cd57b4055977b949ac6b1cae9d7f4ce7aa0f0e5eae7d7f1",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_smbexec_dcerpc_smb_svcctl.zip",
+      "supported_events": 24,
+      "ignored_events": 2804,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Invoke WMI",
+      "source_sha256": "96f1dbd9c5b077c8951b6e1f43b7fe01a2620c649889262481f15139a1746d88",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_wmi_dcerpc_wmi_IWbemServices_ExecMethod.zip",
+      "supported_events": 24,
+      "ignored_events": 1194,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Remote WMIC Add User",
+      "source_sha256": "88502d9a8d90f17aa638d7331120d52e7295480ea5fc4a156463399181d1c6e1",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/empire_wmic_add_user_backdoor.zip",
+      "supported_events": 139,
+      "ignored_events": 4256,
+      "complete_disjoint_24_event_windows": 4,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.0814296109601855,
+          "perplexity": 8.015920374402771,
+          "mean_window_max_nll_nats": 4.904992640018463,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.25,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.8162368014454842,
+          "perplexity": 6.148676168209018,
+          "mean_window_max_nll_nats": 3.7019267678260803,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Mimikatz Netlogon Unauthenticated NetrServerAuthenticate2",
+      "source_sha256": "03b8cefdd0c39bcbb9c4939af6777c8617dcab0a717e04b53a2fe112c3a2eee0",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/mimikatz_CVE-2020-1472_Unauthenticated_NetrServerAuthenticate2.zip",
+      "supported_events": 20,
+      "ignored_events": 341,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "PurpleSharp Active Directory Playbook I",
+      "source_sha256": "2a2d80e7b8d8ee6821a1754118f3ab908b4bac84cf4ed3d018e281f631bd2870",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/purplesharp_ad_playbook_I.zip",
+      "supported_events": 175,
+      "ignored_events": 8400,
+      "complete_disjoint_24_event_windows": 7,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.14713763778231,
+          "perplexity": 8.560320557703347,
+          "mean_window_max_nll_nats": 5.13329325403486,
+          "prediction_count": 56,
+          "window_count": 7,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.14285714285714285,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.839809276163578,
+          "perplexity": 6.2953374756061775,
+          "mean_window_max_nll_nats": 4.643817288534982,
+          "prediction_count": 56,
+          "window_count": 7,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.14285714285714285,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Remote Scheduled Task Creation",
+      "source_sha256": "74394c64b660d5b229936d00ea8b3ceb900126cd9e261f58fa2be766579ec5de",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/schtask_create.zip",
+      "supported_events": 22,
+      "ignored_events": 840,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Remote Scheduled Task Modification",
+      "source_sha256": "1ad310765981ea51714fad6d651032f54ae24780109135458ecd9ec9df0e70ce",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/lateral_movement/host/schtask_modification.zip",
+      "supported_events": 36,
+      "ignored_events": 1949,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.1283274665474892,
+          "perplexity": 3.0904832385032903,
+          "mean_window_max_nll_nats": 1.5644346475601196,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.9037969522178173,
+          "perplexity": 2.4689598589657495,
+          "mean_window_max_nll_nats": 1.4645235538482666,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Logon Scripts via UserInitMprLogonScript",
+      "source_sha256": "53a01d6976b7567a2464628d850c51cc48b1a91a932cd2b0e110a510bcedf858",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+      "supported_events": 2,
+      "ignored_events": 90,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Elevated Registry Run Keys",
+      "source_sha256": "2809354d679025859d723be3ceb1e2c9f9e5dde2ebec5bbea7c398e165a9b67d",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/empire_persistence_registry_modification_run_keys_elevated_user.zip",
+      "supported_events": 49,
+      "ignored_events": 60,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.1336584212258458,
+          "perplexity": 1.1430023276226258,
+          "mean_window_max_nll_nats": 0.17865675687789917,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.5075191035866737,
+          "perplexity": 1.6611649005640596,
+          "mean_window_max_nll_nats": 0.5965777635574341,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Userland Registry Run Keys",
+      "source_sha256": "2965f791bcaf5e6ccfc4059985e81fd7e67ec87f17855b6c383edd1b03a19c36",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/empire_persistence_registry_modification_run_keys_standard_user.zip",
+      "supported_events": 466,
+      "ignored_events": 15878,
+      "complete_disjoint_24_event_windows": 18,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.3285168683343929,
+          "perplexity": 3.775439758878402,
+          "mean_window_max_nll_nats": 3.1280102036220745,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 3,
+          "threshold_exceedance_fraction": 0.16666666666666666,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.9842266813308621,
+          "perplexity": 2.6757418829869235,
+          "mean_window_max_nll_nats": 2.6520487886543074,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.1111111111111111,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Elevated Scheduled Tasks",
+      "source_sha256": "74662dc5c52f4ac2fc9dcb336bae7fb4e101217169c65adf5784b03015501d3b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/empire_schtasks_creation_execution_elevated_user.zip",
+      "supported_events": 481,
+      "ignored_events": 28346,
+      "complete_disjoint_24_event_windows": 19,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.2611664733022305,
+          "perplexity": 3.5295361967922902,
+          "mean_window_max_nll_nats": 3.284512529639821,
+          "prediction_count": 152,
+          "window_count": 19,
+          "threshold_exceedance_windows": 4,
+          "threshold_exceedance_fraction": 0.21052631578947367,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.1636749789192293,
+          "perplexity": 3.20167778084539,
+          "mean_window_max_nll_nats": 3.009525598271897,
+          "prediction_count": 152,
+          "window_count": 19,
+          "threshold_exceedance_windows": 3,
+          "threshold_exceedance_fraction": 0.15789473684210525,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Empire Userland Scheduled Tasks",
+      "source_sha256": "b073a18420c90394cd2b6ad7589c78d90eba32dc155ed04b12ac824a8fc591b4",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/empire_schtasks_creation_standard_user.zip",
+      "supported_events": 6,
+      "ignored_events": 284,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Empire Elevated WMI Eventing",
+      "source_sha256": "a507f2edd768b592e6b3157e974fd0468965eee00407387d88356ecb8fd20fea",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/empire_wmi_local_event_subscriptions_elevated_user.zip",
+      "supported_events": 799,
+      "ignored_events": 48918,
+      "complete_disjoint_24_event_windows": 32,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.6184675946769858,
+          "perplexity": 5.045352864035946,
+          "mean_window_max_nll_nats": 4.196948352138861,
+          "prediction_count": 256,
+          "window_count": 32,
+          "threshold_exceedance_windows": 9,
+          "threshold_exceedance_fraction": 0.28125,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.3491544913631515,
+          "perplexity": 3.8541654225138,
+          "mean_window_max_nll_nats": 3.5650926246889867,
+          "prediction_count": 256,
+          "window_count": 32,
+          "threshold_exceedance_windows": 5,
+          "threshold_exceedance_fraction": 0.15625,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Exchange ProxyLogon SSRF RCE Vuln POC",
+      "source_sha256": "cc6ef822788c25b03b20e4d6cf3fa268ea0277483b31614c5d432fd7a55bd3e2",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/persistence/host/proxylogon_ssrf_rce_poc.zip",
+      "supported_events": 143,
+      "ignored_events": 2438,
+      "complete_disjoint_24_event_windows": 5,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.1264761835336685,
+          "perplexity": 8.38526654878403,
+          "mean_window_max_nll_nats": 6.073439693450927,
+          "prediction_count": 40,
+          "window_count": 5,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.4,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.0664084419608115,
+          "perplexity": 7.896411706827836,
+          "mean_window_max_nll_nats": 6.426055479049682,
+          "prediction_count": 40,
+          "window_count": 5,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.4,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Service Modification Fax",
+      "source_sha256": "4a40cb09c514f1a4c601588cbfa5c81e12a6f8a5ab92fd76bad846c1a4352447",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/privilege_escalation/host/cmd_service_mod_fax.zip",
+      "supported_events": 8,
+      "ignored_events": 241,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Invoke BypassUAC FodHelper",
+      "source_sha256": "b8cc7aae826f5e4aea3ea47b2b6db69b062c39201de8de9621d5081622d3c504",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/atomic/windows/privilege_escalation/host/empire_uac_shellapi_fodhelper.zip",
+      "supported_events": 43,
+      "ignored_events": 2137,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.7849655896425247,
+          "perplexity": 16.199260444829253,
+          "mean_window_max_nll_nats": 6.958398342132568,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 2.402369625866413,
+          "perplexity": 11.049328157249228,
+          "mean_window_max_nll_nats": 7.646633148193359,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - logonpasswords (Mimikatz)",
+      "source_sha256": "79045fcc5a8689efed8db4911cadc11b554ef8b0bed1428ee490bb8c3f2578e6",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_01/metasploit_logonpasswords_lsass_memory_dump.zip",
+      "supported_events": 698,
+      "ignored_events": 42120,
+      "complete_disjoint_24_event_windows": 29,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.3003301272200871,
+          "perplexity": 3.6705082022970847,
+          "mean_window_max_nll_nats": 2.7945261823719947,
+          "prediction_count": 232,
+          "window_count": 29,
+          "threshold_exceedance_windows": 7,
+          "threshold_exceedance_fraction": 0.2413793103448276,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.082388662026617,
+          "perplexity": 2.951721802720847,
+          "mean_window_max_nll_nats": 2.2903310872357467,
+          "prediction_count": 232,
+          "window_count": 29,
+          "threshold_exceedance_windows": 3,
+          "threshold_exceedance_fraction": 0.10344827586206896,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - Procdump",
+      "source_sha256": "2b32f11b1465f49df8bb4040652b001e4bb8a92de6ae7e84c2977abe68273f04",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_02/metasploit_procdump_lsass_memory_dump.zip",
+      "supported_events": 412,
+      "ignored_events": 32740,
+      "complete_disjoint_24_event_windows": 17,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.8820839606718542,
+          "perplexity": 17.85143613393425,
+          "mean_window_max_nll_nats": 4.8205526155584,
+          "prediction_count": 136,
+          "window_count": 17,
+          "threshold_exceedance_windows": 7,
+          "threshold_exceedance_fraction": 0.4117647058823529,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.347557414761361,
+          "perplexity": 3.8480149378029966,
+          "mean_window_max_nll_nats": 4.423982045229743,
+          "prediction_count": 136,
+          "window_count": 17,
+          "threshold_exceedance_windows": 4,
+          "threshold_exceedance_fraction": 0.23529411764705882,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - comsvcs.dll",
+      "source_sha256": "97a834cd72b0803d544c62cc45a41b18a4cc04a605735096be4bc5dad5e9fe7b",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_03/metasploit_comsvcs_lsass_memory_dump.zip",
+      "supported_events": 436,
+      "ignored_events": 33825,
+      "complete_disjoint_24_event_windows": 18,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 2.176821084744814,
+          "perplexity": 8.818229251660371,
+          "mean_window_max_nll_nats": 3.7095530496703253,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 6,
+          "threshold_exceedance_fraction": 0.3333333333333333,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.157356604312857,
+          "perplexity": 3.1815121553325816,
+          "mean_window_max_nll_nats": 3.1672787620789475,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.1111111111111111,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - Out-Minidump.ps1",
+      "source_sha256": "d6150eab4013ed0a7fc9c6b7266187214706c543c9dc3a370603f524def5de63",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_04/metasploit_out-minidump_lsass_memory_dump.zip",
+      "supported_events": 432,
+      "ignored_events": 28887,
+      "complete_disjoint_24_event_windows": 18,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.9232012418150488,
+          "perplexity": 6.842828994503937,
+          "mean_window_max_nll_nats": 4.172355395845241,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 5,
+          "threshold_exceedance_fraction": 0.2777777777777778,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.388584664505389,
+          "perplexity": 4.009171712534951,
+          "mean_window_max_nll_nats": 3.8513499428000717,
+          "prediction_count": 144,
+          "window_count": 18,
+          "threshold_exceedance_windows": 4,
+          "threshold_exceedance_fraction": 0.2222222222222222,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - SharpDump",
+      "source_sha256": "79e347b411beefaf5c7d0c951fdcb9d308fce20f8eabe666c11fa7b6165053b8",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_05/metasploit_sharpdump_lsass_memory_dump.zip",
+      "supported_events": 1544,
+      "ignored_events": 43213,
+      "complete_disjoint_24_event_windows": 64,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 4.029245853162138,
+          "perplexity": 56.21849825363819,
+          "mean_window_max_nll_nats": 6.118724625557661,
+          "prediction_count": 512,
+          "window_count": 64,
+          "threshold_exceedance_windows": 53,
+          "threshold_exceedance_fraction": 0.828125,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.9733921508013736,
+          "perplexity": 2.646907958942071,
+          "mean_window_max_nll_nats": 2.1741403909400105,
+          "prediction_count": 512,
+          "window_count": 64,
+          "threshold_exceedance_windows": 3,
+          "threshold_exceedance_fraction": 0.046875,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - Outflank Dumpert",
+      "source_sha256": "ee996c0ddc32611c572f59a68869f7d4327aaac04a3aeee65916b7221347dc1d",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_06/metasploit_outflank-dumpert_lsass_memory_dump.zip",
+      "supported_events": 1323,
+      "ignored_events": 44117,
+      "complete_disjoint_24_event_windows": 55,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 4.008742333804681,
+          "perplexity": 55.077557803871954,
+          "mean_window_max_nll_nats": 6.291396697001024,
+          "prediction_count": 440,
+          "window_count": 55,
+          "threshold_exceedance_windows": 45,
+          "threshold_exceedance_fraction": 0.8181818181818182,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.9742816252125935,
+          "perplexity": 2.6492633632210287,
+          "mean_window_max_nll_nats": 2.3056466059251264,
+          "prediction_count": 440,
+          "window_count": 55,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.03636363636363636,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "LSASS Memory - Nanodump",
+      "source_sha256": "5335635ef2bce0fb3f8704e17fb04a3be7400ac7c4bcd6ec7c14454632acaaaf",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/LSASS_campaign_07/metasploit_nanodump_lsass_memory_dump.zip",
+      "supported_events": 1060,
+      "ignored_events": 46170,
+      "complete_disjoint_24_event_windows": 44,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 3.5371222211132674,
+          "perplexity": 34.36787360252543,
+          "mean_window_max_nll_nats": 5.971268550916151,
+          "prediction_count": 352,
+          "window_count": 44,
+          "threshold_exceedance_windows": 33,
+          "threshold_exceedance_fraction": 0.75,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.0702045439869503,
+          "perplexity": 2.9159758843147308,
+          "mean_window_max_nll_nats": 2.535518930716948,
+          "prediction_count": 352,
+          "window_count": 44,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 0.022727272727272728,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "apt29 evals day1 manual",
+      "source_sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+      "supported_events": 2157,
+      "ignored_events": 91934,
+      "complete_disjoint_24_event_windows": 88,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.717091726256926,
+          "perplexity": 5.568310721025266,
+          "mean_window_max_nll_nats": 4.142339970699553,
+          "prediction_count": 704,
+          "window_count": 88,
+          "threshold_exceedance_windows": 19,
+          "threshold_exceedance_fraction": 0.2159090909090909,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.5444693066052755,
+          "perplexity": 4.685484411477701,
+          "mean_window_max_nll_nats": 4.0628008435014635,
+          "prediction_count": 704,
+          "window_count": 88,
+          "threshold_exceedance_windows": 16,
+          "threshold_exceedance_fraction": 0.18181818181818182,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "apt29 evals day2 manual",
+      "source_sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9",
+      "dataset": "OTRF Security-Datasets",
+      "raw_archive_path": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+      "supported_events": 3518,
+      "ignored_events": 294850,
+      "complete_disjoint_24_event_windows": 145,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.7081652609856222,
+          "perplexity": 5.518826576584253,
+          "mean_window_max_nll_nats": 3.8786533264218477,
+          "prediction_count": 1160,
+          "window_count": 145,
+          "threshold_exceedance_windows": 17,
+          "threshold_exceedance_fraction": 0.11724137931034483,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.4955606849157606,
+          "perplexity": 4.461837536653735,
+          "mean_window_max_nll_nats": 3.833273406313925,
+          "prediction_count": 1160,
+          "window_count": 145,
+          "threshold_exceedance_windows": 18,
+          "threshold_exceedance_fraction": 0.12413793103448276,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "PanacheSysmon vs AtomicRedTeam01",
+      "source_sha256": "6903dff9f218fa027c704c8c445b74e08b952c8d71be79bd0327f1e792d4aa01",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "AutomatedTestingTools/PanacheSysmon_vs_AtomicRedTeam01.evtx",
+      "supported_events": 516,
+      "ignored_events": 43,
+      "complete_disjoint_24_event_windows": 21,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.09973844382745613,
+          "perplexity": 1.104881891600286,
+          "mean_window_max_nll_nats": 0.686530216109185,
+          "prediction_count": 168,
+          "window_count": 21,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.09523809523809523,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.09560789137945644,
+          "perplexity": 1.1003275314851828,
+          "mean_window_max_nll_nats": 0.6090282943277132,
+          "prediction_count": 168,
+          "window_count": 21,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "panache sysmon vs EDRTestingScript",
+      "source_sha256": "9c1371a0632de15095b6ffe2e38991b764d4beaddb1722178e93aa476f83f52f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "AutomatedTestingTools/panache_sysmon_vs_EDRTestingScript.evtx",
+      "supported_events": 104,
+      "ignored_events": 18,
+      "complete_disjoint_24_event_windows": 4,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.5871396310540149,
+          "perplexity": 1.7988357157796815,
+          "mean_window_max_nll_nats": 3.5243996400386095,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 2,
+          "threshold_exceedance_fraction": 0.5,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.576889707299415,
+          "perplexity": 1.7804919585033623,
+          "mean_window_max_nll_nats": 3.3776647318154573,
+          "prediction_count": 32,
+          "window_count": 4,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "DE sysmon-3-rdp-tun",
+      "source_sha256": "1d1eb55d1b7c785db26e19b0d50b9eb4a7928671e4edeb82ea5182cb834c874a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Command and Control/DE_sysmon-3-rdp-tun.evtx",
+      "supported_events": 67,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 2,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.4216764913871884,
+          "perplexity": 4.144062104231306,
+          "mean_window_max_nll_nats": 3.8942099809646606,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.525686463341117,
+          "perplexity": 4.598299049851132,
+          "mean_window_max_nll_nats": 2.4195051193237305,
+          "prediction_count": 16,
+          "window_count": 2,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "tunna iis rdp smb tunneling sysmon 3",
+      "source_sha256": "d7e75b35f9db32c91dc0d066ee935b382253fb56659f19c05833c964f8217469",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Command and Control/tunna_iis_rdp_smb_tunneling_sysmon_3.evtx",
+      "supported_events": 12,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "CA Mimikatz Memssp Default Logs Sysmon 11",
+      "source_sha256": "a5c52377c8a430fc4838fdc9b7c1638125b95c618d7efa930be0562124e0bfba",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/CA_Mimikatz_Memssp_Default_Logs_Sysmon_11.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "CA sysmon hashdump cmd meterpreter",
+      "source_sha256": "897206ca4c3c427753fde880970048494cd5a99be9aaba6154b4e3ac499e24c9",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/CA_sysmon_hashdump_cmd_meterpreter.evtx",
+      "supported_events": 0,
+      "ignored_events": 8,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "CA teamviewer-dumper sysmon 10",
+      "source_sha256": "53eaf99a0a50ad2b2b8b86535b6b5f5da30663d5f977a02eeb4e69d2438fa668",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/CA_teamviewer-dumper_sysmon_10.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon13 MachineAccount Password Hash Changed via LsarSetSecret",
+      "source_sha256": "f2e5df7f6929dcb0ab9c45f0c5f30488dfb167a56ee472fa2ae6bf52f610fa94",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/Sysmon13_MachineAccount_Password_Hash_Changed_via_LsarSetSecret.evtx",
+      "supported_events": 0,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 13 Local Admin Password Changed",
+      "source_sha256": "821e5225b243dfcb44789b1904b7d9ae5ab7a458eeeb68b24af27ace1f477367",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/Sysmon_13_Local_Admin_Password_Changed.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "discovery sysmon 1 iis pwd and config discovery appcmd",
+      "source_sha256": "5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+      "supported_events": 40,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.004702817182987928,
+          "perplexity": 1.004713892783084,
+          "mean_window_max_nll_nats": 0.004702817182987928,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.01683269627392292,
+          "perplexity": 1.0169751643572817,
+          "mean_window_max_nll_nats": 0.01683269627392292,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "ppl bypass ppldump knowdll hijack sysmon security",
+      "source_sha256": "9ac47a1ab7ac5e899dede49a4ea3512f0d3628edb9605981fe78bc0aec6f296f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "supported_events": 4,
+      "ignored_events": 14,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 10 11 lsass memdump",
+      "source_sha256": "915f0859251552b6c33efc32f6184d2c25419c5859852124a7f14ed6ec1a3723",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_10_11_lsass_memdump.evtx",
+      "supported_events": 0,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 10 11 outlfank dumpert and andrewspecial memdump",
+      "source_sha256": "f0d11bf8e186947aaf64c3a57debb1b665f518e2dab13acdaafb30c7e8d262af",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_10_11_outlfank_dumpert_and_andrewspecial_memdump.evtx",
+      "supported_events": 3,
+      "ignored_events": 12,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 10 1 memdump comsvcs minidump",
+      "source_sha256": "d1bf591cabf7d21f49936150bfaf433da7665211ba3fd00bc806f4912a6f96b4",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "supported_events": 2,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 10 lsass mimikatz sekurlsa logonpasswords",
+      "source_sha256": "9a1689574ed08c1fb18e7ff3f3bed612109aedcb7bf8efbf3537d756e669e96f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 13 keylogger directx",
+      "source_sha256": "a3ca60a7b49d5a6900460431d4aad4f75e915b9baf8fc211878c2b7bcdac4b6b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_13_keylogger_directx.evtx",
+      "supported_events": 2,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 2x10 lsass with different pid RtlCreateProcessReflection",
+      "source_sha256": "7d160c1b636f8eb3642e9c2c15c941c136d9ecbf19116b18b19f981324d44e00",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_2x10_lsass_with_different_pid_RtlCreateProcessReflection.evtx",
+      "supported_events": 0,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon rdrleakdiag lsass dump",
+      "source_sha256": "17f010bff45a34212e5c5ff13ed1106274f65e3524fc508f7481db8aaeef0434",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Credential Access/sysmon_rdrleakdiag_lsass_dump.evtx",
+      "supported_events": 2,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DE BYOV Zam64 CA Memdump sysmon 7 10",
+      "source_sha256": "329b2a8c70d43789e03bad581e971c4f84aeb2852c5a7c960fa57454225e5199",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DE_BYOV_Zam64_CA_Memdump_sysmon_7_10.evtx",
+      "supported_events": 2,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DE Powershell CLM Disabled Sysmon 12",
+      "source_sha256": "3eb77febe76db38146275927c57fa7fcb98394c2261858d957dabc90573ac7c0",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DE_Powershell_CLM_Disabled_Sysmon_12.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DE ProcessHerpaderping Sysmon 11 10 1 7",
+      "source_sha256": "cafd901d6b6583a2441386ef6b42c380090270e91eb3431ec01a77ccb0e1c37f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DE_ProcessHerpaderping_Sysmon_11_10_1_7.evtx",
+      "supported_events": 1,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DE UAC Disabled Sysmon 12 13",
+      "source_sha256": "06d462b8367cfc620bc84dbda970cf34bff761e02d9d6e1d33bc48f56bc66e6d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DE_UAC_Disabled_Sysmon_12_13.evtx",
+      "supported_events": 1,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DE remote eventlog svc crash byt3bl33d3r sysmon 17 1 3",
+      "source_sha256": "aadfd6f526c9ce0b76381f8c7a047b0882fcd2a4640a733f9b4b90d68a34446b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DE_remote_eventlog_svc_crash_byt3bl33d3r_sysmon_17_1_3.evtx",
+      "supported_events": 9,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "DSE bypass BYOV TDL dummydriver sysmon 6 7 13",
+      "source_sha256": "1162521cb06986ddef24bff7c044b05d63f37ea8faeaa6acd8cc2529b05c7618",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx",
+      "supported_events": 2,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 7  Update Session Orchestrator Dll Hijack",
+      "source_sha256": "7a0c541506770e6ef05e327f600c7fc1d328676058214a0e3a6a82c7d7e8fcdf",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "supported_events": 24,
+      "ignored_events": 36,
+      "complete_disjoint_24_event_windows": 1,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 1.57034038688289,
+          "perplexity": 4.808284592259496,
+          "mean_window_max_nll_nats": 12.223334312438965,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 1.5650626185815781,
+          "perplexity": 4.782974429592741,
+          "mean_window_max_nll_nats": 11.935388565063477,
+          "prediction_count": 8,
+          "window_count": 1,
+          "threshold_exceedance_windows": 1,
+          "threshold_exceedance_fraction": 1.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "Sysmon 7 dllhijack cdpsshims CDPSvc",
+      "source_sha256": "95b499a8478cce0fa8eb579c236a5216c1ba8dff8d4b98f751b2d52edba67400",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx",
+      "supported_events": 12,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 10 Evasion Suspicious NtOpenProcess CallTrace",
+      "source_sha256": "90c5a7871a9f90bcf6fdea15fc6623aac5fe29c63282bdf00b8c1b687dac4e2c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 12 DE AntiForensics MRU DeleteKey",
+      "source_sha256": "1eb4fc9d4fc6c4c36db7c4ec2ae5a6833e6cfb8d26e4c1f8d0653d5a78c533f3",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/Sysmon_12_DE_AntiForensics_MRU_DeleteKey.evtx",
+      "supported_events": 0,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "apt10 jjs sideloading prochollowing persist as service sysmon 1 7 8 13",
+      "source_sha256": "a623b11315eacd9732da5ebeabdb7c72d0f641fdf0ec5d2ec43e360abd13837e",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx",
+      "supported_events": 5,
+      "ignored_events": 6,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "de PsScriptBlockLogging disabled sysmon12 13",
+      "source_sha256": "aff2a84996514a6a3e6369de06c2d8edd8dcf4afc3e8e5c2c6fbc38431ef9084",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/de_PsScriptBlockLogging_disabled_sysmon12_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "de portforward netsh rdp sysmon 13 1",
+      "source_sha256": "9ca0c561593fbd30956437d566e51e5e913829ba2aec30c0d867d739d4b3f3f8",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/de_portforward_netsh_rdp_sysmon_13_1.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "de powershell execpolicy changed sysmon 13",
+      "source_sha256": "da5765253da63f39373dd9f8df0ec9f7573acb6059c6b44f7d7b3ca83393f645",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/de_powershell_execpolicy_changed_sysmon_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "de sysmon 13 VBA Security AccessVBOM",
+      "source_sha256": "9045bbb928d944da7156b488cdc036d40961736a592bb1e6c496786fd02415c6",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/de_sysmon_13_VBA_Security_AccessVBOM.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "de unmanagedpowershell psinject sysmon 7 8 10",
+      "source_sha256": "13099e0dd75dd4222c289864902cb12d0c63777f689709a36531fae3e2e43c05",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/de_unmanagedpowershell_psinject_sysmon_7_8_10.evtx",
+      "supported_events": 0,
+      "ignored_events": 82,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "evasion codeinj odzhan conhost sysmon 10 1",
+      "source_sha256": "8034cbbcf25f2d33c9f92d518e29e4501ca2611c5396e15b4b2a60654315fd4b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+      "supported_events": 2,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "evasion codeinj odzhan spoolsv sysmon 10 1",
+      "source_sha256": "768feeb10b97df3903002d023efa4f83f5392a5dd80e10d609f0063d5353f291",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/evasion_codeinj_odzhan_spoolsv_sysmon_10_1.evtx",
+      "supported_events": 2,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "faxhell sysmon 7 1 18 3 bindshell dllhijack",
+      "source_sha256": "844b8d7aa509fa95cd0734dcd09e16a76d9e3fed49b234ea954b7d94b5571a8c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx",
+      "supported_events": 6,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "meterpreter migrate to explorer sysmon 8",
+      "source_sha256": "9e6fe88d33af7ebee4841098a639a04215b3d04cc8e0f1d4f6fa94212fe5d2fc",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/meterpreter_migrate_to_explorer_sysmon_8.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "process suspend sysmon 10 ga 800",
+      "source_sha256": "21ed5dc7b3e18d1280d6ff8f50d198d88294423c41aec0d790ba767adc798238",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/process_suspend_sysmon_10_ga_800.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sideloading wwlib sysmon 7 1 11",
+      "source_sha256": "d6a2d4e6f886c7a5cf9c6734527e38c6f7bfe051283cc6d39084be1c713a743d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/sideloading_wwlib_sysmon_7_1_11.evtx",
+      "supported_events": 3,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 10 1 ppid spoofing",
+      "source_sha256": "74dda489578fc89d0d8b684126f1d913750da5b9aa30869afa5c054f06a4754e",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/sysmon_10_1_ppid_spoofing.evtx",
+      "supported_events": 3,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 13 rdp settings tampering",
+      "source_sha256": "1a877ee743da4f3183e19f30f9d864f9c86bd119fb4c47fa849af5be04985944",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/sysmon_13_rdp_settings_tampering.evtx",
+      "supported_events": 10,
+      "ignored_events": 10,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 2 11 evasion timestomp MACE",
+      "source_sha256": "1fd461647854d19cf9c813a419ffc728522507777e76d7a32150e58e746d43d6",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Defense Evasion/sysmon_2_11_evasion_timestomp_MACE.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "discovery enum shares target sysmon 3 18",
+      "source_sha256": "c939a9aa65b2b262154571b6290234f559e2b22546ebfe5a57fb792f452f4198",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Discovery/discovery_enum_shares_target_sysmon_3_18.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "discovery meterpreter ps cmd process listing sysmon 10",
+      "source_sha256": "4a2f88aee90d58fa58fd32a3c1bb31e76cdd1caa4a36f2cfb63b6aa045f60378",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Discovery/discovery_meterpreter_ps_cmd_process_listing_sysmon_10.evtx",
+      "supported_events": 0,
+      "ignored_events": 52,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "discovery sysmon 3 Invoke UserHunter SourceMachine",
+      "source_sha256": "a743d37d41d7b88e85ff11baaa2050739fd68703a53ac94cc06df4a28a59ede4",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Discovery/discovery_sysmon_3_Invoke_UserHunter_SourceMachine.evtx",
+      "supported_events": 9,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Exec sysmon meterpreter reversetcp msipackage",
+      "source_sha256": "328ec1b4b6c531af991a2de2221900ec93db1853f7446f61c7e3c9bf9bf052e3",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/Exec_sysmon_meterpreter_reversetcp_msipackage.evtx",
+      "supported_events": 4,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon meterpreter ReflectivePEInjection to notepad ",
+      "source_sha256": "872e959cb691d3e3d3a48068c02c7fb579c2d818a007fbd2831f6616bb8c7082",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+      "supported_events": 2,
+      "ignored_events": 11,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec driveby cve-2018-15982 sysmon 1 10",
+      "source_sha256": "18c724eefbc80312cf0628e0cd1390c138c216c8b057c8a5e287f2bef2640727",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_driveby_cve-2018-15982_sysmon_1_10.evtx",
+      "supported_events": 1,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec msxsl xsl sysmon 1 7",
+      "source_sha256": "ddaec1c8c49cb3706e9daf184bbcb4c332ae4b148924908ef65acb621ca8e84a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_msxsl_xsl_sysmon_1_7.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec persist rundll32 mshta scheduledtask sysmon 1 3 11",
+      "source_sha256": "fb5679aec77dc45a35902f705b513811dfea0f2f93c9c8503464a20270c3222f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "supported_events": 7,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 11 lolbin rundll32 openurl FileProtocolHandler",
+      "source_sha256": "11150ee64363501f5f5ca7ab359e696a6a7bb51a1c76f5fb182c38682a5e7a07",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+      "supported_events": 9,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 11 lolbin rundll32 shdocvw openurl",
+      "source_sha256": "a958cf481c4a9fb6e434dfdd6cad6974e577bad6716926b6ff5b6c6a2acce74c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_11_lolbin_rundll32_shdocvw_openurl.evtx",
+      "supported_events": 2,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 11 lolbin rundll32 zipfldr RouteTheCall",
+      "source_sha256": "03a43d28ce470db4b3a9e40bda8147a7fa254cbf3237ff2219c3c09e8ddb8847",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_11_lolbin_rundll32_zipfldr_RouteTheCall.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 7 jscript9 defense evasion",
+      "source_sha256": "34588fcca4663a5abf9111b58860d8b0b2b8e0cf67acc61599874daa1edfcc4d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_7_jscript9_defense_evasion.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 ftp",
+      "source_sha256": "aadae0e31b5f2310284687062010251fdd9ed9b8e8d76be14b79896d05f970ef",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_ftp.evtx",
+      "supported_events": 4,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 lolbin pcalua",
+      "source_sha256": "3d99ad191360bb22739ce0cbb87dc4d3646f9084d2e6f042fb570f39b0f97418",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_lolbin_pcalua.evtx",
+      "supported_events": 3,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 lolbin renamed regsvr32 scrobj",
+      "source_sha256": "4baa0bc603d1e8b50212e60931431c5c6f7bf35fcdedb80bf6ab1fc77907ec04",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_lolbin_renamed_regsvr32_scrobj.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 lolbin rundll32 advpack RegisterOCX",
+      "source_sha256": "6d5b52398a67b36c160ec22db8e027efbc3e40943075d2d79c748931bc8d9982",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_lolbin_rundll32_advpack_RegisterOCX.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon 1 rundll32 pcwutl LaunchApplication",
+      "source_sha256": "d5f8d2c619562d8dcfc6c68ee51131436e060d036447aae1e88c89518a191f9a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_1_rundll32_pcwutl_LaunchApplication.evtx",
+      "supported_events": 1,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec sysmon lobin regsvr32 sct",
+      "source_sha256": "d6978888a7dead4523c01df417aa7ea6ad2599a5bbf1acd05d89882aac956442",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_sysmon_lobin_regsvr32_sct.evtx",
+      "supported_events": 3,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec wmic xsl internet sysmon 3 1 11",
+      "source_sha256": "8b3448717a53b1c3e0dc4803b128da844f052bdd5c9d6afac99b69148e89ef94",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/exec_wmic_xsl_internet_sysmon_3_1_11.evtx",
+      "supported_events": 5,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "revshell cmd svchost sysmon 1",
+      "source_sha256": "08ce1feab22e30eb12a5a5b1ba4ac0aa552ff988b762d08de3a4d75ee1636abd",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/revshell_cmd_svchost_sysmon_1.evtx",
+      "supported_events": 4,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 11 1 lolbas downldr desktopimgdownldr",
+      "source_sha256": "f63ea09964ad1b6cc1d1dab6d8203a96f4eae71dd4cddc5408719afdc6e861af",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 11 rundll32 cpl ostap",
+      "source_sha256": "3a343508ea71725bf118a85971840257bbba793d25336993cea73274743c3550",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_1_11_rundll32_cpl_ostap.evtx",
+      "supported_events": 4,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon exec from vss persistence",
+      "source_sha256": "9abd2bd89115f77f79a96d0ffcc0b1cdb238d2c6d3edcaf24abddc50ee405964",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_exec_from_vss_persistence.evtx",
+      "supported_events": 16,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon lolbas rundll32 zipfldr routethecall shell",
+      "source_sha256": "5f83c2a19819cf21098ff7047b52d5ece20303bb95332e4020660da6de9c6050",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon lolbin bohops vshadow exec",
+      "source_sha256": "9cabd9accd1cad037ef7408bfddd9639f793665b73634833722b8cd842485fed",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_lolbin_bohops_vshadow_exec.evtx",
+      "supported_events": 6,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon mshta sharpshooter stageless meterpreter",
+      "source_sha256": "a2c396ac66aed02c0e36c6e467db3c3b83a57d003604ca79eb2a33175efcbad1",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_mshta_sharpshooter_stageless_meterpreter.evtx",
+      "supported_events": 3,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon vbs sharpshooter stageless meterpreter",
+      "source_sha256": "57748248a6fbe68c36332acf603b537acce263a3c1b17f6a1cc5f635aaee7558",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_vbs_sharpshooter_stageless_meterpreter.evtx",
+      "supported_events": 4,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon zipexec",
+      "source_sha256": "4d995c2a339d3c272afd4ac8cf01f009ca5358bafe3fa51889b28f86296cd894",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Execution/sysmon_zipexec.evtx",
+      "supported_events": 5,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "ImpersonateUser-via local Pass The Hash Sysmon and Security",
+      "source_sha256": "b3cdcbad24144417123becbc62d73d7954e832657d92f3a6b63e7b61291afede",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "supported_events": 11,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM DCOM MSHTA LethalHTA Sysmon 3 1",
+      "source_sha256": "155cc5da10cb63a7fb69747c440796be17d1f4230ba24e7cb45423bdd9c368b6",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_DCOM_MSHTA_LethalHTA_Sysmon_3_1.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM ImageLoad NFSH Sysmon 7",
+      "source_sha256": "aca97ff41ccc3fb314e97ae5c9e0aa6adcaf97f0cfd4ce92ee3178ae76a50264",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_ImageLoad_NFSH_Sysmon_7.evtx",
+      "supported_events": 0,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM NewShare Added Sysmon 12 13",
+      "source_sha256": "95ce1cefe507a1de70aa5cd987cee942ecdad4dd692cbedb435c58b2cd9fda00",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_NewShare_Added_Sysmon_12_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM PowershellRemoting sysmon 1 wsmprovhost",
+      "source_sha256": "c890d2b67dc2902b2fa5a094e517674920911a15b273f43c674fbfaa69540658",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx",
+      "supported_events": 1,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM impacket docmexec mmc sysmon 01",
+      "source_sha256": "6c50f3c7106080fb4e2535285d55435c325b651af7558e5e61a4fe82d80dbdce",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx",
+      "supported_events": 9,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM sysmon 1 12 13 3 tsclient SharpRdp",
+      "source_sha256": "595bfaea747cb5a872eff12d637f6abc432d8e1a37be1dd7313a1c7e53b1008a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_sysmon_1_12_13_3_tsclient_SharpRdp.evtx",
+      "supported_events": 3,
+      "ignored_events": 6,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM sysmon 3 12 13 1 SharpRDP",
+      "source_sha256": "2c0aa9ea79dd513dee70daf1aeb5cb8d1ca5bad36c96929cb0a61db001d0f41a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_sysmon_3_12_13_1_SharpRDP.evtx",
+      "supported_events": 12,
+      "ignored_events": 26,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM sysmon 3 DCOM ShellBrowserWindow ShellWindows",
+      "source_sha256": "be5cb186b8217f49f8e9531bd8ac6fc87ce4659ad5366bf73aa28ba36cdbec68",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_sysmon_3_DCOM_ShellBrowserWindow_ShellWindows.evtx",
+      "supported_events": 3,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM sysmon remote task src powershell",
+      "source_sha256": "3b047a264a341faa16e33af4cbf4097f6db3aec75e5c87082f7b9551a3cc0e5b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_sysmon_remote_task_src_powershell.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM typical IIS webshell sysmon 1 10 traces",
+      "source_sha256": "6f1cb3c435389d961261ccfbb2c4562b156d4160319fe4736ce1506a43327c7b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_typical_IIS_webshell_sysmon_1_10_traces.evtx",
+      "supported_events": 3,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM winrm exec sysmon 1 winrshost",
+      "source_sha256": "7115c48511d18d934d1e63417b7b1d5d2b4fef903e716852b00ebc481ee5f2e9",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_winrm_exec_sysmon_1_winrshost.evtx",
+      "supported_events": 3,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM wmi PoisonHandler Mr-Un1k0d3r sysmon 1 13",
+      "source_sha256": "9d10de497c8d7929f262be305547d148bac17e1d4fd72222bfae3855ddf9c93a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "supported_events": 11,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "LM wmiexec impacket sysmon whoami",
+      "source_sha256": "21b8852b2b386f4d3f6f0c8a7304de8e628bb43cfa23888ab317b95b784ffe59",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "supported_events": 7,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "lm remote registry sysmon 1 13 3",
+      "source_sha256": "bde8db7a364e9fd3da953498690e5e6c81c7c915032ff98743074b91cb140824",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx",
+      "supported_events": 2,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "lm sysmon 18 remshell over namedpipe",
+      "source_sha256": "efdb2b2f2dd0864e82dabb693d38b44aea93e43c7df490ca3c94a4084da5c173",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/lm_sysmon_18_remshell_over_namedpipe.evtx",
+      "supported_events": 4,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "powercat revShell sysmon 1 3",
+      "source_sha256": "914d90705f1f94e7cff9b8d074e9ed0fab4d35449bf1b18d9f37ea6afd3e84df",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/powercat_revShell_sysmon_1_3.evtx",
+      "supported_events": 6,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "remote file copy system proc file write sysmon 11",
+      "source_sha256": "f03c8c5ff4114ef7baeba777d625a18f27edb4ce327f764cf6ed350b5f29c7bc",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/remote_file_copy_system_proc_file_write_sysmon_11.evtx",
+      "supported_events": 1,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sharprdp sysmon 7 mstscax.dll",
+      "source_sha256": "e75cdf11d232a079606bd6fad30c0d13ccca98386268ef1fd1d76d6fc827e1b3",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/sharprdp_sysmon_7_mstscax.dll.evtx",
+      "supported_events": 1,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "smbmap upload exec sysmon",
+      "source_sha256": "21a69f9ea97e2a953c47fbb76a9a77682e128436c26ccf7445ae8012832e8def",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+      "supported_events": 10,
+      "ignored_events": 15,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 exec via sql xpcmdshell",
+      "source_sha256": "79092a6f3c1beed9205fc24210f327c08b10cb50123e047f63f768c3e5bcef57",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/sysmon_1_exec_via_sql_xpcmdshell.evtx",
+      "supported_events": 1,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "wmi remote registry sysmon",
+      "source_sha256": "2c8cb1ecaea860d599ae85397157eb8f3c0631a4bff949b576bcc007a78430de",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Lateral Movement/wmi_remote_registry_sysmon.evtx",
+      "supported_events": 4,
+      "ignored_events": 6,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "exec emotet sysmon 1",
+      "source_sha256": "5d7347a786943c3d4cd0e5d10e8941df3218ce6f3b473ed7a76ff89997c3b83b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Other/emotet/exec_emotet_sysmon_1.evtx",
+      "supported_events": 1,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "evasion persis hidden run keyvalue sysmon 13",
+      "source_sha256": "b8df8232d917fed223e2bf9abebb249489f84c6204c40b72dab6a74157d6f8bd",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/evasion_persis_hidden_run_keyvalue_sysmon_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persist firefox comhijack sysmon 11 13 7 1",
+      "source_sha256": "5efdbe9d51c06538d20db3d132594326fbff8ac8b98c542805aaeb90779b9cde",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persist_firefox_comhijack_sysmon_11_13_7_1.evtx",
+      "supported_events": 10,
+      "ignored_events": 9,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence SilentProcessExit ImageHijack sysmon 13 1",
+      "source_sha256": "37f5121b071db0333b19d81b676a5e31f63c99c6fd52f504f96659c927827e0d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_SilentProcessExit_ImageHijack_sysmon_13_1.evtx",
+      "supported_events": 10,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence accessibility features osk sysmon1",
+      "source_sha256": "9a99994be7f64e5111370cfd1f5f541a7a5e8a1e31911b14e0881811f6ea2925",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_accessibility_features_osk_sysmon1.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence hidden local account sysmon",
+      "source_sha256": "c472b0b7808c310b910af5e099ac7bcbf803adfd68d4edb56c73bf01e9c4bb8c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_hidden_local_account_sysmon.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence pendingGPO sysmon 13",
+      "source_sha256": "cf9b918ac583028815e8ca5a547265221f745a92e5d093e759e5b00958db538b",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_pendingGPO_sysmon_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence startup UserShellStartup Folder Changed sysmon 13",
+      "source_sha256": "4a6544a5b564fd84d299cea4c97e8f1c813f13ac0f5d24fa751f28c022b31801",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_startup_UserShellStartup_Folder_Changed_sysmon_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "persistence sysmon 11 13 1 shime appfix",
+      "source_sha256": "799420511f35300d3a071ca2c047d2edd49324d24544214a8124babe3fee9f90",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx",
+      "supported_events": 175,
+      "ignored_events": 62,
+      "complete_disjoint_24_event_windows": 7,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.004702817182987928,
+          "perplexity": 1.004713892783084,
+          "mean_window_max_nll_nats": 0.004702817182987928,
+          "prediction_count": 56,
+          "window_count": 7,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.01683269627392292,
+          "perplexity": 1.0169751643572817,
+          "mean_window_max_nll_nats": 0.01683269627392292,
+          "prediction_count": 56,
+          "window_count": 7,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "sysmon 13 1 persistence via winlogon shell",
+      "source_sha256": "78592aa982a478d1a65f56853bdf3817a3d5c79db3b1ca64642e1a2e16064423",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx",
+      "supported_events": 21,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 persist bitsjob SetNotifyCmdLine",
+      "source_sha256": "f2ac975c8dd1671a66ddbff5d9d59aa76f6577956d8c394970cbe11020837f78",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/sysmon_1_persist_bitsjob_SetNotifyCmdLine.evtx",
+      "supported_events": 6,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 smss child proc bootexecute setupexecute",
+      "source_sha256": "29913aef999a1e4d8f6fad34025912a7585088c599feb808f741a0bcb0c5f417",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/sysmon_1_smss_child_proc_bootexecute_setupexecute.evtx",
+      "supported_events": 1,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 20 21 1 CommandLineEventConsumer",
+      "source_sha256": "136cd2549e4944e66c6f26aabafea84011ba011982ac1cf35cde7cb52d32b358",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/sysmon_20_21_1_CommandLineEventConsumer.evtx",
+      "supported_events": 9,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon local account creation and added admingroup 12 13",
+      "source_sha256": "85851f4724cf490d26ec96f8f546ee07d8354a381e3f16f83afd4cfd46cbbb7c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/sysmon_local_account_creation_and_added_admingroup_12_13.evtx",
+      "supported_events": 0,
+      "ignored_events": 17,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "wmighost sysmon 20 21 1",
+      "source_sha256": "687c5cbe9a912bd8688692489bd94bb91f0518e3008535469e4fc4e1adc59446",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Persistence/wmighost_sysmon_20_21_1.evtx",
+      "supported_events": 2,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "CVE-2020-0796 SMBV3Ghost LocalPrivEsc Sysmon 3 1 10",
+      "source_sha256": "58c0e61d14c25300c9473b842cec25cb5fb1dd517adf9259f3c3460031a97c9a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx",
+      "supported_events": 3,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "EfsPotato sysmon 17 18 privesc seimpersonate to system",
+      "source_sha256": "b90b44749a59f8b45827de083e3276d0635310077d51100f1110bf34e555bfc0",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx",
+      "supported_events": 6,
+      "ignored_events": 11,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "PrivEsc CVE-2020-1313 Sysmon 13 UScheduler Cmdline",
+      "source_sha256": "278c679da912063fdecc9475cf73a2751bc5576e4a8b644add46bd6c8b0af4b1",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/PrivEsc_CVE-2020-1313_Sysmon_13_UScheduler_Cmdline.evtx",
+      "supported_events": 0,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "PrivEsc Imperson NetSvc to Sys Decoder Sysmon 1 17 18",
+      "source_sha256": "498ce5682bd58d81edba3a704d82afe80ba9e7a0bbc1ba06b85c72c1f08563fc",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx",
+      "supported_events": 7,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 13 1 UACBypass SDCLTBypass",
+      "source_sha256": "343bf81c3dbf508432ba4b2eb2fceef7cb59653417d3e209ffb7cbd2fa485050",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_13_1_UACBypass_SDCLTBypass.evtx",
+      "supported_events": 2,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon 13 1 UAC Bypass EventVwrBypass",
+      "source_sha256": "d4abc83c9668060532b20ada82a2dfc8fd9b106be0eaea539c9d75dc7d8c8043",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "supported_events": 4,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 22",
+      "source_sha256": "45f90c35f977592fa8a5fd5205e73fade980d633bae219dfaeb65de8a27ba18c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_22.evtx",
+      "supported_events": 15,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 23",
+      "source_sha256": "c742e7767e11e4810cbbe77f53d04e855241b85b1df30c954e9210e50b5ba772",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_23.evtx",
+      "supported_events": 7,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 30",
+      "source_sha256": "044ee159b0b9617086c74ed6ef183353496573a952be079b2644018af2a4bd04",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_30.evtx",
+      "supported_events": 8,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 32",
+      "source_sha256": "3729a7b639782b909b22c3b4ccaacbf1f7acaf8311221cb7976c3e12d863cfbc",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_32.evtx",
+      "supported_events": 7,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 33",
+      "source_sha256": "369fe7264d8d343659fb8ef0cbf9a9cc2dfff06958e2dd173dfb7ecb8d9093fd",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_33.evtx",
+      "supported_events": 6,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 34",
+      "source_sha256": "d3b277e1165eec22392054022ed239d68adfcd654b663076fec062e20c8ea336",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_34.evtx",
+      "supported_events": 4,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 36 FileCreate",
+      "source_sha256": "a84ee8dd4a45fcca42d0af62a6bcd1817c09baee8e4211a24dd1484f4c1eb4eb",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_36_FileCreate.evtx",
+      "supported_events": 12,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 37 FileCreate",
+      "source_sha256": "0b3893de16d5b7bf94337a08706a0b158965ab9aa6e20a0dd968883f96d0e1db",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_37_FileCreate.evtx",
+      "supported_events": 6,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 38",
+      "source_sha256": "42075b5afd438fbeee2b87ebb085558350c4a3d40d1b5677a3aba10a81d6a522",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_38.evtx",
+      "supported_events": 6,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 39",
+      "source_sha256": "85c32ce26cbd8bf03c44b26d4a913188b38890ed40b8ab855b1f5ccbed703b66",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_39.evtx",
+      "supported_events": 5,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 41",
+      "source_sha256": "10607601e5ab7476fa8920ca63ace9f29ccbe79279e1731436b9d009f36ba2f0",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_41.evtx",
+      "supported_events": 4,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 43",
+      "source_sha256": "47bdaa367dfadf39d6b55587f38c488642836305d593aa6452e6ac51bb88ad3c",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_43.evtx",
+      "supported_events": 5,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 45",
+      "source_sha256": "aae67b99a0b4103513bb678f9d3d5222a402a5e202d8d3fb1c6bcf085c7548fd",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_45.evtx",
+      "supported_events": 6,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 53",
+      "source_sha256": "3a6f512f47e00da769d1076fe0367c15f3f787a79cdc8909b74e04f002d3e0f9",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_53.evtx",
+      "supported_events": 9,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 54",
+      "source_sha256": "90fa9a2b3bdd8414df20846634badf9d6a50882db92caa8b7a163aef6d6aafe1",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_54.evtx",
+      "supported_events": 8,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 56",
+      "source_sha256": "a1f83d4189384d95693bb33ffe90f09b82d0a9ff7219bf37b51727d667be54af",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_56.evtx",
+      "supported_events": 11,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 63",
+      "source_sha256": "5cbfc3e5c3dfe38ae5c121b2de344229e73e5abb32deba6bf402e6d844b7bf72",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_63.evtx",
+      "supported_events": 1,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon UACME 64",
+      "source_sha256": "b1a47437b3095b0660f069d107800427279c07448a4a470ad7c6c7ca2e27bced",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_UACME_64.evtx",
+      "supported_events": 6,
+      "ignored_events": 522,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "Sysmon uacme 58",
+      "source_sha256": "40e37fb256e29dd27df7741da1443df59a688d47c295b0855cddc37a78398ffb",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/Sysmon_uacme_58.evtx",
+      "supported_events": 4,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "UACME 59 Sysmon",
+      "source_sha256": "1de3775180143fd5d956bae48f572367534ae8c10f6ffbe98dd4b4e0e47e0fa1",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/UACME_59_Sysmon.evtx",
+      "supported_events": 2,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc roguepotato sysmon 17 18",
+      "source_sha256": "21bcc12aed93c390545c1b07005a681e1c9e9dbe5d47983c273518456855595d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "supported_events": 4,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc rotten potato from webshell metasploit sysmon 1 8 3",
+      "source_sha256": "03d1d202bdf50f7290da06e816ddf9535705f90acebbb0ccae7d2e62dcbf6699",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_rotten_potato_from_webshell_metasploit_sysmon_1_8_3.evtx",
+      "supported_events": 9,
+      "ignored_events": 4,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc seimpersonate tosys spoolsv sysmon 17 18",
+      "source_sha256": "868533829b979d925c0f4a488a6380bcb85d939a3ad2b1196be5335c38265cf7",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+      "supported_events": 4,
+      "ignored_events": 0,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc spoolfool mahdihtm sysmon 1 11 7 13",
+      "source_sha256": "9457cdfd5159e9b25185352a66f9ec1d14cc84f1780ea282e47c5653c28fad58",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_spoolfool_mahdihtm_sysmon_1_11_7_13.evtx",
+      "supported_events": 1,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc spoolsv spl file write sysmon11",
+      "source_sha256": "44c56f76471969f91b4df8f00d3ed087536c99924141b7cd9bdc031e67b5dd3d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx",
+      "supported_events": 10,
+      "ignored_events": 26,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc sysmon cve 20201030 spooler",
+      "source_sha256": "c220b523b3b788bc593208622058bd54c634005b104aeaf5f177a35aea1e8312",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_sysmon_cve_20201030_spooler.evtx",
+      "supported_events": 2,
+      "ignored_events": 6,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "privesc unquoted svc sysmon 1 11",
+      "source_sha256": "5b3bd618ff215254db994f223f1700082dbb1f339a651e1c89ae41d857edbcc2",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx",
+      "supported_events": 79,
+      "ignored_events": 8,
+      "complete_disjoint_24_event_windows": 3,
+      "models": {
+        "unchanged_v1": {
+          "next_event_nll_nats": 0.004702817182987928,
+          "perplexity": 1.004713892783084,
+          "mean_window_max_nll_nats": 0.004702817182987928,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        },
+        "selected_v2": {
+          "next_event_nll_nats": 0.01683269627392292,
+          "perplexity": 1.0169751643572817,
+          "mean_window_max_nll_nats": 0.01683269627392292,
+          "prediction_count": 24,
+          "window_count": 3,
+          "threshold_exceedance_windows": 0,
+          "threshold_exceedance_fraction": 0.0,
+          "denominator": "disjoint24-event windows; no negative-class labels available"
+        }
+      }
+    },
+    {
+      "name": "sysmon 11 1 15 WScriptBypassUAC",
+      "source_sha256": "48f65d146e64c9c58a4774d03ba83aa120c307e52a0a1d21975fb225125abbff",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_11_1_15_WScriptBypassUAC.evtx",
+      "supported_events": 12,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 11 1 7 uacbypass cliconfg",
+      "source_sha256": "08d994196edc3477b7e860bf5ef97173daa1d82f3132759fe78db96c80383c20",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_11_1_7_uacbypass_cliconfg.evtx",
+      "supported_events": 5,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 11 7 1 uacbypass windirectory mocking",
+      "source_sha256": "d75d688bd1df279d32b75aab51a162465d3351c5aae1f7386ad8d4c8dc86528a",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx",
+      "supported_events": 5,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 13 1 12 11 perfmonUACBypass",
+      "source_sha256": "7a0312bce23cc20e719ffc6ca2cf62ec2b8a9a3f67d0048d7e16a6bdbf134092",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_13_1_12_11_perfmonUACBypass.evtx",
+      "supported_events": 2,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 13 1 compmgmtlauncherUACBypass",
+      "source_sha256": "2bf934cb66f81fd5abfa5b32c7a50159184c260401e09407513bdb59066e2e93",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_13_1_compmgmtlauncherUACBypass.evtx",
+      "supported_events": 3,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 13 1 meterpreter getsystem NamedPipeImpersonation",
+      "source_sha256": "9e1fbb0604db5e559c1f65d51b85c35625f6a43d071598f161dd32f70d597722",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_13_1_meterpreter_getsystem_NamedPipeImpersonation.evtx",
+      "supported_events": 1,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 11 exec as system via schedtask",
+      "source_sha256": "6b2ae54c6e3926f62101c2f8f85e7003869de534af1b17d309a0a84298e70edd",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_11_exec_as_system_via_schedtask.evtx",
+      "supported_events": 5,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 13 11 cmstp ini uacbypass",
+      "source_sha256": "6a49ee4d01b15f45c72f242655595613ee06eb5797488d6de7b25b7a1dca85a1",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx",
+      "supported_events": 3,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 13 UACBypass AppPath Control",
+      "source_sha256": "8296ad4d09de6d796da8b7dc27aea2f44b261ee12b6a54ef83e2a805cd5b8b87",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_13_UACBypass_AppPath_Control.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 7 11 mcx2prov uacbypass",
+      "source_sha256": "2a6fdd4c4c3b650cf267f02ee87a2cac27362054d37b1834ca92aadbe0b21854",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_7_11_mcx2prov_uacbypass.evtx",
+      "supported_events": 6,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 7 11 migwiz",
+      "source_sha256": "83b13ff4ae16dfaa212229c672e4bcc16a3b6ab39c96bcd46a376bb99229dc9d",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_7_11_migwiz.evtx",
+      "supported_events": 4,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 7 11 sysprep uacbypass",
+      "source_sha256": "230e09d306b1ab52ec5502b8768042a13f375449012485f3bac9191ccffe0c25",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_7_11_sysprep_uacbypass.evtx",
+      "supported_events": 4,
+      "ignored_events": 3,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon 1 7 elevate uacbypass sysprep",
+      "source_sha256": "199b9686cf89e3b6b9e00330c2b707a1de99eafc908992252d2266a25594de76",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_1_7_elevate_uacbypass_sysprep.evtx",
+      "supported_events": 9,
+      "ignored_events": 6,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon privesc from admin to system handle inheritance",
+      "source_sha256": "0e6a64e50207a8772b413dc4cc66c02def3c2d070c923a1faa9d4ad4c5c73ab5",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_privesc_from_admin_to_system_handle_inheritance.evtx",
+      "supported_events": 2,
+      "ignored_events": 1,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon privesc psexec dwell",
+      "source_sha256": "a79a14dcaac146c06c4d3dc3eb5a6ca1eaf62c93d65f47699a2aa5e88e436223",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_privesc_psexec_dwell.evtx",
+      "supported_events": 5,
+      "ignored_events": 2,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    },
+    {
+      "name": "sysmon uacbypass CDSSync schtask hijack byeintegrity5",
+      "source_sha256": "6265ba7f12b850cf2ebcee735ee24aa26b66e757f2cfa05759c58f0a4aedf83f",
+      "dataset": "EVTX-ATTACK-SAMPLES",
+      "raw_archive_path": "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx",
+      "supported_events": 3,
+      "ignored_events": 5,
+      "complete_disjoint_24_event_windows": 0,
+      "models": {}
+    }
+  ],
+  "limitations": [
+    "Recorded attack-lab scenarios contain background and lack event-level labels or matched benign controls. Exceedances are neither precision nor recall.",
+    "Only process starts/ends, DNS and network-port categories enter prediction. Most detailed Sysmon evidence can be outside the model feature schema.",
+    "Complete disjoint24-event windows aggregate all recorded processes per host, matching LANL rather than a watched application's narrower process tree.",
+    "Short captures/final fragments lacking24supported events are excluded from prediction loss; absent observations are not evidence of safety.",
+    "These recordings are laboratory external checks, not a representative independent malware benchmark."
+  ],
+  "metrics_unavailable": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "pr_auc": null,
+    "false_positive_rate": null
+  },
+  "normalized_index_sha256": "b288be9ef7a186999cdff924628228b21fa2a4327ef3b54ef1abed1c4e93a9a4",
+  "total_seconds": 9.64122590000079
+}

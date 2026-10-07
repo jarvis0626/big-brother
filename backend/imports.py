@@ -79,6 +79,19 @@ def load_recording(path):
                           "command_line": text(event.get("command_line", ""), 8192),
                           "source": text(event.get("source", "recording"), 512), "source_record_id": source_id})
     keys = {event["process_key"] for event in validated}
+    if len(keys) > 1000:
+        raise ValueError("Recording exceeds the 1,000-process graph limit; select a bounded capture interval")
+    identities = {}
+    parents = {}
+    for event in validated:
+        key = event["process_key"]
+        if key in identities and identities[key] != event["pid"]:
+            raise ValueError("Recording process key has inconsistent process IDs")
+        identities[key] = event["pid"]
+        if event["parent_key"]:
+            if key in parents and parents[key] != event["parent_key"]:
+                raise ValueError("Recording process key has inconsistent parent identities")
+            parents[key] = event["parent_key"]
     return {"name": name, "events": validated, "event_count": len(validated),
             "provenance": {**provenance, "imported_file_sha256": hashlib.sha256(data).hexdigest(),
                            "provenance_status": "Declared source metadata; import does not authenticate ground truth."},

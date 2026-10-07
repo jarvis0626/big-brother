@@ -1,3 +1,9 @@
+# Training and historical reproduction
+
+The active application uses the expanded v2 GRU. Current acquisition, frozen model comparison, new host/time splits and reproduction into a separate output directory are documented in [model-v2-experiments.md](../docs/model-v2-experiments.md). Additional public recordings are in [datasets-v2.md](../docs/datasets-v2.md); the independent supervised static study is in [static-pe-experiment.md](../docs/static-pe-experiment.md).
+
+The commands below reproduce historical v1. Run them in a separate `v0.1.0` checkout because `train.py` writes runtime weights. Its results and original holdout remain preserved; they are not the current v2 evaluation.
+
 Training uses actual public-domain LANL2015 process, network-flow and DNS telemetry. These are bounded raw archive prefixes from the public Taqui mirror, whose publisher documents official-source acquisition. Source equivalence is a publisher claim; the official LANL documentation verifies schema and licence. Partial archive hashes verify our acquired prefix only.
 
 From the repository directory in PowerShell, with Python 3.12 and the training requirements installed:

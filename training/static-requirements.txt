@@ -1,0 +1,5 @@
+# Research-only classifier. Not bundled in the application backend.
+numpy==2.4.3
+scikit-learn==1.6.1
+lightgbm==4.6.0
+threadpoolctl>=3.5,<4

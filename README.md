@@ -14,15 +14,23 @@ Use **Explore a replay → Investigation → Open replay** to inspect four proce
 
 ## Models actually trained
 
-Trained a histogram-centroid feature baseline and a PyTorch temporal GRU on bounded real LANL 2015 process, DNS and network-flow telemetry prefixes. The GRU is selected by validation loss; its weights run through a checked standard-library export, without PyTorch in the app.
+Version 0.2.0 activates a larger temporal GRU selected from four neural runs and two histogram baselines. Expanded LANL 2015 prefixes contain 17,510,711 complete process/DNS/network records. After excluding all v1 timestamps and separating hosts/times, training uses 90,235 windows and 721,880 next-event targets, about nine times v1. A checked standard-library export runs the actual weights without PyTorch in the app.
 
-| Held-out test, 1,486 disjoint windows | Feature baseline | Temporal GRU |
-|---|---:|---:|
-| Next-event negative log likelihood, nats (lower is better) | 1.1192 | 0.6011 |
-| Perplexity | 3.0624 | 1.8241 |
-| Unlabelled windows above validation threshold | 29 / 1,486 | 24 / 1,486 |
+| Same fresh test, 8,048 disjoint windows | Expanded baseline | Unchanged v1 | Active v2 |
+|---|---:|---:|---:|
+| Next-event loss, nats (lower is better) | 0.831453 | 0.603148 | 0.571488 |
+| Perplexity | 2.296654 | 1.827863 | 1.770900 |
+| Unlabelled windows above frozen threshold | 87 / 8,048 | 237 / 8,048 | 94 / 8,048 |
 
-These are predictive/anomaly results. The data used has no attack labels, so precision, recall, F1, PR-AUC, false-positive rate and malware-detection latency are unavailable. The model learns supported event sequences and port categories; file/Registry evidence and process ancestry are displayed but do not influence this model. Personal Windows applications can differ substantially from the reference enterprise telemetry. See [model card](docs/model-card.md), [dataset card](docs/dataset-card.md), [saved results](training/results/metrics.json) and [split definitions](training/results/splits.json).
+V2 reduces prediction loss by 5.25% relative to v1 on the same new holdout. These are predictive/anomaly results. Malware precision, recall, F1, false-positive rate and detection latency remain unmeasured. The model consumes process start/end, DNS and port categories; file, Registry, process-access, module and remote-thread evidence stays outside its inputs. See [model card](docs/model-card.md), [expanded experiment](docs/model-v2-experiments.md) and [saved results](training/results/v2/metrics.json). Historical v1 results and the `v0.1.0` tag are preserved.
+
+## Recorded scenarios and harmless test applications
+
+The [dataset catalog](training/catalog-v2.json) reviews sixteen relevant families. Actual pinned OTRF and EVTX lab logs supply 264 unique recordings and 986,382 normalized Windows events. They are held out from fitting. External prediction improves, but only 2.014% of their events fit this model's vocabulary. Scenario attack labels include mixed background activity and are not event-level malware ground truth.
+
+**Import recording** reads bounded normalized JSON through a native file dialog, displays recorded coverage/provenance and never executes dataset commands. Separately labelled reference rules cite actual startup changes, surviving children, memory-capable access to `lsass.exe` and remote-thread events. The latter two follow [Microsoft access-rights documentation](https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights) and [Sysmon event documentation](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon); legitimate tools can generate them.
+
+Three [harmless simulator executables](docs/simulators-v2.md) exercise files in owned scratch folders, trusted child processes and loopback traffic. Live v2 tests produced no anomaly findings for these benign workloads, while the surviving-child reference retained valid citations. They test attribution and workflow, not malware accuracy. A separate [EMBER static-feature study](docs/static-pe-experiment.md) trains supervised research models from numeric features without downloading malware binaries; extractor parity is not established, so it is not a shipped executable scanner.
 
 Official OpTC downloads were quota-blocked. An inspected transformed OpTC mirror was excluded from training because its conversion provenance was undocumented. LANL prefixes came from a public mirror whose publisher documents official-source acquisition; full-file equality to the registration-gated official originals was not independently verified. Dataset revision, prefix checksums and exclusions are recorded in the manifest.
 
@@ -52,7 +60,7 @@ npm.cmd run test:gui
 .venv\Scripts\python.exe scripts/benchmark.py
 ```
 
-Training dependencies are separate. Use `training/requirements.txt` and the CPU PyTorch index documented there. Download bounded source prefixes with `python training/acquire_lanl.py --prefix-mib 4`, then `python training/train.py --epochs 8 --seed 1984`. Keep the saved final test untouched while selecting architectures or thresholds. Training/export commands and scientific limitations are detailed in the model/dataset cards.
+Training dependencies are separate. Use `training/requirements.txt` and the CPU PyTorch index documented there. Follow [v2 reproduction](docs/model-v2-experiments.md) for a separate output directory; the trainer refuses to overwrite frozen results. The original `training/train.py` is historical and writes runtime weights, so reproduce v1 in a checkout of `v0.1.0`. Do not retune after observing final-test results.
 
 ## Documentation
 
@@ -64,7 +72,8 @@ Training dependencies are separate. Use `training/requirements.txt` and the CPU 
 - [Dependency licences](THIRD_PARTY_NOTICES.md)
 - [Ordinary and investigation replay demo](docs/demo.md)
 - [Private GitHub checkpoints and rollback](docs/version-history.md)
-- [Final validation, package paths and exact commands](HANDOFF.md)
+- [Expanded validation, package paths and exact commands](HANDOFF_V2.md)
+- [Historical v0.1.0 handoff](HANDOFF.md)
 
 Monitoring and deterministic explanations are local. The optional LLM CLI requires review of a redacted preview and approval of its exact hash; remote requests additionally require explicit opt-in. It never determines detections or executes tools.
 

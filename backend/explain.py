@@ -61,7 +61,11 @@ def observed(event):
         verb = "creation" if kind == "file_create" else "deletion"
         text = f"{name} had a recorded file {verb} at {safe(details.get('target') or details.get('TargetFilename'))}."
     elif kind == "process_access":
-        text = f"{name} had a recorded access event involving {safe(details.get('TargetImage') or details.get('target'))}."
+        text = f"{name} had a recorded access event involving {safe(details.get('TargetImage') or details.get('target_image') or details.get('target'))}."
+    elif kind == "remote_thread":
+        text = f"{name} had a recorded thread-creation event in {safe(details.get('TargetImage') or details.get('target_image') or details.get('target'))}."
+    elif kind == "image_load":
+        text = f"{name} had a recorded module load for {safe(details.get('ImageLoaded') or details.get('image_loaded') or details.get('target'))}."
     else:
         text = f"{name} produced a recorded {safe(kind)} event."
     if event.get("source", "").startswith("replay"):
@@ -118,6 +122,27 @@ class ExplanationEngine:
             findings.append(("A child continued connecting after its parent ended", "medium", unique,
                              "Background helpers commonly outlive their launchers. Inspect the child program and destination when this is unexpected.",
                              "process termination network connection Sysmon", "rule_reference", None, "rules-1.0"))
+        memory_access = []
+        for event in events:
+            if event["kind"] != "process_access": continue
+            details = event.get("details") or {}
+            target = str(details.get("TargetImage") or details.get("target_image") or details.get("target", "")).replace("\\", "/").split("/")[-1].lower()
+            value = details.get("GrantedAccess", details.get("granted_access", ""))
+            try:
+                access = value if isinstance(value, int) and not isinstance(value, bool) else int(str(value)[:64], 0)
+            except (ValueError, TypeError):
+                continue
+            if target == "lsass.exe" and 0 <= access <= 0xffffffff and access & 0x30:
+                memory_access.append(event)
+        if memory_access:
+            findings.append(("Memory-capable access to the sign-in process was recorded", "medium", memory_access,
+                             "The recorded access rights include reading or writing process memory for lsass.exe. Security and administrative software can do this legitimately; verify the source program. The event alone does not establish credential extraction.",
+                             "LSASS memory access rights PROCESS_VM_READ PROCESS_VM_WRITE T1003.001", "rule_reference", None, "rules-2.0"))
+        threads = [event for event in events if event["kind"] == "remote_thread"]
+        if threads:
+            findings.append(("A thread was created in another process", "medium", threads,
+                             "Recorded thread creation in another process can occur during debugging or instrumentation and can also support process injection. Verify the source and target programs; this event does not establish malicious execution.",
+                             "Sysmon CreateRemoteThread Event8 process injection T1055", "rule_reference", None, "rules-2.0"))
         if model_result and model_result.get("above_threshold"):
             ids = set(model_result.get("evidence_event_ids") or [event["id"] for event in events])
             evidence = [event for event in events if event["id"] in ids]

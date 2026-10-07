@@ -1,5 +1,4 @@
 """Integrity/split tests use fabricated small records, never accuracy claims."""
-import hashlib
 import json
 from pathlib import Path
 import zlib
@@ -7,6 +6,7 @@ import pytest
 from training.expand_lanl import safe_target, expand_complete_records
 from training.train_v2 import host_bucket, split_for, parse_record, prepare, Reservoir
 from training.provenance import sha256
+from backend.model import BehavioralModel
 
 def test_expansion_keeps_complete_records_and_marks_partial_gzip(tmp_path):
     raw = b"1,U,C,P,Start\n2,U,C,P,End\n3,U,C,P,Start\n"
@@ -84,3 +84,21 @@ def test_reservoir_is_bounded_deterministic_and_samples_beyond_initial_prefix():
     assert first.items == second.items
     assert first.seen == 1000 and len(first.items) == 20
     assert max(first.items) > 900
+
+def test_actual_frozen_v2_artifacts_preserve_selection_and_original_v1():
+    root = Path(__file__).resolve().parents[1]
+    out = root / "training/results/v2"
+    freeze = json.loads((out / "selection-freeze.json").read_text())
+    metrics = json.loads((out / "metrics.json").read_text())
+    assert metrics["selection_freeze_sha256"] == sha256(out / "selection-freeze.json")
+    assert freeze["dataset_manifest_sha256"] == sha256(root / "training/lanl-v2-manifest.json")
+    assert freeze["splits_sha256"] == sha256(out / "splits.json")
+    for candidate, expected in freeze["candidate_artifacts"].items():
+        assert sha256(out / "models" / f"{candidate}.json") == expected
+    runtime = BehavioralModel(out / "models")
+    assert runtime.metadata["status"] == "available"
+    assert runtime.metadata["artifact_sha256"] == freeze["candidate_artifacts"][freeze["selected_candidate"]]
+    original = BehavioralModel(out / "v1-original")
+    assert original.metadata["status"] == "available"
+    assert original.metadata["version"].startswith("lanl2015-v1-")
+    assert sha256(out / "v1-original/active.json") == freeze["v1_model_sha256"]

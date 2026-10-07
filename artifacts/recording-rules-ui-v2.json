@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checked_at_utc": "2026-10-07T07:00:35.322Z",
+  "scenario": "Inert public OTRF Mavinject capture import",
+  "dataset": "OTRF Security-Datasets",
+  "revision": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+  "input_recording_sha256": "619abc87887f6bc90784d0706aed5f97065dd4107c70fbe0ccf5442eea6893f1",
+  "events": 425,
+  "processes": 17,
+  "remote_thread_events": 1,
+  "reference_finding": {
+    "title": "A thread was created in another process",
+    "score_kind": "rule_reference",
+    "score": null,
+    "version": "rules-2.0",
+    "cited_events": 1,
+    "exact_citation_navigation_passed": true
+  },
+  "model_version": "lanl2015-v2-gru-e16-h32-seed2026",
+  "collector_status": "idle",
+  "recorded_commands_executed": false,
+  "raw_telemetry_exported": false,
+  "renderer_errors": [],
+  "limits": [
+    "Recorded laboratory capture import only; no process injection executed.",
+    "Reference finding is a deterministic evidence rule, not trained-model malware accuracy."
+  ]
+}

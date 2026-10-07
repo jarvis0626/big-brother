@@ -82,6 +82,8 @@ def main():
     reference = ROOT / "training/lanl-v2-manifest.json"
     existing = target / "lanl-manifest.json"
     expected = json.loads(reference.read_text(encoding="utf8")) if reference.exists() else None
+    if expected and expected["prefix_mib"] != args.prefix_mib:
+        parser.error("This v2 experiment is frozen at its recorded prefix bound; use a separately versioned experiment for another bound")
     if existing.exists():
         prior = json.loads(existing.read_text(encoding="utf8"))
         if prior["mirror_revision"] != REVISION or prior["prefix_mib"] != args.prefix_mib:

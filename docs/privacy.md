@@ -20,6 +20,8 @@ The normal application's `llm_provider` is disabled. Deterministic explanations 
 
 ## Execution and access boundaries
 
+**Import recording** opens a native JSON file dialog and reads normalized public or personal telemetry as inert data. It never launches recorded executables or follows recorded destinations. Imports allow at most 32 MiB, 10,000 events and 1,000 distinct processes; malformed or inconsistent identities are rejected. Session evidence and source metadata commit in one transaction. Imported paths, commands and provenance can be sensitive, just like live observations. Recording provenance is included in exported reports and removed with the last retained session or expiration. Its declared source and scenario label are not authenticated by import and never become model labels.
+
 Selecting an executable in a dialog only records its path. Only the explicit “Launch and watch” method starts the selected `.exe`; it uses an argument array with `shell=False`. Watching an existing process does not relaunch it. Replays contain fabricated command lines and risky behavior descriptions, but never execute those lines or create real persistence.
 
 The Python service is a private child of Electron communicating over inherited standard input/output. It exposes no listening HTTP or TCP API. The renderer has a sandbox, context isolation and no Node execution; a narrow main-process interface validates requests and binds them to the app's own window. Both sides validate the supported method names and parameters. IPC request size is bounded. Strings from events, datasets, documents and model outputs remain untrusted data.

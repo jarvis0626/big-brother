@@ -197,7 +197,8 @@ def main():
     models.mkdir(exist_ok=True)
     if (out / "selection-freeze.json").exists():
         raise RuntimeError("Selection/test already frozen. Preserve it and use a new experiment rather than retune this holdout.")
-    run_configuration = vars(args) | {"data_dir": str(args.data_dir.resolve()), "seeds": list(SEEDS), "shapes": [list(shape) for shape in SHAPES]}
+    run_configuration = {key: str(value.resolve()) if isinstance(value, Path) else value for key, value in vars(args).items()}
+    run_configuration.update({"seeds": list(SEEDS), "shapes": [list(shape) for shape in SHAPES]})
     configuration_path = out / "run-configuration.json"
     if configuration_path.exists() and json.loads(configuration_path.read_text()) != run_configuration:
         raise RuntimeError("This experiment contains different training configuration. Use a new experiment rather than mix candidate runs.")
@@ -270,7 +271,7 @@ def main():
             name = f"gru-e{embedding}-h{hidden}-seed{seed}"
             result_path = out / f"{name}.json"
             weights_path = models / f"{name}.json"
-            if result_path.exists() and weights_path.exists():
+            if result_path.exists() and weights_path.exists() and (out / f"{name}.pt").exists():
                 candidate = json.loads(result_path.read_text())
                 if sha256(weights_path) != candidate["artifact_sha256"]:
                     raise ValueError("Completed neural artifact checksum changed")

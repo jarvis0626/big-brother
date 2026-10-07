@@ -38,6 +38,23 @@ def test_sysmon_guid_parent_identity_and_provenance():
         parse_sysmon('<!DOCTYPE a [<!ENTITY x SYSTEM "file:///C:/secret">]><Event/>')
 
 
+def test_sysmon_remote_thread_preserves_source_target_and_evidence_rule():
+    from backend.explain import ExplanationEngine
+    value = parse_sysmon(sysmon_xml(8, 8, {"SourceProcessGUID": "{SOURCE}", "SourceProcessId": "123",
+        "SourceImage": "C:\\Lab\\debugger.exe", "TargetProcessGUID": "{TARGET}",
+        "TargetImage": "C:\\Lab\\target.exe", "StartAddress": "0x1234"}), "event-epoch")
+    assert value["kind"] == "remote_thread" and value["process_key"] == "sysmon:test-host:{source}"
+    assert value["pid"] == 123 and value["details"]["TargetProcessGUID"] == "{TARGET}"
+    assert value["details"]["StartAddress"] == "0x1234"
+    value["id"] = "thread-evidence"
+    reports = ExplanationEngine(Path(__file__).resolve().parents[1] / "resources").incidents(
+        {"id": "thread-session", "mode": "live", "ancestry_complete": True}, [value], None, [])
+    assert reports[0]["score_kind"] == "rule_reference" and reports[0]["event_ids"] == ["thread-evidence"]
+    module = parse_sysmon(sysmon_xml(7, 7, {"ProcessGuid": "{SOURCE}", "ProcessId": "123",
+        "Image": "C:\\Lab\\debugger.exe", "ImageLoaded": "C:\\Lab\\module.dll"}))
+    assert module["kind"] == "image_load" and module["details"]["ImageLoaded"].endswith("module.dll")
+
+
 def test_sysmon_disconnect_reconnect_and_clear_preserve_gaps(tmp_path):
     store = EvidenceStore(tmp_path / "test.db")
     reader = SysmonReader(store)

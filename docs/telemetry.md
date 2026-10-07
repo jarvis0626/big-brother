@@ -16,6 +16,7 @@ The packaged application works without Python, Node, a database server, or Sysmo
 | File creation / deletion | Unavailable | IDs 11, 23 and 26 if configured | Selected recorded changes only; no full-disk scans or complete file reads. |
 | Registry changes | Unavailable | IDs 12–14 if configured | Startup rules inspect recorded target paths. No Registry changes are performed. |
 | Process access / raw-device reads | Unavailable | IDs 10 / 9 if configured | General file-read visibility is unavailable. |
+| Remote thread / module load | Unavailable | IDs 8 / 7 if configured | Source/target metadata and module paths are evidence, not proof of malicious code. Broad module logging can be costly. |
 | Encrypted traffic contents / complete command history | Unavailable | Unavailable | Recorded command lines describe process creation or a later snapshot, not every command executed. |
 
 Sysmon status is initially “not checked yet” until a watch is started. When its channel is readable, event categories remain `configuration_unknown`: Big Brother does not guess which filters the administrator enabled. Polling evidence remains explicitly partial.

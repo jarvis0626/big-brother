@@ -1,6 +1,6 @@
 # Five-minute replay demo
 
-Open the installed **Big Brother** shortcut, or run `release/Big-Brother-0.1.0-x64-portable.exe` from a writable folder. No administrator account, Sysmon installation or external LLM is needed for this demo.
+Open the installed **Big Brother** shortcut, or run `release/Big-Brother-0.2.0-x64-portable.exe` from a writable folder. No administrator account, Sysmon installation or external LLM is needed for this demo.
 
 Both scenarios contain **fabricated evidence**. Opening a replay ingests records; it never runs the named programs, creates a startup entry or contacts a destination. These fixtures demonstrate the investigation workflow and are excluded from training and accuracy evaluation.
 
@@ -8,7 +8,7 @@ Both scenarios contain **fabricated evidence**. Opening a replay ingests records
 
 1. Choose **Explore a replay**, select **Ordinary activity**, then **Open replay**.
 2. Confirm the **Replay · fabricated** label. The graph contains one process, the timeline contains three retained events, and there are no findings.
-3. Open **Settings** to inspect telemetry coverage and the active model, `lanl2015-v1-seed1984`. A quiet finding list does not establish safety; the model supports only process start/end, DNS and network-port categories.
+3. Open **Settings** to inspect telemetry coverage and the active model, `lanl2015-v2-gru-e16-h32-seed2026`. A quiet finding list does not establish safety; the model supports only process start/end, DNS and network-port categories.
 
 ## Investigation
 

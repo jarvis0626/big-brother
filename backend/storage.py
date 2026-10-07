@@ -151,9 +151,9 @@ class EvidenceStore:
             self.db.execute("DELETE FROM processes WHERE key=?", (alias,))
             self.reconcile()
 
-    def create_session(self, name, mode, root_key, ancestry_complete=False, started_at=None):
+    def create_session(self, name, mode, root_key, ancestry_complete=False, started_at=None, *, defer=False):
         sid = "session_" + uuid.uuid4().hex
-        with self.lock, self.db:
+        with self.lock, (nullcontext() if defer else self.db):
             self.db.execute("INSERT INTO sessions VALUES(?,?,?,?,?,?,?,?)", (
                 sid, str(name)[:200], mode, "replay" if mode == "replay" else "watching",
                 started_at or now(), None, root_key, int(ancestry_complete)))

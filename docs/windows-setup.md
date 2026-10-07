@@ -23,11 +23,13 @@ To stop or remove Sysmon, use Microsoft's documented controls explicitly, such a
 
 ## Running the packages
 
-- Installer: `release/Big-Brother-0.1.0-x64-nsis.exe` installs per user and creates shortcuts. No administrator privilege is requested by the app.
-- Portable launcher: `release/Big-Brother-0.1.0-x64-portable.exe` writes `BigBrother-data` beside itself. Put it in a writable folder. The extracted application is temporary; its retained data stays alongside the launcher.
+- Installer: `release/Big-Brother-0.2.0-x64-nsis.exe` installs per user and creates shortcuts. No administrator privilege is requested by the app.
+- Portable launcher: `release/Big-Brother-0.2.0-x64-portable.exe` writes `BigBrother-data` beside itself. Put it in a writable folder. The extracted application is temporary; its retained data stays alongside the launcher.
 - Extracted folder: `release/win-unpacked/Big Brother.exe` is usable independently if all adjacent files remain present. It stores history under the user's application-data directory.
 
 These packages are unsigned. The build does not claim a verified publisher or a signing certificate.
+
+The v0.2 example XML also records remote-thread creation and access to `lsass.exe`, enabling separately labelled evidence references. It does not enable broad module-load recording. Validate the XML against the downloaded Sysmon schema before applying it. This configuration is shipped as an optional setup file and has not been installed or live-tested on the development machine.
 
 Selecting an executable does not execute it. Only **Launch and watch** starts the selected program. Closing the window hides it in the system tray. Use the tray or application menu's **Stop collection and exit** to stop the application. Separately installed Sysmon continues running.
 

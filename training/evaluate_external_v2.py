@@ -64,11 +64,16 @@ def main():
     frozen = json.loads((out / "metrics.json").read_text())
     if sha256(out / "selection-freeze.json") != frozen["selection_freeze_sha256"]:
         raise ValueError("Selection changed after the fresh test")
+    selection = json.loads((out / "selection-freeze.json").read_text())
+    if sha256(out / "v1-original/active.json") != selection["v1_model_sha256"]:
+        raise ValueError("Preserved original v1 metadata changed")
     models = {"unchanged_v1": BehavioralModel(out / "v1-original"),
         "selected_v2": BehavioralModel(out / "models")}
     for name, model in models.items():
         if model.metadata["status"] != "available":
             raise ValueError("Frozen model unavailable: " + name)
+    if models["selected_v2"].metadata["artifact_sha256"] != selection["candidate_artifacts"][selection["selected_candidate"]]:
+        raise ValueError("Experimental active pointer differs from the validation-selected model")
     networks = {name: torch_model(model.weights) if model.weights["architecture"] == "gru" else None
                 for name, model in models.items()}
     summaries = {name: {"sum_nll": 0.0, "predictions": 0, "windows": 0, "exceedances": 0} for name in models}

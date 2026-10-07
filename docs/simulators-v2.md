@@ -72,6 +72,52 @@ may provide extra evidence, but this test does not install or modify Sysmon and
 does not claim configuration coverage. One-file bootloader processes appear in
 the observed lineage. Very brief activity between polls can still be missed.
 
+## Measured results with the promoted v2 model
+
+On 7 October 2026, the production collector validation used
+`lanl2015-v2-gru-e16-h32-seed2026`, artifact SHA256
+`26adda072a62e5d6320686d04b7da98a2cbbdbe7c6a3559e37d8616bb025e95e`.
+The validation-selected threshold remained **7.014227 nats** throughout these
+tests. Scenarios, model weights and replay fixtures were not modified to force
+findings.
+
+| Real harmless scenario | Observed processes | Actual captured events | Model score, nats | Model findings | Transparent rules |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Ordinary | 3 | 18 | 6.341320 | 0 | 0 |
+| Process fan-out | 9 | 68 | 1.448037 | 0 | 0 |
+| Surviving child | 5 | 30 | 2.298517 | 0 | 1 |
+
+All actual workload runtime processes were attributed; the extra process nodes
+are real one-file runtime/bootloader lineage. All recorded network destinations
+were loopback. The known benign workloads produced no anomaly-model findings.
+The surviving-child rule fired on genuine captured behavior and was labeled
+separately. These three short engineering tests cannot estimate malware recall,
+false-positive rate, or general application safety. Polling counts can vary
+between runs as connections overlap sampling intervals.
+
+The programs created **47 owned scratch files** in total, but **zero file-create
+events** were collected: the Sysmon channel was unavailable and polling does
+not observe file operations. They completed 60 real loopback exchanges. The
+collector reported zero dropped events; unavailable event classes remain
+explicit in the aggregate report. Test-owned files and disposable raw evidence
+were cleaned after validation.
+
+The source Electron smoke also passed all **15 workflow checks** with the same
+promoted model. Importing a genuine public OTRF recording preserved 83 events
+and eight processes, activated no live collector, and produced a separate
+`rules-2.0` LSASS access reference finding with two actual cited events and a
+null model score. Recorded commands were never executed. This recording test
+checks inert import, evidence presentation, report provenance and history; it
+does not execute or validate a credential-theft operation.
+
+A separate real Electron native-dialog test imported a public OTRF Mavinject
+capture containing 425 events and 17 processes. Its one recorded remote-thread
+event produced the separate `rules-2.0` thread-creation reference finding with a
+null model score. Clicking its factual citation selected that exact event in
+the timeline. The collector remained idle and the renderer reported no errors.
+No injection or recorded command was executed. The aggregate result is in
+[`recording-rules-ui-v2.json`](../artifacts/recording-rules-ui-v2.json).
+
 ## Owned scratch files and cleanup
 
 Manual runs leave only their bounded example files and trace records below

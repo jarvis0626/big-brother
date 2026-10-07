@@ -15,7 +15,10 @@ The original Big Brother source and eye vector are MIT licensed (see LICENSE). T
 | Pillow | Icon build tool; not runtime | HPND/PIL licence, https://github.com/python-pillow/Pillow |
 | TypeScript, Vite, electron-builder, Playwright | Development tools | Apache-2.0 (TypeScript/Playwright), MIT (Vite/electron-builder) |
 | PyTorch, scikit-learn | Training only | BSD-style licences; not packaged |
+| LightGBM | Separate static-feature research only | MIT, https://github.com/microsoft/LightGBM; not packaged |
 
 OpTC data provenance, source licence/public-domain statement, samples and exclusions are recorded in docs/dataset-card.md and training/dataset-manifest.json. Model weights trained by this project are described in docs/model-card.md. No third-party pretrained weights are required.
+
+Expanded research source terms and immutable revisions are in `training/catalog-v2.json` and `docs/datasets-v2.md`: LANL has its stated copyright waiver; the pinned OTRF data license is MIT; EVTX-ATTACK-SAMPLES has GPL terms. Their raw logs are local research inputs and are not redistributed in the application. EMBER's pinned license assigns MIT to its feature data and AGPL-v3 to its source code. The static experiment uses an independently written projection of the public feature schema; publisher extraction code and malware binaries are not downloaded or bundled. Its research weights are separate from packaged behavioral inference.
 
 Sysmon is not bundled. Microsoft licence acceptance is required in its explicit setup workflow. Curated knowledge contains original summaries and source links, not copied full articles. MITRE ATT&CK attribution and Microsoft source references accompany the knowledge corpus.

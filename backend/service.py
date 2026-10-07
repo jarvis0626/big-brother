@@ -198,25 +198,24 @@ class Application:
         keys = {event["process_key"] for event in recording["events"]}
         keys.update(event["parent_key"] for event in recording["events"] if event["parent_key"])
         mapping = {key: "import:" + nonce + ":" + key for key in keys}
-        session = self.store.create_session(recording["name"], "recording", mapping[recording["events"][0]["process_key"]], False)
-        try:
+        with self.lock:
             with self.store.lock, self.store.db:
+                session = self.store.create_session(recording["name"], "recording", mapping[recording["events"][0]["process_key"]], False, defer=True)
                 self.store.db.executemany("INSERT OR IGNORE INTO membership VALUES(?,?)",
                                          ((session["id"], mapping[key]) for key in {e["process_key"] for e in recording["events"]}))
+                retained = 0
                 for event in recording["events"]:
                     event = {**event, "process_key": mapping[event["process_key"]],
                              "parent_key": mapping.get(event["parent_key"]),
                              "source": "recording:" + nonce, "source_epoch": nonce}
                     event["id"] = "evt_" + hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()[:24]
-                    self.store.ingest(event, defer=True)
+                    retained += int(self.store.ingest(event, defer=True))
                 self.store.db.execute("UPDATE sessions SET status='recording' WHERE id=?", (session["id"],))
-            self.store.set_meta("recording:" + session["id"],
-                                {"provenance": recording["provenance"], "coverage": recording["coverage"],
-                                 "imported_events": recording["event_count"],
-                                 "observed_kinds": sorted({event["kind"] for event in recording["events"]})})
-        except Exception:
-            self.store.delete_session(session["id"])
-            raise
+                metadata = {"provenance": recording["provenance"], "coverage": recording["coverage"],
+                            "input_events": recording["event_count"], "imported_events": retained,
+                            "duplicate_events": recording["event_count"] - retained,
+                            "observed_kinds": sorted({event["kind"] for event in recording["events"]})}
+                self.store.db.execute("INSERT INTO meta VALUES(?,?)", ("recording:" + session["id"], json.dumps(metadata)))
         self.current_session = session["id"]
         self.store.prune()
         self.analyze(force=True, session_id=session["id"])

@@ -1,0 +1,147 @@
+{
+  "selection_freeze_sha256": "54bc5909f81ecbcbbe1d1272142e5ca9e691244d65a2a47259ae47edcbfc5600",
+  "purpose": "Frozen descriptive per-token failure analysis. No fitting, thresholds or candidate selection changed.",
+  "per_token": [
+    {
+      "token": "process_start",
+      "test_targets": 25700,
+      "training_targets": 256769,
+      "temporal_next_event_nll_nats": 0.37534889876099614,
+      "baseline_next_event_nll_nats": 0.4815859881146444
+    },
+    {
+      "token": "process_end",
+      "test_targets": 5167,
+      "training_targets": 77945,
+      "temporal_next_event_nll_nats": 0.8220348619148121,
+      "baseline_next_event_nll_nats": 1.1331671419156968
+    },
+    {
+      "token": "dns",
+      "test_targets": 269,
+      "training_targets": 1777,
+      "temporal_next_event_nll_nats": 3.189150258607913,
+      "baseline_next_event_nll_nats": 5.546960188060499
+    },
+    {
+      "token": "network_web",
+      "test_targets": 1821,
+      "training_targets": 22079,
+      "temporal_next_event_nll_nats": 1.1960485745211147,
+      "baseline_next_event_nll_nats": 1.905080228840805
+    },
+    {
+      "token": "network_smb",
+      "test_targets": 8449,
+      "training_targets": 48121,
+      "temporal_next_event_nll_nats": 0.8810083807508562,
+      "baseline_next_event_nll_nats": 1.337620190418781
+    },
+    {
+      "token": "network_remote",
+      "test_targets": 607,
+      "training_targets": 1285,
+      "temporal_next_event_nll_nats": 1.3949609614871872,
+      "baseline_next_event_nll_nats": 4.7182148755918325
+    },
+    {
+      "token": "network_dns",
+      "test_targets": 0,
+      "training_targets": 17,
+      "temporal_next_event_nll_nats": null,
+      "baseline_next_event_nll_nats": null
+    },
+    {
+      "token": "network_other_service",
+      "test_targets": 4791,
+      "training_targets": 42132,
+      "temporal_next_event_nll_nats": 0.9841913715987757,
+      "baseline_next_event_nll_nats": 1.5260975636929262
+    },
+    {
+      "token": "network_high_port",
+      "test_targets": 291,
+      "training_targets": 3473,
+      "temporal_next_event_nll_nats": 1.5442028951501519,
+      "baseline_next_event_nll_nats": 4.157424064199857
+    },
+    {
+      "token": "network_unknown_port",
+      "test_targets": 17289,
+      "training_targets": 268282,
+      "temporal_next_event_nll_nats": 0.3707474115663894,
+      "baseline_next_event_nll_nats": 0.44261208903623256
+    }
+  ],
+  "seed_capacity_results": [
+    {
+      "id": "baseline-seed1984",
+      "validation_nll_nats": 0.7321012926534495,
+      "fresh_test_nll_nats": 0.8431134096403996
+    },
+    {
+      "id": "gru-e8-h16-seed1984",
+      "validation_nll_nats": 0.5279048076110453,
+      "fresh_test_nll_nats": 0.5797432222584747
+    },
+    {
+      "id": "gru-e16-h32-seed1984",
+      "validation_nll_nats": 0.5241280190438727,
+      "fresh_test_nll_nats": 0.5720857291022514
+    },
+    {
+      "id": "baseline-seed2026",
+      "validation_nll_nats": 0.7264706101136762,
+      "fresh_test_nll_nats": 0.8314533356136161
+    },
+    {
+      "id": "gru-e8-h16-seed2026",
+      "validation_nll_nats": 0.5297236279626505,
+      "fresh_test_nll_nats": 0.5809872320291464
+    },
+    {
+      "id": "gru-e16-h32-seed2026",
+      "validation_nll_nats": 0.5199769217573978,
+      "fresh_test_nll_nats": 0.5714876944336537
+    }
+  ],
+  "inference_standard_library": {
+    "baseline-seed1984": {
+      "median_ms": 0.023499998860643245,
+      "p95_ms": 0.02794999973048106,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    },
+    "gru-e8-h16-seed1984": {
+      "median_ms": 2.8305499990892713,
+      "p95_ms": 3.73446499934289,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    },
+    "gru-e16-h32-seed1984": {
+      "median_ms": 9.241149999979825,
+      "p95_ms": 11.960190000354485,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    },
+    "baseline-seed2026": {
+      "median_ms": 0.02364999909332255,
+      "p95_ms": 0.03458500068518331,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    },
+    "gru-e8-h16-seed2026": {
+      "median_ms": 2.7251500005149865,
+      "p95_ms": 3.258055000424064,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    },
+    "gru-e16-h32-seed2026": {
+      "median_ms": 8.358849999240192,
+      "p95_ms": 9.341089999816175,
+      "samples": 30,
+      "scope": "One16-token prediction using actual exported standard-library runtime; no Electron, no collection, not full8-target session score"
+    }
+  },
+  "interpretation": "Conditional surprise is prediction loss. Rare token groups have unstable estimates; absent types cannot be evaluated. No malware labels or confidence intervals implied."
+}

@@ -1,0 +1,212 @@
+{
+  "experiment": "lanl-v2-later-time",
+  "configuration": {
+    "data_dir": "D:\\Projects\\Big Brother\\training\\data\\lanl-v2-32mib",
+    "epochs": 16,
+    "patience": 3,
+    "max_train_windows": 100000,
+    "max_eval_windows": 15000,
+    "threads": 2
+  },
+  "objective": "Self-supervised next supported host-event token prediction",
+  "selected_candidate": "gru-e16-h32-seed2026",
+  "selected_neural": "gru-e16-h32-seed2026",
+  "selected_baseline": "baseline-seed2026",
+  "selection_freeze_sha256": "54bc5909f81ecbcbbe1d1272142e5ca9e691244d65a2a47259ae47edcbfc5600",
+  "dataset_manifest_sha256": "16db1b9beeeada04bf4d7d0ec4a4ed49a6dd8307957da9e5617e1bdf7dc1328c",
+  "candidate_results": [
+    {
+      "id": "baseline-seed1984",
+      "architecture": "bag_centroid",
+      "seed": 1984,
+      "threshold": 5.822285919811489,
+      "validation": {
+        "next_event_nll_nats": 0.7321012926534495,
+        "perplexity": 2.0794455437082653,
+        "mean_window_max_nll_nats": 1.7469137734839604,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 4.349021599999105,
+      "test": {
+        "next_event_nll_nats": 0.8431134096403996,
+        "perplexity": 2.323590014360121,
+        "mean_window_max_nll_nats": 1.7755506000219698,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 83,
+        "threshold_exceedance_fraction": 0.010313121272365805,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    },
+    {
+      "id": "gru-e8-h16-seed1984",
+      "architecture": "gru",
+      "seed": 1984,
+      "threshold": 7.033102579116843,
+      "validation": {
+        "next_event_nll_nats": 0.5279048076110453,
+        "perplexity": 1.6953764449861966,
+        "mean_window_max_nll_nats": 1.599535976244693,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 192.21557129999928,
+      "test": {
+        "next_event_nll_nats": 0.5797432222584747,
+        "perplexity": 1.7855798747115597,
+        "mean_window_max_nll_nats": 1.567630751729641,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 110,
+        "threshold_exceedance_fraction": 0.013667992047713717,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    },
+    {
+      "id": "gru-e16-h32-seed1984",
+      "architecture": "gru",
+      "seed": 1984,
+      "threshold": 7.062771320343018,
+      "validation": {
+        "next_event_nll_nats": 0.5241280190438727,
+        "perplexity": 1.6889854429402884,
+        "mean_window_max_nll_nats": 1.6157781420230832,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 291.34973439999885,
+      "test": {
+        "next_event_nll_nats": 0.5720857291022514,
+        "perplexity": 1.77195902637483,
+        "mean_window_max_nll_nats": 1.5851169197811332,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 99,
+        "threshold_exceedance_fraction": 0.012301192842942345,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    },
+    {
+      "id": "baseline-seed2026",
+      "architecture": "bag_centroid",
+      "seed": 2026,
+      "threshold": 6.684504195004777,
+      "validation": {
+        "next_event_nll_nats": 0.7264706101136762,
+        "perplexity": 2.067769748189885,
+        "mean_window_max_nll_nats": 1.7726673654918024,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 0.7625272999994195,
+      "test": {
+        "next_event_nll_nats": 0.8314533356136161,
+        "perplexity": 2.296654125192554,
+        "mean_window_max_nll_nats": 1.7880894593035697,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 87,
+        "threshold_exceedance_fraction": 0.01081013916500994,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    },
+    {
+      "id": "gru-e8-h16-seed2026",
+      "architecture": "gru",
+      "seed": 2026,
+      "threshold": 6.992033739089969,
+      "validation": {
+        "next_event_nll_nats": 0.5297236279626505,
+        "perplexity": 1.6984628361126235,
+        "mean_window_max_nll_nats": 1.6200669890956008,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 185.59796599999936,
+      "test": {
+        "next_event_nll_nats": 0.5809872320291464,
+        "perplexity": 1.7878025357413925,
+        "mean_window_max_nll_nats": 1.5636262050052183,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 112,
+        "threshold_exceedance_fraction": 0.013916500994035786,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    },
+    {
+      "id": "gru-e16-h32-seed2026",
+      "architecture": "gru",
+      "seed": 2026,
+      "threshold": 7.014227390289307,
+      "validation": {
+        "next_event_nll_nats": 0.5199769217573978,
+        "perplexity": 1.681988831904648,
+        "mean_window_max_nll_nats": 1.606209658762815,
+        "prediction_count": 95264,
+        "window_count": 11908
+      },
+      "training_seconds": 354.15165499999966,
+      "test": {
+        "next_event_nll_nats": 0.5714876944336537,
+        "perplexity": 1.7708996502491217,
+        "mean_window_max_nll_nats": 1.5676062467663547,
+        "prediction_count": 64384,
+        "window_count": 8048,
+        "threshold_exceedance_windows": 94,
+        "threshold_exceedance_fraction": 0.011679920477137177,
+        "denominator": "disjoint24-event windows; no negative-class labels available"
+      }
+    }
+  ],
+  "unchanged_v1_fresh_test": {
+    "next_event_nll_nats": 0.6031475072307205,
+    "perplexity": 1.8278629676517715,
+    "mean_window_max_nll_nats": 1.6509948842978834,
+    "prediction_count": 64384,
+    "window_count": 8048,
+    "threshold_exceedance_windows": 237,
+    "threshold_exceedance_fraction": 0.02944831013916501,
+    "denominator": "disjoint24-event windows; no negative-class labels available"
+  },
+  "inference_one_prediction_ms": {
+    "median": 8.3882499993706,
+    "p95": 8.73593999995137,
+    "samples": 30
+  },
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "logical_cpus": 16,
+    "device": "CPU",
+    "threads": 2,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.3"
+  },
+  "training_final_rss_mib": 809.37890625,
+  "training_peak_rss_mib": null,
+  "total_seconds": 1060.6931108000008,
+  "unavailable_detection_metrics": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "pr_auc": null,
+    "false_positive_rate": null,
+    "false_alerts_per_hour": null,
+    "detection_latency": null,
+    "reason": "No event-level attack/negative labels. These are prediction metrics; threshold exceedance counts unlabelled windows."
+  },
+  "promotion": "Not automatically promoted. Existing packaged/shipped resources/models remain v1 pending external scenario tests and review.",
+  "limitations": [
+    "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+    "Expanded bounded2015 LANL enterprise host/network prefix; Windows application/session domain still differs.",
+    "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+    "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+    "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+    "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+    "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+    "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+    "Training aggregates host-wide events; a watched process session is a narrower stream. DNS-port and other rare token groups have very limited support despite the expanded data. Unknown NetFlow destination ports are common and differ from direct Windows observations."
+  ]
+}
