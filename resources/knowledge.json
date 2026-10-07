@@ -1,0 +1,42 @@
+{
+  "version": "knowledge-2026-10-07-v1",
+  "description": "Locally curated general documentation summaries. No attack-case labels or held-out incident answers.",
+  "documents": [
+    {
+      "id": "mitre-t1547.001",
+      "title": "MITRE ATT&CK T1547.001: Registry Run Keys / Startup Folder",
+      "url": "https://attack.mitre.org/techniques/T1547/001/",
+      "source_version": "2.1, last modified 2026-05-12",
+      "retrieved_at": "2026-10-07",
+      "tags": ["registry", "startup", "persistence", "run", "runonce"],
+      "text": "Windows startup folders and Run Registry keys can cause programs to launch at logon. Adversaries may use these locations to maintain persistence; legitimate software also uses startup mechanisms. A recorded modification warrants context and publisher verification rather than an automatic malware conclusion."
+    },
+    {
+      "id": "mitre-t1059.003",
+      "title": "MITRE ATT&CK T1059.003: Windows Command Shell",
+      "url": "https://attack.mitre.org/techniques/T1059/003/",
+      "source_version": "1.5, last modified 2026-05-12",
+      "retrieved_at": "2026-10-07",
+      "tags": ["shell", "cmd.exe", "process", "execution"],
+      "text": "The Windows command shell supports commands and batch workflows. Adversaries can abuse it for execution, while administrators and installers regularly use it for ordinary tasks. Its presence in a process chain needs supporting context."
+    },
+    {
+      "id": "microsoft-sysmon",
+      "title": "Microsoft Sysmon telemetry and event configuration",
+      "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+      "source_version": "documentation updated 2026-09-10",
+      "retrieved_at": "2026-10-07",
+      "tags": ["sysmon", "process", "network", "dns", "file", "registry", "termination"],
+      "text": "Sysmon installs a service and driver and writes Windows Event Logs. Process GUIDs correlate activity across PID reuse. Event categories include process starts and ends, network connections, DNS queries, file creation and Registry changes. Configuration and filters determine which events appear; network connection logging is disabled by default. Sysmon does not interpret recorded events as malicious or safe."
+    },
+    {
+      "id": "microsoft-evtquery",
+      "title": "Microsoft Windows Event Log EvtQuery API",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtquery",
+      "source_version": "documentation updated 2021-10-13",
+      "retrieved_at": "2026-10-07",
+      "tags": ["event", "log", "collector", "permissions", "query"],
+      "text": "EvtQuery retrieves matching events from a channel or log. A null session targets the local computer. The result handle belongs to its creating thread and must be closed after use. Reading a channel requires appropriate access."
+    }
+  ]
+}

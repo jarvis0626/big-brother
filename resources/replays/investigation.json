@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "fabricated": true,
+  "name": "Installer and surviving helper · fabricated replay",
+  "root_key": "replay:setup:1",
+  "events": [
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:03Z","kind":"network","image":"C:\\Demo\\helper.exe","details":{"destination_ip":"203.0.113.42","destination_port":443},"source_record_id":"7"},
+    {"process_key":"replay:setup:1","pid":4401,"timestamp":"2026-10-07T04:30:00Z","kind":"process_start","image":"C:\\Demo\\setup.exe","command_line":"\"C:\\Demo\\setup.exe\"","source_record_id":"1"},
+    {"process_key":"replay:installer:2","parent_key":"replay:setup:1","pid":4402,"timestamp":"2026-10-07T04:30:00.500Z","kind":"process_start","image":"C:\\Demo\\installer.exe","source_record_id":"2"},
+    {"process_key":"replay:cmd:3","parent_key":"replay:installer:2","pid":4403,"timestamp":"2026-10-07T04:30:01Z","kind":"process_start","image":"C:\\Windows\\System32\\cmd.exe","command_line":"cmd.exe /c helper.exe","source_record_id":"3"},
+    {"process_key":"replay:helper:4","parent_key":"replay:cmd:3","pid":4404,"timestamp":"2026-10-07T04:30:01.500Z","kind":"process_start","image":"C:\\Demo\\helper.exe","command_line":"helper.exe --background","source_record_id":"4"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:02Z","kind":"file_create","image":"C:\\Demo\\helper.exe","details":{"target":"C:\\Demo\\helper-settings.json"},"source_record_id":"5"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:02.500Z","kind":"registry","image":"C:\\Demo\\helper.exe","details":{"target":"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\DemoHelper","Details":"C:\\Demo\\helper.exe","EventType":"SetValue"},"source_record_id":"6"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:03Z","kind":"network","image":"C:\\Demo\\helper.exe","details":{"destination_ip":"203.0.113.42","destination_port":443},"source_record_id":"7"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:04Z","kind":"dns","image":"C:\\Demo\\helper.exe","details":{"query":"updates.example.invalid"},"source_record_id":"8"},
+    {"process_key":"replay:cmd:3","pid":4403,"timestamp":"2026-10-07T04:30:05Z","kind":"process_end","image":"C:\\Windows\\System32\\cmd.exe","source_record_id":"9"},
+    {"process_key":"replay:installer:2","pid":4402,"timestamp":"2026-10-07T04:30:06Z","kind":"process_end","image":"C:\\Demo\\installer.exe","source_record_id":"10"},
+    {"process_key":"replay:setup:1","pid":4401,"timestamp":"2026-10-07T04:30:07Z","kind":"process_end","image":"C:\\Demo\\setup.exe","source_record_id":"11"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:11Z","kind":"network","image":"C:\\Demo\\helper.exe","details":{"destination_ip":"203.0.113.42","destination_port":3389},"source_record_id":"12"},
+    {"process_key":"replay:helper:4","pid":4404,"timestamp":"2026-10-07T04:30:20Z","kind":"process_end","image":"C:\\Demo\\helper.exe","source_record_id":"13"}
+  ]
+}

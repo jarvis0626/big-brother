@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fabricated": true,
+  "name": "Ordinary document workflow · fabricated replay",
+  "root_key": "replay:editor:1",
+  "events": [
+    {"process_key":"replay:editor:1","pid":5501,"timestamp":"2026-10-07T05:00:00Z","kind":"process_start","image":"C:\\Demo\\editor.exe","command_line":"editor.exe notes.txt","source_record_id":"1"},
+    {"process_key":"replay:editor:1","pid":5501,"timestamp":"2026-10-07T05:00:02Z","kind":"file_create","image":"C:\\Demo\\editor.exe","details":{"target":"C:\\Demo\\notes.txt"},"source_record_id":"2"},
+    {"process_key":"replay:editor:1","pid":5501,"timestamp":"2026-10-07T05:00:05Z","kind":"process_end","image":"C:\\Demo\\editor.exe","source_record_id":"3"}
+  ]
+}

@@ -1,0 +1,6 @@
+# Training only. End users do not install these; packaged inference is stdlib.
+numpy==2.4.3
+scikit-learn==1.6.1
+psutil>=6,<8
+# CPU wheel: python -m pip install torch==2.10.0 --index-url https://download.pytorch.org/whl/cpu
+torch==2.10.0

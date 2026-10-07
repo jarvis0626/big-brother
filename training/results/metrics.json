@@ -1,0 +1,205 @@
+{
+  "configuration": {
+    "epochs": 8,
+    "seed": 1984,
+    "max_train_windows": 10000,
+    "max_eval_windows": 3000
+  },
+  "objective": "Self-supervised next supported host-event token prediction; anomaly score maximum target NLL across8 targets",
+  "selected_default": "gru",
+  "selection_basis": "validation next-event NLL only",
+  "baseline": {
+    "architecture": "8 learned histogram centroids with Laplace-smoothed next-token distribution",
+    "training_seconds": 0.44953889999942476,
+    "threshold": 5.712149140939427,
+    "validation": {
+      "next_event_nll_nats": 0.8627207568416831,
+      "perplexity": 2.36959903393865,
+      "mean_window_max_nll_nats": 1.5534474260580733,
+      "prediction_count": 7832,
+      "window_count": 979,
+      "threshold_exceedance_windows": 10,
+      "threshold_exceedance_fraction": 0.010214504596527068,
+      "denominator": "disjoint24-event windows; no negative-class labels available"
+    },
+    "test": {
+      "next_event_nll_nats": 1.1192070401898575,
+      "perplexity": 3.062424860398779,
+      "mean_window_max_nll_nats": 1.8562496661041268,
+      "prediction_count": 11888,
+      "window_count": 1486,
+      "threshold_exceedance_windows": 29,
+      "threshold_exceedance_fraction": 0.019515477792732168,
+      "denominator": "disjoint24-event windows; no negative-class labels available"
+    }
+  },
+  "temporal": {
+    "architecture": "PyTorch GRU,8-dimension token embedding,16 hidden units",
+    "training_seconds": 23.082679199999802,
+    "threshold": 6.423330059051517,
+    "validation": {
+      "next_event_nll_nats": 0.5957773313535957,
+      "perplexity": 1.8144408186572356,
+      "mean_window_max_nll_nats": 1.6270032036194313,
+      "prediction_count": 7832,
+      "window_count": 979,
+      "threshold_exceedance_windows": 10,
+      "threshold_exceedance_fraction": 0.010214504596527068,
+      "denominator": "disjoint24-event windows; no negative-class labels available"
+    },
+    "test": {
+      "next_event_nll_nats": 0.601077330097071,
+      "perplexity": 1.8240828816065462,
+      "mean_window_max_nll_nats": 1.4379986309049047,
+      "prediction_count": 11888,
+      "window_count": 1486,
+      "threshold_exceedance_windows": 24,
+      "threshold_exceedance_fraction": 0.016150740242261104,
+      "denominator": "disjoint24-event windows; no negative-class labels available"
+    },
+    "epochs": [
+      {
+        "epoch": 1,
+        "train_next_event_nll_nats": 0.7467868931770325,
+        "validation_next_event_nll_nats": 0.662299352248301
+      },
+      {
+        "epoch": 2,
+        "train_next_event_nll_nats": 0.5315591873168946,
+        "validation_next_event_nll_nats": 0.6352325109225665
+      },
+      {
+        "epoch": 3,
+        "train_next_event_nll_nats": 0.5102046575546265,
+        "validation_next_event_nll_nats": 0.616026699650734
+      },
+      {
+        "epoch": 4,
+        "train_next_event_nll_nats": 0.4984447148323059,
+        "validation_next_event_nll_nats": 0.6082785517318351
+      },
+      {
+        "epoch": 5,
+        "train_next_event_nll_nats": 0.49279139127731325,
+        "validation_next_event_nll_nats": 0.6008087382351611
+      },
+      {
+        "epoch": 6,
+        "train_next_event_nll_nats": 0.4886014659404755,
+        "validation_next_event_nll_nats": 0.5983069745502202
+      },
+      {
+        "epoch": 7,
+        "train_next_event_nll_nats": 0.4853755880355835,
+        "validation_next_event_nll_nats": 0.6020483537627334
+      },
+      {
+        "epoch": 8,
+        "train_next_event_nll_nats": 0.4827212749958038,
+        "validation_next_event_nll_nats": 0.5957773313535957
+      }
+    ]
+  },
+  "unavailable_metrics": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "pr_auc": null,
+    "false_positive_rate": null,
+    "false_alerts_per_hour": null,
+    "detection_latency": null,
+    "reason": "No attack/negative ground-truth labels or application recording denominator available. Exceedance rate counts unlabelled windows only."
+  },
+  "export_maximum_probability_error": 2.822211225828042e-07,
+  "inference_one_prediction_ms": {
+    "median": 2.740350000294711,
+    "p95": 2.9695249996620987,
+    "samples": 30
+  },
+  "artifact_bytes": {
+    "active.json": 1596,
+    "baseline.json": 4917,
+    "temporal.json": 43811
+  },
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "cpu_logical": 16,
+    "device": "CPU",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.4.3",
+    "threads": 2
+  },
+  "total_seconds": 30.547978300000068,
+  "dataset_manifest_sha256": "2acf4bbc5cda41a0d00e41edab603f01ff23d25a4bdf0f4bd64c6ba0321487b8",
+  "limitations": [
+    "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+    "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+    "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+    "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+    "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+    "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+    "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+    "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety."
+  ],
+  "training_final_rss_mib": 537.00390625,
+  "training_peak_rss_mib": null,
+  "held_out_target_subgroups": {
+    "process_start": {
+      "target_count": 2610,
+      "baseline_mean_nll_nats": 0.7054065952657517,
+      "temporal_mean_nll_nats": 0.5751296130879657
+    },
+    "process_end": {
+      "target_count": 1391,
+      "baseline_mean_nll_nats": 0.9331585155612312,
+      "temporal_mean_nll_nats": 0.5878261820253153
+    },
+    "dns": {
+      "target_count": 31,
+      "baseline_mean_nll_nats": 4.422746038853927,
+      "temporal_mean_nll_nats": 3.9325250021872984
+    },
+    "network_web": {
+      "target_count": 1239,
+      "baseline_mean_nll_nats": 2.0196886112243164,
+      "temporal_mean_nll_nats": 1.002393744940042
+    },
+    "network_smb": {
+      "target_count": 732,
+      "baseline_mean_nll_nats": 1.20717929860745,
+      "temporal_mean_nll_nats": 0.8329221128684575
+    },
+    "network_remote": {
+      "target_count": 1128,
+      "baseline_mean_nll_nats": 3.3425787548032746,
+      "temporal_mean_nll_nats": 0.8281226581134272
+    },
+    "network_dns": {
+      "target_count": 7,
+      "baseline_mean_nll_nats": 8.03947991910045,
+      "temporal_mean_nll_nats": 8.969840458461217
+    },
+    "network_other_service": {
+      "target_count": 739,
+      "baseline_mean_nll_nats": 1.7254513527229653,
+      "temporal_mean_nll_nats": 0.7569280569825992
+    },
+    "network_high_port": {
+      "target_count": 42,
+      "baseline_mean_nll_nats": 3.0588352245744956,
+      "temporal_mean_nll_nats": 1.0636165794872103
+    },
+    "network_unknown_port": {
+      "target_count": 3969,
+      "baseline_mean_nll_nats": 0.3558980090575686,
+      "temporal_mean_nll_nats": 0.3155270111260189
+    }
+  },
+  "inference_complete_score_call_ms": {
+    "median": 30.960399999912624,
+    "p95": 37.51188499986711,
+    "samples": 50,
+    "workload": "24 explicitly fabricated input events,8 predictions; timing only, no accuracy claim"
+  }
+}

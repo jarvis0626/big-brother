@@ -1,0 +1,106 @@
+{
+  "name": "big-brother",
+  "version": "0.1.0",
+  "description": "Windows process observation and evidence investigation",
+  "author": "Big Brother contributors",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.cjs",
+    "build:ui": "tsc --noEmit && vite build",
+    "build:backend": ".venv\\Scripts\\python.exe scripts/freeze.py",
+    "build": "npm run build:ui && npm run build:backend",
+    "package": "npm run build && electron-builder --win nsis portable --x64 --publish never",
+    "package:dir": "npm run build && electron-builder --win dir --x64 --publish never",
+    "start": "electron .",
+    "test:desktop": "node --test tests/desktop-security.test.cjs",
+    "test:gui": "node scripts/gui-smoke.cjs"
+  },
+  "dependencies": {
+    "@xyflow/react": "12.12.0",
+    "lucide-react": "1.52.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "44.6.0",
+    "electron-builder": "26.15.3",
+    "playwright": "1.63.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.3"
+  },
+  "build": {
+    "appId": "org.bigbrother.desktop",
+    "productName": "Big Brother",
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
+    "files": [
+      "desktop/**",
+      "dist/ui/**",
+      "assets/icon.ico",
+      "assets/eye.svg",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "dist/backend",
+        "to": "backend"
+      },
+      {
+        "from": "resources",
+        "to": "data",
+        "filter": [
+          "**/*",
+          "!**/*.pyc",
+          "!**/__pycache__/**"
+        ]
+      },
+      {
+        "from": "docs",
+        "to": "docs"
+      },
+      {
+        "from": "scripts/sysmon-config.xml",
+        "to": "docs/sysmon-config.xml"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "asar": true,
+    "compression": "normal",
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "requestedExecutionLevel": "asInvoker",
+      "artifactName": "Big-Brother-${version}-${arch}-${target}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Big Brother",
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Big-Brother-${version}-${arch}-portable.exe"
+    }
+  }
+}

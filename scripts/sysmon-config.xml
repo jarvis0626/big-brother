@@ -1,0 +1,18 @@
+<!-- Explicit administrator setup only. Never applied automatically by Big Brother. -->
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>sha256</HashAlgorithms>
+  <EventFiltering>
+    <ProcessCreate onmatch="exclude" />
+    <ProcessTerminate onmatch="exclude" />
+    <NetworkConnect onmatch="exclude" />
+    <DnsQuery onmatch="exclude" />
+    <FileCreate onmatch="include">
+      <TargetFilename condition="contains">\AppData\Local\Temp\</TargetFilename>
+      <TargetFilename condition="contains">\Windows\Temp\</TargetFilename>
+    </FileCreate>
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">\CurrentVersion\Run</TargetObject>
+      <TargetObject condition="contains">\CurrentVersion\Winlogon</TargetObject>
+    </RegistryEvent>
+  </EventFiltering>
+</Sysmon>
