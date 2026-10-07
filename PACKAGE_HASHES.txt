@@ -1,5 +1,10 @@
-﻿# Big Brother 0.1.0 Windows x64 packages
+# Big Brother 0.1.0 Windows x64 packages
 # Both packages: Authenticode NotSigned
 # SHA256  filename  bytes
 db776e47aa71d4f451dd45e6a33785ee1d1633b5d74dc2e30e039d56bd0b3c3c  Big-Brother-0.1.0-x64-nsis.exe  121532668
 6dd008e510ccaf1377a9643c7e4a4b8635d610759bee73d1b0ae2073e567bdfe  Big-Brother-0.1.0-x64-portable.exe  121241089
+# Big Brother 0.2.0 Windows x64 packages
+# Both packages: Authenticode NotSigned
+# SHA256  filename  bytes
+3a297845a0e1e17f7f68d83c97ebcca1d2fec9d31535964096363247528b15fb  Big-Brother-0.2.0-x64-nsis.exe  121609449
+fe33839eda9354f260763909969b37ab627d473a45ac378bdb93243a12b7bd1a  Big-Brother-0.2.0-x64-portable.exe  121317804

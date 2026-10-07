@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-10-07T07:21:08.600727+00:00",
+  "method": "Current production backend.imports.load_recording on normalized public JSON envelopes; validation only, no database import or execution",
+  "recordings_examined": 264,
+  "accepted_recordings": 244,
+  "accepted_by_source": {
+    "evtx": 157,
+    "otrf": 87
+  },
+  "accepted_normalized_events_by_source": {
+    "evtx": 2850,
+    "otrf": 102000
+  },
+  "excluded_bounded_recordings": 20,
+  "bounded_exclusion_reasons": {
+    "Recording must contain 1\u201310,000 events; select a bounded interval": 10,
+    "Recording exceeds the 32 MiB limit": 7,
+    "Normalized recording events exceed the 8 MiB evidence budget; select a bounded interval": 3
+  },
+  "genuine_validation_inconsistencies": 0,
+  "inconsistency_reasons": {},
+  "excluded_capture_ids_and_reasons": [
+    {
+      "recording_id": "otrf-2965f791bcaf5e6c",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-2b32f11b1465f49d",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-377f8cba5db95a45",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-4633882ab1e9eadd",
+      "reason": "Normalized recording events exceed the 8 MiB evidence budget; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-5335635ef2bce0fb",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-592e5214cf4b7050",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-59ba811e1d268916",
+      "reason": "Normalized recording events exceed the 8 MiB evidence budget; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-5eb1776e7e9f7906",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-74662dc5c52f4ac2",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-79045fcc5a8689ef",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-79e347b411beefaf",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-89bf86818a94eb09",
+      "reason": "Normalized recording events exceed the 8 MiB evidence budget; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-97a834cd72b0803d",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-98a073140860560d",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-9ec1bcfffc461585",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-a507f2edd768b592",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-aed847c1571ec3ef",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-d6150eab4013ed0a",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-e03ad2075a74cc1f",
+      "reason": "Recording must contain 1\u201310,000 events; select a bounded interval",
+      "category": "bounded_limit"
+    },
+    {
+      "recording_id": "otrf-ee996c0ddc32611c",
+      "reason": "Recording exceeds the 32 MiB limit",
+      "category": "bounded_limit"
+    }
+  ],
+  "elapsed_seconds": 7.84202600000026,
+  "file_byte_limit": 33554432,
+  "event_count_limit": 10000,
+  "raw_telemetry_exported": false,
+  "recorded_commands_executed": false,
+  "limits": [
+    "Normalized archive captures are partial laboratory recordings and include background activity.",
+    "An eligible recording has a supported bounded envelope; this does not authenticate its declared provenance or prove maliciousness.",
+    "Oversized captures need a bounded interval and are reported separately from structural inconsistencies.",
+    "This audit does not inspect model scores, execute samples or measure malware detection accuracy."
+  ],
+  "normalized_evidence_byte_limit": 8388608,
+  "passed": true,
+  "validator_source_sha256": "153119e131ef848447eb2b1035c22abe4b80cbbc39ce70d5c81c7d29a27557a2"
+}

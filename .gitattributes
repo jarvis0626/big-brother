@@ -1,0 +1,4 @@
+# Model and scientific checksums identify exact serialized bytes across Git settings.
+resources/models/** -text
+training/*.json -text
+training/results/** -text

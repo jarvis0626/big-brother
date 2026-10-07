@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "audited_at_utc": "2026-10-07T07:34:12.852692+00:00",
+  "dataset": "Official EMBER2018 feature version2 raw test member",
+  "archive_sha256": "b6052eb8d350a49a8d5a5396fbe7d16cf42848b86ff969b77464434cf2997812",
+  "archive_checksum_verification": "Complete SHA256 independently reverified before initial attempt in this session; immutable cache byte length rechecked on retry",
+  "archive_bytes": 1696539273,
+  "member": "ember2018/test_features.jsonl",
+  "method": "Trusted Windows native tar.exe streams only the named member to stdout; independent 4MiB-bounded JSON line reader; oversized rows drained and observed first-field SHA recovered using strict shell-safe hexquote pattern; no filesystem extraction",
+  "command": [
+    "C:\\Windows\\System32\\tar.exe",
+    "-xOf",
+    "D:\\Projects\\Big Brother\\training\\data\\v2\\static-ember\\ember_dataset_2018_2.tar.bz2",
+    "ember2018/test_features.jsonl"
+  ],
+  "native_tar_exit_code": 0,
+  "raw_member_sha256": "8225d87aa4d2ec1c65583dc415c9058a126be9dc0e9292f59b779106f0da6ac9",
+  "raw_test_rows": 200000,
+  "unique_sha256_identities": 200000,
+  "duplicate_identity_rows": 0,
+  "identities_repeated": 0,
+  "conflicting_known_class_label_identities": 0,
+  "observed_known_label_row_counts": {
+    "1": 100000,
+    "0": 99999
+  },
+  "statistics": {
+    "raw_bytes": 1869447260,
+    "raw_test_rows": 200000,
+    "oversized_rows_sha_recovered": 1,
+    "labels_unavailable_on_oversized_rows": 1
+  },
+  "elapsed_seconds": 372.40779269999985,
+  "per_file_sha_identities_exported": false,
+  "model_scores_inspected": false,
+  "samples_executed": false,
+  "files_extracted": false,
+  "limits": [
+    "Identity equality is exact published SHA256 equality and does not identify near duplicates or shared malware families.",
+    "Publisher labels are not independent malware adjudication.",
+    "Oversized rows participate in SHA counting, but their labels are not parsed.",
+    "This audit did not retune or inspect any fitted model, threshold or heldout prediction."
+  ]
+}

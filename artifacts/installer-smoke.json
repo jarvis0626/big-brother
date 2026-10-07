@@ -8,13 +8,13 @@
     "smoke":  {
                   "passed":  true,
                   "packaged":  true,
-                  "version":  "0.1.0",
-                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-installer-1791352944345\\data",
+                  "version":  "0.2.0",
+                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-installer-1791358991239\\data",
                   "portable":  false,
                   "resources_present":  true,
                   "model":  {
-                                "name":  "LANL temporal GRU event predictor",
-                                "version":  "lanl2015-v1-seed1984",
+                                "name":  "Expanded LANL temporal GRU event predictor",
+                                "version":  "lanl2015-v2-gru-e16-h32-seed2026",
                                 "status":  "available"
                             },
                   "events":  13,
@@ -25,7 +25,7 @@
                   "node_available":  false,
                   "title":  "Big Brother"
               },
-    "tested_at":  "2026-10-07T06:02:53.5272762Z",
+    "tested_at":  "2026-10-07T07:43:29.4760732Z",
     "uninstaller_exit":  0,
     "application_removed":  true
 }

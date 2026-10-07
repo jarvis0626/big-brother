@@ -2797,15 +2797,22 @@
       "primary_sources": [
         "https://github.com/elastic/ember"
       ],
-      "license": "Data MIT; publisher sourcecode AGPL-v3. Sourcecode is not copied or bundled",
-      "telemetry": "StaticWindowsPE features with malwarelabels; official SHA256 archives",
-      "status": "Officialfeature-only acquisition and separate bounded supervised research experiment in progress",
-      "limits": "Staticfeature extraction is not implemented in current behavioral detector; model would need an additional independent staticPE feature contract",
+      "license": "Data MIT; publisher source code AGPL-v3. Read-only source inspection is cached but not executed or bundled",
+      "telemetry": "Static Windows PE features with publisher class labels; official SHA256 archive",
+      "status": "Acquired and completed separate frozen supervised research experiment: 1,000,000 raw records, 112391/37535/49742 retained fitting/validation/test samples",
+      "limits": "Research-only 564-feature independent projection. Modern runtime PE extractor parity is unverified. Historical 2018 heldout ROC AUC 0.976334/AP 0.977838 is not live behavioral accuracy; at validation low-FPR threshold heldout FPR 1.2647%, recall 73.4366%; validation F1 threshold heldout FPR 12.3329%",
+      "experiment_documentation": "docs/static-pe-experiment.md",
       "license_url": "https://github.com/elastic/ember/blob/d97a0b523de02f3fe5ea6089d080abacab6ee931/LICENSE.txt",
       "publisher_revision": "d97a0b523de02f3fe5ea6089d080abacab6ee931",
       "archive_url": "https://ember.elastic.co/ember_dataset_2018_2.tar.bz2",
       "archive_bytes": 1696539273,
-      "archive_sha256": "b6052eb8d350a49a8d5a5396fbe7d16cf42848b86ff969b77464434cf2997812"
+      "archive_sha256": "b6052eb8d350a49a8d5a5396fbe7d16cf42848b86ff969b77464434cf2997812",
+      "schema_inspection": {
+        "source_url": "https://raw.githubusercontent.com/elastic/ember/d97a0b523de02f3fe5ea6089d080abacab6ee931/ember/features.py",
+        "bytes": 24099,
+        "sha256": "db0d93bb1e1d4b28558e373c77194a82c3cae09d7a1aeb44eea5dd68e84f3ffd",
+        "handling": "Ignored research cache; read-only schema/API inspection, never imported, executed or bundled"
+      }
     },
     {
       "id": "bodmas",

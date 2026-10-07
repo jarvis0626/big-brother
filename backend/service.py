@@ -89,7 +89,7 @@ class Application:
                     continue
                 if not force and session["status"] not in ("watching", "replay", "recording"):
                     continue
-                events = self.store.events(session["id"], limit=2000)
+                events = self.store.events(session["id"], limit=10000 if session["mode"] == "recording" else 2000)
                 score = None
                 if events and self.model_metadata().get("status") not in ("unavailable", "error"):
                     try:
@@ -115,7 +115,7 @@ class Application:
                 metadata["status"] = "error"
                 metadata["limitations"] = list(metadata.get("limitations", [])) + [self.last_model_error]
             return {"sessions": sessions, "session": session,
-                    "events": self.store.events(sid) if sid else [],
+                    "events": self.store.events(sid, limit=10000 if session["mode"] == "recording" else 2000) if sid else [],
                     "processes": self.store.processes(sid) if sid else [],
                     "incidents": self.store.incidents(sid) if sid else [],
                     "collector": self.collector.state() if self.collector else {"status": "idle", "backend": "replay", "gaps": self.store.gaps(), "dropped_events": 0},

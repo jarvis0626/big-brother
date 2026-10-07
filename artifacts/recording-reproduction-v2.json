@@ -1,0 +1,70 @@
+{
+  "actual_recording_checks": [
+    {
+      "filename": "otrf-66d73cccd7918b12.json",
+      "events": 3260,
+      "processes": 66,
+      "findings": [
+        "Memory-capable access to the sign-in process was recorded",
+        "A thread was created in another process",
+        "Activity differs from the trained reference"
+      ],
+      "original_zero_pid_events": 5,
+      "zero_pid_uncertain": true,
+      "unknown_pid_event_count": 5,
+      "state_json_bytes": 3254582,
+      "import_ms": 557.598200000939,
+      "state_ms": 94.41679999872576,
+      "all_citations_visible": true,
+      "normalized_recording_sha256": "b9feca02c8222479ac3900112d6fa8ab1a45fab17ffa9e92aa137ab8fd24bfb4"
+    },
+    {
+      "filename": "otrf-98071a478f57f2ca.json",
+      "events": 3660,
+      "processes": 68,
+      "findings": [
+        "A thread was created in another process",
+        "Activity differs from the trained reference"
+      ],
+      "original_zero_pid_events": 0,
+      "zero_pid_uncertain": true,
+      "unknown_pid_event_count": 0,
+      "state_json_bytes": 3078880,
+      "import_ms": 588.1345999987388,
+      "state_ms": 90.84059999986493,
+      "all_citations_visible": true,
+      "normalized_recording_sha256": "743906b236a0c449bfe5ecde5893762e669ce1ec0ab588cb4e02b28f2bd9e790"
+    }
+  ],
+  "context": "Inert existing public recordings; live collector disabled, temporary evidence under D:",
+  "gui_checks": [
+    {
+      "filename": "otrf-66d73cccd7918b12.json",
+      "events": 3260,
+      "processes": 66,
+      "import_to_render_ms": 2006.4576000000002,
+      "citation_focus_ms": 214.30369999999948,
+      "early_rule_visible": true,
+      "exact_citation_visible": true,
+      "correct_recording_footer": true
+    },
+    {
+      "filename": "otrf-98071a478f57f2ca.json",
+      "events": 3660,
+      "processes": 68,
+      "import_to_render_ms": 3454.8269999999993,
+      "citation_focus_ms": 271.3750999999993,
+      "early_rule_visible": true,
+      "exact_citation_visible": true,
+      "correct_recording_footer": true
+    }
+  ],
+  "renderer_errors": [],
+  "gui_context": "Actual Electron source UI; native import boundary exercised with dialog selections mocked to existing inert public files.",
+  "limitations": [
+    "Two isolated recordings, one timing observation per case; no statistical or 10,000-event performance benchmark.",
+    "Source Electron application; packaged application is verified separately.",
+    "Native file selection was mocked to existing inert public paths while the application import boundary and actual UI were exercised.",
+    "Reference evidence and anomaly scores are not malware verdicts; public attack recordings include background activity."
+  ]
+}

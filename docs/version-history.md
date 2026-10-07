@@ -15,6 +15,8 @@ Use a new destination folder for a different historical commit. Each source chec
 
 The expanded iteration first pushed [a784f51](https://github.com/jarvis0626/big-brother/commit/a784f516eaeb0bfcf4cac6428cb04927eb77d6bd), adding real recorded-corpus imports, harmless simulator sources and the larger training infrastructure. Subsequent commits activate the frozen v2 model, strengthen import and promotion validation, add evidence references and record separate static-feature research. Each checkpoint describes the work completed at that time; generated binaries remain local.
 
+The expanded delivery is tagged `v0.2.0`: checked behavioral weights, real recording imports and evidence references, harmless compiled simulator sources, supervised feature-only research with immutable results, and installer/portable verification. Its full handoff is [HANDOFF_V2.md](../HANDOFF_V2.md). To inspect it independently, use `git worktree add '../Big Brother-v0.2.0' v0.2.0` after fetching tags. Neither release tag replaces the other; local package hashes distinguish the delivered binaries.
+
 Source code, configuration, curated documentation, trained inference artifacts, experiment summaries and meaningful tests belong in Git. Dependency directories, raw public telemetry downloads, local observation databases, caches, development scratch files and generated installation packages are excluded. Private visibility does not make sensitive local telemetry or credentials suitable for source control.
 
 Run a source audit without a network request:

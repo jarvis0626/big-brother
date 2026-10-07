@@ -44,7 +44,8 @@ def observed(event):
     details = event.get("details", {})
     kind = event["kind"]
     if kind == "process_start":
-        text = f"{name} was observed running with process ID {event['pid']}."
+        identity = f"with process ID {event['pid']}" if event.get("pid") else "without a recorded process ID"
+        text = f"{name} was observed running {identity}."
         if event.get("parent_key"):
             text += " The recorded parent relationship links it to the watched chain."
     elif kind == "process_end":

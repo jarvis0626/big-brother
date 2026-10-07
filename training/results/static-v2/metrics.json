@@ -1,0 +1,192 @@
+{
+  "task": "Separate supervised static PE feature research experiment; NOT live behavioral detector accuracy",
+  "chosen_model": "lightgbm",
+  "feature_schema": "ember2018-independent-numeric-projection-v1",
+  "train_samples": 112391,
+  "validation_samples": 37535,
+  "test_samples": 49742,
+  "models": {
+    "linear_baseline": {
+      "heldout": {
+        "threshold": 0.04778669338895734,
+        "roc_auc": 0.8640798246402619,
+        "pr_auc_average_precision": 0.8378946379734451,
+        "accuracy": 0.7014193237103454,
+        "precision": 0.6325691699604743,
+        "recall": 0.963554627920045,
+        "f1": 0.7637439552048867,
+        "fpr": 0.5616239729337844,
+        "confusion": {
+          "tn": 10884,
+          "fp": 13944,
+          "fn": 908,
+          "tp": 24006
+        },
+        "log_loss": 0.5646312859538228,
+        "brier_score": 0.15537387278774403
+      },
+      "heldout_at_validation1percentfpr": {
+        "threshold": 0.9909584195890437,
+        "roc_auc": 0.8640798246402619,
+        "pr_auc_average_precision": 0.8378946379734451,
+        "accuracy": 0.5502392344497608,
+        "precision": 0.8949658172778123,
+        "recall": 0.1155976559364213,
+        "f1": 0.2047490402388739,
+        "fpr": 0.013613661994522314,
+        "confusion": {
+          "tn": 24490,
+          "fp": 338,
+          "fn": 22034,
+          "tp": 2880
+        },
+        "log_loss": 0.5646312859538228,
+        "brier_score": 0.15537387278774403
+      },
+      "predict_seconds": 0.325420999999551
+    },
+    "lightgbm": {
+      "heldout": {
+        "threshold": 0.35404475335527597,
+        "roc_auc": 0.9763342915902655,
+        "pr_auc_average_precision": 0.9778380108464815,
+        "accuracy": 0.9135740420570142,
+        "precision": 0.8854856202550582,
+        "recall": 0.9503492012523079,
+        "f1": 0.9167715331152111,
+        "fpr": 0.12332850008055421,
+        "confusion": {
+          "tn": 21766,
+          "fp": 3062,
+          "fn": 1237,
+          "tp": 23677
+        },
+        "log_loss": 0.20508127192118858,
+        "brier_score": 0.05946033167735417
+      },
+      "heldout_at_validation1percentfpr": {
+        "threshold": 0.8364759327803969,
+        "roc_auc": 0.9763342915902655,
+        "pr_auc_average_precision": 0.9778380108464815,
+        "accuracy": 0.8606409070805355,
+        "precision": 0.9831273508866201,
+        "recall": 0.7343662197960986,
+        "f1": 0.8407315504089697,
+        "fpr": 0.012647011438698244,
+        "confusion": {
+          "tn": 24514,
+          "fp": 314,
+          "fn": 6618,
+          "tp": 18296
+        },
+        "log_loss": 0.20508127192118858,
+        "brier_score": 0.05946033167735417
+      },
+      "predict_seconds": 0.9057173000001058
+    }
+  },
+  "fitting": {
+    "linear_baseline": {
+      "fit_seconds": 6.732490700000199,
+      "validation": {
+        "threshold": 0.04778669338895734,
+        "roc_auc": 0.8547260134367178,
+        "pr_auc_average_precision": 0.8915206560204723,
+        "accuracy": 0.7892633542027441,
+        "precision": 0.7645963153616906,
+        "recall": 0.9592539089055064,
+        "f1": 0.8509347203377055,
+        "fpr": 0.4965354668190585,
+        "confusion": {
+          "tn": 7048,
+          "fp": 6951,
+          "fn": 959,
+          "tp": 22577
+        },
+        "log_loss": 0.6044275831078771,
+        "brier_score": 0.1706179559274191
+      },
+      "validation_threshold_target1percentfpr": {
+        "threshold": 0.9909584195890437,
+        "roc_auc": 0.8547260134367178,
+        "pr_auc_average_precision": 0.8915206560204723,
+        "accuracy": 0.4392433728520048,
+        "precision": 0.9497469269703543,
+        "recall": 0.1116162474507138,
+        "f1": 0.1997566724963881,
+        "fpr": 0.009929280662904494,
+        "confusion": {
+          "tn": 13860,
+          "fp": 139,
+          "fn": 20909,
+          "tp": 2627
+        },
+        "log_loss": 0.6044275831078771,
+        "brier_score": 0.1706179559274191
+      },
+      "threshold": 0.04778669338895734,
+      "low_fpr_threshold": 0.9909584195890437
+    },
+    "lightgbm": {
+      "fit_seconds": 59.79972020000059,
+      "validation": {
+        "threshold": 0.35404475335527597,
+        "roc_auc": 0.9805754856530736,
+        "pr_auc_average_precision": 0.9879013199301249,
+        "accuracy": 0.9336619155454908,
+        "precision": 0.9364579012857736,
+        "recall": 0.9592963970088375,
+        "f1": 0.9477395793980607,
+        "fpr": 0.10943638831345096,
+        "confusion": {
+          "tn": 12467,
+          "fp": 1532,
+          "fn": 958,
+          "tp": 22578
+        },
+        "log_loss": 0.19684137418277112,
+        "brier_score": 0.05818874845748576
+      },
+      "validation_threshold_target1percentfpr": {
+        "threshold": 0.8364759327803969,
+        "roc_auc": 0.9805754856530736,
+        "pr_auc_average_precision": 0.9879013199301249,
+        "accuracy": 0.815665378979619,
+        "precision": 0.991772713820657,
+        "recall": 0.7119306594153637,
+        "f1": 0.8288689372016522,
+        "fpr": 0.009929280662904494,
+        "confusion": {
+          "tn": 13860,
+          "fp": 139,
+          "fn": 6780,
+          "tp": 16756
+        },
+        "log_loss": 0.19684137418277112,
+        "brier_score": 0.05818874845748576
+      },
+      "threshold": 0.35404475335527597,
+      "low_fpr_threshold": 0.8364759327803969
+    }
+  },
+  "elapsed_fit_eval_seconds": 68.13941140000134,
+  "versions": {
+    "numpy": "2.4.3",
+    "sklearn": "1.6.1",
+    "lightgbm": "4.6.0"
+  },
+  "threads": 2,
+  "model_artifact_sha256": {
+    "lightgbm": "cde50ac71bf4bcb846c69b9544dd1796122934640cdff19f686c13a0cad95e97",
+    "linear_baseline": "6e8e94fa426e5e8bd0ce6e191f1ee467f697f9faa8d5f4fb31514fece8c35bc9"
+  },
+  "dataset_manifest_sha256": "1b58cb49d3fa647145d276430e47956218b988e1981c3abc9543af7a601e0f59",
+  "limits": [
+    "Historical 2018 publisher labels, not current Windows deployment accuracy",
+    "Independent numeric projection differs from the full official 2381-feature benchmark",
+    "Runtime PE extractor parity with LIEF 0.9/0.10 is unverified; research-only",
+    "Class prevalence and the temporal/hash subset are benchmark-specific; no live false alerts per hour",
+    "Provided class labels are publisher judgments; no new independent malware adjudication",
+    "No family-disjoint test because reliable complete family labels are unavailable; reported overlap remains"
+  ]
+}

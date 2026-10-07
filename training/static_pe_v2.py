@@ -48,6 +48,35 @@ def sha256(path):
         for block in iter(lambda:f.read(2**20),b""):h.update(block)
     return h.hexdigest()
 
+def assert_unfrozen(data_dir=None,results_dir=None):
+    data_dir=Path(data_dir if data_dir is not None else DATA)
+    results_dir=Path(results_dir if results_dir is not None else RESULTS)
+    markers=[data_dir/"frozen-experiment.json",results_dir/"frozen-plan.json",results_dir/"metrics.json"]
+    if any(path.exists() for path in markers):
+        raise ValueError("Static experiment is frozen: preparation and training cannot overwrite its data, decisions or metrics")
+
+def resolve_experiment_paths(data_dir,results_dir):
+    paths=[]
+    for value,base in [(data_dir,ROOT/"training"/"data"),(results_dir,ROOT/"training"/"results")]:
+        path=Path(value).resolve();base=base.resolve()
+        if path==base or not path.is_relative_to(base):
+            raise ValueError("Static data/results must use separate descendants of this project's training/data and training/results on D:")
+        paths.append(path)
+    return tuple(paths)
+
+def record_freeze(data_dir=None,results_dir=None):
+    data_dir=Path(data_dir if data_dir is not None else DATA)
+    results_dir=Path(results_dir if results_dir is not None else RESULTS)
+    marker=data_dir/"frozen-experiment.json"
+    if marker.exists():raise ValueError("Static data cache is already frozen")
+    frozen_plan=results_dir/"frozen-plan.json"
+    if not frozen_plan.is_file():raise ValueError("No frozen decisions to protect")
+    record={"freeze_enforced_at_utc":datetime.now(timezone.utc).isoformat(),
+            "frozen_plan_sha256":sha256(frozen_plan),
+            "dataset_manifest_sha256":sha256(results_dir/"dataset-manifest.json"),
+            "purpose":"Prevent later preparation or training from overwriting this frozen experiment"}
+    marker.write_text(json.dumps(record,indent=2),encoding="utf-8")
+
 def acquire():
     DATA.mkdir(parents=True,exist_ok=True);usage=shutil.disk_usage(DATA)
     if usage.free-12*1024**3<usage.total*.20:raise ValueError("20% free-space reserve would be violated")
@@ -130,24 +159,42 @@ def retained_metadata(keep,month_values,family_values):
     families=Counter(family_values[i] for i in keep if family_values[i] is not None)
     return months,families
 
+def member_role(member):
+    """Whitelist only confirmed publisher feature files and inert baseline weights."""
+    name=PurePosixPath(member.name)
+    if name.is_absolute() or ".." in name.parts or "\\" in member.name:raise ValueError("Unsafe tar member")
+    if member.isdir():return "directory"
+    if not member.isfile():raise ValueError("Archive member is not a regular file")
+    if member.name=="ember2018/ember_model_2018.txt":
+        if member.size>512*1024**2:raise ValueError("Publisher baseline weights exceed ceiling")
+        return "unused_publisher_model"
+    if not re.fullmatch(r"ember2018/(train_features_[0-9]+|test_features)\.jsonl",member.name):
+        raise ValueError("Archive contains an unexpected non-feature member")
+    if member.size>8*1024**3:raise ValueError("Expanded JSON member exceeds ceiling")
+    return "train" if "/train_" in member.name else "test"
+
 def prepare():
     """Stream the full checksum-verified feature archive without extracting raw JSON."""
+    assert_unfrozen()
     import numpy as np
     path=acquire();buffers={k:array.array("f") for k in ["train","validation","test"]}
     labels={k:array.array("b") for k in buffers};identities={k:[] for k in buffers};groups={k:[] for k in buffers}
     families={k:[] for k in buffers};months={k:[] for k in buffers}
-    source_sha=set();feature_hashes={k:set() for k in buffers};stats=Counter();members=[]
+    source_sha=set();feature_hashes={k:set() for k in buffers};stats=Counter();members=[];excluded_members=[]
     started=time.perf_counter()
     with tarfile.open(path,mode="r|bz2") as archive:
         for member in archive:
-            name=PurePosixPath(member.name)
-            if name.is_absolute() or ".." in name.parts or "\\" in member.name:raise ValueError("Unsafe tar member")
-            if member.isdir():continue
-            if not member.isfile() or not re.fullmatch(r"ember2018/(train_features_[0-9]+|test_features)\.jsonl",member.name):
-                raise ValueError("Archive contains an unexpected non-feature member")
-            if member.size>8*1024**3:raise ValueError("Expanded JSON member exceeds ceiling")
-            source="train" if "/train_" in member.name else "test";stream=archive.extractfile(member)
+            source=member_role(member)
+            if source=="directory":continue
+            stream=archive.extractfile(member)
             if stream is None:raise ValueError("Missing feature stream")
+            if source=="unused_publisher_model":
+                digest=hashlib.sha256()
+                for block in iter(lambda:stream.read(2**20),b""):digest.update(block)
+                excluded_members.append({"name":member.name,"bytes":member.size,"sha256":digest.hexdigest(),
+                                         "reason":"Publisher plaintext baseline weights; not loaded, executed or used in this experiment"})
+                print("Ignored inert publisher baseline weights",member.size,"bytes",flush=True)
+                continue
             member_hash=hashlib.sha256();member_records=0
             for line,oversized_identity in feature_lines(stream,member_hash):
                 member_records+=1;stats["raw_records"]+=1
@@ -206,7 +253,7 @@ def prepare():
               "splits":"Official train appeared <=2018-08 for fitting; official train 2018-09/10 for validation; official test >=2018-11 held out",
               "leakage":"All raw training file SHA identities excluded from heldout; identical selected feature vectors excluded across splits. Family grouping unavailable for benign files; malware families can overlap; near-duplicate/signer leakage not fully resolved",
               "oversized_records":"Rows exceeding 4 MiB are drained without parsing. Their observed first-field SHA256 remains included in raw identity exclusion; their unknown labels are omitted from raw_label counters",
-              "statistics":dict(stats),"members":members,"splits_detail":cache,"prepare_seconds":time.perf_counter()-started,
+              "statistics":dict(stats),"members":members,"excluded_members":excluded_members,"splits_detail":cache,"prepare_seconds":time.perf_counter()-started,
               "family_overlap_count":len(retained_families["train"]&retained_families["test"]),
               "limitations":["Historical 2018 publisher labels, not current Windows deployment accuracy", "Independent numeric projection differs from the full official 2381-feature benchmark", "Runtime PE extractor parity with LIEF 0.9/0.10 is unverified; research-only", "Class prevalence and the temporal/hash subset are benchmark-specific; no live false alerts per hour"]}
     RESULTS.mkdir(parents=True,exist_ok=True);(RESULTS/"dataset-manifest.json").write_text(json.dumps(manifest,indent=2),encoding="utf-8")
@@ -222,6 +269,7 @@ def evaluate(labels,prediction,threshold):
             "log_loss":float(log_loss(labels,np.clip(prediction,1e-7,1-1e-7))),"brier_score":float(brier_score_loss(labels,prediction))}
 
 def fit():
+    assert_unfrozen()
     os.environ["OMP_NUM_THREADS"]="2";os.environ["OPENBLAS_NUM_THREADS"]="2";os.environ["MKL_NUM_THREADS"]="2"
     import numpy as np
     import sklearn
@@ -260,6 +308,7 @@ def fit():
                 "chosen_model":chosen,"feature_schema":FEATURE_SCHEMA,"hyperparameters":{name:model.get_params(deep=False) if name=="lightgbm" else {"loss":"log_loss","alpha":1e-4,"max_iter":30} for name,model in models.items()},
                 "validation":fitted,"extractor_parity":"Unverified; no shipped binary-scanning integration"}
         (RESULTS/"frozen-plan.json").write_text(json.dumps(frozen,indent=2),encoding="utf-8")
+        record_freeze()
         models["lightgbm"].booster_.save_model(str(RESULTS/"lightgbm-model.txt"))
         baseline=models["linear_baseline"]
         np.savez_compressed(RESULTS/"linear-baseline.npz",mean=baseline[0].mean_,scale=baseline[0].scale_,coef=baseline[1].coef_,intercept=baseline[1].intercept_)
@@ -281,7 +330,10 @@ def fit():
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("--acquire",action="store_true");parser.add_argument("--prepare",action="store_true");parser.add_argument("--train",action="store_true")
+    parser.add_argument("--data-dir",type=Path,default=DATA,help="New ignored data/cache directory under this project's training/data")
+    parser.add_argument("--results-dir",type=Path,default=RESULTS,help="New research results directory under this project's training/results")
     args=parser.parse_args()
+    DATA,RESULTS=resolve_experiment_paths(args.data_dir,args.results_dir)
     if args.acquire:print(acquire())
     if args.prepare:prepare()
     if args.train:fit()

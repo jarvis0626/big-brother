@@ -211,6 +211,8 @@ class EvidenceStore:
             self.db.execute("INSERT OR IGNORE INTO processes VALUES(?,?,?,?,?,?,?,?,?)", (
                 key, event.get("pid", 0), parent, name, image, command, event["timestamp"], None,
                 int(event.get("uncertain", False))))
+            if event.get("pid", 0):
+                self.db.execute("UPDATE processes SET pid=? WHERE key=? AND pid=0", (event["pid"], key))
             if event["kind"] == "process_start":
                 self.db.execute("UPDATE processes SET parent_key=COALESCE(?,parent_key),name=?,image=?,command_line=?,started_at=?,uncertain=? WHERE key=?", (
                     parent, name, image, command, event["timestamp"], int(event.get("uncertain", False)), key))

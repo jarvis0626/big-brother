@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import io
+import tarfile
 import pytest
 from training import static_pe_v2 as static
 
@@ -53,3 +54,38 @@ def test_split_metadata_excludes_discarded_rows():
     months,families=static.retained_metadata([0,2],["2018-01","2018-02","2018-03"],["kept","excluded",None])
     assert dict(months)=={"2018-01":1,"2018-03":1}
     assert dict(families)=={"kept":1}
+
+def test_archive_whitelist_rejects_binaries_links_and_traversal():
+    assert static.member_role(tarfile.TarInfo("ember2018/train_features_0.jsonl"))=="train"
+    assert static.member_role(tarfile.TarInfo("ember2018/test_features.jsonl"))=="test"
+    assert static.member_role(tarfile.TarInfo("ember2018/ember_model_2018.txt"))=="unused_publisher_model"
+    for name in ["ember2018/malware.exe","../outside.jsonl","/absolute.jsonl",r"ember2018\test_features.jsonl"]:
+        with pytest.raises(ValueError):static.member_role(tarfile.TarInfo(name))
+    link=tarfile.TarInfo("ember2018/test_features.jsonl");link.type=tarfile.SYMTYPE
+    with pytest.raises(ValueError,match="regular"):static.member_role(link)
+
+def test_frozen_experiment_refuses_before_reading_or_mutating(tmp_path,monkeypatch):
+    data=tmp_path/"data";results=tmp_path/"results";data.mkdir();results.mkdir()
+    monkeypatch.setattr(static,"DATA",data);monkeypatch.setattr(static,"RESULTS",results)
+    monkeypatch.setattr(static,"acquire",lambda:pytest.fail("Frozen preparation must not acquire or read data"))
+    cached=data/"test-features.npy";cached.write_bytes(b"sentinel cache")
+    for marker in [results/"frozen-plan.json",results/"metrics.json",data/"frozen-experiment.json"]:
+        marker.write_text("sentinel decisions")
+        for action in [static.prepare,static.fit]:
+            with pytest.raises(ValueError,match="frozen"):action()
+        assert cached.read_bytes()==b"sentinel cache"
+        assert marker.read_text()=="sentinel decisions"
+        marker.unlink()
+    static.assert_unfrozen()
+
+def test_reproduction_paths_keep_caches_ignored_and_preserve_original_freeze(tmp_path,monkeypatch):
+    monkeypatch.setattr(static,"ROOT",tmp_path)
+    data=tmp_path/"training"/"data"/"separate";results=tmp_path/"training"/"results"/"separate"
+    assert static.resolve_experiment_paths(data,results)==(data.resolve(),results.resolve())
+    for wrong_data,wrong_results in [(tmp_path/"outside",results),(data,tmp_path/"outside"),(tmp_path/"training"/"data",results)]:
+        with pytest.raises(ValueError,match="descendants"):static.resolve_experiment_paths(wrong_data,wrong_results)
+    original=tmp_path/"training"/"data"/"original";original.mkdir(parents=True)
+    marker=original/"frozen-experiment.json";marker.write_text("original freeze")
+    with pytest.raises(ValueError,match="frozen"):static.assert_unfrozen(original,results)
+    static.assert_unfrozen(data,results)
+    assert marker.read_text()=="original freeze"

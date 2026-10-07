@@ -112,3 +112,49 @@ def test_evidence_and_provenance_transaction_rolls_back_together(tmp_path, monke
         assert app.store.db.execute("SELECT count(*) FROM events").fetchone()[0] == 0
         assert app.store.db.execute("SELECT count(*) FROM meta WHERE key LIKE 'recording:%'").fetchone()[0] == 0
     finally: app.close()
+
+
+def test_missing_pid_remains_unknown_without_rejecting_guid_recording(tmp_path):
+    value = example()
+    value["events"][0]["pid"] = 0
+    value["events"][1]["process_key"] = value["events"][0]["process_key"]
+    value["events"][1]["parent_key"] = None
+    path = write(tmp_path, value)
+    parsed = load_recording(path)
+    assert parsed["coverage"]["unknown_pid_event_count"] == 1
+    assert parsed["events"][0]["pid"] == 0 and parsed["events"][0]["uncertain"]
+    app = Application(ROOT / "resources", tmp_path / "data", start_collector=False)
+    try:
+        session = app.import_recording(str(path))
+        state = app.state(session["id"])
+        assert any(event["pid"] == 0 and event["uncertain"] for event in state["events"])
+        assert state["processes"][0]["pid"] == value["events"][1]["pid"]
+    finally: app.close()
+
+
+def test_early_recorded_reference_retains_visible_citations_above_2000_events(tmp_path):
+    value = example()
+    event = value["events"][0]
+    event.update(kind="remote_thread", details={"target_image": "C:\\Lab\\target.exe"})
+    value["events"] = [event] + [{**event, "kind": "image_load", "details": {"image_loaded": "C:\\Lab\\module.dll"},
+        "source_record_id": f"module-{i}", "timestamp": f"2026-10-07T01:{i//60:02d}:{i%60:02d}Z"} for i in range(2001)]
+    app = Application(ROOT / "resources", tmp_path / "data", start_collector=False)
+    try:
+        session = app.import_recording(str(write(tmp_path, value)))
+        state = app.state(session["id"])
+        assert len(state["events"]) == 2002
+        report = next(item for item in state["incidents"] if item["model_version"] == "rules-2.0")
+        thread_ids = {item["id"] for item in state["events"] if item["kind"] == "remote_thread"}
+        assert set(report["event_ids"]) == thread_ids
+    finally: app.close()
+
+
+def test_normalized_evidence_budget_rejects_before_persisting(tmp_path, monkeypatch):
+    from backend import imports
+    monkeypatch.setattr(imports, "MAX_NORMALIZED_BYTES", 100)
+    app = Application(ROOT / "resources", tmp_path / "data", start_collector=False)
+    try:
+        with pytest.raises(ValueError, match="evidence budget"):
+            app.import_recording(str(write(tmp_path, example())))
+        assert app.store.sessions() == []
+    finally: app.close()

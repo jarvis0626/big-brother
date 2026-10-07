@@ -793,7 +793,7 @@ function Timeline({
         </div>
       </div>
       <div className="panel-foot">
-        <span>Local evidence · {state.events.length} loaded events{state.events.length >= 2000 ? " · latest 2,000" : ""}</span>
+        <span>Local evidence · {state.events.length} loaded events{state.session?.mode !== "recording" && state.events.length >= 2000 ? " · latest 2,000" : ""}</span>
         <span>Times shown in your local timezone</span>
       </div>
     </section>

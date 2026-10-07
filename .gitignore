@@ -25,6 +25,7 @@ artifacts/*
 !artifacts/simulator-validation-v2.json
 !artifacts/recording-validation-v2.json
 !artifacts/recording-rules-ui-v2.json
+!artifacts/recording-reproduction-v2.json
 drive-index.html
 optc-access-sample.bin
 training/sources/*.html

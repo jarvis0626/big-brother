@@ -2,6 +2,7 @@
 from pathlib import Path
 import pytest
 from backend.explain import ExplanationEngine
+from backend.explain import observed
 
 ROOT = Path(__file__).resolve().parents[1]
 SESSION = {"id": "recording-test", "mode": "recording", "ancestry_complete": False}
@@ -57,3 +58,11 @@ def test_reference_and_model_finding_keep_separate_versions_and_scores():
                        "score_kind": "anomaly_score", "evidence_event_ids": ["observed-1"]})
     assert len(result) == 2
     assert {(item["model_version"], item["score"]) for item in result} == {("rules-2.0", None), ("trained-test", 8.5)}
+
+
+def test_unknown_pid_is_described_as_missing_observation():
+    event = evidence("process_start")
+    event["pid"] = 0
+    text = observed(event)["text"]
+    assert "without a recorded process ID" in text
+    assert "process ID 0" not in text

@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "feature_schema": "ember2018-independent-numeric-projection-v1",
+  "samples_compared": 512,
+  "max_absolute_prediction_error": {
+    "lightgbm": 0.0,
+    "linear_baseline": 0.0
+  },
+  "tolerance": 5e-06,
+  "frozen_threshold_decision_disagreements": {
+    "lightgbm": {
+      "threshold": 0,
+      "low_fpr_threshold": 0
+    },
+    "linear_baseline": {
+      "threshold": 0,
+      "low_fpr_threshold": 0
+    }
+  },
+  "model_artifact_sha256": {
+    "lightgbm": "cde50ac71bf4bcb846c69b9544dd1796122934640cdff19f686c13a0cad95e97",
+    "linear_baseline": "6e8e94fa426e5e8bd0ce6e191f1ee467f697f9faa8d5f4fb31514fece8c35bc9"
+  },
+  "elapsed_seconds": 0.2654684000008274,
+  "method": "Read-only checksum verification and score reproduction from saved weights; no refit, threshold changes or new classification metrics"
+}

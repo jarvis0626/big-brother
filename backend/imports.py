@@ -6,6 +6,7 @@ from backend.storage import timestamp
 
 MAX_BYTES = 32 * 1024 * 1024
 MAX_EVENTS = 10000
+MAX_NORMALIZED_BYTES = 8 * 1024 * 1024
 KINDS = {"process_start", "process_end", "network", "dns", "file_create", "file_delete", "registry", "process_access", "image_load", "remote_thread"}
 FIELDS = {"process_key", "parent_key", "pid", "timestamp", "kind", "image", "command_line", "details", "source", "source_record_id", "uncertain"}
 
@@ -74,20 +75,23 @@ def load_recording(path):
         source_id = event.get("source_record_id")
         if source_id is not None: text(source_id, 512)
         validated.append({"process_key": key, "parent_key": parent, "pid": pid, "timestamp": stamp,
-                          "kind": event["kind"], "details": details, "uncertain": uncertain,
+                          "kind": event["kind"], "details": details, "uncertain": uncertain or pid == 0,
                           "image": text(event.get("image", ""), 4096),
                           "command_line": text(event.get("command_line", ""), 8192),
                           "source": text(event.get("source", "recording"), 512), "source_record_id": source_id})
     keys = {event["process_key"] for event in validated}
+    if len(json.dumps(validated, ensure_ascii=False).encode("utf8")) > MAX_NORMALIZED_BYTES:
+        raise ValueError("Normalized recording events exceed the 8 MiB evidence budget; select a bounded interval")
     if len(keys) > 1000:
         raise ValueError("Recording exceeds the 1,000-process graph limit; select a bounded capture interval")
     identities = {}
     parents = {}
     for event in validated:
         key = event["process_key"]
-        if key in identities and identities[key] != event["pid"]:
+        if event["pid"] and key in identities and identities[key] != event["pid"]:
             raise ValueError("Recording process key has inconsistent process IDs")
-        identities[key] = event["pid"]
+        if event["pid"]:
+            identities[key] = event["pid"]
         if event["parent_key"]:
             if key in parents and parents[key] != event["parent_key"]:
                 raise ValueError("Recording process key has inconsistent parent identities")
@@ -95,4 +99,5 @@ def load_recording(path):
     return {"name": name, "events": validated, "event_count": len(validated),
             "provenance": {**provenance, "imported_file_sha256": hashlib.sha256(data).hexdigest(),
                            "provenance_status": "Declared source metadata; import does not authenticate ground truth."},
-            "coverage": {**coverage, "unresolved_parent_event_count": sum(bool(e["parent_key"] and e["parent_key"] not in keys) for e in validated)}}
+            "coverage": {**coverage, "unknown_pid_event_count": sum(e["pid"] == 0 for e in validated),
+                         "unresolved_parent_event_count": sum(bool(e["parent_key"] and e["parent_key"] not in keys) for e in validated)}}

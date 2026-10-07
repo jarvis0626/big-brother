@@ -32,6 +32,8 @@ The [dataset catalog](training/catalog-v2.json) reviews sixteen relevant familie
 
 Three [harmless simulator executables](docs/simulators-v2.md) exercise files in owned scratch folders, trusted child processes and loopback traffic. Live v2 tests produced no anomaly findings for these benign workloads, while the surviving-child reference retained valid citations. They test attribution and workflow, not malware accuracy. A separate [EMBER static-feature study](docs/static-pe-experiment.md) trains supervised research models from numeric features without downloading malware binaries; extractor parity is not established, so it is not a shipped executable scanner.
 
+The completed static study retained 112,391 training samples and 49,742 chronological test samples. LightGBM's heldout ROC AUC is 0.976334, with both frozen threshold tradeoffs documented. Its saved weights reproduced recorded scores exactly. Static benchmark performance remains separate from the deployed behavioral model.
+
 Official OpTC downloads were quota-blocked. An inspected transformed OpTC mirror was excluded from training because its conversion provenance was undocumented. LANL prefixes came from a public mirror whose publisher documents official-source acquisition; full-file equality to the registration-gated official originals was not independently verified. Dataset revision, prefix checksums and exclusions are recorded in the manifest.
 
 ## Development and reproducibility
