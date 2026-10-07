@@ -62,6 +62,8 @@ Training dependencies are separate. Use `training/requirements.txt` and the CPU 
 - [Local data, retention and privacy](docs/privacy.md)
 - [Optional approved local/remote commentary](docs/optional-llm.md)
 - [Dependency licences](THIRD_PARTY_NOTICES.md)
+- [Ordinary and investigation replay demo](docs/demo.md)
+- [Private GitHub checkpoints and rollback](docs/version-history.md)
 - [Final validation, package paths and exact commands](HANDOFF.md)
 
 Monitoring and deterministic explanations are local. The optional LLM CLI requires review of a redacted preview and approval of its exact hash; remote requests additionally require explicit opt-in. It never determines detections or executes tools.

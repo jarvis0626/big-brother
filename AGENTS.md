@@ -12,6 +12,6 @@ Use Codewatch for significant steps, commands and observed test results. Credent
 
 ## Working conventions
 
-Use `npm.cmd` under PowerShell; do not change execution policy. Keep development downloads, training caches and temporary build work under this project's D: drive. Normal installed application data follows the documented user-data location; the portable application uses its adjacent data folder.
+Use `npm.cmd` under PowerShell; do not change persisted user or system execution policy. The documented build/test helpers use a process-scoped PowerShell policy override without changing those settings. Keep development downloads, training caches and temporary build work under this project's D: drive. Normal installed application data follows the documented user-data location; the portable application uses its adjacent data folder.
 
 Run appropriate verification before milestone pushes. The Windows harmless workload uses only trusted Python processes, temporary files and loopback traffic. Do not run malware, disable Defender or create real startup persistence for testing. The application only reads an already configured Sysmon channel; installing or changing its privileged service/driver remains an explicit user/admin setup action.

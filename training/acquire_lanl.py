@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import shutil
 import urllib.request
 import zlib
@@ -15,6 +16,7 @@ from acquire_mirror import fetch, sha256
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = "Taqui/lanl-cyber-datasets"
+DEFAULT_REVISION = "d7a15d0d504051bfe6cbc3f65377830704e824cc"
 HASHES = {
     "proc": (2358611874, "af82f47ebf3ffc6dc392a01f890caa6157a5c7581a2cf0b1821801347f293ae4"),
     "flows": (1083479090, "60e0cfeae74f820e7dad42a06291941bd329b547439f12705435927278082f98"),
@@ -24,18 +26,46 @@ HASHES = {
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--prefix-mib", type=int, default=4)
+    parser.add_argument("--revision", default=DEFAULT_REVISION,
+                        help="Immutable 40-character mirror commit; default reproduces the shipped experiment")
+    parser.add_argument("--data-dir", type=Path,
+                        help="Separate raw-data directory; required when acquiring a different revision")
     args = parser.parse_args()
     if not 1 <= args.prefix_mib <= 8:
         parser.error("Bound is 1..8 MiB per source")
-    target = ROOT / "training" / "data"
+    if not re.fullmatch(r"[0-9a-fA-F]{40}",args.revision):
+        parser.error("--revision must be an immutable 40-character commit SHA, not a moving branch/tag")
+    revision=args.revision.lower()
+    default_target=(ROOT/"training/data").resolve()
+    target=args.data_dir.resolve() if args.data_dir else default_target
+    new_experiment=revision!=DEFAULT_REVISION
+    if new_experiment and (args.data_dir is None or target==default_target):
+        parser.error("A different revision is a new experiment; specify a separate --data-dir")
+    existing_manifest=target/"lanl-manifest.json"
+    if existing_manifest.exists():
+        prior=json.loads(existing_manifest.read_text(encoding="utf8"))
+        if prior.get("mirror_revision")!=revision:
+            parser.error("Existing data directory belongs to another revision; use a separate --data-dir")
+    reference_path=ROOT/"training/dataset-manifest.json"
+    reference=json.loads(reference_path.read_text(encoding="utf8")) if reference_path.exists() else None
+    expected_parts={p["kind"]:p for p in reference["partitions"]} if reference and reference["mirror_revision"]==revision and args.prefix_mib==4 else {}
     target.mkdir(parents=True, exist_ok=True)
     disk = shutil.disk_usage(target)
     if (disk.free-1024**3)/disk.total < .20:
         raise RuntimeError("Insufficient 20% reserve")
-    info = json.load(urllib.request.urlopen("https://huggingface.co/api/datasets/"+REPO,timeout=30))
-    revision = info["sha"]
+    publisher_hashes=HASHES
+    if new_experiment:
+        # A new revision must not inherit stale publisher hashes from this run.
+        listing=json.load(urllib.request.urlopen(f"https://huggingface.co/api/datasets/{REPO}/tree/{revision}/lanl-2015?limit=1000",timeout=30))
+        entries={item["path"]:item for item in listing}
+        publisher_hashes={}
+        for kind in HASHES:
+            entry=entries[f"lanl-2015/{kind}.txt.gz"]
+            fullhash=entry["lfs"]["oid"]
+            if not re.fullmatch(r"[0-9a-f]{64}",fullhash):raise ValueError("Invalid publisher SHA256")
+            publisher_hashes[kind]=(int(entry["size"]),fullhash)
     readme = urllib.request.urlopen(f"https://huggingface.co/datasets/{REPO}/raw/{revision}/README.md",timeout=30).read(32768)
-    sources = ROOT / "training" / "sources"
+    sources = target/"sources" if new_experiment else ROOT / "training" / "sources"
     sources.mkdir(exist_ok=True, parents=True)
     (sources/"lanl-mirror-README.md").write_bytes(readme)
     official_doc = urllib.request.urlopen("https://csr.lanl.gov/data/cyber1/",timeout=30).read(131072)
@@ -52,10 +82,16 @@ def main():
         "excluded_other_acquisitions": "OpTC-derived public Parquet files inspected but excluded due undocumented conversion provenance; official OpTC requests quota-blocked. Initial official4KB sample not used for training.",
         "schema": {"proc":"time,user@domain,computer,anonymized process name,start/end (no PID or parent)","flows":"time,duration,source computer,source port,destination computer,destination port,protocol,packets,bytes (no process attribution)","dns":"time,source computer,resolved computer"},
         "partitions": []}
-    for kind,(total,fullhash) in HASHES.items():
+    if new_experiment:
+        manifest["new_experiment"]=True
+        manifest["shipped_reference_revision"]=DEFAULT_REVISION
+    for kind,(total,fullhash) in publisher_hashes.items():
         url=f"https://huggingface.co/datasets/{REPO}/resolve/{revision}/lanl-2015/{kind}.txt.gz?download=true"
         prefix=target/("lanl-"+kind+".prefix.gz")
         fetch(url,prefix,args.prefix_mib*1024*1024)
+        expected=expected_parts.get(kind)
+        if expected and sha256(prefix)!=expected["prefix_sha256"]:
+            raise ValueError("Acquired prefix differs from the tracked shipped-experiment SHA256: "+kind)
         decoder=zlib.decompressobj(31)
         expanded=0
         out=target/("lanl-"+kind+".txt")
@@ -83,6 +119,8 @@ def main():
               "full_archive_hash_verified":False,"gzip_footer_verified":decoder.eof,"complete_archive":False,
               "complete_records":records,"expanded_bytes":expanded,"usable_bytes":out.stat().st_size,
               "text_sha256":sha256(out),"minimum_time":minimum,"maximum_time":maximum}
+        if expected and item["text_sha256"]!=expected["text_sha256"]:
+            raise ValueError("Decoded data differs from the tracked shipped-experiment SHA256: "+kind)
         manifest["partitions"].append(item)
         (target/"lanl-manifest.json").write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf8")
         print(json.dumps(item),flush=True)

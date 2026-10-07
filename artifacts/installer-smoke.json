@@ -1,0 +1,31 @@
+﻿{
+    "target":  "installer",
+    "passed":  true,
+    "no_python_node_path":  true,
+    "signature":  "NotSigned",
+    "product_name":  "Big Brother",
+    "file_description":  "Big Brother",
+    "smoke":  {
+                  "passed":  true,
+                  "packaged":  true,
+                  "version":  "0.1.0",
+                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-installer-1791352944345\\data",
+                  "portable":  false,
+                  "resources_present":  true,
+                  "model":  {
+                                "name":  "LANL temporal GRU event predictor",
+                                "version":  "lanl2015-v1-seed1984",
+                                "status":  "available"
+                            },
+                  "events":  13,
+                  "processes":  4,
+                  "incidents":  3,
+                  "model_finding":  true,
+                  "sandbox":  true,
+                  "node_available":  false,
+                  "title":  "Big Brother"
+              },
+    "tested_at":  "2026-10-07T06:02:53.5272762Z",
+    "uninstaller_exit":  0,
+    "application_removed":  true
+}

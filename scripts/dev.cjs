@@ -1,5 +1,7 @@
 const { spawn } = require('node:child_process');
 const path = require('node:path');
+process.env.ELECTRON_CACHE = path.resolve('.cache/electron');
+delete process.env.ELECTRON_RUN_AS_NODE;
 const env = { ...process.env, BB_DEV: '1', ELECTRON_CACHE: path.resolve('.cache/electron'), ELECTRON_BUILDER_CACHE: path.resolve('.cache/electron-builder') };
 const vite = spawn(process.execPath, [path.resolve('node_modules/vite/bin/vite.js')], { env, stdio: 'inherit' });
 let electron;

@@ -1,4 +1,4 @@
-The active model is **LANL temporal GRU event predictor**, version `lanl2015-v1-seed 1984`. It was actually trained on real process, network-flow and DNS records and evaluated on disjoint held-out hosts and later times. It reports event-sequence surprise as negative log likelihood in nats. It does not estimate the probability of malware. Low scores do not establish safety.
+The active model is **LANL temporal GRU event predictor**, version `lanl2015-v1-seed1984`. It was actually trained on real process, network-flow and DNS records and evaluated on disjoint held-out hosts and later times. It reports event-sequence surprise as negative log likelihood in nats. It does not estimate the probability of malware. Low scores do not establish safety.
 
 The experiment asks whether temporal event order helps predict the next host event compared with a feature histogram. It cannot answer whether process/file/network graphs improve malicious-behavior detection: this acquisition has no trustworthy attack labels, file evidence or process-family identifiers. The interface can display richer observed evidence; those fields do not become model inputs.
 

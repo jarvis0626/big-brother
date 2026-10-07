@@ -1,6 +1,6 @@
 # Packaged runtime and Windows build tools. Training requirements are separate.
-psutil>=7.0,<8
-numpy>=2.0,<3
-pyinstaller>=6.0,<7
-pillow>=11.0,<13
-pytest>=8.0,<10
+psutil==7.2.2
+numpy==2.5.3
+pyinstaller==6.22.3
+pillow==12.3.0
+pytest==9.1.1

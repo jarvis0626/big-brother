@@ -1,0 +1,85 @@
+{
+  "dataset": "LANL Comprehensive Multi-Source Cybersecurity Events (2015), bounded raw prefixes",
+  "official_source": "https://csr.lanl.gov/data/cyber1/",
+  "doi": "10.17021/1179829",
+  "licence": "LANL waived all copyright and related rights to this dataset (public-domain/CC0-style waiver)",
+  "attribution": "A. D. Kent, Comprehensive, Multi-Source Cybersecurity Events, LANL, 2015; Cybersecurity Data Sources for Dynamic Network Research, 2015",
+  "mirror": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets",
+  "mirror_revision": "d7a15d0d504051bfe6cbc3f65377830704e824cc",
+  "provenance": "Publisher states raw byte-identical copies acquired exclusively from official LANL source. Schema verified against official documentation; full-file equality to official archives cannot independently be checked without downloading registration-gated originals.",
+  "acquired_on": "2026-10-07",
+  "selection": "First4MiB compressed of proc, flows, dns. Biased prefix, not full release. Time intersection and disjoint hosts/time splits applied by train.py.",
+  "official_release_size": "Approximately12GB compressed; 58days;1,648,275,307events",
+  "label_interpretation": "No redteam labels downloaded. No classification or malware-detection metrics. Anomaly/predictive objectives only.",
+  "excluded_other_acquisitions": "OpTC-derived public Parquet files inspected but excluded due undocumented conversion provenance; official OpTC requests quota-blocked. Initial official4KB sample not used for training.",
+  "schema": {
+    "proc": "time,user@domain,computer,anonymized process name,start/end (no PID or parent)",
+    "flows": "time,duration,source computer,source port,destination computer,destination port,protocol,packets,bytes (no process attribution)",
+    "dns": "time,source computer,resolved computer"
+  },
+  "partitions": [
+    {
+      "kind": "proc",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/proc.txt.gz?download=true",
+      "prefix_bytes": 4194304,
+      "byte_range": [
+        0,
+        4194303
+      ],
+      "prefix_sha256": "57322db32d690781211742341548a163485aa60ee3ed85bf1f8eed03acd7792c",
+      "publisher_full_archive_sha256": "af82f47ebf3ffc6dc392a01f890caa6157a5c7581a2cf0b1821801347f293ae4",
+      "publisher_full_archive_bytes": 2358611874,
+      "full_archive_hash_verified": false,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "complete_records": 837263,
+      "expanded_bytes": 27416427,
+      "usable_bytes": 27416422,
+      "text_sha256": "24272e2b397082213f5f334cbf780446fd4906d887b426e98dc40bab03e67b2d",
+      "minimum_time": 1,
+      "maximum_time": 24049
+    },
+    {
+      "kind": "flows",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/flows.txt.gz?download=true",
+      "prefix_bytes": 4194304,
+      "byte_range": [
+        0,
+        4194303
+      ],
+      "prefix_sha256": "b88ac0f2dda784a94c2268380e0c373fe7dcd252503b7fe6a9a973cf1c9875ad",
+      "publisher_full_archive_sha256": "60e0cfeae74f820e7dad42a06291941bd329b547439f12705435927278082f98",
+      "publisher_full_archive_bytes": 1083479090,
+      "full_archive_hash_verified": false,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "complete_records": 516413,
+      "expanded_bytes": 19362023,
+      "usable_bytes": 19362020,
+      "text_sha256": "d2783bd3d77831fc2fa7922a512190018bdd6cfd81d50f6ad7574ed30d421504",
+      "minimum_time": 1,
+      "maximum_time": 17910
+    },
+    {
+      "kind": "dns",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/dns.txt.gz?download=true",
+      "prefix_bytes": 4194304,
+      "byte_range": [
+        0,
+        4194303
+      ],
+      "prefix_sha256": "5d4761e24dab0652ad8a167b7039ee903c05040b7974e453cf324df91c2d9130",
+      "publisher_full_archive_sha256": "3e1cb718baa6be7af7bd376324285be45d99ee2563d22bc4abf023572120cab9",
+      "publisher_full_archive_bytes": 185104940,
+      "full_archive_hash_verified": false,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "complete_records": 855932,
+      "expanded_bytes": 16368609,
+      "usable_bytes": 16368605,
+      "text_sha256": "028f2d4c94c5012962cde67f3a14893eeed24bde9f50f81bb3f8825148cefe62",
+      "minimum_time": 2,
+      "maximum_time": 1174504
+    }
+  ]
+}

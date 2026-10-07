@@ -74,6 +74,25 @@ function createWindow() {
   mainWindow.webContents.on('will-navigate', (event, url) => { if (url !== trustedUrl) event.preventDefault(); });
   mainWindow.webContents.session.setPermissionRequestHandler((_wc, _permission, callback) => callback(false));
   mainWindow.webContents.session.setPermissionCheckHandler(() => false);
+  if (process.argv.includes('--smoke-test')) {
+    mainWindow.webContents.once('did-finish-load', async () => {
+      try {
+        const session = await rpc('replay', { scenario: 'investigation' });
+        const state = await rpc('state', { session_id: session.id });
+        const renderer = await mainWindow.webContents.executeJavaScript('({ title: document.title, nodeAvailable: typeof window.require !== "undefined", bridgeAvailable: !!window.bigBrother, text: document.body.innerText })');
+        const modelFinding = state.incidents.some(i => typeof i.score === 'number' && i.model_version === state.model.version);
+        const passed = renderer.title === 'Big Brother' && !renderer.nodeAvailable && renderer.bridgeAvailable && renderer.text.includes('Big Brother') && modelFinding && state.events.length === 13;
+        const report = { passed, packaged: app.isPackaged, version: app.getVersion(), data_dir: dataDir, portable: !!process.env.PORTABLE_EXECUTABLE_DIR,
+          resources_present: fs.existsSync(path.join(process.resourcesPath, 'backend', 'big-brother-service.exe')),
+          model: { name: state.model.name, version: state.model.version, status: state.model.status },
+          events: state.events.length, processes: state.processes.length, incidents: state.incidents.length, model_finding: modelFinding,
+          sandbox: mainWindow.webContents.getLastWebPreferences().sandbox, node_available: renderer.nodeAvailable, title: renderer.title };
+        await fs.promises.writeFile(path.join(dataDir, 'package-smoke.json'), JSON.stringify(report, null, 2));
+      } catch (error) {
+        await fs.promises.writeFile(path.join(dataDir, 'package-smoke.json'), JSON.stringify({ passed: false, error: String(error.message) }));
+      } finally { await quitSafely(); }
+    });
+  }
   mainWindow.on('close', (event) => { if (!quitting) { event.preventDefault(); if (closeToTray) mainWindow.hide(); else quitSafely(); } });
   mainWindow.loadURL(trustedUrl);
   Menu.setApplicationMenu(Menu.buildFromTemplate([
@@ -82,7 +101,10 @@ function createWindow() {
       { label: 'Stop collection and exit', accelerator: 'Alt+F4', click: quitSafely }
     ] },
     { label: 'View', submenu: [{ role: 'reload' }, { role: 'resetZoom' }, { role: 'zoomIn' }, { role: 'zoomOut' }, { role: 'togglefullscreen' }] },
-    { label: 'Help', submenu: [{ label: 'Telemetry setup documentation', click: () => shell.openExternal('https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon') }] }
+    { label: 'Help', submenu: [
+      { label: 'Open telemetry setup files', click: () => shell.openPath(app.isPackaged ? path.join(process.resourcesPath, 'docs') : path.join(root, 'docs')) },
+      { label: 'Microsoft Sysmon documentation', click: () => shell.openExternal('https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon') }
+    ] }
   ]));
   tray = new Tray(nativeImage.createFromPath(path.join(root, 'assets', 'icon.ico')));
   tray.setToolTip('Big Brother — process observation');

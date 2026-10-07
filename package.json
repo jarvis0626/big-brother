@@ -12,9 +12,9 @@
     "build:ui": "tsc --noEmit && vite build",
     "build:backend": ".venv\\Scripts\\python.exe scripts/freeze.py",
     "build": "npm run build:ui && npm run build:backend",
-    "package": "npm run build && electron-builder --win nsis portable --x64 --publish never",
-    "package:dir": "npm run build && electron-builder --win dir --x64 --publish never",
-    "start": "electron .",
+    "package": "npm run build && node scripts/package.cjs",
+    "package:dir": "npm run build && node scripts/package.cjs --dir",
+    "start": "node scripts/start.cjs",
     "test:desktop": "node --test tests/desktop-security.test.cjs",
     "test:gui": "node scripts/gui-smoke.cjs"
   },
@@ -85,9 +85,11 @@
         "portable"
       ],
       "requestedExecutionLevel": "asInvoker",
-      "artifactName": "Big-Brother-${version}-${arch}-${target}.${ext}"
+      "artifactName": "Big-Brother-${version}-${arch}.${ext}"
     },
     "nsis": {
+      "artifactName": "Big-Brother-${version}-${arch}-nsis.${ext}",
+      "license": "LICENSE",
       "oneClick": false,
       "perMachine": false,
       "allowElevation": false,

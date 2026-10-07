@@ -13,13 +13,13 @@ If you already have a managed Sysmon installation, ask your administrator about 
 To set up a personal installation explicitly:
 
 1. Download and extract the official Sysmon ZIP into a directory you choose.
-2. Review `scripts/sysmon-config.xml`. This example records process starts/stops, connection metadata, DNS, selected temporary-file creates and selected startup Registry changes. It does not record all file activity. Recording commands and paths may expose sensitive information.
-3. In an administrator PowerShell, check the current schema with `Sysmon64.exe -s`. Adjust the example schema version to the version supported by your downloaded release, if needed.
-4. Explicitly run `Sysmon64.exe -i "D:\Projects\Big Brother\scripts\sysmon-config.xml"`. Sysmon displays its licence prompt; accept only after reviewing it. This installs its privileged service and driver.
-5. Reopen Big Brother. Settings/coverage show whether the Event Log is readable. Event Log access depends on local permissions. If denied, arrange narrowly scoped Event Log Reader permission with your administrator; do not grant the renderer administrator rights.
+2. In Big Brother, choose **Help → Open telemetry setup files**. Packaged apps include `windows-setup.md` and `sysmon-config.xml` in that folder. Copy the example XML to a stable location before configuring Sysmon, especially when using the portable launcher, whose extracted files are temporary. Source checkouts instead use `scripts/sysmon-config.xml`. Review the XML: it records process starts/stops, connection metadata, DNS, selected temporary-file creates and selected startup Registry changes. It does not record all file activity. Recording commands and paths may expose sensitive information.
+3. In an administrator PowerShell, change to the folder containing the downloaded `Sysmon64.exe`, and check the current schema with `.\Sysmon64.exe -s`. Adjust the example schema version to the version supported by your downloaded release, if needed.
+4. Explicitly run `.\Sysmon64.exe -i "C:\path\you\chose\sysmon-config.xml"`, replacing the quoted path with the full path to your reviewed configuration. Sysmon displays its licence prompt; accept only after reviewing it. This installs its privileged service and driver.
+5. Reopen Big Brother and start a watch. **Settings → Telemetry coverage** shows whether the Event Log is readable; before a watch begins, the channel may be labelled not checked yet. Event Log access depends on local permissions. If denied, arrange narrowly scoped Event Log Reader permission with your administrator; do not grant the renderer administrator rights.
 6. Verify enabled event types in Event Viewer → Applications and Services Logs → Microsoft → Windows → Sysmon → Operational. A readable channel does not prove that each event type is enabled. Big Brother labels policy-dependent coverage and gaps.
 
-To stop or remove Sysmon, use Microsoft's documented controls explicitly, such as `Sysmon64.exe -u`, as administrator. Stopping Big Brother stops only its own collector.
+To stop or remove Sysmon, use Microsoft's documented controls explicitly, such as `.\Sysmon64.exe -u` from its directory, as administrator. Stopping Big Brother stops only its own collector.
 
 ## Running the packages
 
@@ -30,3 +30,5 @@ To stop or remove Sysmon, use Microsoft's documented controls explicitly, such a
 These packages are unsigned. The build does not claim a verified publisher or a signing certificate.
 
 Selecting an executable does not execute it. Only **Launch and watch** starts the selected program. Closing the window hides it in the system tray. Use the tray or application menu's **Stop collection and exit** to stop the application. Separately installed Sysmon continues running.
+
+For a reproducible, harmless first investigation, follow the [five-minute replay demo](demo.md). Native process polling, replay, the real installer and portable launcher were tested on the development Windows machine. Live Sysmon ingestion was not validated here because the channel is not configured; readability and event coverage must be checked on the target computer.

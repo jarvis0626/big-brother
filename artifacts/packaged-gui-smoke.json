@@ -1,0 +1,110 @@
+{
+  "platform": "win32",
+  "executable": "D:\\Projects\\Big Brother\\release\\win-unpacked\\Big Brother.exe",
+  "checks": [
+    {
+      "name": "Sandboxed renderer, context isolation and denied Node access",
+      "status": "passed"
+    },
+    {
+      "name": "Actual active trained model and readable collector state",
+      "status": "passed"
+    },
+    {
+      "name": "Unknown renderer methods and injected parameters are rejected",
+      "status": "passed"
+    },
+    {
+      "name": "Executable selection does not execute a program",
+      "status": "passed"
+    },
+    {
+      "name": "UI replay ingestion, descendants, trained score and cited explanation",
+      "status": "passed"
+    },
+    {
+      "name": "Finding citation navigates to its exact recorded event",
+      "status": "passed"
+    },
+    {
+      "name": "Report export through the UI and native save dialog",
+      "status": "passed"
+    },
+    {
+      "name": "UI saves retention and bounded resource settings, and discloses coverage",
+      "status": "passed"
+    },
+    {
+      "name": "Closing hides to tray and dashboard can reopen",
+      "status": "passed"
+    },
+    {
+      "name": "Process picker searches and watches a benign running process",
+      "status": "passed"
+    },
+    {
+      "name": "Ordinary replay is explicitly fabricated and available through UI",
+      "status": "passed"
+    },
+    {
+      "name": "Retained replay history persists across application restart",
+      "status": "passed"
+    },
+    {
+      "name": "No uncaught renderer errors during the real UI workflow",
+      "status": "passed"
+    }
+  ],
+  "started_at": "2026-10-07T06:02:25.185Z",
+  "model": {
+    "name": "LANL temporal GRU event predictor",
+    "version": "lanl2015-v1-seed1984",
+    "threshold": 6.423330059051517,
+    "limitations": [
+      "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+      "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+      "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+      "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+      "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+      "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+      "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+      "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+      "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
+    ],
+    "status": "available",
+    "feature_schema": "lanl-host-events-port-category-v1",
+    "architecture": "gru",
+    "score_kind": "anomaly negative log likelihood (nats)",
+    "supported_kinds": [
+      "process_start",
+      "process_end",
+      "network",
+      "dns"
+    ],
+    "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+    "training_dataset": "LANL2015 bounded proc/flows/dns prefixes, public mirror revisiond7a15d0d504051bfe6cbc3f65377830704e824cc"
+  },
+  "collector": {
+    "status": "idle",
+    "backend": "polling",
+    "gaps": [],
+    "dropped_events": 0,
+    "queue_depth": 0,
+    "sysmon_detail": "Sysmon channel not checked yet; start a watch to check existing telemetry."
+  },
+  "replay": {
+    "session_id": "session_5842c60b12674f3bb449d25fae21c016",
+    "events": 13,
+    "processes": 4,
+    "incidents": 3
+  },
+  "report_path": "D:\\Projects\\Big Brother\\.cache\\gui-smoke-1791352945184\\report.json",
+  "ordinary_replay": {
+    "session_id": "session_aea3f227c8b34568b9b89d9084d1346b",
+    "events": 3,
+    "incidents": 0
+  },
+  "renderer_errors": [],
+  "status": "passed",
+  "finished_at": "2026-10-07T06:02:49.445Z"
+}

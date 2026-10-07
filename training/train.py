@@ -21,6 +21,7 @@ from sklearn.cluster import MiniBatchKMeans
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from backend.model import CONTEXT,TARGETS,TOKENS,FEATURE_SCHEMA,port_token,BehavioralModel,gru_predict
+from training.provenance import validate_dataset_manifest
 
 def digest(path):
     h=hashlib.sha256()
@@ -40,14 +41,13 @@ def split_for(host, stamp, end):
     return None
 
 def prepare(data,max_train,max_eval,seed):
-    manifest=json.loads((data/"lanl-manifest.json").read_text(encoding="utf8"))
+    manifest=validate_dataset_manifest(data,ROOT/"training/dataset-manifest.json")
     end=min(p["maximum_time"] for p in manifest["partitions"])
     groups={split:collections.defaultdict(list) for split in ("train","validation","test")}
     stats={"common_time_seconds":[1,end],"time_boundaries":[int(end*.6),int(end*.8)],"records_read":{},"duplicate_rows_excluded":{},"malformed_records_excluded":{},"splits":{}}
     for part in manifest["partitions"]:
         kind=part["kind"]
         file=data/("lanl-"+kind+".txt")
-        if digest(file)!=part["text_sha256"]:raise ValueError("Dataset checksum mismatch")
         seen=set();duplicates=malformed=read=0
         with file.open("r",encoding="ascii") as source:
             for line_no,line in enumerate(source):

@@ -1,0 +1,11 @@
+const { spawn } = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+process.env.ELECTRON_CACHE = path.join(root, '.cache', 'electron');
+delete process.env.ELECTRON_RUN_AS_NODE;
+const env = { ...process.env, TEMP: path.join(root, '.cache', 'temp'), TMP: path.join(root, '.cache', 'temp') };
+fs.mkdirSync(env.TEMP, { recursive: true });
+const child = spawn(require('electron'), [root], { cwd: root, env, stdio: 'inherit' });
+child.on('error', error => { console.error(error.message); process.exitCode = 1; });
+child.on('exit', code => { process.exitCode = code ?? 1; });
