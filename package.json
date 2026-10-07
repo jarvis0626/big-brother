@@ -1,6 +1,6 @@
 {
   "name": "big-brother",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Windows process observation and evidence investigation",
   "author": "Big Brother contributors",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "package": "npm run build && node scripts/package.cjs",
     "package:dir": "npm run build && node scripts/package.cjs --dir",
     "start": "node scripts/start.cjs",
-    "test:desktop": "node --test tests/desktop-security.test.cjs",
+    "test:desktop": "node --test tests/desktop-security.test.cjs tests/recording-import-desktop.test.cjs",
     "test:gui": "node scripts/gui-smoke.cjs"
   },
   "dependencies": {

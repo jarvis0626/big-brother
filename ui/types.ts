@@ -122,6 +122,23 @@ export interface AppState {
   model: ModelInfo;
   settings: Settings;
   coverage: Coverage[];
+  recording?: {
+    provenance: {
+      dataset: string;
+      revision?: string;
+      scenario_level_label?: string;
+      provenance_status?: string;
+      [key: string]: unknown;
+    };
+    coverage: {
+      notes?: string[];
+      missing_process_start_count?: number;
+      missing_parent_count?: number;
+      [key: string]: unknown;
+    };
+    imported_events: number;
+    observed_kinds: string[];
+  } | null;
   [key: string]: unknown;
 }
 
@@ -140,6 +157,7 @@ export interface BigBrotherAPI {
   ): Promise<T>;
   selectExecutable(): Promise<{ path: string } | null>;
   launchSelected(): Promise<unknown>;
+  importRecording(): Promise<Session | null>;
   exportReport(sessionId: string): Promise<unknown>;
   openExternal(url: string): Promise<unknown>;
 }

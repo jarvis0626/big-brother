@@ -15,3 +15,12 @@
 - Refreshed backend overhead measurements: mean CPU 0.31% idle, 3.30% benign workload, 5.18% repeated replay, using one logical core as 100%. Mean backend RSS 35.09–36.43 MiB; Electron and Sysmon excluded. Saved workload/hardware details prevent broader performance claims.
 
 Source commands and checks are recorded in Codewatch. Exact launch, acquisition, training, packaging and validation commands are in README.md, training/README.md and HANDOFF.md. Local telemetry and secrets are never sent to Codewatch or version history.
+
+## Expanded research and validation
+
+- User authorized broader dataset acquisition, larger training and harmless fake-malware test applications. Preserved v0.1.0 source/model/results; all new raw data, temporary files and training outputs use D:. Start free238.65 GiB of914.11 GiB, with20% reserve maintained.
+- Acquired immutable32MiB prefixes of each LANL stream:17,510,711 complete records. Excluded all original experiment timestamps and formed90,235 training,11,908 validation and8,048 fresh test windows. Four GRUs (two capacities/two seeds) and two feature baselines are being compared; fresh test remains withheld until validation selection is frozen.
+- Catalogued sixteen public security dataset families. Safely normalized264 unique real lab recordings:107 OTRF and157 EVTX scenarios,986,382 supported Windows events. Preserved source revisions, licence/hash/coverage metadata; raw logs remain local. Scenario attack labels are excluded from detector features and do not label every background event.
+- Acquired and verified749 full LANL red-team annotations. Earliest150,885 seconds lies beyond both training experiments' observed intervals, confirming zero annotation overlap. Prediction metrics remain separate from malware classification metrics.
+- Compiled three harmless test executables. Live native monitoring captured ordinary18,fan-out74 and surviving-child32 events; v1 model remained below its unchanged threshold. Survivor generated a separately labelled rule with valid citations. All connections loopback and all47 owned test files cleaned. File events remained unavailable without Sysmon.
+- Added inert normalized recording imports with native-only file selection, bounded schema/data validation, isolated recorded identities, capture coverage/provenance, report export and retained history. Actual public83-event8-process case passed GUI import/citation/restart checks. Source UI passed15 checks; eight desktop boundaries and the integrated89-test Python suite passed before the final retention addition.

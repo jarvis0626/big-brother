@@ -1,0 +1,86 @@
+{
+  "dataset": "LANL Comprehensive Multi-Source Cybersecurity Events (2015), bounded raw prefixes",
+  "official_source": "https://csr.lanl.gov/data/cyber1/",
+  "doi": "10.17021/1179829",
+  "licence": "LANL waived all copyright and related rights to this dataset (public-domain/CC0-style waiver)",
+  "attribution": "A. D. Kent, Comprehensive, Multi-Source Cybersecurity Events, LANL, 2015; Cybersecurity Data Sources for Dynamic Network Research, 2015",
+  "mirror": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets",
+  "provenance": "Publisher states raw byte-identical copies acquired exclusively from official LANL source. Schema verified against official documentation; full-file equality to official archives cannot independently be checked without downloading registration-gated originals.",
+  "schema": {
+    "proc": "time,user@domain,computer,anonymized process name,start/end (no PID or parent)",
+    "flows": "time,duration,source computer,source port,destination computer,destination port,protocol,packets,bytes (no process attribution)",
+    "dns": "time,source computer,resolved computer"
+  },
+  "experiment": "lanl-v2-later-time",
+  "mirror_revision": "d7a15d0d504051bfe6cbc3f65377830704e824cc",
+  "acquired_utc": "2026-10-07T06:23:47.669373+00:00",
+  "prefix_mib": 32,
+  "selection": "First bounded compressed bytes of proc/flows/dns; biased prefix rather than full release. Training excludes all timestamps used in v1, and uses new host/time-disjoint splits.",
+  "label_interpretation": "No attack labels; next-event prediction and unlabelled threshold exceedances only.",
+  "v1_excluded_through_second": 17910,
+  "partitions": [
+    {
+      "complete_records": 6104406,
+      "minimum_time": 1,
+      "maximum_time": 76720,
+      "expanded_bytes": 207532600,
+      "usable_bytes": 207532592,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "kind": "proc",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/proc.txt.gz?download=true&experiment=v2-32mib",
+      "prefix_bytes": 33554432,
+      "prefix_sha256": "97555795ce8e2dd330e7379b4a9163e81d59b804a4cfad53a55ee66df9305e40",
+      "text_sha256": "0251ca8074ade7883e11012ee34aad4e058a90ff80f1ef1c7f227d401037067c",
+      "byte_range": [
+        0,
+        33554431
+      ],
+      "publisher_full_archive_bytes": 2358611874,
+      "publisher_full_archive_sha256": "af82f47ebf3ffc6dc392a01f890caa6157a5c7581a2cf0b1821801347f293ae4",
+      "full_archive_hash_verified": false
+    },
+    {
+      "complete_records": 3989708,
+      "minimum_time": 1,
+      "maximum_time": 45301,
+      "expanded_bytes": 155765992,
+      "usable_bytes": 155765971,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "kind": "flows",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/flows.txt.gz?download=true&experiment=v2-32mib",
+      "prefix_bytes": 33554432,
+      "prefix_sha256": "fd3d3a30e3794a760ada90f03b9d4a6a8a6b00e12c8ef58933688ab58b23258f",
+      "text_sha256": "0db87586312925f47e659fb0c1daef3e825cbaa606b941087d7bfda30adcded5",
+      "byte_range": [
+        0,
+        33554431
+      ],
+      "publisher_full_archive_bytes": 1083479090,
+      "publisher_full_archive_sha256": "60e0cfeae74f820e7dad42a06291941bd329b547439f12705435927278082f98",
+      "full_archive_hash_verified": false
+    },
+    {
+      "complete_records": 7416597,
+      "minimum_time": 2,
+      "maximum_time": 2745916,
+      "expanded_bytes": 146610970,
+      "usable_bytes": 146610955,
+      "gzip_footer_verified": false,
+      "complete_archive": false,
+      "kind": "dns",
+      "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/dns.txt.gz?download=true&experiment=v2-32mib",
+      "prefix_bytes": 33554432,
+      "prefix_sha256": "4df953378247c838f8c0835a6ce7bc6e0d074b85e8786c5022876a57b3ab035d",
+      "text_sha256": "bbbea03d19a9bf87d5ad45cda7abc61518dde4bbc24c199e5ea34451f9d7b3e0",
+      "byte_range": [
+        0,
+        33554431
+      ],
+      "publisher_full_archive_bytes": 185104940,
+      "publisher_full_archive_sha256": "3e1cb718baa6be7af7bd376324285be45d99ee2563d22bc4abf023572120cab9",
+      "full_archive_hash_verified": false
+    }
+  ]
+}

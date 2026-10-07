@@ -589,6 +589,28 @@ h1 {
   border-color: #49405e;
   background: #302a3e;
 }
+.badge-recording {
+  color: #a8bdd2;
+  border-color: #3c5064;
+  background: #263343;
+}
+.recording-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid #3c5064;
+  background: #1c252e;
+  color: #b5c5d4;
+  border-radius: 5px;
+  padding: 11px 12px;
+  margin: -3px 0 15px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.recording-notice svg { flex-shrink: 0; margin-top: 2px; }
+.recording-notice strong { font-size: 11px; font-weight: 550; }
+.recording-notice p { margin-top: 3px; }
+.recording-notice code { overflow-wrap: anywhere; }
 .badge-high,
 .badge-critical {
   color: #ef9fa4;

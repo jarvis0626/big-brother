@@ -1,0 +1,22 @@
+{
+  "data_dir": "D:\\Projects\\Big Brother\\training\\data\\lanl-v2-32mib",
+  "epochs": 16,
+  "patience": 3,
+  "max_train_windows": 100000,
+  "max_eval_windows": 15000,
+  "threads": 2,
+  "seeds": [
+    1984,
+    2026
+  ],
+  "shapes": [
+    [
+      8,
+      16
+    ],
+    [
+      16,
+      32
+    ]
+  ]
+}

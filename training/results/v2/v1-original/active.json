@@ -1,0 +1,20 @@
+{
+  "name": "LANL temporal GRU event predictor",
+  "version": "lanl2015-v1-seed1984",
+  "artifact": "temporal.json",
+  "sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+  "threshold": 6.423330059051517,
+  "limitations": [
+    "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+    "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+    "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+    "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+    "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+    "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+    "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+    "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+    "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
+  ],
+  "training_dataset": "LANL2015 bounded proc/flows/dns prefixes, public mirror revisiond7a15d0d504051bfe6cbc3f65377830704e824cc",
+  "selection": "Lower held-out validation next-event NLL; final test untouched until selection/threshold fixed"
+}

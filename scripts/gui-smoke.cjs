@@ -79,6 +79,7 @@ async function main() {
     const rejected = await page.evaluate(async () => {
       const checks = [
         ['launch', { path: 'C:\\Windows\\System32\\cmd.exe' }],
+        ['import_recording', { path: 'C:\\Windows\\System32\\cmd.exe' }],
         ['watch', { pid: 12, command: 'execute' }],
         ['settings', { remote_key: 'unsafe' }],
       ];
@@ -88,7 +89,7 @@ async function main() {
       }
       return count;
     });
-    assert.equal(rejected, 3);
+    assert.equal(rejected, 4);
   });
 
   await record('Executable selection does not execute a program', async () => {
@@ -242,6 +243,76 @@ async function main() {
     results.ordinary_replay = { session_id: state.session.id, events: state.events.length, incidents: state.incidents.length };
   });
 
+  let importedSessionId;
+  const publicRecordingPath = process.env.BB_SMOKE_RECORDING || path.join(root, 'training', 'data', 'v2', 'recordings', 'otrf-a28dbf708685a80e.json');
+  if (!fs.existsSync(publicRecordingPath)) throw new Error('The real normalized OTRF capture is needed for import UI validation: ' + publicRecordingPath);
+  await record('Native dialog imports a real inert public recording with source provenance and capture coverage', async () => {
+    const before = await getState(page);
+    await app.evaluate(({ dialog }) => { dialog.showOpenDialog = async () => ({ canceled: true, filePaths: [] }); });
+    await page.getByRole('button', { name: 'Import recording', exact: true }).click();
+    await page.waitForFunction(() => !document.querySelector('.primary-actions button:disabled'));
+    assert.equal((await getState(page)).sessions.length, before.sessions.length, 'Cancel must preserve sessions');
+    await app.evaluate(({ dialog }, filePath) => {
+      dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [filePath] });
+    }, publicRecordingPath);
+    await page.getByRole('button', { name: 'Import recording', exact: true }).click();
+    await page.locator('.recording-notice').waitFor();
+    await page.waitForFunction(() => document.querySelectorAll('.process-node').length === 8);
+    const state = await getState(page);
+    assert.equal(state.session.mode, 'recording');
+    assert.equal(state.session.status, 'recording');
+    assert.equal(state.events.length, 83);
+    assert.equal(state.processes.length, 8);
+    assert(state.events.every(event => event.source.startsWith('recording:') && !event.details?.fabricated));
+    assert.equal(state.recording.provenance.dataset, 'OTRF Security-Datasets');
+    assert.equal(state.recording.provenance.revision, 'd9d40ef123d2c87d5d3df28c96bcab4f0faccc87');
+    assert.equal(state.recording.imported_events, 83);
+    assert(state.recording.observed_kinds.includes('process_access'));
+    assert(state.coverage.every(item => item.backend === 'recording'));
+    assert.equal(state.collector.status, 'idle', 'Recording import must not activate live collection');
+    const notice = await page.locator('.recording-notice').innerText();
+    assert(notice.includes('OTRF Security-Datasets'));
+    assert(notice.includes(state.recording.provenance.revision));
+    assert(notice.includes('Recorded adversary emulation'));
+    assert(/never executed/.test(notice));
+    assert(/partial capture/.test(await page.locator('.ancestry-notice').innerText()));
+    assert.equal(await page.locator('.replay-notice').count(), 0);
+    assert.equal(await page.getByRole('button', { name: 'Pause analysis', exact: true }).count(), 0);
+    assert.equal(await page.getByRole('button', { name: 'Stop session', exact: true }).count(), 0);
+    assert(/Imported recording/.test(await page.locator('.session-toolbar .badge').innerText()));
+    const recordingIds = new Set(state.events.map(event => event.id));
+    for (const incident of state.incidents) {
+      for (const fact of incident.explanation.observed) {
+        assert(fact.event_ids.length > 0);
+        for (const id of fact.event_ids) assert(recordingIds.has(id));
+      }
+    }
+    const accessEvent = state.events.find(event => event.kind === 'process_access');
+    assert(accessEvent, 'The actual capture must preserve process-access evidence');
+    await page.locator('[data-event-id="' + accessEvent.id + '"]').click();
+    await page.getByRole('heading', { name: 'Event details', exact: true }).waitFor();
+    assert((await page.locator('.event-detail').innerText()).includes(accessEvent.id));
+    await page.getByRole('button', { name: 'Close event details', exact: true }).click();
+    importedSessionId = state.session.id;
+    results.imported_recording = { source_dataset: state.recording.provenance.dataset,
+      revision: state.recording.provenance.revision, events: state.events.length,
+      processes: state.processes.length, observed_kinds: state.recording.observed_kinds,
+      capture_mode: state.session.mode, collector_status: state.collector.status,
+      model_status: state.model.status, model_version: state.model.version,
+      scenario_label_is_metadata: true, recorded_commands_executed: false };
+    const reportPath = path.join(dataDir, 'recording-report.json');
+    await app.evaluate(({ dialog }, filePath) => {
+      dialog.showSaveDialog = async () => ({ canceled: false, filePath });
+    }, reportPath);
+    await page.locator('.session-controls').getByRole('button', { name: 'Export', exact: true }).click();
+    await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('Report exported'));
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    assert.equal(report.session.mode, 'recording');
+    assert.equal(report.recording.provenance.dataset, 'OTRF Security-Datasets');
+    assert.equal(report.events.length, 83);
+    await page.screenshot({ path: path.join(dataDir, 'imported-recording.png'), fullPage: true });
+  });
+
   await record('Retained replay history persists across application restart', async () => {
     await app.close();
     app = await electron.launch({ executablePath: executable, args, env, timeout: 60000 });
@@ -250,6 +321,7 @@ async function main() {
     await page.waitForFunction(() => !!window.bigBrother);
     const state = await getState(page, sessionId);
     assert(state.sessions.some(s => s.id === sessionId));
+    assert(state.sessions.some(s => s.id === importedSessionId && s.mode === 'recording'));
     assert(state.events.length >= 6);
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Sessions', exact: true }).click();
     await page.getByLabel('Search sessions', { exact: true }).fill(replayName);
@@ -257,6 +329,19 @@ async function main() {
     await page.locator('.replay-notice').waitFor();
     await page.waitForFunction(id => document.querySelector('.session-select-wrap select')?.value === id, sessionId);
     assert.equal(await page.locator('.event-row').count(), state.events.length);
+  });
+
+  await record('Imported source recording remains distinct in history after restart', async () => {
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: 'Sessions', exact: true }).click();
+    await page.getByLabel('Search sessions', { exact: true }).fill('Lsass Memory Dump via Syscalls');
+    const row = page.locator('.session-table-row').filter({ has: page.locator('.session-name-button').filter({ hasText: 'Lsass Memory Dump via Syscalls' }) });
+    assert(/Imported recording/.test(await row.innerText()));
+    assert(!/Live observation|Replay/.test(await row.innerText()));
+    await row.locator('.session-name-button').click();
+    await page.locator('.recording-notice').waitFor();
+    await page.waitForFunction(id => document.querySelector('.session-select-wrap select')?.value === id, importedSessionId);
+    assert.equal((await getState(page)).events.length, 83);
+    assert.equal(await page.locator('.process-node').count(), 8);
   });
 
   await record('No uncaught renderer errors during the real UI workflow', async () => {

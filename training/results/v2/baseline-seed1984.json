@@ -1,0 +1,16 @@
+{
+  "id": "baseline-seed1984",
+  "architecture": "bag_centroid",
+  "seed": 1984,
+  "artifact": "baseline-seed1984.json",
+  "validation": {
+    "next_event_nll_nats": 0.7321012926534495,
+    "perplexity": 2.0794455437082653,
+    "mean_window_max_nll_nats": 1.7469137734839604,
+    "prediction_count": 95264,
+    "window_count": 11908
+  },
+  "threshold": 5.822285919811489,
+  "training_seconds": 4.349021599999105,
+  "artifact_sha256": "52ba644b6ca8a7df1fa58fdd7ecceff24ad65c2a1f04ba06406abd27302c723b"
+}

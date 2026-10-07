@@ -1,0 +1,77 @@
+{
+  "id": "gru-e16-h32-seed1984",
+  "architecture": "gru",
+  "seed": 1984,
+  "embedding_size": 16,
+  "hidden_size": 32,
+  "artifact": "gru-e16-h32-seed1984.json",
+  "artifact_sha256": "eef9c7f569deb403baf0f211ed55707a9d4b7b4536ade0adf2c408e80b92cd7c",
+  "validation": {
+    "next_event_nll_nats": 0.5241280190438727,
+    "perplexity": 1.6889854429402884,
+    "mean_window_max_nll_nats": 1.6157781420230832,
+    "prediction_count": 95264,
+    "window_count": 11908
+  },
+  "threshold": 7.062771320343018,
+  "selected_epoch": 7,
+  "training_seconds": 291.34973439999885,
+  "export_maximum_probability_error": 7.95317511848026e-08,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_next_event_nll_nats": 0.5169468696892754,
+      "validation_next_event_nll_nats": 0.5323898393076771
+    },
+    {
+      "epoch": 2,
+      "train_next_event_nll_nats": 0.46768987578632837,
+      "validation_next_event_nll_nats": 0.5331028391974046
+    },
+    {
+      "epoch": 3,
+      "train_next_event_nll_nats": 0.46317700396853945,
+      "validation_next_event_nll_nats": 0.5276477630264234
+    },
+    {
+      "epoch": 4,
+      "train_next_event_nll_nats": 0.4606546073119885,
+      "validation_next_event_nll_nats": 0.527495681802887
+    },
+    {
+      "epoch": 5,
+      "train_next_event_nll_nats": 0.4592338282355062,
+      "validation_next_event_nll_nats": 0.5266122333383787
+    },
+    {
+      "epoch": 6,
+      "train_next_event_nll_nats": 0.45807513348671935,
+      "validation_next_event_nll_nats": 0.5244633866200924
+    },
+    {
+      "epoch": 7,
+      "train_next_event_nll_nats": 0.4571893126596511,
+      "validation_next_event_nll_nats": 0.5241280190438727
+    },
+    {
+      "epoch": 8,
+      "train_next_event_nll_nats": 0.45636325241317577,
+      "validation_next_event_nll_nats": 0.5263893272444257
+    },
+    {
+      "epoch": 9,
+      "train_next_event_nll_nats": 0.45555595717067077,
+      "validation_next_event_nll_nats": 0.524700542306377
+    },
+    {
+      "epoch": 10,
+      "train_next_event_nll_nats": 0.45485709032015226,
+      "validation_next_event_nll_nats": 0.5242945056432576
+    }
+  ],
+  "configuration": {
+    "learning_rate": 0.003,
+    "batch_size": 512,
+    "patience": 3
+  }
+}

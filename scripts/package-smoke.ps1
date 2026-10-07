@@ -2,6 +2,7 @@ param([ValidateSet('installer','portable')][string]$Target = 'portable')
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
+$packageVersion = (Get-Content -LiteralPath 'package.json' -Raw | ConvertFrom-Json).version
 $testRoot = Join-Path $projectRoot ('.cache\package-test-' + $Target + '-' + [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds())
 $resolvedRoot = [IO.Path]::GetFullPath($testRoot)
 if (-not $resolvedRoot.StartsWith([IO.Path]::GetFullPath($projectRoot) + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Test path escapes workspace' }
@@ -20,12 +21,12 @@ try {
   if ($Target -eq 'portable') {
     Remove-Item Env:\BB_DATA_DIR -ErrorAction SilentlyContinue
     $executable = Join-Path $testRoot 'Big-Brother-portable.exe'
-    Copy-Item -LiteralPath (Join-Path $projectRoot 'release\Big-Brother-0.1.0-x64-portable.exe') -Destination $executable
+    Copy-Item -LiteralPath (Join-Path $projectRoot ('release\Big-Brother-' + $packageVersion + '-x64-portable.exe')) -Destination $executable
     $dataDir = Join-Path $testRoot 'BigBrother-data'
     $appProcess = Start-Process -FilePath $executable -ArgumentList '--smoke-test' -WindowStyle Hidden -PassThru -RedirectStandardError (Join-Path $testRoot 'startup-errors.txt')
   } else {
     $installDir = Join-Path $testRoot 'installed'
-    $installer = Join-Path $projectRoot 'release\Big-Brother-0.1.0-x64-nsis.exe'
+    $installer = Join-Path $projectRoot ('release\Big-Brother-' + $packageVersion + '-x64-nsis.exe')
     $setup = Start-Process -FilePath $installer -ArgumentList ('/S /D=' + $installDir) -WindowStyle Hidden -PassThru -Wait
     if ($setup.ExitCode -ne 0) { throw ('Installer failed: ' + $setup.ExitCode) }
     $executable = Join-Path $installDir 'Big Brother.exe'

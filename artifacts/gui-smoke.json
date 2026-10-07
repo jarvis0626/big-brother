@@ -47,7 +47,15 @@
       "status": "passed"
     },
     {
+      "name": "Native dialog imports a real inert public recording with source provenance and capture coverage",
+      "status": "passed"
+    },
+    {
       "name": "Retained replay history persists across application restart",
+      "status": "passed"
+    },
+    {
+      "name": "Imported source recording remains distinct in history after restart",
       "status": "passed"
     },
     {
@@ -55,7 +63,7 @@
       "status": "passed"
     }
   ],
-  "started_at": "2026-10-07T05:39:38.457Z",
+  "started_at": "2026-10-07T06:36:45.452Z",
   "model": {
     "name": "LANL temporal GRU event predictor",
     "version": "lanl2015-v1-seed1984",
@@ -68,7 +76,8 @@
       "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
       "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
       "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
-      "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety."
+      "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+      "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
     ],
     "status": "available",
     "feature_schema": "lanl-host-events-port-category-v1",
@@ -92,18 +101,38 @@
     "sysmon_detail": "Sysmon channel not checked yet; start a watch to check existing telemetry."
   },
   "replay": {
-    "session_id": "session_effdab8695754ed298a25eb2481b36c4",
+    "session_id": "session_66cbccb483ec480880aab280e9aa2fb9",
     "events": 13,
     "processes": 4,
     "incidents": 3
   },
-  "report_path": "D:\\Projects\\Big Brother\\.cache\\gui-smoke-1791351578452\\report.json",
+  "report_path": "D:\\Projects\\Big Brother\\.cache\\gui-smoke-1791355005447\\report.json",
   "ordinary_replay": {
-    "session_id": "session_987daca8006940df8d876c2250cb61f2",
+    "session_id": "session_a22244bc21294e4e8b8338442a821aef",
     "events": 3,
     "incidents": 0
   },
+  "imported_recording": {
+    "source_dataset": "OTRF Security-Datasets",
+    "revision": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+    "events": 83,
+    "processes": 8,
+    "observed_kinds": [
+      "file_create",
+      "image_load",
+      "process_access",
+      "process_end",
+      "process_start",
+      "registry"
+    ],
+    "capture_mode": "recording",
+    "collector_status": "idle",
+    "model_status": "available",
+    "model_version": "lanl2015-v1-seed1984",
+    "scenario_label_is_metadata": true,
+    "recorded_commands_executed": false
+  },
   "renderer_errors": [],
   "status": "passed",
-  "finished_at": "2026-10-07T05:39:48.227Z"
+  "finished_at": "2026-10-07T06:36:58.269Z"
 }

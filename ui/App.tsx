@@ -128,12 +128,16 @@ function isReplay(session?: Session | null): boolean {
   return !!session && /replay|demo/i.test(session.mode);
 }
 
+function isRecording(session?: Session | null): boolean {
+  return session?.mode === "recording";
+}
+
 function isCollecting(status?: string): boolean {
   return ["running", "watching", "active", "collecting"].includes((status || "").toLowerCase());
 }
 
 function coverageAvailable(status: string): boolean {
-  return ["supported", "available", "active", "enabled", "partial"].includes(
+  return ["supported", "available", "active", "enabled", "partial", "recorded"].includes(
     status.toLowerCase(),
   );
 }
@@ -1201,8 +1205,8 @@ function SessionList({
                 <ChevronRight size={15} />
               </button>
               <span>
-                <Badge tone={isReplay(s) ? "replay" : "neutral"}>
-                  {isReplay(s) ? "Replay" : "Live observation"}
+                <Badge tone={isRecording(s) ? "recording" : isReplay(s) ? "replay" : "neutral"}>
+                  {isRecording(s) ? "Imported recording" : isReplay(s) ? "Replay" : "Live observation"}
                 </Badge>
               </span>
               <span>{time(s.started_at, true)}</span>
@@ -1519,7 +1523,7 @@ function SettingsView({
                 <strong>{eventName(c.kind)}</strong>
                 <span>
                   <Badge
-                    tone={coverageAvailable(c.status) ? "live" : "neutral"}
+                    tone={c.status === "recorded" ? "recording" : coverageAvailable(c.status) ? "live" : "neutral"}
                   >
                     {label(c.status)}
                   </Badge>
@@ -1765,6 +1769,14 @@ export default function App() {
       },
     );
   };
+  const importRecording = async () => {
+    await run(() => api().importRecording(), (result) => {
+      if (result) {
+        startSession(result);
+        setToast("Recording imported. Recorded commands are never executed.");
+      }
+    });
+  };
   const exportReport = async (id = state.session?.id) => {
     if (id)
       await run(
@@ -1809,6 +1821,7 @@ export default function App() {
   const selectedProcess = state.processes.find((p) => p.key === selectedKey);
   const selectedEvent = state.events.find((e) => e.id === selectedEventId);
   const replay = isReplay(state.session);
+  const recording = isRecording(state.session);
   const title = {
     overview: "Activity overview",
     findings: "Findings",
@@ -1875,7 +1888,7 @@ export default function App() {
               />
               <span>
                 <strong title={s.name}>{s.name}</strong>
-                <small>{isReplay(s) ? "Replay" : label(s.status)}</small>
+                <small>{isRecording(s) ? "Imported recording" : isReplay(s) ? "Replay" : label(s.status)}</small>
               </span>
             </button>
           ))}
@@ -1912,7 +1925,7 @@ export default function App() {
             <span>Stored on this device</span>
           </div>
           <div className="sidebar-version">
-            Big Brother <span>v0.1.0</span>
+            Big Brother <span>v0.2.0</span>
           </div>
         </div>
       </aside>
@@ -1961,6 +1974,14 @@ export default function App() {
               </p>
             </div>
             <div className="primary-actions">
+              <button
+                className="button secondary"
+                disabled={busy}
+                onClick={() => void importRecording()}
+              >
+                <FileText size={16} />
+                <span>Import recording</span>
+              </button>
               <button
                 className="button secondary"
                 disabled={busy}
@@ -2038,15 +2059,17 @@ export default function App() {
                   {current && (
                     <Badge
                       tone={
-                        replay
+                        recording
+                          ? "recording"
+                          : replay
                           ? "replay"
                           : isCollecting(current.status)
                             ? "live"
                             : "neutral"
                       }
-                      dot={!replay}
+                      dot={!replay && !recording}
                     >
-                      {replay ? "Replay · fabricated" : label(current.status)}
+                      {recording ? "Imported recording" : replay ? "Replay · fabricated" : label(current.status)}
                     </Badge>
                   )}
                 </div>
@@ -2054,9 +2077,9 @@ export default function App() {
                   {current && (
                     <>
                       <span className="session-start">
-                        Started {time(current.started_at)}
+                        {recording ? "Imported" : "Started"} {time(current.started_at)}
                       </span>
-                      {!replay &&
+                      {!replay && !recording &&
                         (isCollecting(current.status) ||
                           current.status === "paused") && (
                           <button
@@ -2130,11 +2153,24 @@ export default function App() {
                   </span>
                 </div>
               )}
+              {recording && state.recording && (
+                <div className="recording-notice">
+                  <FileText size={15} />
+                  <div>
+                    <strong>Imported recording from {String(state.recording.provenance.dataset)}</strong>
+                    {state.recording.provenance.revision && <p>Source revision: <code>{String(state.recording.provenance.revision)}</code></p>}
+                    {state.recording.provenance.scenario_level_label && <p>{String(state.recording.provenance.scenario_level_label)}</p>}
+                    <p>{state.recording.imported_events.toLocaleString()} imported events · Observed kinds: {state.recording.observed_kinds.map(eventName).join(", ")}</p>
+                    <p>Recorded commands are displayed as evidence and never executed. Capture completeness is unknown; this session starts no live collection.</p>
+                    {state.recording.provenance.provenance_status && <p>{String(state.recording.provenance.provenance_status)}</p>}
+                    {(Array.isArray(state.recording.coverage.notes) ? state.recording.coverage.notes : []).map((note, index) => <p key={index}>{String(note)}</p>)}
+                  </div>
+                </div>
+              )}
               {current?.ancestry_complete === false && !replay && (
                 <div className="ancestry-notice">
                   <Info size={14} />
-                  This process was already running. Earlier ancestry and
-                  activity may be incomplete.
+                  {recording ? "This recording is a partial capture. Process creation events, earlier ancestry and activity may be incomplete." : "This process was already running. Earlier ancestry and activity may be incomplete."}
                 </div>
               )}
               <div className="metrics-grid">
@@ -2355,7 +2391,7 @@ export default function App() {
             </span>
             <span>
               Local observation & evidence ·{" "}
-              {replay ? "Replay mode" : "Windows"}
+              {recording ? "Imported recording" : replay ? "Replay mode" : "Windows"}
             </span>
           </footer>
         </main>

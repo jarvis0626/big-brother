@@ -1,0 +1,16 @@
+{
+  "id": "baseline-seed2026",
+  "architecture": "bag_centroid",
+  "seed": 2026,
+  "artifact": "baseline-seed2026.json",
+  "validation": {
+    "next_event_nll_nats": 0.7264706101136762,
+    "perplexity": 2.067769748189885,
+    "mean_window_max_nll_nats": 1.7726673654918024,
+    "prediction_count": 95264,
+    "window_count": 11908
+  },
+  "threshold": 6.684504195004777,
+  "training_seconds": 0.7625272999994195,
+  "artifact_sha256": "a51e424d941e58dfe7931f652cca90a1426cc496ca16d21cc1a6f68f6dd4a86f"
+}

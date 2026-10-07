@@ -22,6 +22,8 @@ artifacts/*
 !artifacts/packaged-gui-smoke.json
 !artifacts/installer-smoke.json
 !artifacts/portable-smoke.json
+!artifacts/simulator-validation-v2.json
+!artifacts/recording-validation-v2.json
 drive-index.html
 optc-access-sample.bin
 training/sources/*.html

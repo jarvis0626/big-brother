@@ -1,0 +1,2833 @@
+{
+  "schema_version": 1,
+  "catalogued_on": "2026-10-07",
+  "data_location": "training/data/v2 (D:; ignored)",
+  "default_privacy": "Public third-party telemetry stays local and is not committed or bundled",
+  "acquired_sources": [
+    {
+      "id": "otrf",
+      "name": "OTRF Security-Datasets",
+      "repository": "https://github.com/OTRF/Security-Datasets",
+      "revision": "d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+      "archive_url": "https://codeload.github.com/OTRF/Security-Datasets/zip/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87",
+      "archive_bytes": 558908027,
+      "archive_sha256": "14dec6a8739594cbd68bffac132fa2fb82c70b2324cff949824a23a5c9e6fc2b",
+      "raw_url_prefix": "https://raw.githubusercontent.com/OTRF/Security-Datasets/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/",
+      "license": "MIT",
+      "license_url": "https://github.com/OTRF/Security-Datasets/blob/d9d40ef123d2c87d5d3df28c96bcab4f0faccc87/LICENSE",
+      "license_sha256": "fce88163b60d67ecabd317b75f7638233e11cbe648fe608ebbf6c10161564686",
+      "schema": "Flat NDJSON Windows events; safe selected host-log zip only",
+      "label_scope": "Scenario/technique metadata, not event-level malicious labels",
+      "purpose": "Independent external scenario coverage only; excluded from model fit, threshold selection and test accuracy estimates",
+      "files": [
+        {
+          "path": "LICENSE",
+          "bytes": 1083,
+          "sha256": "fce88163b60d67ecabd317b75f7638233e11cbe648fe608ebbf6c10161564686"
+        },
+        {
+          "path": "README.md",
+          "bytes": 2230,
+          "sha256": "4fe95fb46ada0c6d364fd4a1ee2b91774560dc17b3bf7a2a1fe0c7cc18f66ae2"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDAWS-200914011940.yaml",
+          "bytes": 2945,
+          "sha256": "541c5b7e3ab874f1eca29c14a6bb4a56c2683be5d482cb292ce63513487cd533"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDAWS-2202181000.yaml",
+          "bytes": 1538,
+          "sha256": "95d51521aaafa69d59537d32e29c46bbdf2750d4c561cad0353990e575e1c920"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDLIN-201110074812.yaml",
+          "bytes": 1074,
+          "sha256": "1f232073f185276bb60606c4573a81b93e4ebd65225fecb3401a8c3426207a72"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDLIN-201110081941.yaml",
+          "bytes": 1352,
+          "sha256": "d70be6039ef8a38122231c7d3dd33a6b51d3c663b2393d6daf620c0b3dbcd843"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190301125905.yaml",
+          "bytes": 6173,
+          "sha256": "bb3dfe9de3e4107e649cb005c1cb6c1ea6aaedba5048c39a752f780e9f3bebfc"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190301174830.yaml",
+          "bytes": 7612,
+          "sha256": "455862ce883037237eea58843055a72723c11da0b48a07f3cfd062c886cdfd7b"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319020147.yaml",
+          "bytes": 2103,
+          "sha256": "5ddf25477a9947f7a615249ed565e7f6f8f800ce5e7b699d273eead247a8a04c"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319020729.yaml",
+          "bytes": 2020,
+          "sha256": "9beb96a5125198f07a77ff136964a6856ea4cb2c3efae59c573905928553b825"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319021158.yaml",
+          "bytes": 2462,
+          "sha256": "f9bff7478e8f28d715e59bbec386a67f7786513bf8d614470bfeb4c7e9b412d8"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319023812.yaml",
+          "bytes": 8434,
+          "sha256": "3e6ccb71dff81e4a0c267d58ab9ab989634fdd9a2ca86a4c18c8a6c422f5c9ae"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319024742.yaml",
+          "bytes": 6944,
+          "sha256": "565926240158ba33ef6687497dcb1270a37cb77c6a64e336b55aba4fc6a9cfa7"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319131123.yaml",
+          "bytes": 5431,
+          "sha256": "8a8e7950d4534ca250f29e4a89455bcdf523ccb3e1ff075d138d0bcd3e5b23ff"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190319145126.yaml",
+          "bytes": 5259,
+          "sha256": "85baf60ed6e21aaacdba87ed082b995acdeb08d27ea0914705feff0b1d41376b"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190403133337.yaml",
+          "bytes": 6664,
+          "sha256": "edcfd848ac89f7fe197612e19d667c01c4f1fccb67d84cbb03b39f3c297c1af1"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518182022.yaml",
+          "bytes": 4139,
+          "sha256": "04f5d168d72ccf00cec9489e3d5951e9b87e893bf88af1f8e8553b5f926dede1"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518184306.yaml",
+          "bytes": 6708,
+          "sha256": "75411dfe0e31344699635b707111bad8fc4e54d91243885d5a3832a4c5133466"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518200432.yaml",
+          "bytes": 6581,
+          "sha256": "7c176f21ed407bb3e6dec2d0a6d983ce9babdcaf4bfabfab990a47bb9a6f99fc"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518201207.yaml",
+          "bytes": 3148,
+          "sha256": "7a8da071da7df2d9bd70c76a870dc15c6679b6f799120d9118029e89307d1bca"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518201922.yaml",
+          "bytes": 1196,
+          "sha256": "1305a82051a3a92148da756a33b71a62bc96f17b628d05e0a78ae6b56b1ff289"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518202151.yaml",
+          "bytes": 16355,
+          "sha256": "1530efc89ef4a509cda4ac70bf804894b793432fd84faa332a6eb0c5f77dba8f"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518203650.yaml",
+          "bytes": 2092,
+          "sha256": "8bd2705fa8c4ae7a7d17bedebb79f3cb1dd738cb227b0885b836043af6426848"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518210125.yaml",
+          "bytes": 8142,
+          "sha256": "414d03a1c0086a4325200283fccb346268e3ceabef806dea49cab61414a9b6da"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518210652.yaml",
+          "bytes": 7524,
+          "sha256": "27d3c027f54d3fd8501f6565a8aa8d418e2a0762ae975c5edd27daff9e627da7"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518211052.yaml",
+          "bytes": 6603,
+          "sha256": "4ce3d5dd39eb402affd02c0b7bb9fab5132209bfe77454fe5b9a4e578166128c"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518211456.yaml",
+          "bytes": 7330,
+          "sha256": "b0f5d29337692a42cde187667f8f5ab1d2ff06bf87c023757dbd192df0ca6f01"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518213907.yaml",
+          "bytes": 8786,
+          "sha256": "f55cdbdc895c5f56c9620a9b74959677d87f7a97857f055225bb402f467ed011"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518221344.yaml",
+          "bytes": 24946,
+          "sha256": "0f210717c9719102b45af2e31e1b18c920958f92c3f2f35625f119f5f359e488"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518224039.yaml",
+          "bytes": 2433,
+          "sha256": "fc1d3ba86a8fa0036d28bb59f027d0ec70125d93a1f1c79c3b658c3d1a6fe8df"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518230752.yaml",
+          "bytes": 3919,
+          "sha256": "ffca87b2efe0bd379b0f209a76b8bfb897dd33f0a85e0abc48c4c5d6d7cdc5a5"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190518235535.yaml",
+          "bytes": 4893,
+          "sha256": "ee53508bffd8696d148d9e39f973821775887023d6c93f2d8d2993607bc42cd0"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190519005224.yaml",
+          "bytes": 3641,
+          "sha256": "36f8ca32a616d69daff73b22c61b6563d52b3b197aaf7067380d8b856666c9e6"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190625103712.yaml",
+          "bytes": 5582,
+          "sha256": "e1263fecc432c145d6b27bc770d1fa2c95381792ee95530306e94fdab9d2aee2"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-190625133822.yaml",
+          "bytes": 1654,
+          "sha256": "52a37214effd8c48ed374166bcd00f1e723edaea727638da792953771ad7cff3"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-191027055035.yaml",
+          "bytes": 1174,
+          "sha256": "42b8e3c59008b78d0f73fabc6c4377e5e0008b7178cc7409cb789291cc1cb729"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-191027223020.yaml",
+          "bytes": 1200,
+          "sha256": "8362bf75fcf30c4fffbd4a821f93c307d6d217434039defad9ff00940ed112a9"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-191225045202.yaml",
+          "bytes": 4225,
+          "sha256": "57244b3055ecad46c75090d6be9e7a9afc579cc3cd4b4b7103c6798a223e2852"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200609225055.yaml",
+          "bytes": 2398,
+          "sha256": "3b015890597fb11d3c9ff527d582bdd26f761872619458fa9351bcb0267e99ab"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200721232741.yaml",
+          "bytes": 4253,
+          "sha256": "127fd981d0f6328291b4eb58baa80d37f51817ec1d1658c69dae1c7fd10681ae"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200722001847.yaml",
+          "bytes": 6256,
+          "sha256": "4b7e943648d1217cf30c562de069651fc24303bdebddff165a4f2ccba11d92a7"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200724174200.yaml",
+          "bytes": 1298,
+          "sha256": "e0791a4379efa9d44313bcd3270353e14688b2c99c0c3f7d962e7edb40f8f75c"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200805020926.yaml",
+          "bytes": 4481,
+          "sha256": "e386024ea34830594655bb32005756f91074d69f3a29df1cb96d43809550ec38"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200805034820.yaml",
+          "bytes": 1222,
+          "sha256": "d6cd7d368e6762cf8c1911ba072bb02f4a75c382e9d02eb372050adce143e4b5"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806012009.yaml",
+          "bytes": 1464,
+          "sha256": "55c81cb96bce8b56bd3585394afd7f9afbba0c014d9dd35d01927d2bb136b8cf"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806015757.yaml",
+          "bytes": 1308,
+          "sha256": "f9bc343d306768a4fd9b1f956ca654c71ba7cc39292736d3c1cd69eeb3f1fe83"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806022635.yaml",
+          "bytes": 1532,
+          "sha256": "9b6c9a606ac491a86d076b5efe0b88efcc22a393420c929eafed11aa32b0c750"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806030120.yaml",
+          "bytes": 1502,
+          "sha256": "45e5392c15ebf0806e9f27c64361d2696b516561e05b8b01cda749c2ef4d47ab"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806031938.yaml",
+          "bytes": 1532,
+          "sha256": "937078d12c93267dcb52c422583f2f5d92765be67e4d43f0d5a309f20bce0219"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806035621.yaml",
+          "bytes": 1563,
+          "sha256": "df9644200986a44ad790d9285ddcc8158d3536e4b3ea09d473a51121e7a3947e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806115603.yaml",
+          "bytes": 3730,
+          "sha256": "c70d16999b24266c0a6682c94ed2c9d0a9f156e929523614ec19d368e155b8e7"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200806130039.yaml",
+          "bytes": 2551,
+          "sha256": "5bd0c4aff72ed620d81440e8203a945601e15ccbd81c7cc26193df577f9d787f"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200807103913.yaml",
+          "bytes": 3796,
+          "sha256": "602305a719ba5b8cb41d4062e9a3d0885e6ded93fab187e26538d17fbfe47274"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200904032946.yaml",
+          "bytes": 6416,
+          "sha256": "c58c34fdc8a361e1a2e5e15e7f8a2d836d113b80c498aa7d38b40a2839d484d9"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200914080546.yaml",
+          "bytes": 2738,
+          "sha256": "953d7103f181578066fc379ae3ed6a1bfdd219380b421e54a179bfe90412b29e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200916232559.yaml",
+          "bytes": 3671,
+          "sha256": "61274f851c87b2042a058a715a0f6b5d031e6efa3a5d5dd31eee86d1c4c01293"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200917174542.yaml",
+          "bytes": 1637,
+          "sha256": "1aafcbc1d811134e3d5e196b95570c9c988b53caa9722c79fc370f8d07206c12"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200918145959.yaml",
+          "bytes": 1389,
+          "sha256": "86fcbac86e08343e005169e31e793a6856cd045626a0422d6e991532db61b539"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200921001437.yaml",
+          "bytes": 7903,
+          "sha256": "e049ff3062a6f0a1a92df4310c0ebc392edaa32dc4923a033e6c648b5192dd2a"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200921175806.yaml",
+          "bytes": 8814,
+          "sha256": "1a599150b6d4c2ec2af6e06948a8138b47e03754a6f41fbcb295cd94023e5826"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200921230246.yaml",
+          "bytes": 5035,
+          "sha256": "67818d79532ea425f0743505705a29db496772e1959e49ae3e93c8e730fbac9c"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-200922042230.yaml",
+          "bytes": 3126,
+          "sha256": "03e67baadf7ce7a6afc9f312b069fe084601c37ee75442ef81f4b7e1009b53d4"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201009173318.yaml",
+          "bytes": 1782,
+          "sha256": "d49ac6b1c92ce7c703c89a66307031df852500f4037d652120f24066f2b4a1ce"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201009183000.yaml",
+          "bytes": 1878,
+          "sha256": "21dfa92d10877a2636402cb7f478ec2ee6b4a3fff5549b10ae8a45588762e845"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201012183248.yaml",
+          "bytes": 1583,
+          "sha256": "6a4df41859e23dfc41f6a1b624080405e472ce9b855a1c0d7370d5f23574529e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201017061100.yaml",
+          "bytes": 1327,
+          "sha256": "b1a8bc6f05070f27cf048f4b5d508178dcec8403409f685c6df6b81acb887b35"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201018195009.yaml",
+          "bytes": 1460,
+          "sha256": "8bdae73ea97738b5cfd5303dc0d78fa292a9db713d3a4bee141fe1565c9a1550"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201018225619.yaml",
+          "bytes": 2509,
+          "sha256": "8b1b9e4fdc31911ca5ea296dbaa85d148db06c41e402812760698b40cd73792b"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201019002900.yaml",
+          "bytes": 2105,
+          "sha256": "04f4085fe5b12238e9fdee68f54b310950596339aeef068156ed9aadfbfc11d2"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201019033054.yaml",
+          "bytes": 1491,
+          "sha256": "70874fff55dad83ba12b87e350cb31211903552d745cba2d0d695ceb744775e1"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201019224718.yaml",
+          "bytes": 1454,
+          "sha256": "4023e5182d70f311efd145968d499f7dda33b4ba06dad45dbdaa50df12d0c748"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201019232515.yaml",
+          "bytes": 1378,
+          "sha256": "977bb8e9eeb644f5c06398d129b62bd308d607f9c0d7c90ef23fa2837d538f40"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201020013208.yaml",
+          "bytes": 1566,
+          "sha256": "3045424bef865a9e4bf7edc01a3a7581cd438a81359b05921dd88ee47ed3d381"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201021001911.yaml",
+          "bytes": 1297,
+          "sha256": "824c7bc24b8fe24a3765ba9c2911e3aa537538affd1f440f45002a1eefdc17eb"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201021204544.yaml",
+          "bytes": 1247,
+          "sha256": "2f8567f015e7e1e82cef64f9b59ff0ad8da0905930beae7c967f8b90f7382e06"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201021232814.yaml",
+          "bytes": 1281,
+          "sha256": "a5893a9ce1c7cf260cf142323b95281de9e277aa720a1f81b797c15744a504ee"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022002145.yaml",
+          "bytes": 1316,
+          "sha256": "668b14762da5685ab67c756e876f70dceaa196d4feb90160ee7bc0a21f40ae80"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022013121.yaml",
+          "bytes": 1298,
+          "sha256": "326523846fabdd02b07c0dfb7502b95836f038c83e40717578a578f49fc2561e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022015432.yaml",
+          "bytes": 1431,
+          "sha256": "01ea614ba01fadcfd1b0c58967ffd520daa2865cc8052896079402d1468cfb2d"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022022144.yaml",
+          "bytes": 1359,
+          "sha256": "532a5812e96fc179499eebfd4cae2c18d477474eec0829fba21ff465b3f31f08"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022025808.yaml",
+          "bytes": 1290,
+          "sha256": "24e22d6aff8c1586c2c12f90cfe0a950b6449e2eaf6cfc8b47974d8fa888b9e7"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022035214.yaml",
+          "bytes": 1486,
+          "sha256": "7641be29878cf3cf8aa2f1846a11277b3a32a2bf50236a4fd3683711d3b73b4f"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201022042947.yaml",
+          "bytes": 5398,
+          "sha256": "a872ce818c81de308ae1e49a608efd0b76e2d8c669aee820bfdd69c4bf271685"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201023020513.yaml",
+          "bytes": 1531,
+          "sha256": "84f139379caa153399800ceeb3a46490730b9239ed0761e58c5db21ac1bb904b"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201023023651.yaml",
+          "bytes": 1391,
+          "sha256": "dfbd2247bd2b898be68e07415e52fab53741b0d1b8e7f9959c55cc91a5e6fa41"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201023031210.yaml",
+          "bytes": 1905,
+          "sha256": "7884b8e334c71fd62fa4e5e06cb7a517a932b4848da3d1d0c1c9e260df6539ea"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201026235835.yaml",
+          "bytes": 2156,
+          "sha256": "73d0e5f8b25ed33345988ae9736c27ce9ee68c9a9dd125791ab4182403ede4bf"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201028191914.yaml",
+          "bytes": 2610,
+          "sha256": "fb59ee5e84ed004ad4916d5b06169dbcb27f77d5e380a677e9cf484ef9bf6a95"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201029001615.yaml",
+          "bytes": 1445,
+          "sha256": "0d794fe2c5dfb017c22bbea61ec27ccad76b261f4cceb07fb5595ee82e22db34"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201029202324.yaml",
+          "bytes": 2291,
+          "sha256": "f44098c64a0c3df771fffcd9271cc8aabf452ef43e0c38c96b4cc55a9ecdca2f"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201102041306.yaml",
+          "bytes": 970,
+          "sha256": "abc24813ef1fe304c289ec37716d56d5e04d7afd3fbb6f049bd0b089a4b39f1b"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201102163918.yaml",
+          "bytes": 22533,
+          "sha256": "3817df0c34b14a3bbfb4c45431ebeb41884a67739be49dae11b7d59f540b97a8"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201219070027.yaml",
+          "bytes": 1552,
+          "sha256": "f5490cda8e083664cb238ddfdace11b57a19939f87da4f8c237a4d20759cf91e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-201219075059.yaml",
+          "bytes": 10543,
+          "sha256": "63da03fb76ac0b083cc6379142c25bd69f769ea6d63b4667a367082689e7945a"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-210314014019.yaml",
+          "bytes": 2108,
+          "sha256": "4288e040d0d41bc3e32d9bc12b8fad28dc17afba8a600af3a13daf5c73d33477"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-210427020247.yaml",
+          "bytes": 1621,
+          "sha256": "cce4ffcbccb052f76390878b2322bf8426d126793565a7d0cdaf8a36363aa0f6"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-210611210814.yaml",
+          "bytes": 4051,
+          "sha256": "c482c16aad492dac674bdb4c5d48dfbdfb40a386a07aafced1a95136d5de3fa2"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220630130349.yaml",
+          "bytes": 2512,
+          "sha256": "0466c5b621c2c26d4a428682fc5c3c6a4be00c767c226493386254fcc08ae631"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220703123711.yaml",
+          "bytes": 3546,
+          "sha256": "d616cc192ecf7e2e7e62a0cd0a92e1f5e7255a762b3e23eb4659781d827e17d3"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220705170038.yaml",
+          "bytes": 3113,
+          "sha256": "30919274b08f850c5d17a50591ef08eaaed2d38e23902c99f090c7b95e457c15"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220708104215.yaml",
+          "bytes": 4728,
+          "sha256": "e6808f404dc190ae6c3573c4660656d90560d02abb80631fcfbe4423b27bc3f4"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220708104300.yaml",
+          "bytes": 5959,
+          "sha256": "8ae438b642b3ee3370181d62e175a24e9ce669c2d83da85ed92d226b99bb18d2"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-220803205800.yaml",
+          "bytes": 5534,
+          "sha256": "c88a766efe0dce3600a52a32ba11b72d60c85803c41898148ce45a124ed06849"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-230718150800.yaml",
+          "bytes": 2297,
+          "sha256": "742e0462929709634e79eaf2c4c5316dcda7c9683552ac6914ddabd6f87ddcde"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-230718151900.yaml",
+          "bytes": 2798,
+          "sha256": "230d6112bdf6a364b688f57f8aaa58c2721c666a4cc01e762d9e12e8a02e752e"
+        },
+        {
+          "path": "datasets/atomic/_metadata/SDWIN-230720004300.yaml",
+          "bytes": 6038,
+          "sha256": "d0e265b28ba5171509d5ce3fe76376dfce3f786d2c5f2808ac744452a9d862f3"
+        },
+        {
+          "path": "datasets/atomic/windows/collection/host/msf_record_mic.zip",
+          "bytes": 468775,
+          "sha256": "5ea8ac17aceb7a83273019235fcdee67dd0b21cdce6b5d00b2d7e1665444de9e"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/cmd_dumping_ntds_dit_file_ntdsutil.zip",
+          "bytes": 472024,
+          "sha256": "4633882ab1e9eadd156b29a89a5a6e24b680ead1b11ee259fdbe0d19ddbf77cf"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/cmd_dumping_ntds_dit_file_volume_shadow_copy.zip",
+          "bytes": 701880,
+          "sha256": "aed847c1571ec3ef906f2b844d343bb3897eec4cf856b8f0939e934646348378"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/cmd_lsass_memory_dumpert_syscalls.zip",
+          "bytes": 12915,
+          "sha256": "a28dbf708685a80edfb0b3d2a00c9bf196dd394fc1d61a933878841f4872a7ed"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/cmd_psexec_lsa_secrets_dump.zip",
+          "bytes": 38086,
+          "sha256": "c52e6145fefe37373a5274e2976ccf6d62e4d33e13c55dc1a2ce17f00506d1a6"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/cmd_sam_copy_esentutl.zip",
+          "bytes": 40653,
+          "sha256": "f7a71135778aeff605abcb88a14a076f0814ab5cb136d07103bdf13c45551b64"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/covenant_dcsync_dcerpc_drsuapi_DsGetNCChanges.zip",
+          "bytes": 76924,
+          "sha256": "ccbb0e91c03fa1d575b3bfccba59f3bba62479860bd9ee8b571a907333eb9082"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_dcsync_dcerpc_drsuapi_DsGetNCChanges.zip",
+          "bytes": 655112,
+          "sha256": "fe1fcc96c0ff0cbae8fd4ffaadf85f51e28475441774f6fda3d963d4e2962800"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_backupkeys_dcerpc_smb_lsarpc.zip",
+          "bytes": 618319,
+          "sha256": "63ee26d89071b9026a2381c31cd9d5842435e3859e1c0d84825cdbb01475e4d8"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_extract_keys.zip",
+          "bytes": 1032818,
+          "sha256": "5511f426c3712d811b629451b852d3de014ddf3e01465e5ae380f5672968692f"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_logonpasswords.zip",
+          "bytes": 716749,
+          "sha256": "bb4c057b62d781be5426e011872ba1a15070c07afbb24848a14458f4b22b06fb"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_lsadump_inject_protected_mode.zip",
+          "bytes": 134726,
+          "sha256": "d15780ac0bac50557955085ba6ec0a47e4432366422ef85b390766ac518883c4"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_lsadump_patch.zip",
+          "bytes": 899075,
+          "sha256": "552d5c8a3a41b8aae3118a855781b7a23cb497ebdc4afaa2127b46240356c132"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_mimikatz_sam_access.zip",
+          "bytes": 777887,
+          "sha256": "1ed87bd1286fa8f9e01489ff49e913065e4d1a1956174eb64687c1159648fcad"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_ninjacopy_dumping_ntds_dit_file.zip",
+          "bytes": 950147,
+          "sha256": "89bf86818a94eb093c8cc22482ea768b2595a807e86f8d557a44ce4c71bbe8c1"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_over_pth_patch_lsass.zip",
+          "bytes": 829257,
+          "sha256": "daee42bbd9f7c6265e5614ce468ec868a399ee03877456dd01ec34e3e06479e7"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_powerdump_sam_access.zip",
+          "bytes": 200413,
+          "sha256": "44fdafcbd7393d71936a4b81838b99bea19bfe12b0c2abdf1cd62dda14e4ce09"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_shell_reg_dump_sam.zip",
+          "bytes": 138425,
+          "sha256": "5a8ee19860f35da6d4bcadf15178a085b469086c461d3d873d0f4adedba41f0a"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_shell_rubeus_asktgt_createnetonly.zip",
+          "bytes": 432741,
+          "sha256": "3ed7d6d93ccadac94b0022151aa76ab54070c0ff7b977f6642bb4ee2f34b13da"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/empire_shell_rubeus_asktgt_ptt.zip",
+          "bytes": 224344,
+          "sha256": "a2ad97df3783fe2e911844111b3e4dabe0389502f52ea72525bb280b95e5394a"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/psh_input_capture_promptforcreds.zip",
+          "bytes": 15631,
+          "sha256": "768e3c32e39f202788f371d98f71b85694d813198f474939ba3e3d1112ebc08e"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/psh_lsass_memory_dump_comsvcs.zip",
+          "bytes": 17957,
+          "sha256": "0af9e920220d746432f0972be83ad057629695540aecd68c15869d190786e1ae"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/psh_windows_vault_web_credentials.zip",
+          "bytes": 10543,
+          "sha256": "09a374a4d434654025b844a721809ba7f6a21afa87e6d07a8168cb31e154228b"
+        },
+        {
+          "path": "datasets/atomic/windows/credential_access/host/rdp_interactive_taskmanager_lsass_dump.zip",
+          "bytes": 402013,
+          "sha256": "a7761e64c891162e949afebf367084a6dddd2f3dac7b91bce870fcf9f6206fba"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/auditpol_system_user_auditpolicy_modification.zip",
+          "bytes": 611270,
+          "sha256": "5eb1776e7e9f79060a87ed9efcce0eebbab7940f8f51db8b2d67368c64e2187d"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_bitsadmin_download_psh_script.zip",
+          "bytes": 51563,
+          "sha256": "8fb7bc9f3d82f672dc39a55e50006137aa540c4a9860acdcc5d08a4fd609b594"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_disable_eventlog_service_startuptype_modification_via_registry.zip",
+          "bytes": 367047,
+          "sha256": "4312946d5bb0883e691da3b1130d4179b951a413278b450a75c05d56a2858a1a"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_mshta_javascript_getobject_sct.zip",
+          "bytes": 125926,
+          "sha256": "976a705690dcc296ba132b9cd594c004265911e9e40d402c879dd06eddbbc057"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_mshta_vbscript_execute_psh.zip",
+          "bytes": 88544,
+          "sha256": "f5f700bc986bbe73edcc209754b28a3e0ad38c56877f7fc5ed6fd04bc036d9f4"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_netsh_fw_mod_open_ports.zip",
+          "bytes": 97711,
+          "sha256": "3d887b38c6a92892f950029f40114fe4598a798ad20453671dbe3d111b9ce4a2"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_process_herpaderping_mimiexplorer.zip",
+          "bytes": 34699,
+          "sha256": "674a88eac2ce1db4a3409c07669010f7181a2dbb589b3b8f25843158d3a14f23"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_process_herpaderping_snippingtool.zip",
+          "bytes": 36181,
+          "sha256": "c3132a3d8f22c27ec57f4ae258f3d70c25a4dc7cc637cdd82de093d6ff50abff"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_psh_stop_netprofm_eventlog_after_reboot.zip",
+          "bytes": 726101,
+          "sha256": "21530be38786064636c130089ae60e15b5b4b76891ec608f9769da278e06e773"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_psh_stop_netprofm_eventlog_before_reboot.zip",
+          "bytes": 391165,
+          "sha256": "9fd41f01ef84415ce3826f89afc25fb16c1966abacc2c24231a760f42b7b0efe"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_stop_event_logging_controlset001_minint_key.zip",
+          "bytes": 872671,
+          "sha256": "f88a69b334b026412cec371f6b49c35f4a58bb763fd33b9b843507a043e21573"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_stop_event_logging_controlset_minint_key.zip",
+          "bytes": 320866,
+          "sha256": "564715635a46a0eae5985e770e1ef01cf33aac170652aca3b8a388ea9eb27c23"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/cmd_wevtutil_modify_security_eventlog_path.zip",
+          "bytes": 1350260,
+          "sha256": "2ea34cf2d3526e30f9fe004fc4f53f8a04d8e6885e697d77c44102567279ac67"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/covenant_installutil.zip",
+          "bytes": 111142,
+          "sha256": "9be5698bd46e2869b34d0a6ef712725d1e611eb32d87d2d29f37c9e34872fabe"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/covenant_lolbin_wuauclt_createremotethread.zip",
+          "bytes": 137136,
+          "sha256": "56b6695152f4de18ed23afbbcab2402b03c1ffbbf7c5fd5f6f4e80ec621843ac"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_dllinjection_LoadLibrary_CreateRemoteThread.zip",
+          "bytes": 1103116,
+          "sha256": "98071a478f57f2ca71530c4cb839f2054da0e6bd8b106caaa5d9518d1be0ccc8"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_launcher_sct_regsvr32.zip",
+          "bytes": 310095,
+          "sha256": "abeb5c52c75286386e5eb999d7423d738a624191f4a95fb62694b471a10b2dab"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_monologue_netntlm_downgrade.zip",
+          "bytes": 268217,
+          "sha256": "27d88aaccf5dbe2b917684eebe35afdfcc88953c70b27ee949e46204a23cda21"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_powerview_ldap_ntsecuritydescriptor.zip",
+          "bytes": 1002782,
+          "sha256": "6db5eac7fdab1fd1868047615caf590cb13b64a878e203bf3f253c2527229587"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_psinject_PEinjection.zip",
+          "bytes": 827949,
+          "sha256": "ad6297ce8cfb908126e2ec1271d62f6cd8dcdac6006d7b6e5ecd377488b04df0"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/empire_wmic_add_user_backdoor.zip",
+          "bytes": 1166833,
+          "sha256": "4b18e693ed39cc75c429bc6f4b02400eda7dd01f336303e3edaf3cc3262bbac4"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_cmstp_execution_bypassuac.zip",
+          "bytes": 81318,
+          "sha256": "a653c698e8f779261ba0b3ac92bd604d4abe3a510cda8ab1f5ccdd421d013d4c"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_control_panel_execution.zip",
+          "bytes": 151047,
+          "sha256": "d0c6ab023cb7c9db716dce58f68658d7ab25e7c8ebaaa6fe851a2fa01c55555a"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_disable_eventlog_service_startuptype_modification.zip",
+          "bytes": 380571,
+          "sha256": "aaf99c001735e37dcf64206d369114087f0bd239f9d5c477a44f6d0d4cbce85a"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_hh_local_html_payload.zip",
+          "bytes": 135975,
+          "sha256": "c9967cde50a703fa3d139ca73520401bdb7c184930f7b4fb8305e9732167f764"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_mavinject_dll_notepad.zip",
+          "bytes": 53452,
+          "sha256": "262680222316edb2dc0d7dca380dfe75191fb96779b8dacc8aac8a1d8bdc046b"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_metasploit_stop_netprofm_eventlog_after_reboot.zip",
+          "bytes": 632728,
+          "sha256": "5cc62675b3aa6ab835002e57be2523366dc7b20c750e088953dde9f20f799d97"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_metasploit_stop_netprofm_eventlog_before_reboot.zip",
+          "bytes": 1228640,
+          "sha256": "3ce990f0e2299eb21971983c227056f7c3f6fbcb66f3c0ba821dcda0165381fe"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_mshta_html_application_execution.zip",
+          "bytes": 155028,
+          "sha256": "f734cd8d2043da8f9f49d86bea7b5bf35a8c87445aa44975a107936a543ae840"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_register_cimprovider_execute_dll.zip",
+          "bytes": 129780,
+          "sha256": "a92085e34164be8ffc504270a9b0c4979a73f4e5c8ee5f717adc8525eb0b0109"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_stop_event_logging_controlset001_minint_key.zip",
+          "bytes": 460113,
+          "sha256": "f7673e1dcf64557e782fa450dd072175767b2d1fa3388e25fabac881abc0821f"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/psh_stop_event_logging_controlset_minint_key.zip",
+          "bytes": 357954,
+          "sha256": "88e1a3618f286d3ee41682dafaea28bd8932d8e053e648db0e016deef7457082"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/purplesharp_pe_injection_createremotethread.zip",
+          "bytes": 82238,
+          "sha256": "d1cfff7404448fd9ac7558967837a9903bb474957949218c293c09fd56a5ca7a"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/reg_cmd_process_commandline_logging_disabled.zip",
+          "bytes": 357127,
+          "sha256": "59ba811e1d268916b8ef0b65d0cd8ae3ffde0bb59a680ae72d8740eb36cd9b67"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/reg_disable_eventlog_service_startuptype_modification_via_registry.zip",
+          "bytes": 235697,
+          "sha256": "d79d5a13fbb1e7957d748955a1be5c68294e58d322b76e41393d6987fe769656"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/reg_meterpreter_process_commandline_logging_disabled.zip",
+          "bytes": 483159,
+          "sha256": "592e5214cf4b705051cbed79958a73ef50c9d5e9c71a8ebf84392265bc4cddd4"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/reg_stop_event_logging_controlset001_minint_key.zip",
+          "bytes": 275519,
+          "sha256": "6d3d2f07cc048763d87f9eadc6f75f117ec5feb704ebcb2a5be8aa40f74d85ce"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/reg_stop_event_logging_controlset_minint_key.zip",
+          "bytes": 325973,
+          "sha256": "e741989173a43216843507b25f5e6dbb5993419208801526ea21b61ed22af259"
+        },
+        {
+          "path": "datasets/atomic/windows/defense_evasion/host/wmic_remote_xsl_jscript.zip",
+          "bytes": 132543,
+          "sha256": "f5766221059189dafc8b826abeecd46708bb8e5b21a480ecad6aa0a37f382320"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/cmd_discover_iexplorer_version_registry.zip",
+          "bytes": 9193,
+          "sha256": "3215b22ff18ea946923431a51edc83e3e0ba5d4b559ff1d6b7d27c16cc5803da"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/cmd_seatbelt_group_user.zip",
+          "bytes": 48537,
+          "sha256": "d885d5c331641d24594869c62eaae563d1ff0c18a2d3c2ba71f48b10e663b1bc"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/covenant_getdomaingroup_ldap_searchrequest_domain_admins.zip",
+          "bytes": 34808,
+          "sha256": "af11d4d2140d8f9099cdeeb1b469af4dcfb94119f2c1072fb4c5f9e70d354876"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_find_localadmin_smb_svcctl_OpenSCManager.zip",
+          "bytes": 719316,
+          "sha256": "b721c16e8463ff33ffed5415a9d3f874455c8b59d3ebd414ad224539d7892aec"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_getsession_dcerpc_smb_srvsvc_NetSessEnum.zip",
+          "bytes": 468097,
+          "sha256": "43e39d48cbdd2c7c235240b19f7def568968a6abff0d8f355a76deedc7f75659"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_shell_rpc_samr_smb_group_domain_admins_standard_user.zip",
+          "bytes": 224198,
+          "sha256": "aa5c2a87fc3a38e419e3a3885a886a3f4ea3abb0c2b4e219e06f086c9b54eacb"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_shell_samr_EnumDomainUsers.zip",
+          "bytes": 99564,
+          "sha256": "b37c022ce7aa5fed3ad7087e2ec1f37d7b1089ec9bfe7b196f974295d255506b"
+        },
+        {
+          "path": "datasets/atomic/windows/execution/host/cmd_sharpview_pcre_net.zip",
+          "bytes": 28626,
+          "sha256": "314b1d08b9038dd327c8769c82564a44fd26fa1ba17ffa79e52b4683e2821dac"
+        },
+        {
+          "path": "datasets/atomic/windows/execution/host/empire_launcher_vbs.zip",
+          "bytes": 313016,
+          "sha256": "812da270cf8cda6f1948fb6275410f15dc1794d0bd6b623c9c25b2518285019c"
+        },
+        {
+          "path": "datasets/atomic/windows/execution/host/psh_powershell_httplistener.zip",
+          "bytes": 10491,
+          "sha256": "506ba862fd76e0f8d43396e705ec6eebb7a01a5a2954bd70c9f47802d32f4843"
+        },
+        {
+          "path": "datasets/atomic/windows/execution/host/psh_python_webserver.zip",
+          "bytes": 112642,
+          "sha256": "58a62e35ee7a78e88cfca86e628e988a7192ec7fb24013b9d3b86766b25c8a17"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/aadinternals_export_adfsdatabaseconfig_remotely.zip",
+          "bytes": 38555,
+          "sha256": "de1af624eb6cccaf9db82063ff2e27a444b178b1dd45889c50971c6fbf3d062e"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_com_wsman_automation.zip",
+          "bytes": 88334,
+          "sha256": "9b23288621db8a7548049bb2755da302b388b920e0a58310eca57a4746001060"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_copy_smb_CreateRequest.zip",
+          "bytes": 25786,
+          "sha256": "a43e5f20cb412fc068c9e2449e5a7bd0cf8456ebe6a782e69301ea0905590871"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_executeexcel4macro_allowed.zip",
+          "bytes": 695021,
+          "sha256": "4dabf4be2b6103dadf27c29ad5734acf477003b3e1b1922e8e43871da7e0fdef"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_executeexcel4macro_blocked.zip",
+          "bytes": 106399,
+          "sha256": "41ccbd5197bd32c1e66d2faae7c2f34b7de71f5635887e2dd57ad3eb5726b5e9"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_iertutil_dll_hijack.zip",
+          "bytes": 3369148,
+          "sha256": "e03ad2075a74cc1fc22eb0d25eef740e88e114938e46c3f1c36071b78e18376d"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_dcom_registerxll.zip",
+          "bytes": 369026,
+          "sha256": "a18d37fe9d6d5f7cda35911070c94edbf8ab8876489780c6177d6294cab38b80"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_psremoting_command.zip",
+          "bytes": 359550,
+          "sha256": "4a2e0f9688c87a90b17b608ff38fb2230ceb7305ea0368703dcfe53269e3f096"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_psremoting_grunt.zip",
+          "bytes": 622960,
+          "sha256": "3a9b8dfaa1abf039279afc27b872e606bd4bed42f0a2de29254cce3d4126db76"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sc_query_dcerpc_smb_svcctl.zip",
+          "bytes": 62198,
+          "sha256": "3975cdac314bbebb53721668229c9b7925206bac8f61447d154abaf0302a7c30"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_create_dcerpc_smb_svcctl.zip",
+          "bytes": 276984,
+          "sha256": "77487bbd1fc7954adbc9ba07bfeeeb9d57192b0f0e0f54e1ee5a05c71a5be84a"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_query_dcerpc_smb_svcctl.zip",
+          "bytes": 49471,
+          "sha256": "0d39ef84ead00e1d5e3bea173d00fcf7af1268ab64b6b82981301353878e665b"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_start_dcerpc_smb_svcctl.zip",
+          "bytes": 368726,
+          "sha256": "a6cebf14f42f8f4e4f3ea457d88437ce16f0fce5b184ae70f097fcf48f68692c"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpsc_stop_dcerpc_smb_svcctl.zip",
+          "bytes": 145689,
+          "sha256": "1b2254fde3573ef97f936070e07ed5167d632ed048c345c550cc743902b57d4c"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_sharpwmi_create_dcerpc_wmi.zip",
+          "bytes": 195240,
+          "sha256": "6ff5d99660a2ce3691d198e63398ea50d8112472c469c756eeb82b83440ce626"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_wmi_remote_event_subscription_ActiveScriptEventConsumers.zip",
+          "bytes": 351088,
+          "sha256": "6167815b2f1901a267d965335251dc035b211f2b6e0d2063903d764305b80415"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/covenant_wmi_wbemcomn_dll_hijack.zip",
+          "bytes": 620355,
+          "sha256": "66d73cccd7918b12c840a29a2910cc773a7f9d5aeab9636dc219c257fd647874"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_dcom_shellwindows_stager.zip",
+          "bytes": 2169218,
+          "sha256": "9ec1bcfffc46158565ad99a06b9a0a6bac97a152a513c32686be2084f54065c9"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_msbuild_dcerpc_wmi_smb.zip",
+          "bytes": 653574,
+          "sha256": "edbc2fdd9e118da0999d7b941c78501cd4142e2afe9e794aed4349101fb59ca8"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_psexec_dcerpc_tcp_svcctl.zip",
+          "bytes": 656179,
+          "sha256": "8f40e7fc86bbbf31ebd50b3ba537cf0f4378392ae3e74de84bee00aeb0de1fa5"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_psremoting_stager.zip",
+          "bytes": 409741,
+          "sha256": "214355730c8cf903f4423c96aa7459fed7b74258e2a6766b794ba316e9d3a46e"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_shell_dcerpc_smb_service_dll_hijack.zip",
+          "bytes": 865367,
+          "sha256": "59265c906bf2fdac09b876cfa137f6e81e645d85d550c5b4efdebb8f3f491428"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_smbexec_dcerpc_smb_svcctl.zip",
+          "bytes": 753172,
+          "sha256": "c0fc435c9ce0ecdc7cd57b4055977b949ac6b1cae9d7f4ce7aa0f0e5eae7d7f1"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_wmi_dcerpc_wmi_IWbemServices_ExecMethod.zip",
+          "bytes": 675407,
+          "sha256": "96f1dbd9c5b077c8951b6e1f43b7fe01a2620c649889262481f15139a1746d88"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/empire_wmic_add_user_backdoor.zip",
+          "bytes": 1166833,
+          "sha256": "88502d9a8d90f17aa638d7331120d52e7295480ea5fc4a156463399181d1c6e1"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/mimikatz_CVE-2020-1472_Unauthenticated_NetrServerAuthenticate2.zip",
+          "bytes": 78819,
+          "sha256": "03b8cefdd0c39bcbb9c4939af6777c8617dcab0a717e04b53a2fe112c3a2eee0"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/purplesharp_ad_playbook_I.zip",
+          "bytes": 1362498,
+          "sha256": "2a2d80e7b8d8ee6821a1754118f3ab908b4bac84cf4ed3d018e281f631bd2870"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/schtask_create.zip",
+          "bytes": 126281,
+          "sha256": "74394c64b660d5b229936d00ea8b3ceb900126cd9e261f58fa2be766579ec5de"
+        },
+        {
+          "path": "datasets/atomic/windows/lateral_movement/host/schtask_modification.zip",
+          "bytes": 244069,
+          "sha256": "1ad310765981ea51714fad6d651032f54ae24780109135458ecd9ec9df0e70ce"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/cmd_userinitmprlogonscript_batch.zip",
+          "bytes": 12864,
+          "sha256": "53a01d6976b7567a2464628d850c51cc48b1a91a932cd2b0e110a510bcedf858"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/empire_persistence_registry_modification_run_keys_elevated_user.zip",
+          "bytes": 102384,
+          "sha256": "2809354d679025859d723be3ceb1e2c9f9e5dde2ebec5bbea7c398e165a9b67d"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/empire_persistence_registry_modification_run_keys_standard_user.zip",
+          "bytes": 3550216,
+          "sha256": "2965f791bcaf5e6ccfc4059985e81fd7e67ec87f17855b6c383edd1b03a19c36"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/empire_schtasks_creation_execution_elevated_user.zip",
+          "bytes": 4241110,
+          "sha256": "74662dc5c52f4ac2fc9dcb336bae7fb4e101217169c65adf5784b03015501d3b"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/empire_schtasks_creation_standard_user.zip",
+          "bytes": 263732,
+          "sha256": "b073a18420c90394cd2b6ad7589c78d90eba32dc155ed04b12ac824a8fc591b4"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/empire_wmi_local_event_subscriptions_elevated_user.zip",
+          "bytes": 6043932,
+          "sha256": "a507f2edd768b592e6b3157e974fd0468965eee00407387d88356ecb8fd20fea"
+        },
+        {
+          "path": "datasets/atomic/windows/persistence/host/proxylogon_ssrf_rce_poc.zip",
+          "bytes": 378892,
+          "sha256": "cc6ef822788c25b03b20e4d6cf3fa268ea0277483b31614c5d432fd7a55bd3e2"
+        },
+        {
+          "path": "datasets/atomic/windows/privilege_escalation/host/cmd_service_mod_fax.zip",
+          "bytes": 36023,
+          "sha256": "4a40cb09c514f1a4c601588cbfa5c81e12a6f8a5ab92fd76bad846c1a4352447"
+        },
+        {
+          "path": "datasets/atomic/windows/privilege_escalation/host/empire_uac_shellapi_fodhelper.zip",
+          "bytes": 712457,
+          "sha256": "b8cc7aae826f5e4aea3ea47b2b6db69b062c39201de8de9621d5081622d3c504"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_01/metasploit_logonpasswords_lsass_memory_dump.zip",
+          "bytes": 3405389,
+          "sha256": "79045fcc5a8689efed8db4911cadc11b554ef8b0bed1428ee490bb8c3f2578e6"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_02/metasploit_procdump_lsass_memory_dump.zip",
+          "bytes": 2551462,
+          "sha256": "2b32f11b1465f49df8bb4040652b001e4bb8a92de6ae7e84c2977abe68273f04"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_03/metasploit_comsvcs_lsass_memory_dump.zip",
+          "bytes": 2332754,
+          "sha256": "97a834cd72b0803d544c62cc45a41b18a4cc04a605735096be4bc5dad5e9fe7b"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_04/metasploit_out-minidump_lsass_memory_dump.zip",
+          "bytes": 2431111,
+          "sha256": "d6150eab4013ed0a7fc9c6b7266187214706c543c9dc3a370603f524def5de63"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_05/metasploit_sharpdump_lsass_memory_dump.zip",
+          "bytes": 3428302,
+          "sha256": "79e347b411beefaf5c7d0c951fdcb9d308fce20f8eabe666c11fa7b6165053b8"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_06/metasploit_outflank-dumpert_lsass_memory_dump.zip",
+          "bytes": 3326923,
+          "sha256": "ee996c0ddc32611c572f59a68869f7d4327aaac04a3aeee65916b7221347dc1d"
+        },
+        {
+          "path": "datasets/compound/LSASS_campaign_07/metasploit_nanodump_lsass_memory_dump.zip",
+          "bytes": 3545590,
+          "sha256": "5335635ef2bce0fb3f8704e17fb04a3be7400ac7c4bcd6ec7c14454632acaaaf"
+        },
+        {
+          "path": "datasets/compound/Log4Shell/securityauditing_log4shell_cve2021_44228_java_serialized_object.zip",
+          "bytes": 5336,
+          "sha256": "959e1c5c8f84f843710c95889e1b1bd62651c4cc133e75cd54655235039f5c17"
+        },
+        {
+          "path": "datasets/compound/Log4Shell/syslog_auoms_auditd_log4shell_cve2021_44228_jndi_reference.zip",
+          "bytes": 4392,
+          "sha256": "20ca2d3371daca5bff0e6e1ede0c74c6f4df5c8696f959e5bbafb6f058a1b724"
+        },
+        {
+          "path": "datasets/compound/Log4Shell/syslog_sysmon_log4shell_cve2021_44228_jndi_reference.zip",
+          "bytes": 7031,
+          "sha256": "c667b9e7e3a7969e3ef612e65a7dd5f122c856aa5e8b89db935b82b18d2f8b69"
+        },
+        {
+          "path": "datasets/compound/Log4Shell/sysmon_log4shell_cve2021_44228_java_serialized_object.zip",
+          "bytes": 33080,
+          "sha256": "69ce1f900d72243fdca55a3e1af1c0fe149e5c535e6913035c0f772a0d2282c6"
+        },
+        {
+          "path": "datasets/compound/Log4Shell/vminsights_vmconnection_log4shell_cve2021_44228_jndi_reference.zip",
+          "bytes": 1010,
+          "sha256": "7982120483aacfc53405c1129aa74f65998e19d7a9dd82d8e1e1280c5ef74fcb"
+        },
+        {
+          "path": "datasets/compound/_metadata/GoldenSAMLADFSMailAccess.yaml",
+          "bytes": 1807,
+          "sha256": "b529b1dcbdc90e55501b92a9f94323d46624c1c58e3f8c35c936679a69a1614f"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_01.yaml",
+          "bytes": 32691,
+          "sha256": "bc4f2698f03b8b4b73407a2a0ed4c80dcccc30234eeabd2867106a707d4b0fef"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_02.yaml",
+          "bytes": 30600,
+          "sha256": "5ae5bfc2d863fa08dc6bbd7c2e6043adc3c99b2725645128b97fe8f4e347ea06"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_03.yaml",
+          "bytes": 45697,
+          "sha256": "c79047700b91af5a3976b8621b2107d519fe2235a4e0eca21d36c5817336043f"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_04.yaml",
+          "bytes": 34075,
+          "sha256": "1ce46cb0a8fa5ce22cfeb69cf010f1205465a12fa31adafdd9ab1f7ed5f41cf9"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_05.yaml",
+          "bytes": 47804,
+          "sha256": "4e29ad0b1de773ce28db95813739ab18e0fad466d511036b22fc678188938dcf"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_06.yaml",
+          "bytes": 38517,
+          "sha256": "7c1cb087d730b598110c3498f7e33c1bc4954f14e2132c9d275c93455e308a7d"
+        },
+        {
+          "path": "datasets/compound/_metadata/LSASS_campaign_07.yaml",
+          "bytes": 33180,
+          "sha256": "2c03652f2cf3d258acf73b2bfaf7296545065d4d15131590f8bc8853bc8ec0e9"
+        },
+        {
+          "path": "datasets/compound/_metadata/Log4Shell.yaml",
+          "bytes": 2977,
+          "sha256": "59c576718d65b209eab79b54d50502d9582ca7022982080645c96da925546349"
+        },
+        {
+          "path": "datasets/compound/apt29/day1/apt29_evals_day1_manual.zip",
+          "bytes": 13944973,
+          "sha256": "98a073140860560d70080ace9142961be4f64b4862bae892d62d0f254d0fdbe5"
+        },
+        {
+          "path": "datasets/compound/apt29/day2/apt29_evals_day2_manual.zip",
+          "bytes": 43033041,
+          "sha256": "377f8cba5db95a453a3ee8bd19f493efafc23724541482a4da99da28ee4665f9"
+        }
+      ],
+      "unavailable": [
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_shell_net_local_users.zip",
+          "error": "OSError: 22"
+        },
+        {
+          "path": "datasets/atomic/windows/discovery/host/empire_shell_net_localgroup_administrators.zip",
+          "error": "OSError: 22"
+        }
+      ]
+    },
+    {
+      "id": "evtx",
+      "name": "EVTX-ATTACK-SAMPLES",
+      "repository": "https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES",
+      "revision": "4ceed2f4706daf601c212a8f91c113dd85349a2c",
+      "archive_url": "https://codeload.github.com/sbousseaden/EVTX-ATTACK-SAMPLES/zip/4ceed2f4706daf601c212a8f91c113dd85349a2c",
+      "archive_bytes": 6114472,
+      "archive_sha256": "ea8bf4cd30f673907f2ad0ca2ccff501bac55fd28573ee77c0940d9b85396da5",
+      "raw_url_prefix": "https://raw.githubusercontent.com/sbousseaden/EVTX-ATTACK-SAMPLES/4ceed2f4706daf601c212a8f91c113dd85349a2c/",
+      "license": "GPL-3.0",
+      "license_url": "https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES/blob/4ceed2f4706daf601c212a8f91c113dd85349a2c/LICENSE.GPL",
+      "license_sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+      "schema": "Windows EVTX files; native offline wevtutil XML parse",
+      "label_scope": "Scenario/technique metadata, not event-level malicious labels",
+      "purpose": "Independent external scenario coverage only; excluded from model fit, threshold selection and test accuracy estimates",
+      "files": [
+        {
+          "path": "AutomatedTestingTools/Malware/DE_timestomp_and_dll_sideloading_and_RunPersist.evtx",
+          "bytes": 69632,
+          "sha256": "ce94f2bd83c0adf2381afee0f3714b41aef4ae0997350b3aa039d7947865164c"
+        },
+        {
+          "path": "AutomatedTestingTools/Malware/rundll32_cmd_schtask.evtx",
+          "bytes": 69632,
+          "sha256": "4ee3de8ac48d973a800666c3e1d757d11eaf9a960e7144db566bb51d903b4b09"
+        },
+        {
+          "path": "AutomatedTestingTools/Malware/rundll32_hollowing_wermgr_masquerading.evtx",
+          "bytes": 69632,
+          "sha256": "dd771b5c6f30a25886af418e0bb69ded8383c13a08f74e5602cc5878ed623b11"
+        },
+        {
+          "path": "AutomatedTestingTools/Malware/sideloading_injection_persistence_run_key.evtx",
+          "bytes": 69632,
+          "sha256": "7a58c4055659045dbdba8e8bc83252711455f0c4d54e2b963147ef9349822699"
+        },
+        {
+          "path": "AutomatedTestingTools/Malware/sideloading_uacbypass_rundll32_injection_c2.evtx",
+          "bytes": 69632,
+          "sha256": "ead8a4c6c822da22ac98c6f16123090f0eb30955666c63f9acaa0d51561925da"
+        },
+        {
+          "path": "AutomatedTestingTools/PanacheSysmon_vs_AtomicRedTeam01.evtx",
+          "bytes": 1118208,
+          "sha256": "6903dff9f218fa027c704c8c445b74e08b952c8d71be79bd0327f1e792d4aa01"
+        },
+        {
+          "path": "AutomatedTestingTools/WinDefender_Events_1117_1116_AtomicRedTeam.evtx",
+          "bytes": 69632,
+          "sha256": "d7bebbe4a9bd6fdcfe53e019e7386a983f89c2fc7919fc51ecf249453ed60780"
+        },
+        {
+          "path": "AutomatedTestingTools/panache_sysmon_vs_EDRTestingScript.evtx",
+          "bytes": 1118208,
+          "sha256": "9c1371a0632de15095b6ffe2e38991b764d4beaddb1722178e93aa476f83f52f"
+        },
+        {
+          "path": "Command and Control/DE_RDP_Tunnel_5156.evtx",
+          "bytes": 69632,
+          "sha256": "25853cab2d474dd52159d45e8c7b139c27b55767be558447ccbc6f494daec786"
+        },
+        {
+          "path": "Command and Control/DE_RDP_Tunneling_4624.evtx",
+          "bytes": 69632,
+          "sha256": "2668d3d7f0505ad453affcb9e2b7206617cf1ec1e5a212bd8f191eb8523c0ab1"
+        },
+        {
+          "path": "Command and Control/DE_RDP_Tunneling_TerminalServices-RemoteConnectionManagerOperational_1149.evtx",
+          "bytes": 1118208,
+          "sha256": "b9d6d1a3af56501120d1d6b4dbe3d1fc600d88844f255208b4eff0f1e250b00f"
+        },
+        {
+          "path": "Command and Control/DE_sysmon-3-rdp-tun.evtx",
+          "bytes": 69632,
+          "sha256": "1d1eb55d1b7c785db26e19b0d50b9eb4a7928671e4edeb82ea5182cb834c874a"
+        },
+        {
+          "path": "Command and Control/bits_openvpn.evtx",
+          "bytes": 1118208,
+          "sha256": "9dc80ef8dd521d443016559ee5b0e55837a59bfcc9d790b20b72c38a9eddc40e"
+        },
+        {
+          "path": "Command and Control/tunna_iis_rdp_smb_tunneling_sysmon_3.evtx",
+          "bytes": 69632,
+          "sha256": "d7e75b35f9db32c91dc0d066ee935b382253fb56659f19c05833c964f8217469"
+        },
+        {
+          "path": "Credential Access/4794_DSRM_password_change_t1098.evtx",
+          "bytes": 69632,
+          "sha256": "6858de83024b72dff54d75b882103f760eaa85847831578abab78ab5c7f62061"
+        },
+        {
+          "path": "Credential Access/ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx",
+          "bytes": 1118208,
+          "sha256": "f09f993909deb7acdae4c4f6f48e5a8447487e89437873fd8e653436a3dce36c"
+        },
+        {
+          "path": "Credential Access/CA_4624_4625_LogonType2_LogonProc_chrome.evtx",
+          "bytes": 69632,
+          "sha256": "75f199b68d473172705bf874720b01820317fdd7aa4843545c98720dd6de197f"
+        },
+        {
+          "path": "Credential Access/CA_DCSync_4662.evtx",
+          "bytes": 69632,
+          "sha256": "679b2ff27af6c932c07bf3e81391e455fae98e69bf3aff0f524e31aadc418131"
+        },
+        {
+          "path": "Credential Access/CA_Mimikatz_Memssp_Default_Logs_Sysmon_11.evtx",
+          "bytes": 69632,
+          "sha256": "a5c52377c8a430fc4838fdc9b7c1638125b95c618d7efa930be0562124e0bfba"
+        },
+        {
+          "path": "Credential Access/CA_PetiPotam_etw_rpc_efsr_5_6.evtx",
+          "bytes": 10555392,
+          "sha256": "0a5d1831b776a472e0337c9629b615a939df3d4c8fe5d582a0356887ac9dc4eb"
+        },
+        {
+          "path": "Credential Access/CA_chrome_firefox_opera_4663.evtx",
+          "bytes": 69632,
+          "sha256": "e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c"
+        },
+        {
+          "path": "Credential Access/CA_hashdump_4663_4656_lsass_access.evtx",
+          "bytes": 69632,
+          "sha256": "05fc4e1cf2a55b2b0c1623e4404e42f281dc68e0f024503527d19f3c065d39ac"
+        },
+        {
+          "path": "Credential Access/CA_keefarce_keepass_credump.evtx",
+          "bytes": 69632,
+          "sha256": "101037366f9c300f3ec9397ab42b2b9ee35115c3da97b5725c52db04d6bc33b2"
+        },
+        {
+          "path": "Credential Access/CA_keepass_KeeThief_Get-KeePassDatabaseKey.evtx",
+          "bytes": 69632,
+          "sha256": "da1c3fc77c5efdfd652201e2037f5c257ec4e48432900473491b9ca1c32bcf15"
+        },
+        {
+          "path": "Credential Access/CA_protectedstorage_5145_rpc_masterkey.evtx",
+          "bytes": 69632,
+          "sha256": "65931b695ed13ad1d0779342257b8e22b2cc30676d65a2610dc6a540701f7841"
+        },
+        {
+          "path": "Credential Access/CA_sysmon_hashdump_cmd_meterpreter.evtx",
+          "bytes": 69632,
+          "sha256": "897206ca4c3c427753fde880970048494cd5a99be9aaba6154b4e3ac499e24c9"
+        },
+        {
+          "path": "Credential Access/CA_teamviewer-dumper_sysmon_10.evtx",
+          "bytes": 69632,
+          "sha256": "53eaf99a0a50ad2b2b8b86535b6b5f5da30663d5f977a02eeb4e69d2438fa668"
+        },
+        {
+          "path": "Credential Access/LsassSilentProcessExit_process_exit_monitor_3001_lsass.evtx",
+          "bytes": 69632,
+          "sha256": "9a9467f92de5a4b49302800b8c1d4ca0a5f6b562e23aaaa36d87bae690888014"
+        },
+        {
+          "path": "Credential Access/MSSQL_multiple_failed_logon_EventID_18456.evtx",
+          "bytes": 69632,
+          "sha256": "014e936e1b5bad13275d3c6f2e61cc6dc74c4514557b20264b27df06a08d6ee6"
+        },
+        {
+          "path": "Credential Access/Powershell_4104_MiniDumpWriteDump_Lsass.evtx",
+          "bytes": 69632,
+          "sha256": "54ff62eff26af588782e066b7b3b1b952bc83e1b75a84d81f9492e654cb5c319"
+        },
+        {
+          "path": "Credential Access/Sysmon13_MachineAccount_Password_Hash_Changed_via_LsarSetSecret.evtx",
+          "bytes": 69632,
+          "sha256": "f2e5df7f6929dcb0ab9c45f0c5f30488dfb167a56ee472fa2ae6bf52f610fa94"
+        },
+        {
+          "path": "Credential Access/Sysmon_13_Local_Admin_Password_Changed.evtx",
+          "bytes": 69632,
+          "sha256": "821e5225b243dfcb44789b1904b7d9ae5ab7a458eeeb68b24af27ace1f477367"
+        },
+        {
+          "path": "Credential Access/Zerologon_CVE-2020-1472_DFIR_System_NetLogon_Error_EventID_5805.evtx",
+          "bytes": 69632,
+          "sha256": "519cdae51e2a3a3045ff3a3c61fc06576869deed23a81b9e45619f9521f6bc63"
+        },
+        {
+          "path": "Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx",
+          "bytes": 69632,
+          "sha256": "7ea57911a3afea3777e503e69d30d91b635201df3e6f7f5bbffb1495791064e6"
+        },
+        {
+          "path": "Credential Access/babyshark_mimikatz_powershell.evtx",
+          "bytes": 69632,
+          "sha256": "3747c33a60a32142bf4e30bf023f155b2c0d6e7a018bce8b7bafbd5aa7ec109c"
+        },
+        {
+          "path": "Credential Access/dc_applog_ntdsutil_dfir_325_326_327.evtx",
+          "bytes": 69632,
+          "sha256": "56b83f3f107ad9e02ecbcdc849930608f86cac1269d156c90e38326bc401a6ec"
+        },
+        {
+          "path": "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+          "bytes": 1118208,
+          "sha256": "5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106"
+        },
+        {
+          "path": "Credential Access/etw_rpc_zerologon.evtx",
+          "bytes": 1118208,
+          "sha256": "001b973cb13a18a2febd5de3689eac65774ca8025eb1428db38508ff199af99a"
+        },
+        {
+          "path": "Credential Access/kerberos_pwd_spray_4771.evtx",
+          "bytes": 69632,
+          "sha256": "4a0a1c7132e216dbc704c806e9429df9ae3ac00485d5238e50c776e3099ae11d"
+        },
+        {
+          "path": "Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx",
+          "bytes": 69632,
+          "sha256": "177db8fa70262b4e2eba4e2902c97e82e3c6943fd111bde2ee522d5f1d57e856"
+        },
+        {
+          "path": "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+          "bytes": 69632,
+          "sha256": "9ac47a1ab7ac5e899dede49a4ea3512f0d3628edb9605981fe78bc0aec6f296f"
+        },
+        {
+          "path": "Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx",
+          "bytes": 69632,
+          "sha256": "6a5d703c2838d568bdf0db3578dc3ddbb5de44c24839c5defd2c0545b49043e0"
+        },
+        {
+          "path": "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+          "bytes": 69632,
+          "sha256": "5eb397ece85fa13263685cb1d61ec6fdb768f2dc83d17e222f9d318f3703044f"
+        },
+        {
+          "path": "Credential Access/sysmon17_18_kekeo_tsssp_default_np.evtx",
+          "bytes": 69632,
+          "sha256": "5784342008a619ae910f88fe435bc30fc372399f14405c6265dbce8c9b578838"
+        },
+        {
+          "path": "Credential Access/sysmon_10_11_lsass_memdump.evtx",
+          "bytes": 69632,
+          "sha256": "915f0859251552b6c33efc32f6184d2c25419c5859852124a7f14ed6ec1a3723"
+        },
+        {
+          "path": "Credential Access/sysmon_10_11_outlfank_dumpert_and_andrewspecial_memdump.evtx",
+          "bytes": 69632,
+          "sha256": "f0d11bf8e186947aaf64c3a57debb1b665f518e2dab13acdaafb30c7e8d262af"
+        },
+        {
+          "path": "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+          "bytes": 69632,
+          "sha256": "d1bf591cabf7d21f49936150bfaf433da7665211ba3fd00bc806f4912a6f96b4"
+        },
+        {
+          "path": "Credential Access/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.evtx",
+          "bytes": 69632,
+          "sha256": "9a1689574ed08c1fb18e7ff3f3bed612109aedcb7bf8efbf3537d756e669e96f"
+        },
+        {
+          "path": "Credential Access/sysmon_13_keylogger_directx.evtx",
+          "bytes": 69632,
+          "sha256": "a3ca60a7b49d5a6900460431d4aad4f75e915b9baf8fc211878c2b7bcdac4b6b"
+        },
+        {
+          "path": "Credential Access/sysmon_2x10_lsass_with_different_pid_RtlCreateProcessReflection.evtx",
+          "bytes": 69632,
+          "sha256": "7d160c1b636f8eb3642e9c2c15c941c136d9ecbf19116b18b19f981324d44e00"
+        },
+        {
+          "path": "Credential Access/sysmon_3_10_Invoke-Mimikatz_hosted_Github.evtx",
+          "bytes": 69632,
+          "sha256": "59c28ff11e4b9b329ee6b0859a5514f772913e95ef9ba8f94c46e02c4d78be17"
+        },
+        {
+          "path": "Credential Access/sysmon_rdrleakdiag_lsass_dump.evtx",
+          "bytes": 69632,
+          "sha256": "17f010bff45a34212e5c5ff13ed1106274f65e3524fc508f7481db8aaeef0434"
+        },
+        {
+          "path": "Credential Access/tutto_malseclogon.evtx",
+          "bytes": 69632,
+          "sha256": "7f8651fa3ed49bb02a0760e3b4124e08aa0579d580395ea1b1c8c24332fce092"
+        },
+        {
+          "path": "Defense Evasion/DE_104_system_log_cleared.evtx",
+          "bytes": 69632,
+          "sha256": "5579cdca073ee4864ea82d656aa2d25400b5c1e85b8e688db5d85f6dc558c2af"
+        },
+        {
+          "path": "Defense Evasion/DE_1102_security_log_cleared.evtx",
+          "bytes": 1118208,
+          "sha256": "a0615707b547a2ac254688fd725c3c590f62440fc9b7947c2843dd40498a39e8"
+        },
+        {
+          "path": "Defense Evasion/DE_BYOV_Zam64_CA_Memdump_sysmon_7_10.evtx",
+          "bytes": 69632,
+          "sha256": "329b2a8c70d43789e03bad581e971c4f84aeb2852c5a7c960fa57454225e5199"
+        },
+        {
+          "path": "Defense Evasion/DE_EventLog_Service_Crashed.evtx",
+          "bytes": 69632,
+          "sha256": "97637b9c858afe52cd644108b30f0aaaeea8837db900b06e40c00c9bc45a3963"
+        },
+        {
+          "path": "Defense Evasion/DE_Fake_ComputerAccount_4720.evtx",
+          "bytes": 69632,
+          "sha256": "8b0c2b1998bbd6292fbd23c2fbd954ed2a0db5ae38f39493e718262b215b4da9"
+        },
+        {
+          "path": "Defense Evasion/DE_KernelDebug_and_TestSigning_ON_Security_4826.evtx",
+          "bytes": 69632,
+          "sha256": "3fbd57015ffdacdb063535f1269782f9c7ac27da74b9c009ae50b636e3d3f836"
+        },
+        {
+          "path": "Defense Evasion/DE_Powershell_CLM_Disabled_Sysmon_12.evtx",
+          "bytes": 69632,
+          "sha256": "3eb77febe76db38146275927c57fa7fcb98394c2261858d957dabc90573ac7c0"
+        },
+        {
+          "path": "Defense Evasion/DE_ProcessHerpaderping_Sysmon_11_10_1_7.evtx",
+          "bytes": 69632,
+          "sha256": "cafd901d6b6583a2441386ef6b42c380090270e91eb3431ec01a77ccb0e1c37f"
+        },
+        {
+          "path": "Defense Evasion/DE_UAC_Disabled_Sysmon_12_13.evtx",
+          "bytes": 69632,
+          "sha256": "06d462b8367cfc620bc84dbda970cf34bff761e02d9d6e1d33bc48f56bc66e6d"
+        },
+        {
+          "path": "Defense Evasion/DE_WinEventLogSvc_Crash_System_7036.evtx",
+          "bytes": 69632,
+          "sha256": "026f7df81fd1ac2b8c98678d340b05ffc330f8e944026ec75af48df00b1ce871"
+        },
+        {
+          "path": "Defense Evasion/DE_remote_eventlog_svc_crash_byt3bl33d3r_sysmon_17_1_3.evtx",
+          "bytes": 69632,
+          "sha256": "aadfd6f526c9ce0b76381f8c7a047b0882fcd2a4640a733f9b4b90d68a34446b"
+        },
+        {
+          "path": "Defense Evasion/DE_renamed_psexec_service_sysmon_17_18.evtx",
+          "bytes": 69632,
+          "sha256": "3b58311891bc80b239da102dec9c462d9c8d07c1f0ba5fedaf2c59e1e4447179"
+        },
+        {
+          "path": "Defense Evasion/DE_suspicious_remote_eventlog_svc_access_5145.evtx",
+          "bytes": 69632,
+          "sha256": "bd9b7712b67b16515f70fd5168142aca1f4cb88cdc1f51c08cf838e317cfdf59"
+        },
+        {
+          "path": "Defense Evasion/DE_xp_cmdshell_enabled_MSSQL_EID_15457.evtx",
+          "bytes": 69632,
+          "sha256": "2ef4fa374e6ccc23efeb32d12ce38362673cc0afa2e986fcfd88f882480ec582"
+        },
+        {
+          "path": "Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx",
+          "bytes": 69632,
+          "sha256": "1162521cb06986ddef24bff7c044b05d63f37ea8faeaa6acd8cc2529b05c7618"
+        },
+        {
+          "path": "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+          "bytes": 1118208,
+          "sha256": "7a0c541506770e6ef05e327f600c7fc1d328676058214a0e3a6a82c7d7e8fcdf"
+        },
+        {
+          "path": "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx",
+          "bytes": 69632,
+          "sha256": "95b499a8478cce0fa8eb579c236a5216c1ba8dff8d4b98f751b2d52edba67400"
+        },
+        {
+          "path": "Defense Evasion/Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+          "bytes": 69632,
+          "sha256": "90c5a7871a9f90bcf6fdea15fc6623aac5fe29c63282bdf00b8c1b687dac4e2c"
+        },
+        {
+          "path": "Defense Evasion/Sysmon_12_DE_AntiForensics_MRU_DeleteKey.evtx",
+          "bytes": 69632,
+          "sha256": "1eb4fc9d4fc6c4c36db7c4ec2ae5a6833e6cfb8d26e4c1f8d0653d5a78c533f3"
+        },
+        {
+          "path": "Defense Evasion/Win_4985_T1186_Process_Doppelganging.evtx",
+          "bytes": 69632,
+          "sha256": "ec2fe6bac8ecbc6e2bf5b253792f2cace2d4530af0152ba9f58dd446db193ae8"
+        },
+        {
+          "path": "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx",
+          "bytes": 69632,
+          "sha256": "a623b11315eacd9732da5ebeabdb7c72d0f641fdf0ec5d2ec43e360abd13837e"
+        },
+        {
+          "path": "Defense Evasion/de_PsScriptBlockLogging_disabled_sysmon12_13.evtx",
+          "bytes": 69632,
+          "sha256": "aff2a84996514a6a3e6369de06c2d8edd8dcf4afc3e8e5c2c6fbc38431ef9084"
+        },
+        {
+          "path": "Defense Evasion/de_hiding_files_via_attrib_cmdlet.evtx",
+          "bytes": 69632,
+          "sha256": "8bb94aeb8ee163f9d7363382656057feed83c2a22abe25f04a36c61b78b80e8f"
+        },
+        {
+          "path": "Defense Evasion/de_portforward_netsh_rdp_sysmon_13_1.evtx",
+          "bytes": 69632,
+          "sha256": "9ca0c561593fbd30956437d566e51e5e913829ba2aec30c0d867d739d4b3f3f8"
+        },
+        {
+          "path": "Defense Evasion/de_powershell_execpolicy_changed_sysmon_13.evtx",
+          "bytes": 69632,
+          "sha256": "da5765253da63f39373dd9f8df0ec9f7573acb6059c6b44f7d7b3ca83393f645"
+        },
+        {
+          "path": "Defense Evasion/de_sysmon_13_VBA_Security_AccessVBOM.evtx",
+          "bytes": 69632,
+          "sha256": "9045bbb928d944da7156b488cdc036d40961736a592bb1e6c496786fd02415c6"
+        },
+        {
+          "path": "Defense Evasion/de_unmanagedpowershell_psinject_sysmon_7_8_10.evtx",
+          "bytes": 69632,
+          "sha256": "13099e0dd75dd4222c289864902cb12d0c63777f689709a36531fae3e2e43c05"
+        },
+        {
+          "path": "Defense Evasion/evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+          "bytes": 69632,
+          "sha256": "8034cbbcf25f2d33c9f92d518e29e4501ca2611c5396e15b4b2a60654315fd4b"
+        },
+        {
+          "path": "Defense Evasion/evasion_codeinj_odzhan_spoolsv_sysmon_10_1.evtx",
+          "bytes": 69632,
+          "sha256": "768feeb10b97df3903002d023efa4f83f5392a5dd80e10d609f0063d5353f291"
+        },
+        {
+          "path": "Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx",
+          "bytes": 69632,
+          "sha256": "844b8d7aa509fa95cd0734dcd09e16a76d9e3fed49b234ea954b7d94b5571a8c"
+        },
+        {
+          "path": "Defense Evasion/meterpreter_migrate_to_explorer_sysmon_8.evtx",
+          "bytes": 69632,
+          "sha256": "9e6fe88d33af7ebee4841098a639a04215b3d04cc8e0f1d4f6fa94212fe5d2fc"
+        },
+        {
+          "path": "Defense Evasion/process_suspend_sysmon_10_ga_800.evtx",
+          "bytes": 69632,
+          "sha256": "21ed5dc7b3e18d1280d6ff8f50d198d88294423c41aec0d790ba767adc798238"
+        },
+        {
+          "path": "Defense Evasion/sideloading_wwlib_sysmon_7_1_11.evtx",
+          "bytes": 69632,
+          "sha256": "d6a2d4e6f886c7a5cf9c6734527e38c6f7bfe051283cc6d39084be1c713a743d"
+        },
+        {
+          "path": "Defense Evasion/sysmon_10_1_ppid_spoofing.evtx",
+          "bytes": 69632,
+          "sha256": "74dda489578fc89d0d8b684126f1d913750da5b9aa30869afa5c054f06a4754e"
+        },
+        {
+          "path": "Defense Evasion/sysmon_13_rdp_settings_tampering.evtx",
+          "bytes": 69632,
+          "sha256": "1a877ee743da4f3183e19f30f9d864f9c86bd119fb4c47fa849af5be04985944"
+        },
+        {
+          "path": "Defense Evasion/sysmon_2_11_evasion_timestomp_MACE.evtx",
+          "bytes": 69632,
+          "sha256": "1fd461647854d19cf9c813a419ffc728522507777e76d7a32150e58e746d43d6"
+        },
+        {
+          "path": "Discovery/4799_remote_local_groups_enumeration.evtx",
+          "bytes": 69632,
+          "sha256": "c998491414379a4cd7b2f2d6025b7e4c1d1e13e8c31c623368d32b7acebcf93f"
+        },
+        {
+          "path": "Discovery/Discovery_Remote_System_NamedPipes_Sysmon_18.evtx",
+          "bytes": 69632,
+          "sha256": "40d36563e61b022c7115b5723a796cb138b60eb61d85d9bcf8fc8dfdf0cf02f9"
+        },
+        {
+          "path": "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+          "bytes": 1118208,
+          "sha256": "3e1451e5d8845360044e11807219073a289c9183142a7032bbee2796d2577a37"
+        },
+        {
+          "path": "Discovery/discovery_UEFI_Settings_rweverything_sysmon_6.evtx",
+          "bytes": 69632,
+          "sha256": "1f1903ca9c4a89b9e463c0c0de671da0862b0aa06af9145cfabd0255468b5eba"
+        },
+        {
+          "path": "Discovery/discovery_bloodhound.evtx",
+          "bytes": 69632,
+          "sha256": "34f153b6384a6842fe4c635ec224f7551aef2c69b89267715413fd7d00690eb0"
+        },
+        {
+          "path": "Discovery/discovery_enum_shares_target_sysmon_3_18.evtx",
+          "bytes": 69632,
+          "sha256": "c939a9aa65b2b262154571b6290234f559e2b22546ebfe5a57fb792f452f4198"
+        },
+        {
+          "path": "Discovery/discovery_local_user_or_group_windows_security_4799_4798.evtx",
+          "bytes": 69632,
+          "sha256": "dc2d739363f7ee4c27c429bcff0676e70d605b1f99198fd59433969dc455d65f"
+        },
+        {
+          "path": "Discovery/discovery_meterpreter_ps_cmd_process_listing_sysmon_10.evtx",
+          "bytes": 1118208,
+          "sha256": "4a2f88aee90d58fa58fd32a3c1bb31e76cdd1caa4a36f2cfb63b6aa045f60378"
+        },
+        {
+          "path": "Discovery/discovery_psloggedon.evtx",
+          "bytes": 69632,
+          "sha256": "aa2f3ad059952502d159ead3225a6dac6f2903d76f2ce8f503933deb46af7f07"
+        },
+        {
+          "path": "Discovery/discovery_sysmon_18_Invoke_UserHunter_NetSessionEnum_DC-srvsvc.evtx",
+          "bytes": 69632,
+          "sha256": "616a8eed6a0e0901679607659b9c71df38e4e99081ac8f8219113ae4330edf47"
+        },
+        {
+          "path": "Discovery/discovery_sysmon_3_Invoke_UserHunter_SourceMachine.evtx",
+          "bytes": 69632,
+          "sha256": "a743d37d41d7b88e85ff11baaa2050739fd68703a53ac94cc06df4a28a59ede4"
+        },
+        {
+          "path": "Execution/Exec_sysmon_meterpreter_reversetcp_msipackage.evtx",
+          "bytes": 69632,
+          "sha256": "328ec1b4b6c531af991a2de2221900ec93db1853f7446f61c7e3c9bf9bf052e3"
+        },
+        {
+          "path": "Execution/Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.evtx",
+          "bytes": 69632,
+          "sha256": "435da66e3edbb223208cdd31f2aff37ffb3037b091d728fa427d5067022fcc92"
+        },
+        {
+          "path": "Execution/Sysmon_Exec_CompiledHTML.evtx",
+          "bytes": 69632,
+          "sha256": "c139f6920de2f2712137589196ab733d2566cd211e4f8dca62fd7f35a88fb21e"
+        },
+        {
+          "path": "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+          "bytes": 69632,
+          "sha256": "872e959cb691d3e3d3a48068c02c7fb579c2d818a007fbd2831f6616bb8c7082"
+        },
+        {
+          "path": "Execution/evasion_execution_imageload_wuauclt_lolbas.evtx",
+          "bytes": 69632,
+          "sha256": "6e2101b499829c9c7b273309821d63addd0a5020fd1069b29d9bd146586814e2"
+        },
+        {
+          "path": "Execution/exec_driveby_cve-2018-15982_sysmon_1_10.evtx",
+          "bytes": 69632,
+          "sha256": "18c724eefbc80312cf0628e0cd1390c138c216c8b057c8a5e287f2bef2640727"
+        },
+        {
+          "path": "Execution/exec_msxsl_xsl_sysmon_1_7.evtx",
+          "bytes": 69632,
+          "sha256": "ddaec1c8c49cb3706e9daf184bbcb4c332ae4b148924908ef65acb621ca8e84a"
+        },
+        {
+          "path": "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+          "bytes": 69632,
+          "sha256": "fb5679aec77dc45a35902f705b513811dfea0f2f93c9c8503464a20270c3222f"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+          "bytes": 69632,
+          "sha256": "11150ee64363501f5f5ca7ab359e696a6a7bb51a1c76f5fb182c38682a5e7a07"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_11_lolbin_rundll32_shdocvw_openurl.evtx",
+          "bytes": 69632,
+          "sha256": "a958cf481c4a9fb6e434dfdd6cad6974e577bad6716926b6ff5b6c6a2acce74c"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_11_lolbin_rundll32_zipfldr_RouteTheCall.evtx",
+          "bytes": 69632,
+          "sha256": "03a43d28ce470db4b3a9e40bda8147a7fa254cbf3237ff2219c3c09e8ddb8847"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_7_jscript9_defense_evasion.evtx",
+          "bytes": 69632,
+          "sha256": "34588fcca4663a5abf9111b58860d8b0b2b8e0cf67acc61599874daa1edfcc4d"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_ftp.evtx",
+          "bytes": 69632,
+          "sha256": "aadae0e31b5f2310284687062010251fdd9ed9b8e8d76be14b79896d05f970ef"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_lolbin_pcalua.evtx",
+          "bytes": 69632,
+          "sha256": "3d99ad191360bb22739ce0cbb87dc4d3646f9084d2e6f042fb570f39b0f97418"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_lolbin_renamed_regsvr32_scrobj.evtx",
+          "bytes": 69632,
+          "sha256": "4baa0bc603d1e8b50212e60931431c5c6f7bf35fcdedb80bf6ab1fc77907ec04"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_lolbin_rundll32_advpack_RegisterOCX.evtx",
+          "bytes": 69632,
+          "sha256": "6d5b52398a67b36c160ec22db8e027efbc3e40943075d2d79c748931bc8d9982"
+        },
+        {
+          "path": "Execution/exec_sysmon_1_rundll32_pcwutl_LaunchApplication.evtx",
+          "bytes": 69632,
+          "sha256": "d5f8d2c619562d8dcfc6c68ee51131436e060d036447aae1e88c89518a191f9a"
+        },
+        {
+          "path": "Execution/exec_sysmon_lobin_regsvr32_sct.evtx",
+          "bytes": 69632,
+          "sha256": "d6978888a7dead4523c01df417aa7ea6ad2599a5bbf1acd05d89882aac956442"
+        },
+        {
+          "path": "Execution/exec_wmic_xsl_internet_sysmon_3_1_11.evtx",
+          "bytes": 69632,
+          "sha256": "8b3448717a53b1c3e0dc4803b128da844f052bdd5c9d6afac99b69148e89ef94"
+        },
+        {
+          "path": "Execution/execution_evasion_visual_studio_prebuild_event.evtx",
+          "bytes": 69632,
+          "sha256": "4faca379cd9e454539b922d56037003c9aaaf049185c9ddcad384f041cc74c3f"
+        },
+        {
+          "path": "Execution/revshell_cmd_svchost_sysmon_1.evtx",
+          "bytes": 69632,
+          "sha256": "08ce1feab22e30eb12a5a5b1ba4ac0aa552ff988b762d08de3a4d75ee1636abd"
+        },
+        {
+          "path": "Execution/rogue_msi_url_1040_1042.evtx",
+          "bytes": 1118208,
+          "sha256": "3e4fff1443d6b63f1f575574555c62492f307bbbfd967551e5fe4d4c2141286e"
+        },
+        {
+          "path": "Execution/susp_explorer_exec.evtx",
+          "bytes": 69632,
+          "sha256": "e36ecc5634406fa5a8a898b3d0934a6c258891f27ccea97ba4972a81085b6af9"
+        },
+        {
+          "path": "Execution/susp_explorer_exec_root_cmdline_@rimpq_@CyberRaiju.evtx",
+          "bytes": 69632,
+          "sha256": "7ad60f106034ee3b3ea2614766dabb75bd03ef56431648fdfc56d0d83a87d86b"
+        },
+        {
+          "path": "Execution/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx",
+          "bytes": 69632,
+          "sha256": "f63ea09964ad1b6cc1d1dab6d8203a96f4eae71dd4cddc5408719afdc6e861af"
+        },
+        {
+          "path": "Execution/sysmon_1_11_rundll32_cpl_ostap.evtx",
+          "bytes": 69632,
+          "sha256": "3a343508ea71725bf118a85971840257bbba793d25336993cea73274743c3550"
+        },
+        {
+          "path": "Execution/sysmon_exec_from_vss_persistence.evtx",
+          "bytes": 69632,
+          "sha256": "9abd2bd89115f77f79a96d0ffcc0b1cdb238d2c6d3edcaf24abddc50ee405964"
+        },
+        {
+          "path": "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+          "bytes": 69632,
+          "sha256": "5f83c2a19819cf21098ff7047b52d5ece20303bb95332e4020660da6de9c6050"
+        },
+        {
+          "path": "Execution/sysmon_lolbin_bohops_vshadow_exec.evtx",
+          "bytes": 69632,
+          "sha256": "9cabd9accd1cad037ef7408bfddd9639f793665b73634833722b8cd842485fed"
+        },
+        {
+          "path": "Execution/sysmon_mshta_sharpshooter_stageless_meterpreter.evtx",
+          "bytes": 69632,
+          "sha256": "a2c396ac66aed02c0e36c6e467db3c3b83a57d003604ca79eb2a33175efcbad1"
+        },
+        {
+          "path": "Execution/sysmon_vbs_sharpshooter_stageless_meterpreter.evtx",
+          "bytes": 69632,
+          "sha256": "57748248a6fbe68c36332acf603b537acce263a3c1b17f6a1cc5f635aaee7558"
+        },
+        {
+          "path": "Execution/sysmon_zipexec.evtx",
+          "bytes": 69632,
+          "sha256": "4d995c2a339d3c272afd4ac8cf01f009ca5358bafe3fa51889b28f86296cd894"
+        },
+        {
+          "path": "Execution/temp_scheduled_task_4698_4699.evtx",
+          "bytes": 69632,
+          "sha256": "a7decf0fbabc340e37de7e7c39fddd5398a7106a4f6acded0ea1d2ffa6bf8b70"
+        },
+        {
+          "path": "Execution/windows_bits_4_59_60_lolbas desktopimgdownldr.evtx",
+          "bytes": 69632,
+          "sha256": "0269326ab0e308192181a470bd588550d524e7cffd13a60373b29b24c32b1ead"
+        },
+        {
+          "path": "LICENSE.GPL",
+          "bytes": 35141,
+          "sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2"
+        },
+        {
+          "path": "Lateral Movement/DFIR_RDP_Client_TimeZone_RdpCoreTs_104_example.evtx",
+          "bytes": 69632,
+          "sha256": "b0d91162d7e3b211968ab9d797374a4576cc5cb233757e4f62776a60eb456e9d"
+        },
+        {
+          "path": "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+          "bytes": 69632,
+          "sha256": "b3cdcbad24144417123becbc62d73d7954e832657d92f3a6b63e7b61291afede"
+        },
+        {
+          "path": "Lateral Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx",
+          "bytes": 69632,
+          "sha256": "bbfd87cacdd56a9135de1838666937cd6c74daba47b366bba0c11f95ce97f461"
+        },
+        {
+          "path": "Lateral Movement/LM_5145_Remote_FileCopy.evtx",
+          "bytes": 1118208,
+          "sha256": "3806a2b6662d82e13969939251539e10532bda11f10a5ed6c3565b9c0679907e"
+        },
+        {
+          "path": "Lateral Movement/LM_DCOM_MSHTA_LethalHTA_Sysmon_3_1.evtx",
+          "bytes": 69632,
+          "sha256": "155cc5da10cb63a7fb69747c440796be17d1f4230ba24e7cb45423bdd9c368b6"
+        },
+        {
+          "path": "Lateral Movement/LM_ImageLoad_NFSH_Sysmon_7.evtx",
+          "bytes": 69632,
+          "sha256": "aca97ff41ccc3fb314e97ae5c9e0aa6adcaf97f0cfd4ce92ee3178ae76a50264"
+        },
+        {
+          "path": "Lateral Movement/LM_NewShare_Added_Sysmon_12_13.evtx",
+          "bytes": 69632,
+          "sha256": "95ce1cefe507a1de70aa5cd987cee942ecdad4dd692cbedb435c58b2cd9fda00"
+        },
+        {
+          "path": "Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx",
+          "bytes": 69632,
+          "sha256": "c890d2b67dc2902b2fa5a094e517674920911a15b273f43c674fbfaa69540658"
+        },
+        {
+          "path": "Lateral Movement/LM_REMCOM_5145_TargetHost.evtx",
+          "bytes": 69632,
+          "sha256": "9f6fd1e395454108e2176448f31cc8354378075f51474756a1ed2418e9bbdae2"
+        },
+        {
+          "path": "Lateral Movement/LM_Remote_Service01_5145_svcctl.evtx",
+          "bytes": 69632,
+          "sha256": "5c49c677d0fdce4402369c953e29065d93cc8a3f2071cb8ce997c25a60cd53cc"
+        },
+        {
+          "path": "Lateral Movement/LM_Remote_Service02_7045.evtx",
+          "bytes": 69632,
+          "sha256": "af758eb492b6d5ab6665f7e4c44b31490f57be78c37dc0a8b1da714bb0d3d458"
+        },
+        {
+          "path": "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+          "bytes": 69632,
+          "sha256": "53999570b8edb7f909cb07165fecda1f29bf04e3462d13dc404e31f31a9ab932"
+        },
+        {
+          "path": "Lateral Movement/LM_WMIC_4648_rpcss.evtx",
+          "bytes": 69632,
+          "sha256": "421b796a74d3b0bdeab65d5ff520dd825822809a4ed2d38b87c9393dbde43d3b"
+        },
+        {
+          "path": "Lateral Movement/LM_WMI_4624_4688_TargetHost.evtx",
+          "bytes": 69632,
+          "sha256": "3ff3fcdb55c08ec0eaa39b25c1e02a205314f367bcedc662586bd063185ca41d"
+        },
+        {
+          "path": "Lateral Movement/LM_add_new_namedpipe_tp_nullsession_registry_turla_like_ttp.evtx",
+          "bytes": 69632,
+          "sha256": "9ca45e8f1506d2bda35a9c10c3af95b1463672d9fffddbaca58d8dc03bb8636f"
+        },
+        {
+          "path": "Lateral Movement/LM_dcom_shwnd_shbrwnd_mmc20_failed_traces_system_10016.evtx",
+          "bytes": 69632,
+          "sha256": "aed4ec89526d0a5fe3427184664379fd243598f894b2da8cd4b75c3e6c616e57"
+        },
+        {
+          "path": "Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx",
+          "bytes": 69632,
+          "sha256": "6c50f3c7106080fb4e2535285d55435c325b651af7558e5e61a4fe82d80dbdce"
+        },
+        {
+          "path": "Lateral Movement/LM_regsvc_DirectoryServiceExtPt_Lsass_NTDS_AdamXpn.evtx",
+          "bytes": 69632,
+          "sha256": "c351c446c1aaa3e9cd70ee891ad7f0b135573e339d9e383f0a361c687b477fe5"
+        },
+        {
+          "path": "Lateral Movement/LM_renamed_psexecsvc_5145.evtx",
+          "bytes": 69632,
+          "sha256": "38343c25834964a28a23cb9ad43e1d72c8ffbac0b21105877956e80e38465f4d"
+        },
+        {
+          "path": "Lateral Movement/LM_sysmon_1_12_13_3_tsclient_SharpRdp.evtx",
+          "bytes": 69632,
+          "sha256": "595bfaea747cb5a872eff12d637f6abc432d8e1a37be1dd7313a1c7e53b1008a"
+        },
+        {
+          "path": "Lateral Movement/LM_sysmon_3_12_13_1_SharpRDP.evtx",
+          "bytes": 69632,
+          "sha256": "2c0aa9ea79dd513dee70daf1aeb5cb8d1ca5bad36c96929cb0a61db001d0f41a"
+        },
+        {
+          "path": "Lateral Movement/LM_sysmon_3_DCOM_ShellBrowserWindow_ShellWindows.evtx",
+          "bytes": 69632,
+          "sha256": "be5cb186b8217f49f8e9531bd8ac6fc87ce4659ad5366bf73aa28ba36cdbec68"
+        },
+        {
+          "path": "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+          "bytes": 69632,
+          "sha256": "18ffdda9c24e593d6b1414b6e05c7f7a5dbffb8588a387c165431b61ab52d76f"
+        },
+        {
+          "path": "Lateral Movement/LM_sysmon_remote_task_src_powershell.evtx",
+          "bytes": 69632,
+          "sha256": "3b047a264a341faa16e33af4cbf4097f6db3aec75e5c87082f7b9551a3cc0e5b"
+        },
+        {
+          "path": "Lateral Movement/LM_tsclient_startup_folder.evtx",
+          "bytes": 69632,
+          "sha256": "8ca6304cdbdde41b148cf9b25f1978e1eabb1e2253444ba3e8d01379b5ad3323"
+        },
+        {
+          "path": "Lateral Movement/LM_typical_IIS_webshell_sysmon_1_10_traces.evtx",
+          "bytes": 69632,
+          "sha256": "6f1cb3c435389d961261ccfbb2c4562b156d4160319fe4736ce1506a43327c7b"
+        },
+        {
+          "path": "Lateral Movement/LM_winrm_exec_sysmon_1_winrshost.evtx",
+          "bytes": 69632,
+          "sha256": "7115c48511d18d934d1e63417b7b1d5d2b4fef903e716852b00ebc481ee5f2e9"
+        },
+        {
+          "path": "Lateral Movement/LM_winrm_target_wrmlogs_91_wsmanShellStarted_poorLog.evtx",
+          "bytes": 69632,
+          "sha256": "e5d434f9ade9eafc12990d9826e7a92db801c1a138ab31dcb01f6fd172f3e42a"
+        },
+        {
+          "path": "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+          "bytes": 69632,
+          "sha256": "9d10de497c8d7929f262be305547d148bac17e1d4fd72222bfae3855ddf9c93a"
+        },
+        {
+          "path": "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+          "bytes": 69632,
+          "sha256": "21b8852b2b386f4d3f6f0c8a7304de8e628bb43cfa23888ab317b95b784ffe59"
+        },
+        {
+          "path": "Lateral Movement/LM_xp_cmdshell_MSSQL_Events.evtx",
+          "bytes": 69632,
+          "sha256": "ef281c4f1068fecbcdeae001665a8fe8d8f8af17125274fa55e195e685d1dc89"
+        },
+        {
+          "path": "Lateral Movement/MSSQL_15281_xp_cmdshell_exec_failed_attempt.evtx",
+          "bytes": 69632,
+          "sha256": "a39e30c118eb4da16994b0bc598a48b04258c63543f2163541ef0155e32d4341"
+        },
+        {
+          "path": "Lateral Movement/RemotePowerShell_MS_Windows-Remote_Management_EventID_169.evtx",
+          "bytes": 69632,
+          "sha256": "d3305bdf01975538062f13a534fc1b6cf61ca23c8c13e04a1bc75f43e6f552eb"
+        },
+        {
+          "path": "Lateral Movement/dfir_rdpsharp_target_RdpCoreTs_168_68_131.evtx",
+          "bytes": 69632,
+          "sha256": "daebe139e2647e9a5d887a7b9d8f6e023d3ca18a225e9e897746b04fd2c1af5c"
+        },
+        {
+          "path": "Lateral Movement/lateral_movement_startup_3_11.evtx",
+          "bytes": 69632,
+          "sha256": "1ba7395ea70bcd250176771133eefaba0f1f19e5a4e60b9a17cbe8d81c34763d"
+        },
+        {
+          "path": "Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx",
+          "bytes": 69632,
+          "sha256": "bde8db7a364e9fd3da953498690e5e6c81c7c915032ff98743074b91cb140824"
+        },
+        {
+          "path": "Lateral Movement/lm_sysmon_18_remshell_over_namedpipe.evtx",
+          "bytes": 69632,
+          "sha256": "efdb2b2f2dd0864e82dabb693d38b44aea93e43c7df490ca3c94a4084da5c173"
+        },
+        {
+          "path": "Lateral Movement/net_share_drive_5142.evtx",
+          "bytes": 69632,
+          "sha256": "0498ba26c42ada5acd5dd8e2730432b59b9a6a6b294051fd20b4af7f435a7fce"
+        },
+        {
+          "path": "Lateral Movement/powercat_revShell_sysmon_1_3.evtx",
+          "bytes": 69632,
+          "sha256": "914d90705f1f94e7cff9b8d074e9ed0fab4d35449bf1b18d9f37ea6afd3e84df"
+        },
+        {
+          "path": "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+          "bytes": 69632,
+          "sha256": "82ef6ef9e7616c441e79059fcad9ea7b53358431769e924a0bba6408ecba5fce"
+        },
+        {
+          "path": "Lateral Movement/remote_file_copy_system_proc_file_write_sysmon_11.evtx",
+          "bytes": 69632,
+          "sha256": "f03c8c5ff4114ef7baeba777d625a18f27edb4ce327f764cf6ed350b5f29c7bc"
+        },
+        {
+          "path": "Lateral Movement/sharprdp_sysmon_7_mstscax.dll.evtx",
+          "bytes": 69632,
+          "sha256": "e75cdf11d232a079606bd6fad30c0d13ccca98386268ef1fd1d76d6fc827e1b3"
+        },
+        {
+          "path": "Lateral Movement/smb_bi_auth_conn_spoolsample.evtx",
+          "bytes": 69632,
+          "sha256": "588869dc910cca84331e371310ddcc7ab4012a0cdb9d8d2661a0109642de8f8b"
+        },
+        {
+          "path": "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+          "bytes": 69632,
+          "sha256": "21a69f9ea97e2a953c47fbb76a9a77682e128436c26ccf7445ae8012832e8def"
+        },
+        {
+          "path": "Lateral Movement/spoolsample_5145.evtx",
+          "bytes": 69632,
+          "sha256": "265dd0eafc5a5d553da2469c96c4964a208d52191d079abb3ef4dda847238eda"
+        },
+        {
+          "path": "Lateral Movement/sysmon_1_exec_via_sql_xpcmdshell.evtx",
+          "bytes": 69632,
+          "sha256": "79092a6f3c1beed9205fc24210f327c08b10cb50123e047f63f768c3e5bcef57"
+        },
+        {
+          "path": "Lateral Movement/wmi_remote_registry_sysmon.evtx",
+          "bytes": 69632,
+          "sha256": "2c8cb1ecaea860d599ae85397157eb8f3c0631a4bff949b576bcc007a78430de"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_ps_4104.evtx",
+          "bytes": 69632,
+          "sha256": "c1639a23219f24f308e7001ffacb7e72ad6570154542adfbe5198c7c4abebd61"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_ps_800_get-item.evtx",
+          "bytes": 69632,
+          "sha256": "ba6381380022037d657972a6146af844fc2c05bab247d56a605ca0148d59a8b9"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_ps_800_invoke-item.evtx",
+          "bytes": 69632,
+          "sha256": "6776429b2ac580b501ad591d9263d30482d58b4cb25445a03098b3d6f56e68df"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_ps_800_new-item.evtx",
+          "bytes": 69632,
+          "sha256": "e65359ea8b2b9a2ea69c7f79bd8f3194e1a6570ce914a08c6249c823fa08ac6d"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_ps_800_new-object.evtx",
+          "bytes": 69632,
+          "sha256": "b7aac9e35e5a605652f8d02e901535e56c039cfb5d421d44e2c91d3439cac265"
+        },
+        {
+          "path": "Other/emotet/exec_emotet_sysmon_1.evtx",
+          "bytes": 69632,
+          "sha256": "5d7347a786943c3d4cd0e5d10e8941df3218ce6f3b473ed7a76ff89997c3b83b"
+        },
+        {
+          "path": "Other/maldoc_mshta_via_shellbrowserwind_rundll32.evtx",
+          "bytes": 69632,
+          "sha256": "fd59102d39891a81ee0e002bec2a855998c57e6439a10608fd9f4b12861e34a5"
+        },
+        {
+          "path": "Other/rdpcorets_148_mst120_bluekeep_rpdscan_full.evtx",
+          "bytes": 1118208,
+          "sha256": "fdd890565a1c0e5a8efd2a554c18acf32d43852f328abde89edda0031e999b61"
+        },
+        {
+          "path": "Persistence/DACL_DCSync_Right_Powerview_ Add-DomainObjectAcl.evtx",
+          "bytes": 1118208,
+          "sha256": "3acc52d1c27a22db5cf7def3c317caf1c2f44b9db837e676815f9fa233e5a314"
+        },
+        {
+          "path": "Persistence/Network_Service_Guest_added_to_admins_4732.evtx",
+          "bytes": 69632,
+          "sha256": "9619b9d9d7bb8a277080167ff639fd9162e3d88d61d674cf1606beadce17ea5a"
+        },
+        {
+          "path": "Persistence/Persistence_Shime_Microsoft-Windows-Application-Experience_Program-Telemetry_500.evtx",
+          "bytes": 69632,
+          "sha256": "f13ef5a54ea84140024e30f968ac00e5ce4b4434426f66fafa4479b01d92832a"
+        },
+        {
+          "path": "Persistence/Persistence_Winsock_Catalog Change EventId_1.evtx",
+          "bytes": 69632,
+          "sha256": "c53b6f9d958302626c3a7c217b77d49dc5e239210820c3448c60667a41325e3f"
+        },
+        {
+          "path": "Persistence/evasion_persis_hidden_run_keyvalue_sysmon_13.evtx",
+          "bytes": 69632,
+          "sha256": "b8df8232d917fed223e2bf9abebb249489f84c6204c40b72dab6a74157d6f8bd"
+        },
+        {
+          "path": "Persistence/persist_bitsadmin_Microsoft-Windows-Bits-Client-Operational.evtx",
+          "bytes": 69632,
+          "sha256": "c2ed1a0248ab716a863f52bbfbd04d215f919c7ecefdfe6778a383b5552fb4f7"
+        },
+        {
+          "path": "Persistence/persist_firefox_comhijack_sysmon_11_13_7_1.evtx",
+          "bytes": 69632,
+          "sha256": "5efdbe9d51c06538d20db3d132594326fbff8ac8b98c542805aaeb90779b9cde"
+        },
+        {
+          "path": "Persistence/persist_turla_outlook_backdoor_comhijack.evtx",
+          "bytes": 69632,
+          "sha256": "1a066ced716a9580e28662dbfdc60f4446818281c387f4c7bc1acdd742186f1a"
+        },
+        {
+          "path": "Persistence/persist_valid_account_guest_rid_hijack.evtx",
+          "bytes": 69632,
+          "sha256": "5f482d8f769d13b4d90cdbfb114924fe3890e78eb1d0a619219e88a99a6f0f6e"
+        },
+        {
+          "path": "Persistence/persistence_SilentProcessExit_ImageHijack_sysmon_13_1.evtx",
+          "bytes": 69632,
+          "sha256": "37f5121b071db0333b19d81b676a5e31f63c99c6fd52f504f96659c927827e0d"
+        },
+        {
+          "path": "Persistence/persistence_accessibility_features_osk_sysmon1.evtx",
+          "bytes": 69632,
+          "sha256": "9a99994be7f64e5111370cfd1f5f541a7a5e8a1e31911b14e0881811f6ea2925"
+        },
+        {
+          "path": "Persistence/persistence_hidden_local_account_sysmon.evtx",
+          "bytes": 69632,
+          "sha256": "c472b0b7808c310b910af5e099ac7bcbf803adfd68d4edb56c73bf01e9c4bb8c"
+        },
+        {
+          "path": "Persistence/persistence_pendingGPO_sysmon_13.evtx",
+          "bytes": 69632,
+          "sha256": "cf9b918ac583028815e8ca5a547265221f745a92e5d093e759e5b00958db538b"
+        },
+        {
+          "path": "Persistence/persistence_security_dcshadow_4742.evtx",
+          "bytes": 69632,
+          "sha256": "524c34f83dd4dd1091100222caaf36e92aa3eaaf974f7aa0c07ad97aefcdcb66"
+        },
+        {
+          "path": "Persistence/persistence_startup_UserShellStartup_Folder_Changed_sysmon_13.evtx",
+          "bytes": 69632,
+          "sha256": "4a6544a5b564fd84d299cea4c97e8f1c813f13ac0f5d24fa751f28c022b31801"
+        },
+        {
+          "path": "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx",
+          "bytes": 1118208,
+          "sha256": "799420511f35300d3a071ca2c047d2edd49324d24544214a8124babe3fee9f90"
+        },
+        {
+          "path": "Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx",
+          "bytes": 69632,
+          "sha256": "78592aa982a478d1a65f56853bdf3817a3d5c79db3b1ca64642e1a2e16064423"
+        },
+        {
+          "path": "Persistence/sysmon_1_persist_bitsjob_SetNotifyCmdLine.evtx",
+          "bytes": 69632,
+          "sha256": "f2ac975c8dd1671a66ddbff5d9d59aa76f6577956d8c394970cbe11020837f78"
+        },
+        {
+          "path": "Persistence/sysmon_1_smss_child_proc_bootexecute_setupexecute.evtx",
+          "bytes": 69632,
+          "sha256": "29913aef999a1e4d8f6fad34025912a7585088c599feb808f741a0bcb0c5f417"
+        },
+        {
+          "path": "Persistence/sysmon_20_21_1_CommandLineEventConsumer.evtx",
+          "bytes": 69632,
+          "sha256": "136cd2549e4944e66c6f26aabafea84011ba011982ac1cf35cde7cb52d32b358"
+        },
+        {
+          "path": "Persistence/sysmon_local_account_creation_and_added_admingroup_12_13.evtx",
+          "bytes": 69632,
+          "sha256": "85851f4724cf490d26ec96f8f546ee07d8354a381e3f16f83afd4cfd46cbbb7c"
+        },
+        {
+          "path": "Persistence/wmighost_sysmon_20_21_1.evtx",
+          "bytes": 69632,
+          "sha256": "687c5cbe9a912bd8688692489bd94bb91f0518e3008535469e4fc4e1adc59446"
+        },
+        {
+          "path": "Privilege Escalation/4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+          "bytes": 69632,
+          "sha256": "b058ae02bbed96921cc0bb65088a3692b4ccd1c5b7aa65a318df353f09fcf6da"
+        },
+        {
+          "path": "Privilege Escalation/4765_sidhistory_add_t1178.evtx",
+          "bytes": 69632,
+          "sha256": "2e1aadc0097be6dc61803134c7fa8a4e0ddc33a2aa9c063f8a65cee3c14acade"
+        },
+        {
+          "path": "Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx",
+          "bytes": 69632,
+          "sha256": "58c0e61d14c25300c9473b842cec25cb5fb1dd517adf9259f3c3460031a97c9a"
+        },
+        {
+          "path": "Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx",
+          "bytes": 69632,
+          "sha256": "b90b44749a59f8b45827de083e3276d0635310077d51100f1110bf34e555bfc0"
+        },
+        {
+          "path": "Privilege Escalation/Invoke_TokenDuplication_UAC_Bypass4624.evtx",
+          "bytes": 69632,
+          "sha256": "8e8a735ccfa261b60607d907fb825dc231d067b8bd3da5a32cdabc810ca8abfe"
+        },
+        {
+          "path": "Privilege Escalation/NTLM2SelfRelay-med0x2e-security_4624_4688.evtx",
+          "bytes": 69632,
+          "sha256": "26fd9de9bc19b4af5308c30b51d2ca17b0518f8c89826fceb092c86a01f42b2b"
+        },
+        {
+          "path": "Privilege Escalation/PrivEsc_CVE-2020-1313_Sysmon_13_UScheduler_Cmdline.evtx",
+          "bytes": 69632,
+          "sha256": "278c679da912063fdecc9475cf73a2751bc5576e4a8b644add46bd6c8b0af4b1"
+        },
+        {
+          "path": "Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx",
+          "bytes": 69632,
+          "sha256": "498ce5682bd58d81edba3a704d82afe80ba9e7a0bbc1ba06b85c72c1f08563fc"
+        },
+        {
+          "path": "Privilege Escalation/PrivEsc_NetSvc_SessionToken_Retrival_via_localSMB_Auth_5145.evtx",
+          "bytes": 69632,
+          "sha256": "2fe940895252a4faa77d036112862f964350adc00b1005dedca4a9a1e00b00d7"
+        },
+        {
+          "path": "Privilege Escalation/PrivEsc_SeImpersonatePriv_enabled_back_for_upnp_localsvc_4698.evtx",
+          "bytes": 69632,
+          "sha256": "d6840c8618b24ef671a9810daad60cbd1e12dafe35fba300f5bc54d71a94156a"
+        },
+        {
+          "path": "Privilege Escalation/RogueWinRM.evtx",
+          "bytes": 69632,
+          "sha256": "9b650416ac195034dd0e22b7152de9326828c2587a4a52baf60ed83f2b4e9a7f"
+        },
+        {
+          "path": "Privilege Escalation/Runas_4624_4648_Webshell_CreateProcessAsUserA.evtx",
+          "bytes": 69632,
+          "sha256": "23dc9b1713896d35c98834101846985453161631045b3b96e1c363800ad686d7"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_13_1_UACBypass_SDCLTBypass.evtx",
+          "bytes": 69632,
+          "sha256": "343bf81c3dbf508432ba4b2eb2fceef7cb59653417d3e209ffb7cbd2fa485050"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+          "bytes": 69632,
+          "sha256": "d4abc83c9668060532b20ada82a2dfc8fd9b106be0eaea539c9d75dc7d8c8043"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_22.evtx",
+          "bytes": 69632,
+          "sha256": "45f90c35f977592fa8a5fd5205e73fade980d633bae219dfaeb65de8a27ba18c"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_23.evtx",
+          "bytes": 69632,
+          "sha256": "c742e7767e11e4810cbbe77f53d04e855241b85b1df30c954e9210e50b5ba772"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_30.evtx",
+          "bytes": 69632,
+          "sha256": "044ee159b0b9617086c74ed6ef183353496573a952be079b2644018af2a4bd04"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_32.evtx",
+          "bytes": 69632,
+          "sha256": "3729a7b639782b909b22c3b4ccaacbf1f7acaf8311221cb7976c3e12d863cfbc"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_33.evtx",
+          "bytes": 69632,
+          "sha256": "369fe7264d8d343659fb8ef0cbf9a9cc2dfff06958e2dd173dfb7ecb8d9093fd"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_34.evtx",
+          "bytes": 69632,
+          "sha256": "d3b277e1165eec22392054022ed239d68adfcd654b663076fec062e20c8ea336"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_36_FileCreate.evtx",
+          "bytes": 69632,
+          "sha256": "a84ee8dd4a45fcca42d0af62a6bcd1817c09baee8e4211a24dd1484f4c1eb4eb"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_37_FileCreate.evtx",
+          "bytes": 69632,
+          "sha256": "0b3893de16d5b7bf94337a08706a0b158965ab9aa6e20a0dd968883f96d0e1db"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_38.evtx",
+          "bytes": 69632,
+          "sha256": "42075b5afd438fbeee2b87ebb085558350c4a3d40d1b5677a3aba10a81d6a522"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_39.evtx",
+          "bytes": 69632,
+          "sha256": "85c32ce26cbd8bf03c44b26d4a913188b38890ed40b8ab855b1f5ccbed703b66"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_41.evtx",
+          "bytes": 69632,
+          "sha256": "10607601e5ab7476fa8920ca63ace9f29ccbe79279e1731436b9d009f36ba2f0"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_43.evtx",
+          "bytes": 69632,
+          "sha256": "47bdaa367dfadf39d6b55587f38c488642836305d593aa6452e6ac51bb88ad3c"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_45.evtx",
+          "bytes": 69632,
+          "sha256": "aae67b99a0b4103513bb678f9d3d5222a402a5e202d8d3fb1c6bcf085c7548fd"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_53.evtx",
+          "bytes": 69632,
+          "sha256": "3a6f512f47e00da769d1076fe0367c15f3f787a79cdc8909b74e04f002d3e0f9"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_54.evtx",
+          "bytes": 69632,
+          "sha256": "90fa9a2b3bdd8414df20846634badf9d6a50882db92caa8b7a163aef6d6aafe1"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_56.evtx",
+          "bytes": 69632,
+          "sha256": "a1f83d4189384d95693bb33ffe90f09b82d0a9ff7219bf37b51727d667be54af"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_63.evtx",
+          "bytes": 69632,
+          "sha256": "5cbfc3e5c3dfe38ae5c121b2de344229e73e5abb32deba6bf402e6d844b7bf72"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_UACME_64.evtx",
+          "bytes": 1118208,
+          "sha256": "b1a47437b3095b0660f069d107800427279c07448a4a470ad7c6c7ca2e27bced"
+        },
+        {
+          "path": "Privilege Escalation/Sysmon_uacme_58.evtx",
+          "bytes": 69632,
+          "sha256": "40e37fb256e29dd27df7741da1443df59a688d47c295b0855cddc37a78398ffb"
+        },
+        {
+          "path": "Privilege Escalation/System_7045_namedpipe_privesc.evtx",
+          "bytes": 69632,
+          "sha256": "21a62694861beff246ea9fb357b908541b4acefaefdb7ecd6281b64df96cb187"
+        },
+        {
+          "path": "Privilege Escalation/UACME_59_Sysmon.evtx",
+          "bytes": 69632,
+          "sha256": "1de3775180143fd5d956bae48f572367534ae8c10f6ffbe98dd4b4e0e47e0fa1"
+        },
+        {
+          "path": "Privilege Escalation/UACME_61_Changepk.evtx",
+          "bytes": 69632,
+          "sha256": "65fe36818330f6e07731e2efed639091fce4bf836673832e4b6e6092b00ffae3"
+        },
+        {
+          "path": "Privilege Escalation/eop_appcontainer_il_broker_filewrite.evtx",
+          "bytes": 69632,
+          "sha256": "3175fc1489e8ba07035396e8175b8b54a08e5fdc0bb58cafdb19a58dd70bfb58"
+        },
+        {
+          "path": "Privilege Escalation/privesc_KrbRelayUp_windows_4624.evtx",
+          "bytes": 69632,
+          "sha256": "f8c7ee23333b228ba05bbae43f410ae9d92244ea6531c369a081e32205c0bc82"
+        },
+        {
+          "path": "Privilege Escalation/privesc_registry_symlink_CVE-2020-1377.evtx",
+          "bytes": 69632,
+          "sha256": "f273b368f752e24ebdc4f84fb0896ea2d5b95cb4916e261e7e2af7ac63609a76"
+        },
+        {
+          "path": "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+          "bytes": 69632,
+          "sha256": "21bcc12aed93c390545c1b07005a681e1c9e9dbe5d47983c273518456855595d"
+        },
+        {
+          "path": "Privilege Escalation/privesc_rotten_potato_from_webshell_metasploit_sysmon_1_8_3.evtx",
+          "bytes": 69632,
+          "sha256": "03d1d202bdf50f7290da06e816ddf9535705f90acebbb0ccae7d2e62dcbf6699"
+        },
+        {
+          "path": "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+          "bytes": 69632,
+          "sha256": "868533829b979d925c0f4a488a6380bcb85d939a3ad2b1196be5335c38265cf7"
+        },
+        {
+          "path": "Privilege Escalation/privesc_spoolfool_mahdihtm_sysmon_1_11_7_13.evtx",
+          "bytes": 69632,
+          "sha256": "9457cdfd5159e9b25185352a66f9ec1d14cc84f1780ea282e47c5653c28fad58"
+        },
+        {
+          "path": "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx",
+          "bytes": 69632,
+          "sha256": "44c56f76471969f91b4df8f00d3ed087536c99924141b7cd9bdc031e67b5dd3d"
+        },
+        {
+          "path": "Privilege Escalation/privesc_sysmon_cve_20201030_spooler.evtx",
+          "bytes": 69632,
+          "sha256": "c220b523b3b788bc593208622058bd54c634005b104aeaf5f177a35aea1e8312"
+        },
+        {
+          "path": "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx",
+          "bytes": 1118208,
+          "sha256": "5b3bd618ff215254db994f223f1700082dbb1f339a651e1c89ae41d857edbcc2"
+        },
+        {
+          "path": "Privilege Escalation/privexchange_dirkjan.evtx",
+          "bytes": 69632,
+          "sha256": "321c68c4f41b47c69f8cf050c572a27be77ee1818716c5d79d746d1c805901ad"
+        },
+        {
+          "path": "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx",
+          "bytes": 69632,
+          "sha256": "d3cf4940a0400a615e7e848a16de8d957bd12ccb99f7c9ce247b17a72a55d212"
+        },
+        {
+          "path": "Privilege Escalation/security_4624_4673_token_manip.evtx",
+          "bytes": 69632,
+          "sha256": "2546b08851204db18c8f60722dcbb406356b323fbcd790774949e8a0168cc4e7"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_11_1_15_WScriptBypassUAC.evtx",
+          "bytes": 69632,
+          "sha256": "48f65d146e64c9c58a4774d03ba83aa120c307e52a0a1d21975fb225125abbff"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_11_1_7_uacbypass_cliconfg.evtx",
+          "bytes": 69632,
+          "sha256": "08d994196edc3477b7e860bf5ef97173daa1d82f3132759fe78db96c80383c20"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx",
+          "bytes": 69632,
+          "sha256": "d75d688bd1df279d32b75aab51a162465d3351c5aae1f7386ad8d4c8dc86528a"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_13_1_12_11_perfmonUACBypass.evtx",
+          "bytes": 69632,
+          "sha256": "7a0312bce23cc20e719ffc6ca2cf62ec2b8a9a3f67d0048d7e16a6bdbf134092"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_13_1_compmgmtlauncherUACBypass.evtx",
+          "bytes": 69632,
+          "sha256": "2bf934cb66f81fd5abfa5b32c7a50159184c260401e09407513bdb59066e2e93"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_13_1_meterpreter_getsystem_NamedPipeImpersonation.evtx",
+          "bytes": 69632,
+          "sha256": "9e1fbb0604db5e559c1f65d51b85c35625f6a43d071598f161dd32f70d597722"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_11_exec_as_system_via_schedtask.evtx",
+          "bytes": 69632,
+          "sha256": "6b2ae54c6e3926f62101c2f8f85e7003869de534af1b17d309a0a84298e70edd"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx",
+          "bytes": 69632,
+          "sha256": "6a49ee4d01b15f45c72f242655595613ee06eb5797488d6de7b25b7a1dca85a1"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_13_UACBypass_AppPath_Control.evtx",
+          "bytes": 69632,
+          "sha256": "8296ad4d09de6d796da8b7dc27aea2f44b261ee12b6a54ef83e2a805cd5b8b87"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_7_11_mcx2prov_uacbypass.evtx",
+          "bytes": 69632,
+          "sha256": "2a6fdd4c4c3b650cf267f02ee87a2cac27362054d37b1834ca92aadbe0b21854"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_7_11_migwiz.evtx",
+          "bytes": 69632,
+          "sha256": "83b13ff4ae16dfaa212229c672e4bcc16a3b6ab39c96bcd46a376bb99229dc9d"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_7_11_sysprep_uacbypass.evtx",
+          "bytes": 69632,
+          "sha256": "230e09d306b1ab52ec5502b8768042a13f375449012485f3bac9191ccffe0c25"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_1_7_elevate_uacbypass_sysprep.evtx",
+          "bytes": 69632,
+          "sha256": "199b9686cf89e3b6b9e00330c2b707a1de99eafc908992252d2266a25594de76"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_privesc_from_admin_to_system_handle_inheritance.evtx",
+          "bytes": 69632,
+          "sha256": "0e6a64e50207a8772b413dc4cc66c02def3c2d070c923a1faa9d4ad4c5c73ab5"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_privesc_psexec_dwell.evtx",
+          "bytes": 69632,
+          "sha256": "a79a14dcaac146c06c4d3dc3eb5a6ca1eaf62c93d65f47699a2aa5e88e436223"
+        },
+        {
+          "path": "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx",
+          "bytes": 69632,
+          "sha256": "6265ba7f12b850cf2ebcee735ee24aa26b66e757f2cfa05759c58f0a4aedf83f"
+        },
+        {
+          "path": "Privilege Escalation/win10_4703_SeDebugPrivilege_enabled.evtx",
+          "bytes": 69632,
+          "sha256": "df34b4db3dae36c7bc4ae807782e72af0097491674247405b5f71adaa119a4c5"
+        },
+        {
+          "path": "README.md",
+          "bytes": 2164,
+          "sha256": "4ce6fb5c33a907a0325ed65dd0c5cb6adccfcbe75354b1be38570d1b11253a97"
+        },
+        {
+          "path": "UACME_59_Sysmon.evtx",
+          "bytes": 69632,
+          "sha256": "1de3775180143fd5d956bae48f572367534ae8c10f6ffbe98dd4b4e0e47e0fa1"
+        }
+      ],
+      "unavailable": []
+    }
+  ],
+  "candidates": [
+    {
+      "id": "lanl2015",
+      "name": "LANL Comprehensive Multi-Source Cybersecurity Events 2015",
+      "primary_sources": [
+        "https://csr.lanl.gov/data/cyber1/"
+      ],
+      "license": "LANL copyright waiver (public-domain/CC0-style)",
+      "telemetry": "Anonymized process start/end, flows, DNS, authentication",
+      "status": "Expanded compatible process/flow/DNS prefixes used by separate v2 training experiment",
+      "limits": "No process ancestry or executable content; full red-team annotations begin150885s, beyond acquired common interval45301s",
+      "annotation_manifest": "training/lanl-redteam-v2.json"
+    },
+    {
+      "id": "lanl2017",
+      "name": "LANL Unified Host and Network Data Set2017",
+      "primary_sources": [
+        "https://csr.lanl.gov/data/2017/"
+      ],
+      "license": "LANL copyright waiver (public-domain/CC0-style)",
+      "telemetry": "90days Windows host events4688/4689 and authentication, network flows",
+      "status": "Catalogued, not acquired",
+      "limits": "Official download asks registration; no event attack ground truth published on page. Security events need separate PID-incarnation/parser adapter; not equivalent to Sysmon GUIDs"
+    },
+    {
+      "id": "optc",
+      "name": "DARPA Operationally Transparent Cyber2019 and corrected2026 release",
+      "primary_sources": [
+        "https://github.com/FiveDirections/OpTC-data",
+        "https://doi.org/10.57745/UXCWOC",
+        "https://correctedoptc.inria.fr/"
+      ],
+      "license": "Public release; exact archive terms must be reviewed before additional acquisition",
+      "telemetry": "Windows10 eCAR process/file/registry/flow provenance, large simulated enterprise with red-team narrative",
+      "status": "Catalogued; original source previously quota-blocked, preprocessed mirrors excluded from training for incomplete transformation provenance",
+      "limits": "Full release approximately1TB; corrected day archives12.5GB to112GB each; graph identifier corrections matter. Beyond selected bounded corpus budget"
+    },
+    {
+      "id": "darpa-tc",
+      "name": "DARPA Transparent Computing E3/E5",
+      "primary_sources": [
+        "https://github.com/darpa-i2o/Transparent-Computing"
+      ],
+      "license": "Publisher states public domain",
+      "telemetry": "CDM provenance across CADETS/TRACE/THEIA/FiveDirections/CLEARSCOPE hosts with attack narrative/annotations",
+      "status": "Catalogued, not acquired",
+      "limits": "Large GoogleDrive archives; heterogeneousOS/experimental sensors do not map directly to current Sysmon inputs"
+    },
+    {
+      "id": "atlasv2",
+      "name": "ATLASv2 Windows attack engagements",
+      "primary_sources": [
+        "https://arxiv.org/html/2401.01341v1",
+        "https://bitbucket.org/sts-lab/atlasv2",
+        "https://bitbucket.org/sts-lab/reapr-ground-truth"
+      ],
+      "publisher_revision": "2fd77199fd7225b2387cbaded2b5b5de5da0de5b",
+      "license": "PaperCC-BY4.0; dataset license not found in publisher repository root (public-release access is not a substitute for dataset terms)",
+      "telemetry": "Windows7 Sysmon, ETWSecurity, CarbonBlack,Firefox,DNS; actual researcher workstations plus10labattacks",
+      "status": "Catalogued, not acquired",
+      "limits": "154GBfullrelease; Box download separate from metadatarepo; supervised labels cover SecurityEventRecordIDs/REAPr process entities, not every Sysmon record; repeatedpayload and VMbootfootprints"
+    },
+    {
+      "id": "beth",
+      "name": "BETH2021",
+      "primary_sources": [
+        "https://ceur-ws.org/Vol-3095/paper1.pdf",
+        "https://www.kaggle.com/datasets/katehighnam/beth-dataset",
+        "https://www.kaggle.com/api/v1/datasets/list?search=beth%20dataset"
+      ],
+      "license": "CC0: Public Domain, verified publisherKaggleAPI dataset record",
+      "publisher_api_metadata_sha256": "f060bf8f7d6e9e8b1b473f642482eda9d0647b86d69e58fc42965c966dd22c0c",
+      "publisher_api_compressed_bytes": 41683906,
+      "telemetry": "Ubuntu18.04 AWS honeypots; kernel process-create/clone/kill plus DNS; sus/evil event annotations",
+      "status": "Catalogued, not acquired",
+      "limits": "Linuxkernel/syscall inputs are absent from Windows polling/Sysmon. Requires independent feature contract; cannot increase Windows training volume by mixing numeric syscall IDs"
+    },
+    {
+      "id": "awsctd",
+      "name": "Attack-Caused Windows OS System Calls Traces Dataset",
+      "primary_sources": [
+        "https://github.com/DjPasco/AWSCTD"
+      ],
+      "license": "No explicit license found in inspected publisher repository; not acquired",
+      "telemetry": "Windows7 syscall number sequences, malware-family categories",
+      "status": "Catalogued, not acquired",
+      "limits": "Numeric systemcalls and auditmechanism differ from WindowsSysmon; no equivalent runtime features. Does not demonstrate BigBrother detection accuracy"
+    },
+    {
+      "id": "cse-cic-ids2018",
+      "name": "CSE-CIC-IDS2018",
+      "primary_sources": [
+        "https://www.unb.ca/cic/datasets/ids-2018.html",
+        "https://registry.opendata.aws/cse-cic-ids2018/"
+      ],
+      "license": "Redistribution permitted with dataset citation and AWS registry link per UNB publisher",
+      "telemetry": "NetworkPCAP/CICFlowMeter and Windows/Ubuntu machine eventlogs, labattack schedule",
+      "status": "Catalogued, not acquired",
+      "limits": "Published labels are per networkflow using schedule/IP/ports; hostevent labels require validated correlation. Network80feature CSV cannot be fed to current10token model"
+    },
+    {
+      "id": "cic-malmem2022",
+      "name": "CIC-MalMem2022",
+      "primary_sources": [
+        "https://www.unb.ca/cic/datasets/malmem-2022.html"
+      ],
+      "license": "PublisherLicense section supplies citation but no explicit grant was found; verify terms before acquisition",
+      "telemetry": "58596memory-derived feature rows; benign/ransomware/trojan/spyware sample labels",
+      "status": "Catalogued, not acquired",
+      "limits": "Memorydump features are absent from current app; no process-history equivalence. Download portal may request userdetails, not fabricated credentials"
+    },
+    {
+      "id": "adfa-ids",
+      "name": "ADFA-WD, ADFA-WD:SAA and ADFA-LD",
+      "primary_sources": [
+        "https://research.unsw.edu.au/projects/adfa-ids-datasets"
+      ],
+      "license": "Inspected UNSW source grants academicresearch use and prohibitscommercial use",
+      "telemetry": "Systemcall-oriented Windows/Linux host traces",
+      "status": "Catalogued, not acquired",
+      "limits": "Source-specific noncommercial restrictions and older auditfeatures; no direct Sysmon feature adapter"
+    },
+    {
+      "id": "lid-ds",
+      "name": "Leipzig Intrusion Detection Dataset2019/2021",
+      "primary_sources": [
+        "https://github.com/LID-DS/LID-DS",
+        "https://dbs.uni-leipzig.de/files/research/publications/2023-6/pdf/978-3-031-35190-7_6.pdf"
+      ],
+      "license": "Publisherframework GPL-3.0-or-later; verify datasetdownload terms separately",
+      "telemetry": "Linuxsystemcall traces with parameters/timing and labattack metadata",
+      "status": "Catalogued, not acquired",
+      "limits": "Linuxcontainer/syscall signals absent from Windows runtime; executing scenarios is outside safe host tests"
+    },
+    {
+      "id": "ember",
+      "name": "EMBER2017/2018",
+      "primary_sources": [
+        "https://github.com/elastic/ember"
+      ],
+      "license": "Data MIT; publisher sourcecode AGPL-v3. Sourcecode is not copied or bundled",
+      "telemetry": "StaticWindowsPE features with malwarelabels; official SHA256 archives",
+      "status": "Officialfeature-only acquisition and separate bounded supervised research experiment in progress",
+      "limits": "Staticfeature extraction is not implemented in current behavioral detector; model would need an additional independent staticPE feature contract",
+      "license_url": "https://github.com/elastic/ember/blob/d97a0b523de02f3fe5ea6089d080abacab6ee931/LICENSE.txt",
+      "publisher_revision": "d97a0b523de02f3fe5ea6089d080abacab6ee931",
+      "archive_url": "https://ember.elastic.co/ember_dataset_2018_2.tar.bz2",
+      "archive_bytes": 1696539273,
+      "archive_sha256": "b6052eb8d350a49a8d5a5396fbe7d16cf42848b86ff969b77464434cf2997812"
+    },
+    {
+      "id": "bodmas",
+      "name": "BODMAS",
+      "primary_sources": [
+        "https://github.com/WhyisYoung/BODMAS"
+      ],
+      "license": "PublisherrepositoryBSD-2-Clause; review datasetdownload terms separately",
+      "telemetry": "StaticWindowsPE feature vectors, temporalmetadata, samplelabels",
+      "status": "Catalogued, not acquired",
+      "limits": "Featurevectors do not represent live observedSysmon histories; malwarebinaries unnecessary and not downloaded"
+    },
+    {
+      "id": "sorel20m",
+      "name": "SOREL-20M",
+      "primary_sources": [
+        "https://github.com/sophos/SOREL-20M"
+      ],
+      "license": "RepositoryApache-2.0 with separate datasetTerms of Use",
+      "telemetry": "StaticPE features and vendor-derived binary/family labels",
+      "status": "Catalogued, not acquired",
+      "limits": "78GBminimum baselinefeatures outsideboundedbudget;8TBfull corpus. Currentruntime has no staticfeature extractor; binaries not downloaded"
+    }
+  ]
+}

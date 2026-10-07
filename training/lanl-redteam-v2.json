@@ -1,0 +1,34 @@
+{
+  "name": "LANL2015 full redteam.txt.gz annotation file",
+  "mirror_revision": "d7a15d0d504051bfe6cbc3f65377830704e824cc",
+  "source_url": "https://huggingface.co/datasets/Taqui/lanl-cyber-datasets/resolve/d7a15d0d504051bfe6cbc3f65377830704e824cc/lanl-2015/redteam.txt.gz",
+  "official_source": "https://csr.lanl.gov/data/cyber1/",
+  "license": "LANL public-domain/CC0-style waiver",
+  "compressed_bytes": 4846,
+  "compressed_sha256": "606635837c684ad11e464075ecf97bc5df325ff7d7f64614d2d8c8af18051669",
+  "publisher_lfs_sha256": "606635837c684ad11e464075ecf97bc5df325ff7d7f64614d2d8c8af18051669",
+  "gzip_complete_crc_verified": true,
+  "text_bytes": 22986,
+  "text_sha256": "6bbc0c7dff64e476efb08fef260822b058fd09d44d17ec488a16e80474d1e532",
+  "records": 749,
+  "schema": [
+    "time",
+    "user@domain",
+    "source_computer",
+    "destination_computer"
+  ],
+  "min_timestamp": 150885,
+  "max_timestamp": 2557047,
+  "v1_interval": [
+    1,
+    17910
+  ],
+  "v2_interval": [
+    17911,
+    45301
+  ],
+  "v1_overlap_records": 0,
+  "v2_overlap_records": 0,
+  "label_scope": "Red-team authentication events, not labels for all process/network events",
+  "provenance_limit": "Mirror publisher hash verified; full-file equality to registration-gated official original not independently checked"
+}

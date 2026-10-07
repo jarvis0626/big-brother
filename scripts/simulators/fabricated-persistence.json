@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "fabricated": true,
+  "name": "Persistence-shaped example: no Registry operation is executed",
+  "purpose": "Documentation fixture only. Never used as live collector evidence or malware accuracy evaluation.",
+  "events": [
+    {"id": "fabricated-simulator-start", "process_key": "fabricated-demo-process", "pid": 990001, "kind": "process_start", "timestamp": "2026-10-07T00:00:00.000+00:00", "image": "C:\\FabricatedDemo\\mock-helper.exe", "source": "replay:simulator-documentation", "details": {"fabricated": true}},
+    {"id": "fabricated-simulator-startup", "process_key": "fabricated-demo-process", "pid": 990001, "kind": "registry", "timestamp": "2026-10-07T00:00:01.000+00:00", "image": "C:\\FabricatedDemo\\mock-helper.exe", "source": "replay:simulator-documentation", "details": {"fabricated": true, "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\FabricatedExample", "operation": "fabricated example; never executed"}}
+  ]
+}

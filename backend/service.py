@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -18,6 +19,7 @@ import psutil
 from backend.explain import ExplanationEngine
 from backend.storage import EvidenceStore, now, poll_key
 from backend.telemetry import Collector, list_processes, process_info
+from backend.imports import load_recording, KINDS
 
 try:
     from backend.model import BehavioralModel
@@ -29,6 +31,7 @@ METHODS = {
     "replay": {"scenario"}, "pause": {"session_id", "paused"}, "stop": {"session_id"},
     "settings": {"retention_days", "max_events", "poll_interval", "max_queue", "max_sessions", "close_to_tray", "llm_provider"},
     "delete_session": {"session_id"}, "export": {"session_id"}, "shutdown": set(),
+    "import_recording": {"path"},
 }
 
 
@@ -62,7 +65,14 @@ class Application:
         value = self.model.metadata
         return value() if callable(value) else value
 
-    def coverage(self):
+    def coverage(self, session=None):
+        if session and session["mode"] == "recording":
+            metadata = self.store.get_meta("recording:" + session["id"], {})
+            observed_kinds = set(metadata.get("observed_kinds", []))
+            return [{"kind": kind, "status": "recorded" if kind in observed_kinds else "unavailable",
+                     "backend": "recording", "detail": "Imported capture contains this event type; capture completeness is unknown."
+                     if kind in observed_kinds else "This capture contains no events of this type; absence does not establish safety."}
+                    for kind in sorted(KINDS)]
         if self.collector:
             return self.collector.coverage()
         return [{"kind": "replay", "status": "fabricated", "backend": "replay", "detail": "Fabricated recorded events; no activity is executed."}]
@@ -77,7 +87,7 @@ class Application:
                     continue
                 if session["status"] == "paused":
                     continue
-                if not force and session["status"] not in ("watching", "replay"):
+                if not force and session["status"] not in ("watching", "replay", "recording"):
                     continue
                 events = self.store.events(session["id"], limit=2000)
                 score = None
@@ -90,7 +100,7 @@ class Application:
                         if reason != self.last_model_error:
                             self.store.gap(reason)
                         self.last_model_error = reason
-                findings = self.explanations.incidents(session, events, score, self.coverage())
+                findings = self.explanations.incidents(session, events, score, self.coverage(session))
                 self.store.save_incidents(session["id"], findings)
 
     def state(self, session_id=None):
@@ -109,7 +119,8 @@ class Application:
                     "processes": self.store.processes(sid) if sid else [],
                     "incidents": self.store.incidents(sid) if sid else [],
                     "collector": self.collector.state() if self.collector else {"status": "idle", "backend": "replay", "gaps": self.store.gaps(), "dropped_events": 0},
-                    "model": metadata, "settings": self.store.get_settings(), "coverage": self.coverage()}
+                    "model": metadata, "settings": self.store.get_settings(), "coverage": self.coverage(session),
+                    "recording": self.store.get_meta("recording:" + sid) if sid else None}
 
     def check_session_limit(self):
         count = len([session for session in self.store.sessions() if session["status"] in ("watching", "paused")])
@@ -181,13 +192,43 @@ class Application:
         self.analyze(force=True, session_id=session["id"])
         return session
 
+    def import_recording(self, path):
+        recording = load_recording(path)
+        nonce = uuid.uuid4().hex
+        keys = {event["process_key"] for event in recording["events"]}
+        keys.update(event["parent_key"] for event in recording["events"] if event["parent_key"])
+        mapping = {key: "import:" + nonce + ":" + key for key in keys}
+        session = self.store.create_session(recording["name"], "recording", mapping[recording["events"][0]["process_key"]], False)
+        try:
+            with self.store.lock, self.store.db:
+                self.store.db.executemany("INSERT OR IGNORE INTO membership VALUES(?,?)",
+                                         ((session["id"], mapping[key]) for key in {e["process_key"] for e in recording["events"]}))
+                for event in recording["events"]:
+                    event = {**event, "process_key": mapping[event["process_key"]],
+                             "parent_key": mapping.get(event["parent_key"]),
+                             "source": "recording:" + nonce, "source_epoch": nonce}
+                    event["id"] = "evt_" + hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()[:24]
+                    self.store.ingest(event, defer=True)
+                self.store.db.execute("UPDATE sessions SET status='recording' WHERE id=?", (session["id"],))
+            self.store.set_meta("recording:" + session["id"],
+                                {"provenance": recording["provenance"], "coverage": recording["coverage"],
+                                 "imported_events": recording["event_count"],
+                                 "observed_kinds": sorted({event["kind"] for event in recording["events"]})})
+        except Exception:
+            self.store.delete_session(session["id"])
+            raise
+        self.current_session = session["id"]
+        self.store.prune()
+        self.analyze(force=True, session_id=session["id"])
+        return self.store.session(session["id"])
+
     def pause(self, session_id, paused):
         if not isinstance(paused, bool):
             raise ValueError("paused must be a boolean")
         session = self.store.session(session_id)
         if session["status"] in ("stopped", "interrupted"):
             raise ValueError("This session has stopped; start a new watch")
-        status = "paused" if paused else "replay" if session["mode"] == "replay" else "watching"
+        status = "paused" if paused else session["mode"] if session["mode"] in ("replay", "recording") else "watching"
         self.store.set_status(session_id, status)
         if not paused:
             self.analyze(force=True, session_id=session_id)
@@ -200,7 +241,7 @@ class Application:
                 self.collector.flush()
             sessions = [self.store.session(session_id)] if session_id else self.store.sessions()
             for session in sessions:
-                if session["status"] in ("watching", "paused", "replay"):
+                if session["status"] in ("watching", "paused", "replay", "recording"):
                     self.analyze(force=True, session_id=session["id"])
                     self.store.set_status(session["id"], "stopped")
             if self.collector and not self.collector.active_keys():
@@ -214,6 +255,7 @@ class Application:
                 "session": state["session"], "processes": state["processes"], "events": self.store.events(session_id, limit=100000),
                 "incidents": state["incidents"], "model": state["model"], "coverage": state["coverage"],
                 "collector": state["collector"],
+                "recording": state["recording"],
                 "notice": "Contains sensitive local telemetry. Replay is fabricated. Scores are not probabilities. No findings do not establish safety."}
 
     def delete_session(self, session_id):

@@ -1,0 +1,347 @@
+{
+  "schema": 1,
+  "measured_at_utc": "2026-10-07T06:27:38.953172+00:00",
+  "purpose": "Harmless live collector engineering validation; not malware detection accuracy",
+  "thresholds_unchanged": true,
+  "no_fabricated_events_in_live_sessions": true,
+  "limitations": [
+    "These programs are known benign and are not representative labeled malware samples.",
+    "No finding does not establish safety. An unusual-model finding on a benign simulator is not proof of danger.",
+    "Passing process attribution and connection tests does not validate attack detection recall.",
+    "Polling sees connection/process snapshots; scratch file operations and localhost resolution may be absent.",
+    "One-file bootloader processes are included in real observed lineage.",
+    "No Registry persistence, encryption, credential access, remote command or Defender setting was exercised."
+  ],
+  "scenarios": [
+    {
+      "scenario": "ordinary",
+      "passed": true,
+      "elapsed_seconds": 12.531,
+      "executable": "BigBrotherOrdinarySimulator.exe",
+      "executable_sha256": "0112e8e162b5b27c7c71ad456a0f2b7f8c545b52e8f6efde4616085e86239801",
+      "session_mode": "live",
+      "actual_events": 18,
+      "event_kinds": {
+        "process_start": 3,
+        "network": 12,
+        "process_end": 3
+      },
+      "event_sources": {
+        "polling": 18
+      },
+      "observed_processes": 3,
+      "actual_runtime_processes": 1,
+      "all_runtime_processes_attributed": true,
+      "only_loopback_network": true,
+      "scratch_files_actually_created": 3,
+      "scratch_file_events_observed": 0,
+      "loopback_exchanges_actually_completed": 9,
+      "transparent_rule_findings": 0,
+      "model_findings": 0,
+      "surviving_child_rule_observed": false,
+      "finding_citations_valid": true,
+      "model": {
+        "version": "lanl2015-v1-seed1984",
+        "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+        "status": "available",
+        "score_nats": 5.251157059691015,
+        "threshold": 6.423330059051517,
+        "above_threshold": false,
+        "features": {
+          "supported_events": 18,
+          "ignored_kinds": {},
+          "context_events": 16,
+          "token_counts": {
+            "process_start": 3,
+            "network_high_port": 12,
+            "process_end": 3
+          }
+        },
+        "limitations": [
+          "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+          "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+          "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+          "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+          "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+          "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+          "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+          "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+          "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset.",
+          "Short event context; held-out evaluation used16 preceding supported events."
+        ]
+      },
+      "collector_backend": "polling",
+      "collector_dropped_events": 0,
+      "coverage": [
+        {
+          "kind": "processes",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Process snapshots and creation-time identities. Short-lived children between polls can be missed; ancestry before watch may be incomplete."
+        },
+        {
+          "kind": "network",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Connection snapshots only. Brief connections, DNS and traffic contents are unavailable. Some protected processes deny access."
+        },
+        {
+          "kind": "processes",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "network",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "dns",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "files",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "registry",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "file_reads_and_encrypted_contents",
+          "status": "unavailable",
+          "backend": "all",
+          "detail": "Complete file reads, full command history and encrypted traffic contents are not collected."
+        }
+      ],
+      "no_raw_telemetry_exported": true
+    },
+    {
+      "scenario": "fanout",
+      "passed": true,
+      "elapsed_seconds": 12.765,
+      "executable": "BigBrotherFanoutSimulator.exe",
+      "executable_sha256": "0112e8e162b5b27c7c71ad456a0f2b7f8c545b52e8f6efde4616085e86239801",
+      "session_mode": "live",
+      "actual_events": 74,
+      "event_kinds": {
+        "process_start": 9,
+        "network": 56,
+        "process_end": 9
+      },
+      "event_sources": {
+        "polling": 74
+      },
+      "observed_processes": 9,
+      "actual_runtime_processes": 4,
+      "all_runtime_processes_attributed": true,
+      "only_loopback_network": true,
+      "scratch_files_actually_created": 36,
+      "scratch_file_events_observed": 0,
+      "loopback_exchanges_actually_completed": 36,
+      "transparent_rule_findings": 0,
+      "model_findings": 0,
+      "surviving_child_rule_observed": false,
+      "finding_citations_valid": true,
+      "model": {
+        "version": "lanl2015-v1-seed1984",
+        "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+        "status": "available",
+        "score_nats": 3.0406356153254595,
+        "threshold": 6.423330059051517,
+        "above_threshold": false,
+        "features": {
+          "supported_events": 24,
+          "ignored_kinds": {},
+          "context_events": 16,
+          "token_counts": {
+            "network_high_port": 15,
+            "process_end": 9
+          }
+        },
+        "limitations": [
+          "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+          "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+          "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+          "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+          "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+          "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+          "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+          "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+          "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
+        ]
+      },
+      "collector_backend": "polling",
+      "collector_dropped_events": 0,
+      "coverage": [
+        {
+          "kind": "processes",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Process snapshots and creation-time identities. Short-lived children between polls can be missed; ancestry before watch may be incomplete."
+        },
+        {
+          "kind": "network",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Connection snapshots only. Brief connections, DNS and traffic contents are unavailable. Some protected processes deny access."
+        },
+        {
+          "kind": "processes",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "network",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "dns",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "files",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "registry",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "file_reads_and_encrypted_contents",
+          "status": "unavailable",
+          "backend": "all",
+          "detail": "Complete file reads, full command history and encrypted traffic contents are not collected."
+        }
+      ],
+      "no_raw_telemetry_exported": true
+    },
+    {
+      "scenario": "survivor",
+      "passed": true,
+      "elapsed_seconds": 17.796,
+      "executable": "BigBrotherSurvivorSimulator.exe",
+      "executable_sha256": "0112e8e162b5b27c7c71ad456a0f2b7f8c545b52e8f6efde4616085e86239801",
+      "session_mode": "live",
+      "actual_events": 32,
+      "event_kinds": {
+        "process_start": 5,
+        "network": 22,
+        "process_end": 5
+      },
+      "event_sources": {
+        "polling": 32
+      },
+      "observed_processes": 5,
+      "actual_runtime_processes": 2,
+      "all_runtime_processes_attributed": true,
+      "only_loopback_network": true,
+      "scratch_files_actually_created": 8,
+      "scratch_file_events_observed": 0,
+      "loopback_exchanges_actually_completed": 15,
+      "transparent_rule_findings": 1,
+      "model_findings": 0,
+      "surviving_child_rule_observed": true,
+      "finding_citations_valid": true,
+      "model": {
+        "version": "lanl2015-v1-seed1984",
+        "artifact_sha256": "7bf69f985c293f34e47b7848590e642201bb02adac0da0df421fa6d05a63a420",
+        "status": "available",
+        "score_nats": 5.357753861422744,
+        "threshold": 6.423330059051517,
+        "above_threshold": false,
+        "features": {
+          "supported_events": 24,
+          "ignored_kinds": {},
+          "context_events": 16,
+          "token_counts": {
+            "network_high_port": 19,
+            "process_end": 5
+          }
+        },
+        "limitations": [
+          "Unusual event sequences are not proof of malware; no attack labels or malware performance evaluation.",
+          "Trained on a bounded2015 LANL enterprise host/network prefix; personal Windows applications may differ.",
+          "Only process start/end, DNS and network destination-port categories influence scores. File, Registry and process-access evidence is excluded.",
+          "LANL process names are anonymized, with no PID/parent IDs; router flow records have no process attribution. Process ancestry is displayed evidence, not learned by this model.",
+          "Scores are anomaly surprise in nats, not confidence percentages or probabilities of maliciousness.",
+          "Validation selected99th-percentile maximum surprise across8 targets/24-event windows. Session alerts cannot be interpreted as a calibrated false-positive rate.",
+          "Mirror publisher documents official-source byte-identical acquisition; official-source full-file equality is not independently verified.",
+          "Missing telemetry changes observed sequences and may change scores; low scores do not establish safety.",
+          "Training aggregates host-wide events; a watched process session is a narrower stream. Network destination port53 has no training observations in this subset."
+        ]
+      },
+      "collector_backend": "polling",
+      "collector_dropped_events": 0,
+      "coverage": [
+        {
+          "kind": "processes",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Process snapshots and creation-time identities. Short-lived children between polls can be missed; ancestry before watch may be incomplete."
+        },
+        {
+          "kind": "network",
+          "status": "partial",
+          "backend": "polling",
+          "detail": "Connection snapshots only. Brief connections, DNS and traffic contents are unavailable. Some protected processes deny access."
+        },
+        {
+          "kind": "processes",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "network",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "dns",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "files",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "registry",
+          "status": "unavailable",
+          "backend": "sysmon",
+          "detail": "[Errno 15007] Sysmon channel is unavailable or access is denied"
+        },
+        {
+          "kind": "file_reads_and_encrypted_contents",
+          "status": "unavailable",
+          "backend": "all",
+          "detail": "Complete file reads, full command history and encrypted traffic contents are not collected."
+        }
+      ],
+      "no_raw_telemetry_exported": true
+    }
+  ],
+  "passed": true
+}

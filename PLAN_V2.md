@@ -1,0 +1,12 @@
+# Expanded research and validation
+
+Preserve the v0.1.0 Git tag, original data manifest, model weights and held-out results. The user authorized broader public telemetry research, larger training on D:, harmless fake-malware test applications and substantial private GitHub checkpoints.
+
+1. Acquire larger immutable LANL prefixes into a separate experiment; exclude every original experiment timestamp. Keep host and time partitions disjoint and fit only training. Compare feature baseline, two GRU capacities and two seeds; freeze validation selection before opening fresh test data.
+2. Investigate relevant primary-source datasets and document eligibility, licences, provenance, labels, collection domain and download constraints. Acquire real Windows attack-emulation recordings as an independent transfer/coverage audit. Scenario labels cannot become per-event ground truth or detector inputs. Verify whether LANL red-team annotations overlap the selected interval.
+3. Compile harmless Windows standalone test apps using only owned temporary files, trusted child processes and numeric loopback traffic. Observe them with the real collector and model, preserve citation checks and publish actual quiet/alert outcomes. Risky persistence descriptions remain explicitly fabricated fixtures.
+4. Add bounded inert recording imports with native file selection, provenance, partial capture coverage and isolated recorded identities. Dataset command lines are displayed data, never executed. Keep fabricated replay, imported recordings and local live observation distinct.
+5. Promote a model only after checking validation selection, frozen held-out results, export parity, inference cost and scenario/benign-workload limitations. Publish actual improvements and failures rather than treating more epochs or more alerts as success.
+6. Run appropriate source/package checks, build updated installer and portable executable, and push tested milestones to the existing private GitHub repository with a new release tag.
+
+All new downloads, checkpoints, preprocessing and temporary files stay under the project on D:. Start free space:238.65 GiB of914.11 GiB; maintain at least182.82 GiB free (20%). Acquisition is bounded; raw datasets, local process histories, caches and executable packages remain excluded from Git. No paid services, malware execution, startup persistence or privileged collector installation are part of this work.

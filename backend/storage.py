@@ -8,6 +8,7 @@ import threading
 import uuid
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from contextlib import nullcontext
 
 
 def now() -> str:
@@ -183,7 +184,7 @@ class EvidenceStore:
             self.db.execute("UPDATE sessions SET status=?,ended_at=? WHERE id=?", (
                 status, now() if status == "stopped" else None, sid))
 
-    def ingest(self, event):
+    def ingest(self, event, *, defer=False):
         event = dict(event)
         if not event.get("process_key") or not event.get("kind"):
             raise ValueError("Event requires process_key and kind")
@@ -198,7 +199,7 @@ class EvidenceStore:
             details = json.dumps(event["details"])
         image = str(event.get("image") or "")[:4096]
         command = str(event.get("command_line") or "")[:8192]
-        with self.lock, self.db:
+        with self.lock, (nullcontext() if defer else self.db):
             inserted = self.db.execute("INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", (
                 event["id"], key, parent, event.get("pid", 0), event["timestamp"], now(), event["kind"],
                 image, command, details, event.get("source", "unknown"),
@@ -216,7 +217,8 @@ class EvidenceStore:
                 self.db.execute("UPDATE events SET parent_key=? WHERE process_key=? AND parent_key IS NULL", (parent, key))
             elif event["kind"] == "process_end":
                 self.db.execute("UPDATE processes SET ended_at=? WHERE key=?", (event["timestamp"], key))
-            self.reconcile()
+            if not defer:
+                self.reconcile()
         return True
 
     def reconcile(self):
@@ -257,6 +259,7 @@ class EvidenceStore:
         self.session(sid)
         with self.lock, self.db:
             self.db.execute("DELETE FROM sessions WHERE id=?", (sid,))
+            self.db.execute("DELETE FROM meta WHERE key=?", ("recording:" + sid,))
             self.db.execute("DELETE FROM events WHERE process_key NOT IN(SELECT process_key FROM membership)")
             self.db.execute("DELETE FROM processes WHERE key NOT IN(SELECT process_key FROM membership)")
             self.db.execute("DELETE FROM aliases WHERE process_key NOT IN(SELECT key FROM processes)")
@@ -277,5 +280,6 @@ class EvidenceStore:
                 self.db.execute("DELETE FROM incidents")
                 self.gap(f"Retention removed {dropped} evidence events; earlier activity may be incomplete.")
             self.db.execute("DELETE FROM sessions WHERE started_at<? AND status NOT IN ('watching','paused')", (cutoff,))
+            self.db.execute("DELETE FROM meta WHERE key LIKE 'recording:%' AND substr(key,11) NOT IN(SELECT id FROM sessions)")
             self.db.execute("DELETE FROM processes WHERE key NOT IN(SELECT process_key FROM membership) AND key NOT IN(SELECT process_key FROM events)")
         return dropped

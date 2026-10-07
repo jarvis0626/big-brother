@@ -1,0 +1,77 @@
+{
+  "id": "gru-e8-h16-seed1984",
+  "architecture": "gru",
+  "seed": 1984,
+  "embedding_size": 8,
+  "hidden_size": 16,
+  "artifact": "gru-e8-h16-seed1984.json",
+  "artifact_sha256": "eabb6c264e5ac42fcd30bf7dc2215a06adc255fc9ed0fccc1d1b1419cb71869b",
+  "validation": {
+    "next_event_nll_nats": 0.5279048076110453,
+    "perplexity": 1.6953764449861966,
+    "mean_window_max_nll_nats": 1.599535976244693,
+    "prediction_count": 95264,
+    "window_count": 11908
+  },
+  "threshold": 7.033102579116843,
+  "selected_epoch": 7,
+  "training_seconds": 192.21557129999928,
+  "export_maximum_probability_error": 6.097908511470962e-08,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_next_event_nll_nats": 0.5657527830704181,
+      "validation_next_event_nll_nats": 0.544717431807601
+    },
+    {
+      "epoch": 2,
+      "train_next_event_nll_nats": 0.4790071712541879,
+      "validation_next_event_nll_nats": 0.5385579625378057
+    },
+    {
+      "epoch": 3,
+      "train_next_event_nll_nats": 0.47370668185142334,
+      "validation_next_event_nll_nats": 0.5348895367821206
+    },
+    {
+      "epoch": 4,
+      "train_next_event_nll_nats": 0.47076462739926334,
+      "validation_next_event_nll_nats": 0.5331946802312153
+    },
+    {
+      "epoch": 5,
+      "train_next_event_nll_nats": 0.46911374320116983,
+      "validation_next_event_nll_nats": 0.530218610008753
+    },
+    {
+      "epoch": 6,
+      "train_next_event_nll_nats": 0.46783981671615765,
+      "validation_next_event_nll_nats": 0.529057652555113
+    },
+    {
+      "epoch": 7,
+      "train_next_event_nll_nats": 0.4669592451843164,
+      "validation_next_event_nll_nats": 0.5279048076110453
+    },
+    {
+      "epoch": 8,
+      "train_next_event_nll_nats": 0.46642922248682855,
+      "validation_next_event_nll_nats": 0.5302365829595124
+    },
+    {
+      "epoch": 9,
+      "train_next_event_nll_nats": 0.4657331726435724,
+      "validation_next_event_nll_nats": 0.528884460156289
+    },
+    {
+      "epoch": 10,
+      "train_next_event_nll_nats": 0.4651131248007773,
+      "validation_next_event_nll_nats": 0.5306760614362579
+    }
+  ],
+  "configuration": {
+    "learning_rate": 0.003,
+    "batch_size": 512,
+    "patience": 3
+  }
+}

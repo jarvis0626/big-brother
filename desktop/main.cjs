@@ -149,6 +149,21 @@ ipcMain.handle('bb:launch-selected', async (event) => {
   const stat = await fs.promises.stat(selectedExecutable); if (!stat.isFile()) throw new Error('Selected executable is unavailable');
   return rpc('launch', { path: selectedExecutable });
 });
+ipcMain.handle('bb:import-recording', async (event, ...args) => {
+  trusted(event);
+  if (args.length) throw new Error('Recording import accepts no renderer parameters');
+  const result = await dialog.showOpenDialog(mainWindow, {
+    title: 'Import a normalized recording',
+    filters: [{ name: 'Big Brother recording JSON', extensions: ['json'] }],
+    properties: ['openFile']
+  });
+  if (result.canceled || !result.filePaths[0]) return null;
+  const selected = result.filePaths[0];
+  if (!path.isAbsolute(selected) || path.extname(selected).toLowerCase() !== '.json') throw new Error('Choose a normalized recording JSON file');
+  const stat = await fs.promises.stat(selected);
+  if (!stat.isFile() || stat.size > 32 * 1024 * 1024) throw new Error('Recording must be a JSON file no larger than 32 MiB');
+  return rpc('import_recording', { path: selected });
+});
 ipcMain.handle('bb:export', async (event, sessionId) => {
   trusted(event); if (!validId(sessionId)) throw new Error('Invalid session');
   const result = await dialog.showSaveDialog(mainWindow, { title: 'Export investigation report', defaultPath: `Big-Brother-${sessionId}.json`, filters: [{ name: 'JSON report', extensions: ['json'] }] });

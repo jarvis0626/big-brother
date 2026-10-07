@@ -86,6 +86,8 @@ class ExplanationEngine:
             missing.append("File, Registry, DNS or other event coverage may be unavailable or excluded by collector configuration.")
         if session["mode"] == "replay":
             missing.append("This session is fabricated demonstration telemetry and is excluded from model evaluation.")
+        if session["mode"] == "recording":
+            missing.append("Imported recording: scenario labels do not identify every event as malicious; source metadata is not authenticated by import.")
         return {"observed": [observed(event) for event in selected],
                 "interpretations": [interpretation], "missing": missing,
                 "suggested": ["Check whether these actions match the program's expected purpose.",
