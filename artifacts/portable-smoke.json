@@ -8,8 +8,8 @@
     "smoke":  {
                   "passed":  true,
                   "packaged":  true,
-                  "version":  "0.2.0",
-                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-portable-1791358991239\\BigBrother-data",
+                  "version":  "1.0.0",
+                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-portable-1792068225879\\BigBrother-data",
                   "portable":  true,
                   "resources_present":  true,
                   "model":  {
@@ -25,5 +25,5 @@
                   "node_available":  false,
                   "title":  "Big Brother"
               },
-    "tested_at":  "2026-10-07T07:43:20.3168999Z"
+    "tested_at":  "2026-10-15T12:43:56.4435335Z"
 }

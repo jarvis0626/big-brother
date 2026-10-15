@@ -1,6 +1,6 @@
 # Five-minute replay demo
 
-Open the installed **Big Brother** shortcut, or run `release/Big-Brother-0.2.0-x64-portable.exe` from a writable folder. No administrator account, Sysmon installation or external LLM is needed for this demo.
+Open the installed **Big Brother** shortcut, or run `release/Big-Brother-1.0.0-x64-portable.exe` from a writable folder. No administrator account, Sysmon installation or external LLM is needed for this demo.
 
 Both scenarios contain **fabricated evidence**. Opening a replay ingests records; it never runs the named programs, creates a startup entry or contacts a destination. These fixtures demonstrate the investigation workflow and are excluded from training and accuracy evaluation.
 

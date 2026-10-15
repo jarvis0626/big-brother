@@ -42,3 +42,5 @@ The helper checks that the credential belongs to the configured owner, verifies 
 An authentication or permission failure leaves local work intact. Sign in through Git Credential Manager and retry. If an existing origin points somewhere else or the target is public, the helper refuses to push and preserves existing configuration.
 
 Generated installers and portable executables remain in the local `release/` directory. Source milestones do not automatically upload binary releases or alter repository visibility.
+
+On 15 October 2026, the user explicitly authorized uploading the app as v1. The `v1.0.0` GitHub release provides the installer, portable executable, a ZIP containing both with a quick-start guide, and SHA-256 checksums. The repository stays private. The README puts these downloads first and includes two actual-app GIFs captured using fabricated replay data. Earlier tags and all frozen model research remain preserved; the application version is independent of the behavioral model version.

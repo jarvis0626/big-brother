@@ -1,0 +1,47 @@
+{
+  "fabricated_replay": true,
+  "captured_from": "Actual Big Brother desktop UI",
+  "steps": [
+    {
+      "group": "overview",
+      "description": "Start with the home screen"
+    },
+    {
+      "group": "overview",
+      "description": "Choose the sample investigation"
+    },
+    {
+      "group": "overview",
+      "description": "Follow the four-process graph and recorded timeline"
+    },
+    {
+      "group": "overview",
+      "description": "Review the list of findings"
+    },
+    {
+      "group": "overview",
+      "description": "Read the observed facts and possible explanations"
+    },
+    {
+      "group": "evidence",
+      "description": "Open a model finding beside the recorded activity"
+    },
+    {
+      "group": "evidence",
+      "description": "Click a reference to inspect its exact supporting event"
+    },
+    {
+      "group": "evidence",
+      "description": "Export a local report; native destination selected by capture harness"
+    },
+    {
+      "group": "evidence",
+      "description": "Return to a saved investigation through Sessions"
+    }
+  ],
+  "renderer_errors": [],
+  "app_version": "1.0.0",
+  "model_version": "lanl2015-v2-gru-e16-h32-seed2026",
+  "recorded_at_utc": "2026-10-15T12:36:19.157Z",
+  "native_save_dialog_automated": true
+}

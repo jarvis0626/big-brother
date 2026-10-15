@@ -1925,7 +1925,7 @@ export default function App() {
             <span>Stored on this device</span>
           </div>
           <div className="sidebar-version">
-            Big Brother <span>v0.2.0</span>
+            Big Brother <span>v1.0.0</span>
           </div>
         </div>
       </aside>

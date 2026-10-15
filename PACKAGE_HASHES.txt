@@ -8,3 +8,11 @@ db776e47aa71d4f451dd45e6a33785ee1d1633b5d74dc2e30e039d56bd0b3c3c  Big-Brother-0.
 # SHA256  filename  bytes
 3a297845a0e1e17f7f68d83c97ebcca1d2fec9d31535964096363247528b15fb  Big-Brother-0.2.0-x64-nsis.exe  121609449
 fe33839eda9354f260763909969b37ab627d473a45ac378bdb93243a12b7bd1a  Big-Brother-0.2.0-x64-portable.exe  121317804
+
+# Big Brother 1.0.0 Windows x64 release
+# Both executables: Authenticode NotSigned
+# SHA256  filename  bytes
+ea74724e243b52f70634c7cc94ac9144f56f469b4b134957a5dd9a4966b79029  Big-Brother-1.0.0-Windows-x64.zip  244228198
+4e58056715c542fe205fd12968933c4c32ff64e2135589104e4252ff1a615a8a  Big-Brother-1.0.0-x64-nsis.exe  122256769
+61184115dffbc56bf51e80ef231034f1e95f5502004774c2d2fed07fc6cc2662  Big-Brother-1.0.0-x64-portable.exe  121965198
+a97e6fd178b46c8f064dab5aa903adbb3e669080777e2c17ecf8649ec9467add  SHA256SUMS.txt  298

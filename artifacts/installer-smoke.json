@@ -8,8 +8,8 @@
     "smoke":  {
                   "passed":  true,
                   "packaged":  true,
-                  "version":  "0.2.0",
-                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-installer-1791358991239\\data",
+                  "version":  "1.0.0",
+                  "data_dir":  "D:\\Projects\\Big Brother\\.cache\\package-test-installer-1792068225877\\data",
                   "portable":  false,
                   "resources_present":  true,
                   "model":  {
@@ -25,7 +25,7 @@
                   "node_available":  false,
                   "title":  "Big Brother"
               },
-    "tested_at":  "2026-10-07T07:43:29.4760732Z",
+    "tested_at":  "2026-10-15T12:44:20.5279726Z",
     "uninstaller_exit":  0,
     "application_removed":  true
 }

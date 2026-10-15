@@ -23,8 +23,8 @@ To stop or remove Sysmon, use Microsoft's documented controls explicitly, such a
 
 ## Running the packages
 
-- Installer: `release/Big-Brother-0.2.0-x64-nsis.exe` installs per user and creates shortcuts. No administrator privilege is requested by the app.
-- Portable launcher: `release/Big-Brother-0.2.0-x64-portable.exe` writes `BigBrother-data` beside itself. Put it in a writable folder. The extracted application is temporary; its retained data stays alongside the launcher.
+- Installer: `release/Big-Brother-1.0.0-x64-nsis.exe` installs per user and creates shortcuts. No administrator privilege is requested by the app.
+- Portable launcher: `release/Big-Brother-1.0.0-x64-portable.exe` writes `BigBrother-data` beside itself. Put it in a writable folder. The extracted application is temporary; its retained data stays alongside the launcher.
 - Extracted folder: `release/win-unpacked/Big Brother.exe` is usable independently if all adjacent files remain present. It stores history under the user's application-data directory.
 
 These packages are unsigned. The build does not claim a verified publisher or a signing certificate.

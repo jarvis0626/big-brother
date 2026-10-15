@@ -63,7 +63,7 @@
       "status": "passed"
     }
   ],
-  "started_at": "2026-10-07T07:35:38.432Z",
+  "started_at": "2026-10-15T12:42:41.528Z",
   "model": {
     "name": "Expanded LANL temporal GRU event predictor",
     "version": "lanl2015-v2-gru-e16-h32-seed2026",
@@ -101,14 +101,14 @@
     "sysmon_detail": "Sysmon channel not checked yet; start a watch to check existing telemetry."
   },
   "replay": {
-    "session_id": "session_0559450d8ff84814a7426a6f075a24aa",
+    "session_id": "session_d4e44cf45c17401d858d8bd373422deb",
     "events": 13,
     "processes": 4,
     "incidents": 3
   },
-  "report_path": "D:\\Projects\\Big Brother\\.cache\\gui-smoke-1791358538430\\report.json",
+  "report_path": "D:\\Projects\\Big Brother\\.cache\\gui-smoke-1792068161526\\report.json",
   "ordinary_replay": {
-    "session_id": "session_b372826b35d346a392acaf190babdcdc",
+    "session_id": "session_6f0c63f46035402fa8375ac6606ae1b6",
     "events": 3,
     "incidents": 0
   },
@@ -134,5 +134,5 @@
   },
   "renderer_errors": [],
   "status": "passed",
-  "finished_at": "2026-10-07T07:35:51.124Z"
+  "finished_at": "2026-10-15T12:42:55.822Z"
 }

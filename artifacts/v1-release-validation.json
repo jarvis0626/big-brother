@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "source_tag": "v1.0.0",
+  "verified_at_utc": "2026-10-15T12:46:14.827429+00:00",
+  "python_suite": {
+    "passed": 142,
+    "seconds": 20.4
+  },
+  "desktop_boundary_tests": 8,
+  "packaged_gui_checks": 15,
+  "installer": {
+    "passed": true,
+    "no_python_node_path": true,
+    "uninstaller_exit": 0,
+    "application_removed": true
+  },
+  "portable": {
+    "passed": true,
+    "no_python_node_path": true,
+    "adjacent_data_routing": true
+  },
+  "demonstrations": {
+    "fabricated_replay": true,
+    "overview_frames": 48,
+    "evidence_frames": 42,
+    "actual_app_ui": true,
+    "live_personal_data": false
+  },
+  "assets": [
+    {
+      "name": "Big-Brother-1.0.0-Windows-x64.zip",
+      "bytes": 244228198,
+      "sha256": "ea74724e243b52f70634c7cc94ac9144f56f469b4b134957a5dd9a4966b79029"
+    },
+    {
+      "name": "Big-Brother-1.0.0-x64-nsis.exe",
+      "bytes": 122256769,
+      "sha256": "4e58056715c542fe205fd12968933c4c32ff64e2135589104e4252ff1a615a8a"
+    },
+    {
+      "name": "Big-Brother-1.0.0-x64-portable.exe",
+      "bytes": 121965198,
+      "sha256": "61184115dffbc56bf51e80ef231034f1e95f5502004774c2d2fed07fc6cc2662"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 298,
+      "sha256": "a97e6fd178b46c8f064dab5aa903adbb3e669080777e2c17ecf8649ec9467add"
+    }
+  ],
+  "limitations": [
+    "Unsigned Windows packages",
+    "Behavioral malware accuracy remains unmeasured",
+    "Live Sysmon channel is not configured on development machine",
+    "Static feature classifier remains separate research"
+  ]
+}
