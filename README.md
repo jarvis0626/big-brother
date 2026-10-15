@@ -27,8 +27,6 @@ Windows 11, 64-bit. **No Python, Node, Docker, API key or paid subscription need
 
 ## See it in action
 
-These GIFs show the actual desktop app using its built-in **fabricated sample replay**. No sample program or attack command is executed.
-
 **Open the sample and explore a program's activity:**
 
 ![Actual Big Brother app: open a sample replay, inspect the process graph, and browse findings](docs/media/overview.gif)
