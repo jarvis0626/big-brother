@@ -1,6 +1,28 @@
 # Development and research
 
-This document preserves the engineering and research detail behind the v1.0.0 desktop release. The app uses the same frozen behavioral v2 model and its documented limits.
+This document preserves the engineering and research detail behind the v1.1.0 desktop release. The app uses the same frozen behavioral v2 model and comparison threshold; the changes concern observation semantics and presentation. Historical [v1.0.0 notes](releases/v1.0.0.md) remain preserved.
+
+## Current reference-scoring behavior
+
+Model comparisons appear as neutral **Behavior notes**, outside the **Findings** count. Findings remain the separately labeled evidence-rule results. Explanations cite observed event categories and identify the older enterprise reference domain; neither the model nor the rules establish server reputation or malware probability.
+
+Existing sessions refresh their stored analysis once on first view using the same recorded evidence and current classification rules. This initial compatibility refresh also applies to paused sessions; further reviews respect paused analysis.
+
+Reference scoring waits for sixteen preceding supported events plus a target event. Short sequences expose a waiting status and no score. For polling TCP snapshots, only `ESTABLISHED` records become model inputs; `SYN_SENT`, closing and unknown-state TCP snapshots remain raw evidence in the timeline, reports and rule evaluation. This change does not filter genuine Sysmon network events or UDP snapshots on the basis of TCP state.
+
+The model version remains `lanl2015-v2-gru-e16-h32-seed2026`, with weight SHA-256 `26adda072a62e5d6320686d04b7da98a2cbbdbe7c6a3559e37d8616bb025e95e` and threshold `7.014227390289307`. No new fitting or threshold calibration was performed for v1.1.0. The **Online connections** replay is fabricated workflow/regression data, not independent benign or malicious ground truth. The [new benign-source audit](benign-data-audit.md) records why SILRAD was acquired for inspection and excluded from deployment training.
+
+## Local diagnostic holdouts
+
+`scripts/local_behavior_dataset.py` reads one explicitly selected live session through SQLite's read-only mode. It does not search for databases, select sessions automatically, fit a model, calibrate a threshold or upload data. From this D: checkout, supply both the database's absolute path and the selected session's ID, available as `session.id` in that session's local JSON report:
+
+```powershell
+.venv\Scripts\python.exe scripts/local_behavior_dataset.py --database "D:\Private\BigBrother-data\big-brother.sqlite3" --session "session_ID_from_your_report"
+```
+
+The example path and ID are placeholders. The helper prints aggregate counts only. Its privacy-reduced file goes into ignored `training/data/v3/local`: event order and categories, capture-local process relationships, coarse port groups, source/snapshot flags and TCP state. It omits original paths, command lines, addresses, raw process IDs, session IDs and timestamps. Coarse sequences can still be identifying, so keep the file local and review any future sharing separately.
+
+Every file is fixed to role `diagnostic_holdout` and label `user_reported_expected`, with fitting, calibration and automatic upload disabled. A user's report of expected behavior is not independently verified benign ground truth. This format is separate from imported app recordings and is not a model-training input. A reported problem can become a regression case, but it cannot also serve as an unseen test of improvements tuned to it. See [the collector-matched data plan](benign-data-audit.md).
 
 ## Models actually trained
 

@@ -53,6 +53,7 @@ class Application:
         self.current_session = None
         self.last_analysis = 0
         self.last_model_error = None
+        self.model_assessments = {}
         self.explanations = ExplanationEngine(self.resources)
         try:
             self.model = BehavioralModel(self.resources / "models") if BehavioralModel else UnavailableModel("Model inference module is missing.")
@@ -79,15 +80,15 @@ class Application:
 
     def analyze(self, force=False, session_id=None):
         with self.lock:
-            if not force and time.monotonic() - self.last_analysis < 1:
+            if not force and time.monotonic() - self.last_analysis < 1 and (not session_id or session_id in self.model_assessments):
                 return
             self.last_analysis = time.monotonic()
             for session in self.store.sessions():
                 if session_id and session["id"] != session_id:
                     continue
-                if session["status"] == "paused":
+                if session["status"] == "paused" and not force and (not session_id or session["id"] in self.model_assessments):
                     continue
-                if not force and session["status"] not in ("watching", "replay", "recording"):
+                if not force and not session_id and session["status"] not in ("watching", "replay", "recording"):
                     continue
                 events = self.store.events(session["id"], limit=10000 if session["mode"] == "recording" else 2000)
                 score = None
@@ -102,22 +103,47 @@ class Application:
                         self.last_model_error = reason
                 findings = self.explanations.incidents(session, events, score, self.coverage(session))
                 self.store.save_incidents(session["id"], findings)
+                self.model_assessments[session["id"]] = self.assessment(score)
+            retained = {session["id"] for session in self.store.sessions()}
+            self.model_assessments = {sid: value for sid, value in self.model_assessments.items() if sid in retained}
+
+    def assessment(self, result):
+        metadata = self.model_metadata()
+        features = (result or {}).get("features", {})
+        status = (result or {}).get("status", "unavailable")
+        status = "reference_only" if status == "available" else status
+        explanations = {
+            "reference_only": "This score compares coarse activity with an enterprise reference sample. It is not validated for Windows application sessions and does not rate server trust. Differences appear as behavior notes, not threat findings.",
+            "insufficient_context": "Waiting for 16 preceding supported events and one new event. No reference score or behavior note is produced during warm-up.",
+            "insufficient_evidence": "Too few supported events for a reference comparison. A quiet finding list does not establish safety.",
+            "unavailable": "Reference scoring is unavailable. Evidence-based rules remain active; no substitute model score is shown.",
+        }
+        return {"status": status, "explanation": explanations.get(status, explanations["unavailable"]),
+                "reference_domain": metadata.get("reference_domain", "Enterprise reference; not calibrated for Windows application sessions"),
+                "score": (result or {}).get("score"), "threshold": metadata.get("threshold"),
+                "above_reference_threshold": bool((result or {}).get("above_threshold")),
+                "required_context_events": metadata.get("required_context_events", 16),
+                "available_context_events": features.get("context_events", 0),
+                "excluded_observation_reasons": features.get("excluded_observation_reasons", {})}
 
     def state(self, session_id=None):
         with self.lock:
             sessions = self.store.sessions()
             sid = session_id or self.current_session or (sessions[0]["id"] if sessions else None)
             session = self.store.session(sid) if sid else None
-            if session and session["status"] != "paused":
+            if session:
                 self.analyze(session_id=sid)
             metadata = dict(self.model_metadata())
             if self.last_model_error:
                 metadata["status"] = "error"
                 metadata["limitations"] = list(metadata.get("limitations", [])) + [self.last_model_error]
+            reports = self.store.incidents(sid) if sid else []
             return {"sessions": sessions, "session": session,
                     "events": self.store.events(sid, limit=10000 if session["mode"] == "recording" else 2000) if sid else [],
                     "processes": self.store.processes(sid) if sid else [],
-                    "incidents": self.store.incidents(sid) if sid else [],
+                    "incidents": [report for report in reports if report.get("classification") != "reference_note"],
+                    "behavior_notes": [report for report in reports if report.get("classification") == "reference_note"],
+                    "model_assessment": self.model_assessments.get(sid, self.assessment(None)),
                     "collector": self.collector.state() if self.collector else {"status": "idle", "backend": "replay", "gaps": self.store.gaps(), "dropped_events": 0},
                     "model": metadata, "settings": self.store.get_settings(), "coverage": self.coverage(session),
                     "recording": self.store.get_meta("recording:" + sid) if sid else None}
@@ -173,7 +199,7 @@ class Application:
         return session
 
     def replay(self, scenario="investigation"):
-        if scenario not in ("investigation", "ordinary"):
+        if scenario not in ("investigation", "ordinary", "network"):
             raise ValueError("Unknown replay scenario")
         fixture = json.loads((self.resources / "replays" / f"{scenario}.json").read_text(encoding="utf-8"))
         if fixture.get("fabricated") is not True:
@@ -252,7 +278,8 @@ class Application:
         state = self.state(session_id)
         return {"application": "Big Brother", "report_schema": 1, "exported_at": now(),
                 "session": state["session"], "processes": state["processes"], "events": self.store.events(session_id, limit=100000),
-                "incidents": state["incidents"], "model": state["model"], "coverage": state["coverage"],
+                "incidents": state["incidents"], "behavior_notes": state["behavior_notes"],
+                "model_assessment": state["model_assessment"], "model": state["model"], "coverage": state["coverage"],
                 "collector": state["collector"],
                 "recording": state["recording"],
                 "notice": "Contains sensitive local telemetry. Replay is fabricated. Scores are not probabilities. No findings do not establish safety."}
@@ -260,6 +287,7 @@ class Application:
     def delete_session(self, session_id):
         self.stop(session_id)
         self.store.delete_session(session_id)
+        self.model_assessments.pop(session_id, None)
         if self.current_session == session_id:
             self.current_session = None
         return self.state()
@@ -305,9 +333,13 @@ def self_test(resources):
                        for finding in state["incidents"] for fact in finding["explanation"]["observed"])
             assert state["model"]["status"] not in ("unavailable", "error"), "Trained model unavailable"
             result = app.model.score(state["events"])
-            assert result is not None and "score" in result, "Trained inference returned no score"
+            assert result["score"] is None and not state["behavior_notes"], "Incomplete context was scored"
+            network = app.state(app.replay("network")["id"])
+            assert not network["incidents"] and len(network["behavior_notes"]) == 1, "Reference note separation failed"
+            assert network["model_assessment"]["status"] == "reference_only", "Trained inference unavailable"
             return {"passed": True, "events": len(state["events"]), "processes": len(state["processes"]),
-                    "incidents": len(state["incidents"]), "model": state["model"], "model_score": result["score"],
+                    "incidents": len(state["incidents"]), "model": state["model"], "model_score": network["model_assessment"]["score"],
+                    "network_reference_note": True, "warmup_unscored": True,
                     "telemetry": "Fabricated replay; real model inference. Live Windows coverage tested separately."}
         finally:
             app.close()

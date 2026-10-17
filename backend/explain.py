@@ -78,7 +78,7 @@ class ExplanationEngine:
     def __init__(self, resources: Path):
         self.knowledge = KnowledgeIndex(resources / "knowledge.json")
 
-    def explain(self, events, title, interpretation, query, session, coverage):
+    def explain(self, events, title, interpretation, query, session, coverage, reference_only=False):
         # Retrieve the bounded observed subgraph first, then general documentation.
         selected = sorted(events, key=lambda event: (event["timestamp"], event["id"]))[-24:]
         missing = ["Recorded connections do not reveal encrypted traffic contents or prove data theft.",
@@ -93,12 +93,16 @@ class ExplanationEngine:
             missing.append("This session is fabricated demonstration telemetry and is excluded from model evaluation.")
         if session["mode"] == "recording":
             missing.append("Imported recording: scenario labels do not identify every event as malicious; source metadata is not authenticated by import.")
+        documentation = self.knowledge.retrieve(query, limit=len(self.knowledge.documents) if reference_only else 3)
+        if reference_only:
+            documentation = [doc for doc in documentation if doc["id"] in ("microsoft-tcp-state", "aoe-online-ports", "microsoft-sysmon")][:3]
+            missing.append("The reference was trained on enterprise host activity, not validated Windows game sessions. It has no server reputation or traffic-content evidence.")
         return {"observed": [observed(event) for event in selected],
                 "interpretations": [interpretation], "missing": missing,
                 "suggested": ["Check whether these actions match the program's expected purpose.",
                               "Review the recorded executable paths, parent chain and supporting events.",
                               "Verify publisher signatures and destinations before deciding how to respond."],
-                "documentation": self.knowledge.retrieve(query)}
+                "documentation": documentation}
 
     def incidents(self, session, events, model_result, coverage):
         findings = []
@@ -148,16 +152,28 @@ class ExplanationEngine:
             ids = set(model_result.get("evidence_event_ids") or [event["id"] for event in events])
             evidence = [event for event in events if event["id"] in ids]
             if evidence:
-                findings.append(("Activity differs from the trained reference", "low", evidence,
-                                 "The trained model rated this activity as unusual relative to its training sample. Domain differences and incomplete telemetry can cause false alerts; this score is not a probability of maliciousness.",
-                                 "process network telemetry Sysmon", model_result.get("score_kind", "anomaly_score"),
+                context = model_result.get("reference_context", {})
+                categories = {"process_start": "process starts", "process_end": "process endings", "dns": "DNS queries",
+                              "network_web": "web-port connections", "network_high_port": "high-port connections",
+                              "network_smb": "SMB-port connections", "network_remote": "remote-access-port connections",
+                              "network_dns": "DNS-port connections", "network_other_service": "other service-port connections",
+                              "network_unknown_port": "connections with an unknown port"}
+                category = categories.get(context.get("target_category"), "recorded activity")
+                counts = context.get("preceding_category_counts", {})
+                preceding = ", ".join(f"{count} {categories.get(token, safe(token))}" for token, count in sorted(counts.items()))
+                pattern = f" The scored category was {category}" + (f", after {preceding}." if preceding else ".")
+                findings.append(("Activity differs from the reference sample", "info", evidence,
+                                 "This is a behavior note, not a threat finding. The model compares coarse event categories with a 2015 enterprise sample; normal games and online services can differ from it." + pattern + " It does not evaluate server reputation or traffic contents, and its score is not a probability of maliciousness.",
+                                 "network TCP connection state online ports Sysmon", model_result.get("score_kind", "anomaly_score"),
                                  model_result["score"], model_result["model_version"]))
         output = []
         for title, severity, evidence, interpretation, query, score_kind, score, version in findings:
+            reference_only = score_kind != "rule_reference"
             identity = f"{session['id']}:{title}"
             output.append({"id": "incident_" + hashlib.sha256(identity.encode()).hexdigest()[:20],
                            "session_id": session["id"], "title": title, "severity": severity, "score": score,
                            "score_kind": score_kind, "model_version": version,
+                           "classification": "reference_note" if reference_only else "evidence_rule",
                            "event_ids": [event["id"] for event in evidence],
-                           "explanation": self.explain(evidence, title, interpretation, query, session, coverage)})
+                           "explanation": self.explain(evidence, title, interpretation, query, session, coverage, reference_only)})
         return output

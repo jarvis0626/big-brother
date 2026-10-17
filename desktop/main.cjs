@@ -80,12 +80,15 @@ function createWindow() {
         const session = await rpc('replay', { scenario: 'investigation' });
         const state = await rpc('state', { session_id: session.id });
         const renderer = await mainWindow.webContents.executeJavaScript('({ title: document.title, nodeAvailable: typeof window.require !== "undefined", bridgeAvailable: !!window.bigBrother, text: document.body.innerText })');
-        const modelFinding = state.incidents.some(i => typeof i.score === 'number' && i.model_version === state.model.version);
-        const passed = renderer.title === 'Big Brother' && !renderer.nodeAvailable && renderer.bridgeAvailable && renderer.text.includes('Big Brother') && modelFinding && state.events.length === 13;
+        const networkSession = await rpc('replay', { scenario: 'network' });
+        const network = await rpc('state', { session_id: networkSession.id });
+        const modelNote = network.behavior_notes.some(i => i.classification === 'reference_note' && typeof i.score === 'number' && i.model_version === state.model.version);
+        const warmupUnscored = state.model_assessment.score === null && state.behavior_notes.length === 0;
+        const passed = renderer.title === 'Big Brother' && !renderer.nodeAvailable && renderer.bridgeAvailable && renderer.text.includes('Big Brother') && modelNote && warmupUnscored && network.incidents.length === 0 && state.incidents.length === 2 && state.events.length === 13;
         const report = { passed, packaged: app.isPackaged, version: app.getVersion(), data_dir: dataDir, portable: !!process.env.PORTABLE_EXECUTABLE_DIR,
           resources_present: fs.existsSync(path.join(process.resourcesPath, 'backend', 'big-brother-service.exe')),
           model: { name: state.model.name, version: state.model.version, status: state.model.status },
-          events: state.events.length, processes: state.processes.length, incidents: state.incidents.length, model_finding: modelFinding,
+          events: state.events.length, processes: state.processes.length, incidents: state.incidents.length, model_note: modelNote, warmup_unscored: warmupUnscored,
           sandbox: mainWindow.webContents.getLastWebPreferences().sandbox, node_available: renderer.nodeAvailable, title: renderer.title };
         await fs.promises.writeFile(path.join(dataDir, 'package-smoke.json'), JSON.stringify(report, null, 2));
       } catch (error) {

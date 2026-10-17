@@ -24,7 +24,7 @@
     },
     {
       "group": "evidence",
-      "description": "Open a model finding beside the recorded activity"
+      "description": "Read a neutral behavior note separately from rule findings"
     },
     {
       "group": "evidence",
@@ -40,8 +40,8 @@
     }
   ],
   "renderer_errors": [],
-  "app_version": "1.0.0",
+  "app_version": "1.1.0",
   "model_version": "lanl2015-v2-gru-e16-h32-seed2026",
-  "recorded_at_utc": "2026-10-15T12:36:19.157Z",
+  "recorded_at_utc": "2026-10-17T12:09:41.229Z",
   "native_save_dialog_automated": true
 }

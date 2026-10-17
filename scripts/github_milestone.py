@@ -33,9 +33,10 @@ class CheckpointError(RuntimeError):
     pass
 
 
-def git(*args, capture=True, check=True, input=None):
+def git(*args, capture=True, check=True, input=None, binary=False):
     result = subprocess.run(["git", "-c", "credential.interactive=never", *args], cwd=ROOT,
-                            input=input, capture_output=capture, text=True, encoding="utf-8", errors="replace",
+                            input=input, capture_output=capture, text=not binary,
+                            encoding=None if binary else "utf-8", errors=None if binary else "replace",
                             env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
                             creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
     if check and result.returncode:
@@ -116,39 +117,57 @@ def ensure_remote():
         raise CheckpointError("Origin has an unexpected push destination; no push attempted.")
 
 
-def audit_paths():
-    candidates = git("ls-files", "--cached", "--others", "--exclude-standard", "-z").stdout.split("\0")
+def audit_paths(*, staged_only=False):
+    if staged_only:
+        # Audit the exact index blobs that a commit would contain. Working-tree
+        # edits and unrelated untracked files must not change the review scope.
+        candidates = []
+        listing = git("ls-files", "--cached", "--stage", "-z").stdout
+        for entry in filter(None, listing.split("\0")):
+            metadata, relative = entry.split("\t", 1)
+            mode, object_id, stage = metadata.split()
+            if stage != "0":
+                raise CheckpointError("Resolve unmerged index entries before a milestone checkpoint.")
+            if mode not in ("100644", "100755"):
+                raise CheckpointError(f"Non-regular index candidate requires a separate review: {relative}")
+            if not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", object_id):
+                raise CheckpointError("Invalid index object identity.")
+            candidates.append((relative, object_id))
+    else:
+        listing = git("ls-files", "--cached", "--others", "--exclude-standard", "-z").stdout
+        candidates = [(relative, None) for relative in filter(None, listing.split("\0"))]
     count, size = 0, 0
-    for relative in filter(None, candidates):
+    for relative, object_id in candidates:
         normalized = relative.replace("\\", "/")
         target = (ROOT / relative).resolve()
         if not target.is_relative_to(ROOT):
             raise CheckpointError("A candidate path escapes the repository workspace.")
-        if not target.is_file():
+        if not staged_only and not target.is_file():
             continue
-        filename = target.name.lower()
+        filename = normalized.rsplit("/", 1)[-1].lower() if staged_only else target.name.lower()
         if normalized.startswith(EXCLUDED_PREFIXES) or filename in ("drive-index.html", "optc-access-sample.bin"):
             raise CheckpointError(f"Raw data/cache artifact would be committed: {relative}")
         if filename.startswith(".env") or filename.endswith((".sqlite", ".sqlite3", ".db", ".pem", ".key", ".pfx")):
             raise CheckpointError(f"Sensitive local data candidate refused: {relative}")
-        stat = target.stat()
-        if stat.st_size > 10 * 1024 * 1024:
+        candidate_size = int(git("cat-file", "-s", object_id).stdout) if staged_only else target.stat().st_size
+        if candidate_size > 10 * 1024 * 1024:
             raise CheckpointError(f"Large source candidate requires a deliberate separate review: {relative}")
-        contents = target.read_bytes()
+        contents = git("cat-file", "blob", object_id, binary=True).stdout if staged_only else target.read_bytes()
         if any(pattern.search(contents) for pattern in SECRET_PATTERNS):
             raise CheckpointError(f"Potential credential material detected in {relative}; no contents were logged.")
         count += 1
-        size += stat.st_size
+        size += candidate_size
     return {"candidate_files": count, "candidate_bytes": size}
 
 
-def checkpoint(client, message):
+def checkpoint(client, message, *, staged_only=False):
     if not message or len(message) > 240 or "\n" in message:
         raise CheckpointError("Use a concise single-line milestone commit message.")
     client.ensure_private()
     ensure_remote()
-    audit = audit_paths()
-    git("add", "--all")
+    audit = audit_paths(staged_only=True) if staged_only else audit_paths()
+    if not staged_only:
+        git("add", "--all")
     staged = git("diff", "--cached", "--quiet", check=False)
     if staged.returncode == 1:
         git("commit", "-m", message)
@@ -174,10 +193,14 @@ def main():
     action.add_argument("--prepare", action="store_true", help="Create/verify private repository and configure origin; no commit or push")
     action.add_argument("--audit", action="store_true", help="Audit candidate source paths locally; no network or mutation")
     action.add_argument("--message", help="Commit the reviewed major milestone and push to the verified private origin")
+    parser.add_argument("--staged-only", action="store_true",
+                        help="Audit exact index contents and commit only already-staged files; excludes untracked files (with --audit or --message)")
     args = parser.parse_args()
+    if args.staged_only and args.prepare:
+        parser.error("--staged-only applies only to --audit or --message")
     try:
         if args.audit:
-            result = audit_paths()
+            result = audit_paths(staged_only=args.staged_only)
         else:
             client = GitHub()
             if args.prepare:
@@ -185,7 +208,7 @@ def main():
                 ensure_remote()
                 result = {"repository": repository["html_url"], "private": True, "created": created, "pushed": False}
             else:
-                result = checkpoint(client, args.message)
+                result = checkpoint(client, args.message, staged_only=args.staged_only)
         print(json.dumps(result, indent=2))
         return 0
     except CheckpointError as error:

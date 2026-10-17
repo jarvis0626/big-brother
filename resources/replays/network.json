@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "fabricated": true,
+  "name": "Online connections - fabricated replay",
+  "root_key": "replay:online:1",
+  "events": [
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:00Z",
+      "kind": "process_start",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "1"
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:01Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "2",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:02Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "3",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:03Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "4",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:04Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "5",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:05Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "6",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:06Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "7",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:07Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "8",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:08Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "9",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:09Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "10",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:10Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "11",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:11Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "12",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:12Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "13",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:13Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "14",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:14Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "15",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:15Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "16",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:16Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "17",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:17Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "18",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:18Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "19",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:19Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "20",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:20Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "21",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 443,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:21Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "22",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 50021,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:22Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "23",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 50022,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    },
+    {
+      "process_key": "replay:online:1",
+      "pid": 5601,
+      "timestamp": "2026-10-17T05:00:23Z",
+      "kind": "network",
+      "image": "C:\\Demo\\online-example.exe",
+      "source_record_id": "24",
+      "details": {
+        "destination_ip": "192.0.2.10",
+        "destination_port": 50023,
+        "protocol": "tcp",
+        "status": "ESTABLISHED",
+        "snapshot": true
+      }
+    }
+  ]
+}

@@ -41,6 +41,8 @@ def event_token(event):
     if kind == "dns": return 2
     if kind == "network":
         details = event.get("details") or {}
+        if details.get("snapshot") and str(details.get("protocol", "")).lower() == "tcp" and str(details.get("status", "")).upper() != "ESTABLISHED":
+            return None
         return port_token(details.get("destination_port", details.get("dest_port", details.get("remote_port"))))
     return None
 
@@ -146,6 +148,9 @@ class BehavioralModel:
             self.metadata.update({"status":"available","feature_schema":FEATURE_SCHEMA,"architecture":architecture,
                                   "score_kind":"anomaly negative log likelihood (nats)","supported_kinds":["process_start","process_end","network","dns"],
                                   "artifact_sha256":index["sha256"],"training_dataset":index["training_dataset"]})
+            self.metadata.update({"applicability":"reference_only", "required_context_events":CONTEXT,
+                                  "inference_policy":"windows-reference-full-context-v1",
+                                  "reference_domain":"2015 enterprise host activity; not calibrated for Windows application sessions"})
         except (OSError,ValueError,TypeError,KeyError) as exc:
             self.metadata["reason"]=str(exc)
 
@@ -157,24 +162,32 @@ class BehavioralModel:
         return (baseline_predict if self.weights["architecture"]=="bag_centroid" else gru_predict)(self.weights,context)
 
     def score(self, events):
-        result={"score":0.0,"score_kind":"anomaly negative log likelihood (nats)","model_version":self.metadata["version"],
+        result={"score":None,"score_kind":"anomaly negative log likelihood (nats)","model_version":self.metadata["version"],
                 "threshold":self.metadata["threshold"],"above_threshold":False,"evidence_event_ids":[],"selected_evidence":[],
                 "limitations":list(self.metadata["limitations"]),"status":self.metadata["status"]}
         if self.weights is None:return result
         selected=[]
         ignored=collections.Counter()
+        excluded=collections.Counter()
         for event in sorted(events,key=_event_order):
             token=event_token(event)
-            if token is None:ignored[str(event.get("kind"))]+=1
+            if token is None:
+                ignored[str(event.get("kind"))]+=1
+                if event.get("kind") == "network":excluded["non_established_tcp_snapshot"]+=1
             else:selected.append((event,token))
         selected=selected[-(CONTEXT+TARGETS):]
         result["features"]={"supported_events":len(selected),"ignored_kinds":dict(ignored),"context_events":min(CONTEXT,max(0,len(selected)-1)),
-                            "token_counts":dict(collections.Counter(TOKENS[token] for _,token in selected))}
+                            "token_counts":dict(collections.Counter(TOKENS[token] for _,token in selected)),
+                            "excluded_observation_reasons":dict(excluded),"required_context_events":CONTEXT}
         if len(selected)<2:
             result["status"]="insufficient_evidence"
             return result
+        if len(selected) <= CONTEXT:
+            result["status"]="insufficient_context"
+            result["limitations"].append("Reference scoring needs 16 preceding supported events. No score or model note is produced during warm-up.")
+            return result
         best=(-1.0,None,None)
-        for i in range(max(1,len(selected)-TARGETS),len(selected)):
+        for i in range(max(CONTEXT,len(selected)-TARGETS),len(selected)):
             context=[x[1] for x in selected[max(0,i-CONTEXT):i]]
             probs=self.predict(context)
             nll=-math.log(max(1e-12,probs[selected[i][1]]))
@@ -185,6 +198,8 @@ class BehavioralModel:
         supporting=selected[max(0,index-CONTEXT):index+1]
         result["evidence_event_ids"]=[str(event["id"]) for event,_ in supporting if event.get("id") is not None]
         result["selected_evidence"]=[{"event_id":str(selected[index][0].get("id","")),"token":TOKENS[selected[index][1]],"negative_log_likelihood":score}]
+        result["reference_context"]={"target_category":TOKENS[selected[index][1]],
+                                     "preceding_category_counts":dict(collections.Counter(TOKENS[token] for token in context))}
         if len(context)<CONTEXT:result["limitations"].append("Short event context; held-out evaluation used16 preceding supported events.")
         return result
 

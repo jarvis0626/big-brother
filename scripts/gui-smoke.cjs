@@ -12,7 +12,9 @@ process.env.ELECTRON_BUILDER_CACHE ||= path.join(root, '.cache', 'electron-build
 fs.mkdirSync(output, { recursive: true });
 fs.mkdirSync(dataDir, { recursive: true });
 const executable = process.env.BB_SMOKE_EXE || require('electron');
-const env = { ...process.env, BB_DATA_DIR: dataDir };
+const tempDir = path.join(root, '.cache', 'temp');
+fs.mkdirSync(tempDir, { recursive: true });
+const env = { ...process.env, BB_DATA_DIR: dataDir, TEMP: tempDir, TMP: tempDir };
 delete env.ELECTRON_RUN_AS_NODE;
 delete env.BB_DEV;
 const args = process.env.BB_SMOKE_EXE ? [] : [root];
@@ -38,7 +40,8 @@ async function openReplay(page, scenario) {
   const previousSessionId = (await getState(page)).session?.id;
   await page.getByRole('button', { name: /Explore a replay/ }).click();
   const dialog = page.getByRole('dialog', { name: 'Open a replay' });
-  await dialog.getByRole('button', { name: scenario === 'ordinary' ? /^Ordinary activity/ : /^Investigation/ }).click();
+  const scenarioName = scenario === 'ordinary' ? /^Ordinary activity/ : scenario === 'network' ? /^Online connections/ : /^Investigation/;
+  await dialog.getByRole('button', { name: scenarioName }).click();
   await dialog.getByRole('button', { name: 'Open replay', exact: true }).click();
   await dialog.waitFor({ state: 'hidden' });
   await page.locator('.replay-notice').waitFor();
@@ -108,23 +111,23 @@ async function main() {
   });
 
   let sessionId;
-  let modelFinding;
+  let modelNote;
+  let ruleFinding;
+  let networkSessionId;
   let replayName;
-  await record('UI replay ingestion, descendants, trained score and cited explanation', async () => {
+  await record('Short investigation replay retains two rule findings and explains missing model context', async () => {
     await openReplay(page, 'investigation');
     const state = await getState(page);
     assert(state.session && /replay/i.test(state.session.mode));
     assert(state.events.length >= 6);
     assert(state.processes.length >= 3);
-    assert(state.incidents.length > 0, 'Replay must produce an actual model-scored finding');
+    assert.equal(state.incidents.length, 2, 'Replay must retain its two transparent rule findings');
+    assert.equal(state.behavior_notes.length, 0, 'A short replay must not produce a model note without 16 preceding supported events');
+    assert.equal(state.model_assessment.status, 'insufficient_context');
     const ids = new Set(state.events.map(e => e.id));
-    modelFinding = state.incidents.find(i => Number.isFinite(i.score) && i.model_version === state.model.version);
-    assert(modelFinding, 'A finding must use the trained model');
+    assert(state.incidents.every(item => item.score_kind === 'rule_reference'));
+    ruleFinding = state.incidents[0];
     for (const incident of state.incidents) {
-      if (incident.score_kind !== 'rule_reference') {
-        assert(Number.isFinite(incident.score));
-        assert(incident.model_version === state.model.version);
-      }
       for (const fact of incident.explanation.observed) {
         assert(fact.event_ids.length > 0);
         for (const id of fact.event_ids) assert(ids.has(id));
@@ -132,17 +135,20 @@ async function main() {
     }
     sessionId = state.session.id;
     replayName = state.session.name;
-    results.replay = { session_id: sessionId, events: state.events.length, processes: state.processes.length, incidents: state.incidents.length };
-    await page.locator('.finding-choice').filter({ hasText: modelFinding.title }).click();
-    await page.waitForFunction(version => document.querySelector('.inspection-panel .score-card code')?.textContent === version, state.model.version);
+    results.replay = { session_id: sessionId, events: state.events.length, processes: state.processes.length, incidents: state.incidents.length, behavior_notes: state.behavior_notes.length };
+    assert.equal(await page.locator('.finding-choice').count(), 2);
+    assert.equal(await page.locator('.metric-card').filter({ hasText: 'Findings to review' }).locator('strong').innerText(), '2');
+    assert(/Normal games/.test(await page.locator('.behavior-context').innerText()));
+    assert(/reputation and connection contents are not checked/.test(await page.locator('.behavior-context').innerText()));
+    assert(/Waiting for more supported activity/.test(await page.locator('.behavior-context').innerText()));
     assert.equal(await page.locator('.process-node').count(), state.processes.length);
     assert(await page.locator('.replay-notice').isVisible());
     assert(/fabricated/i.test(await page.locator('.replay-notice').innerText()));
     await page.screenshot({ path: path.join(output, 'dashboard.png'), fullPage: true });
   });
 
-  await record('Finding citation navigates to its exact recorded event', async () => {
-    const eventId = modelFinding.explanation.observed[0].event_ids[0];
+  await record('Rule finding citations navigate to exact evidence and Findings excludes model notes', async () => {
+    const eventId = ruleFinding.explanation.observed[0].event_ids[0];
     // A citation must escape existing search filters rather than hide its own evidence.
     await page.getByLabel('Search evidence', { exact: true }).fill('no-matching-evidence-123456');
     await page.getByTitle('Show event ' + eventId, { exact: true }).first().click();
@@ -154,12 +160,50 @@ async function main() {
     await page.locator('.filter-notice').getByRole('button', { name: /Clear filter/ }).click();
     const navigation = page.getByRole('navigation', { name: 'Main navigation' });
     await navigation.getByRole('button', { name: /^Findings/ }).click();
-    await page.locator('.finding-summary').filter({ hasText: modelFinding.title }).click();
-    assert((await page.locator('.finding-expanded').innerText()).includes(modelFinding.model_version));
+    assert.equal(await page.locator('.finding-summary').count(), 2);
+    await page.locator('.finding-summary').filter({ hasText: ruleFinding.title }).click();
+    assert((await page.locator('.finding-expanded').innerText()).includes(ruleFinding.model_version));
     await page.getByRole('button', { name: 'View all evidence', exact: true }).click();
     await page.getByRole('heading', { name: 'Activity overview', exact: true }).waitFor();
-    assert.equal(await page.locator('.event-row').count(), modelFinding.event_ids.length);
+    assert.equal(await page.locator('.event-row').count(), ruleFinding.event_ids.length);
     await page.locator('.filter-notice').getByRole('button', { name: /Clear filter/ }).click();
+  });
+
+  await record('Online connections replay exposes a real model score as a neutral, evidence-cited behavior note', async () => {
+    await openReplay(page, 'network');
+    const state = await getState(page);
+    networkSessionId = state.session.id;
+    assert.equal(state.incidents.length, 0);
+    assert.equal(state.behavior_notes.length, 1);
+    assert.equal(state.model_assessment.status, 'reference_only');
+    modelNote = state.behavior_notes.find(note => Number.isFinite(note.score) && note.model_version === state.model.version);
+    assert(modelNote, 'The unchanged trained model must supply the note score');
+    assert.equal(modelNote.classification, 'reference_note');
+    assert.equal(modelNote.severity, 'info');
+    const ids = new Set(state.events.map(event => event.id));
+    for (const fact of modelNote.explanation.observed) {
+      assert(fact.event_ids.length > 0);
+      for (const id of fact.event_ids) assert(ids.has(id));
+    }
+    await page.locator('.behavior-choice').filter({ hasText: modelNote.title }).click();
+    await page.waitForFunction(version => document.querySelector('.behavior-detail .score-card code')?.textContent === version, state.model.version);
+    assert.equal(await page.locator('.finding-choice').count(), 0);
+    assert.equal(await page.locator('.metric-card').filter({ hasText: 'Findings to review' }).locator('strong').innerText(), '0');
+    assert(!(await page.locator('.behavior-detail .badge').getAttribute('class')).includes('badge-high'));
+    await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button', { name: /^Findings/ }).click();
+    assert.equal(await page.locator('.finding-summary').count(), 0);
+    await page.getByRole('button', { name: 'View behavior notes', exact: true }).click();
+    await page.locator('.behavior-detail').waitFor();
+    const eventId = modelNote.explanation.observed[0].event_ids[0];
+    await page.getByLabel('Search evidence', { exact: true }).fill('no-matching-evidence-123456');
+    await page.getByTitle('Show event ' + eventId, { exact: true }).first().click();
+    await page.getByRole('heading', { name: 'Event details', exact: true }).waitFor();
+    assert.equal(await page.locator('.event-selected').getAttribute('data-event-id'), eventId);
+    assert((await page.locator('.event-detail').innerText()).includes(eventId));
+    await page.getByRole('button', { name: 'Close event details', exact: true }).click();
+    await page.locator('.filter-notice').getByRole('button', { name: /Clear filter/ }).click();
+    results.network_replay = { session_id: networkSessionId, events: state.events.length, incidents: 0, behavior_notes: 1, model_score: modelNote.score };
+    await page.screenshot({ path: path.join(output, 'network-behavior-note.png'), fullPage: true });
   });
 
   await record('Report export through the UI and native save dialog', async () => {
@@ -170,7 +214,10 @@ async function main() {
     await page.locator('.session-controls').getByRole('button', { name: 'Export', exact: true }).click();
     await page.waitForFunction(() => document.querySelector('.toast')?.textContent.includes('Report exported'));
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-    assert(JSON.stringify(report).includes(sessionId));
+    assert(JSON.stringify(report).includes(networkSessionId));
+    assert.equal(report.incidents.length, 0);
+    assert.equal(report.behavior_notes.length, 1);
+    assert.equal(report.behavior_notes[0].classification, 'reference_note');
     results.report_path = reportPath;
   });
 

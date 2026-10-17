@@ -74,6 +74,7 @@ const EMPTY_STATE: AppState = {
   events: [],
   processes: [],
   incidents: [],
+  behavior_notes: [],
   collector: {
     status: "connecting",
     backend: "Waiting for collector",
@@ -548,8 +549,12 @@ function EventDetail({
   event: ActivityEvent;
   onClose: () => void;
 }) {
+  const detailRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    detailRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }, [event.id]);
   return (
-    <div className="event-detail">
+    <div className="event-detail" ref={detailRef}>
       <div className="subpanel-heading">
         <h3>{eventName(event.kind)}</h3>
         <button
@@ -824,15 +829,18 @@ function IncidentDetail({
   onExport: () => void;
 }) {
   const explanation = incident.explanation;
+  const referenceNote = incident.classification === "reference_note";
   return (
-    <div className="incident-detail">
+    <div className={`incident-detail ${referenceNote ? "behavior-detail" : ""}`}>
       <div className="incident-detail-title">
-        <Badge tone={incident.severity}>{label(incident.severity)}</Badge>
+        <Badge tone={referenceNote ? "neutral" : incident.severity}>
+          {referenceNote ? "Behavior note" : label(incident.severity)}
+        </Badge>
         <h3>{incident.title}</h3>
       </div>
       <div className="score-card">
         <div>
-          <span>{label(incident.score_kind || "anomaly score")}</span>
+          <span>{referenceNote ? "Difference from reference" : label(incident.score_kind || "anomaly score")}</span>
           <strong>
             {typeof incident.score === "number" &&
             Number.isFinite(incident.score)
@@ -850,7 +858,9 @@ function IncidentDetail({
         </div>
       </div>
       <p className="score-note">
-        {typeof incident.score === "number"
+        {referenceNote
+          ? "This measures a difference from the model’s reference data. It does not establish a threat or check a server’s reputation or connection contents."
+          : typeof incident.score === "number"
           ? "A measure of unusual behaviour, not a probability of maliciousness."
           : "This finding is based on a transparent evidence rule."}
       </p>
@@ -952,6 +962,60 @@ function IncidentDetail({
         </button>
       </div>
     </div>
+  );
+}
+
+function BehaviorNotesPanel({
+  state,
+  selectedId,
+  onSelect,
+  onEvidence,
+  onExport,
+}: {
+  state: AppState;
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
+  onEvidence: (ids: string[]) => void;
+  onExport: () => void;
+}) {
+  const notes = state.behavior_notes || [];
+  const selected = notes.find((note) => note.id === selectedId);
+  const assessment = state.model_assessment;
+  return (
+    <section className="panel behavior-notes-panel" aria-label="Behavior notes">
+      <div className="panel-heading">
+        <div className="heading-with-icon">
+          <Info size={17} />
+          <h2>Behavior notes</h2>
+          <span className="count-pill">{notes.length}</span>
+        </div>
+        <Badge tone="neutral">Reference only</Badge>
+      </div>
+      <div className="behavior-context">
+        <p>{assessment?.explanation || "The model compares event patterns with its reference data. A difference is a note to inspect, not evidence that an app is malicious."}</p>
+        <p>Normal games and other apps can connect on varied ports. Server reputation and connection contents are not checked.</p>
+        {assessment?.reference_domain && <p className="behavior-reference">Reference data: {assessment.reference_domain}</p>}
+        {assessment?.status === "insufficient_context" && <Badge tone="neutral">Waiting for more supported activity</Badge>}
+      </div>
+      {notes.length > 0 && <div className="behavior-picker">
+        {notes.map((note) => (
+          <button
+            key={note.id}
+            className={`behavior-choice ${note.id === selectedId ? "active" : ""}`}
+            aria-expanded={note.id === selectedId}
+            onClick={() => onSelect(note.id === selectedId ? null : note.id)}
+          >
+            <Info size={15} />
+            <span>{note.title}</span>
+            <span className="behavior-score">{typeof note.score === "number" && Number.isFinite(note.score) ? note.score.toFixed(3) : "Reference"}</span>
+            <ChevronDown size={14} />
+          </button>
+        ))}
+      </div>}
+      {selected && <div className="behavior-note-content">
+        <IncidentDetail incident={selected} state={state} onEvidence={onEvidence} onExport={onExport} />
+      </div>}
+    </section>
   );
 }
 
@@ -1103,7 +1167,8 @@ function FindingsPanel({
         <div className="inspection-scroll">
           <Empty icon={FileText} title="No findings recorded">
             Findings appear when observed activity warrants a closer look. No
-            findings does not establish that an application is safe.
+            findings does not establish that an application is safe. Model
+            comparisons appear separately under Behavior notes.
           </Empty>
           <div className="empty-panel-note">
             <Info size={16} />
@@ -1461,7 +1526,7 @@ function SettingsView({
           <div className="panel-heading">
             <div className="heading-with-icon">
               <Cpu size={17} />
-              <h2>Active detection model</h2>
+              <h2>Active reference model</h2>
             </div>
             <Badge
               tone={
@@ -1479,7 +1544,7 @@ function SettingsView({
             <dl>
               <dt>Version</dt>
               <dd className="mono">{state.model.version}</dd>
-              <dt>Alert threshold</dt>
+              <dt>Reference comparison threshold</dt>
               <dd className="mono">
                 {typeof state.model.threshold === "number"
                   ? state.model.threshold.toFixed(3)
@@ -1496,8 +1561,8 @@ function SettingsView({
             )}
             <div className="inline-note">
               <Info size={15} />
-              Scores describe unusual behaviour. They are not probabilities and
-              do not establish malicious intent.
+              Scores describe differences from the model’s reference data and
+              appear as neutral behavior notes. They do not establish malicious intent.
             </div>
           </div>
         </section>
@@ -1633,6 +1698,7 @@ export default function App() {
   const [selectedIncidentId, setSelectedIncidentId] = useState<string | null>(
     null,
   );
+  const [selectedBehaviorNoteId, setSelectedBehaviorNoteId] = useState<string | null>(null);
   const [focusedIds, setFocusedIds] = useState<string[]>([]);
   const [modal, setModal] = useState<Modal>(null);
   const [busy, setBusy] = useState(false);
@@ -1689,6 +1755,7 @@ export default function App() {
     setSelectedKey(null);
     setSelectedEventId(null);
     setSelectedIncidentId(null);
+    setSelectedBehaviorNoteId(null);
     setFocusedIds([]);
   }, [selectedSessionId, refresh]);
   useEffect(() => {
@@ -1925,7 +1992,7 @@ export default function App() {
             <span>Stored on this device</span>
           </div>
           <div className="sidebar-version">
-            Big Brother <span>v1.0.0</span>
+            Big Brother <span>v1.1.0</span>
           </div>
         </div>
       </aside>
@@ -2224,6 +2291,18 @@ export default function App() {
               </div>
               <div className="investigation-grid">
                 <div className="activity-column">
+                  {current && <BehaviorNotesPanel
+                    state={state}
+                    selectedId={selectedBehaviorNoteId}
+                    onSelect={(id) => {
+                      setSelectedBehaviorNoteId(id);
+                      setSelectedKey(null);
+                      setSelectedEventId(null);
+                      setFocusedIds([]);
+                    }}
+                    onEvidence={showEvidence}
+                    onExport={() => void exportReport()}
+                  />}
                   <section className="panel graph-panel">
                     <div className="panel-heading">
                       <div className="heading-with-icon">
@@ -2350,10 +2429,23 @@ export default function App() {
                 </>
               ) : (
                 <section className="panel full-empty">
-                  <Empty icon={FileText} title="No findings in this session">
+                  <Empty
+                    icon={FileText}
+                    title="No findings in this session"
+                    action={!!state.behavior_notes?.length && <button
+                      className="button secondary"
+                      onClick={() => {
+                        setSelectedBehaviorNoteId(state.behavior_notes![0].id);
+                        setView("overview");
+                      }}
+                    >
+                      <Info size={15} />
+                      View behavior notes
+                    </button>}
+                  >
                     Start an observation or open the investigation replay to
                     inspect evidence-linked findings. An absence of findings
-                    does not establish safety.
+                    does not establish safety. {state.behavior_notes?.length ? "This session has neutral behavior notes on Activity overview." : ""}
                   </Empty>
                 </section>
               )}
@@ -2637,6 +2729,22 @@ export default function App() {
               </div>
               <span className="radio-choice">
                 {replayScenario === "ordinary" && <span />}
+              </span>
+            </button>
+            <button
+              className={`replay-choice ${replayScenario === "network" ? "selected" : ""}`}
+              onClick={() => setReplayScenario("network")}
+            >
+              <span className="replay-choice-icon">
+                <Network size={21} />
+              </span>
+              <div>
+                <h3>Online connections</h3>
+                <p>A program connects on varied ports. Inspect a neutral behavior note and its limits.</p>
+                <Badge tone="replay">Fabricated evidence</Badge>
+              </div>
+              <span className="radio-choice">
+                {replayScenario === "network" && <span />}
               </span>
             </button>
           </div>

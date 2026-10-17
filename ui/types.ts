@@ -66,6 +66,7 @@ export interface Incident {
   session_id: string;
   title: string;
   severity: string;
+  classification?: "reference_note" | "evidence_rule";
   score: number | null;
   score_kind: string;
   model_version: string;
@@ -77,6 +78,18 @@ export interface Incident {
     suggested: (string | { text: string })[];
     documentation: (DocumentationReference | string)[];
   };
+}
+
+export interface ModelAssessment {
+  status: string;
+  explanation?: string;
+  reference_domain?: string;
+  score?: number | null;
+  threshold?: number | null;
+  above_reference_threshold?: boolean;
+  required_context_events?: number;
+  available_context_events?: number;
+  [key: string]: unknown;
 }
 
 export interface Coverage {
@@ -112,6 +125,8 @@ export interface AppState {
   events: ActivityEvent[];
   processes: ObservedProcess[];
   incidents: Incident[];
+  behavior_notes?: Incident[];
+  model_assessment?: ModelAssessment | null;
   collector: {
     status: string;
     backend: string;

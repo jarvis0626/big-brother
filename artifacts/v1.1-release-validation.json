@@ -1,0 +1,78 @@
+{
+  "version": "1.1.0",
+  "source_tag": "v1.1.0",
+  "verified_at_utc": "2026-10-17T12:17:13.727402+00:00",
+  "python_suite": {
+    "passed": 209,
+    "seconds": 54.89
+  },
+  "desktop_boundary_tests": 8,
+  "packaged_gui_checks": 16,
+  "installer": {
+    "passed": true,
+    "no_python_node_path": true,
+    "uninstaller_exit": 0,
+    "application_removed": true
+  },
+  "portable": {
+    "passed": true,
+    "no_python_node_path": true,
+    "adjacent_data_routing": true
+  },
+  "fabricated_regressions": {
+    "original_investigation_events": 13,
+    "original_investigation_rule_findings": 2,
+    "short_context_unscored": true,
+    "network_example_events": 24,
+    "network_example_rule_findings": 0,
+    "network_example_reference_notes": 1,
+    "notes_have_event_citations": true,
+    "paused_sessions_preserve_pause_after_initial_refresh": true
+  },
+  "demonstrations": {
+    "fabricated_replay": true,
+    "overview_frames": 48,
+    "evidence_frames": 42,
+    "actual_app_ui": true,
+    "live_personal_data": false
+  },
+  "dataset_quality": {
+    "publisher_archive_checksum_verified": true,
+    "silrad_excluded_from_behavioral_training": true,
+    "local_holdout_privacy_boundary_tests": 31,
+    "local_telemetry_committed": false
+  },
+  "model_weights_changed": false,
+  "model_threshold_changed": false,
+  "assets": [
+    {
+      "name": "Big-Brother-1.1.0-Windows-x64.zip",
+      "bytes": 244251381,
+      "sha256": "f292bf817d578f5d4c75d8fd5f58303f39ef871352c473375106d1f78b78cd3a"
+    },
+    {
+      "name": "Big-Brother-1.1.0-x64-nsis.exe",
+      "bytes": 122268396,
+      "sha256": "aa7e80e4ac3546bfe6b0d5b031df637fffc714d7252afd96a6fb0338fcc92d93"
+    },
+    {
+      "name": "Big-Brother-1.1.0-x64-portable.exe",
+      "bytes": 121976756,
+      "sha256": "e3b91de998c1ec1943c42312093c48da7e8ef3d1821aadcb8af4d5d839c9bca2"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 298,
+      "sha256": "0c38ae51800bb0472fffdfcdd67565658e1b0998c954a32e6aa9f74ebb586976"
+    }
+  ],
+  "limitations": [
+    "Unsigned Windows packages",
+    "Behavioral malware accuracy remains unmeasured",
+    "Reference model not calibrated for Windows application sessions",
+    "No retraining or threshold tuning in this release",
+    "Live Sysmon channel is not configured on development machine",
+    "Static feature classifier remains separate research",
+    "CodeWatch backend unavailable during this task"
+  ]
+}

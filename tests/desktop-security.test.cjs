@@ -15,6 +15,7 @@ test('settings and report references reject malformed or excessive input', () =>
   assert.deepEqual(validateRequest('replay',{}),{scenario:'investigation'});
 });
 test('only curated secure documentation can open outside the app', () => {
+  assert.match(validateExternal('https://support.ageofempires.com/hc/en-us/articles/360047306372-How-do-I-create-a-multiplayer-match-in-Age-of-Empires-II-Definitive-Edition'), /^https:\/\/support\.ageofempires\.com\//);
   for (const url of ['file:///C:/Windows/system32/cmd.exe','javascript:alert(1)','https://example.com','https://attack.mitre.org.evil.test','https://attack.mitre.org:9999','https://user:password@attack.mitre.org','https://github.com/attacker/run']) assert.throws(() => validateExternal(url));
   assert.equal(validateExternal('https://attack.mitre.org/techniques/T1547/'),'https://attack.mitre.org/techniques/T1547/');
 });

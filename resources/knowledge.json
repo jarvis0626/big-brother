@@ -1,5 +1,5 @@
 {
-  "version": "knowledge-2026-10-07-v2",
+  "version": "knowledge-2026-10-17-v3",
   "description": "Locally curated general documentation summaries. No attack-case labels or held-out incident answers.",
   "documents": [
     {
@@ -8,7 +8,13 @@
       "url": "https://attack.mitre.org/techniques/T1003/001/",
       "source_version": "1.5, last modified 2026-05-12",
       "retrieved_at": "2026-10-07",
-      "tags": ["lsass", "memory", "credential", "access", "T1003.001"],
+      "tags": [
+        "lsass",
+        "memory",
+        "credential",
+        "access",
+        "T1003.001"
+      ],
       "text": "Credential material can be present in LSASS process memory. Adversaries may target that memory, while legitimate security or administrative programs can also access the process. An access event records a relationship and rights; it does not establish that credentials were extracted. Review the recorded source, target and granted access with the software's expected purpose."
     },
     {
@@ -17,7 +23,14 @@
       "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights",
       "source_version": "official documentation accessed 2026-10-07",
       "retrieved_at": "2026-10-07",
-      "tags": ["process", "access", "rights", "memory", "PROCESS_VM_READ", "PROCESS_VM_WRITE"],
+      "tags": [
+        "process",
+        "access",
+        "rights",
+        "memory",
+        "PROCESS_VM_READ",
+        "PROCESS_VM_WRITE"
+      ],
       "text": "Windows process handles have access rights. PROCESS_VM_READ is 0x0010 and PROCESS_VM_WRITE is 0x0020; query rights alone are different from memory access rights. A recorded granted-access mask is evidence about access permissions rather than proof of memory content retrieval or malicious intent."
     },
     {
@@ -26,7 +39,13 @@
       "url": "https://attack.mitre.org/techniques/T1055/",
       "source_version": "official technique page accessed 2026-10-07",
       "retrieved_at": "2026-10-07",
-      "tags": ["process", "injection", "thread", "CreateRemoteThread", "T1055"],
+      "tags": [
+        "process",
+        "injection",
+        "thread",
+        "CreateRemoteThread",
+        "T1055"
+      ],
       "text": "Process injection can place code in another process. Recorded creation of a remote thread can support investigation, but legitimate debugging and instrumentation can also create such threads. Correlate source and target identity, recorded start location and surrounding events before interpreting the behavior."
     },
     {
@@ -35,7 +54,13 @@
       "url": "https://attack.mitre.org/techniques/T1547/001/",
       "source_version": "2.1, last modified 2026-05-12",
       "retrieved_at": "2026-10-07",
-      "tags": ["registry", "startup", "persistence", "run", "runonce"],
+      "tags": [
+        "registry",
+        "startup",
+        "persistence",
+        "run",
+        "runonce"
+      ],
       "text": "Windows startup folders and Run Registry keys can cause programs to launch at logon. Adversaries may use these locations to maintain persistence; legitimate software also uses startup mechanisms. A recorded modification warrants context and publisher verification rather than an automatic malware conclusion."
     },
     {
@@ -44,7 +69,12 @@
       "url": "https://attack.mitre.org/techniques/T1059/003/",
       "source_version": "1.5, last modified 2026-05-12",
       "retrieved_at": "2026-10-07",
-      "tags": ["shell", "cmd.exe", "process", "execution"],
+      "tags": [
+        "shell",
+        "cmd.exe",
+        "process",
+        "execution"
+      ],
       "text": "The Windows command shell supports commands and batch workflows. Adversaries can abuse it for execution, while administrators and installers regularly use it for ordinary tasks. Its presence in a process chain needs supporting context."
     },
     {
@@ -53,7 +83,15 @@
       "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
       "source_version": "documentation updated 2026-09-10",
       "retrieved_at": "2026-10-07",
-      "tags": ["sysmon", "process", "network", "dns", "file", "registry", "termination"],
+      "tags": [
+        "sysmon",
+        "process",
+        "network",
+        "dns",
+        "file",
+        "registry",
+        "termination"
+      ],
       "text": "Sysmon installs a service and driver and writes Windows Event Logs. Process GUIDs correlate activity across PID reuse. Event categories include process starts and ends, network connections, DNS queries, file creation and Registry changes. Configuration and filters determine which events appear; network connection logging is disabled by default. Sysmon does not interpret recorded events as malicious or safe."
     },
     {
@@ -62,8 +100,44 @@
       "url": "https://learn.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtquery",
       "source_version": "documentation updated 2021-10-13",
       "retrieved_at": "2026-10-07",
-      "tags": ["event", "log", "collector", "permissions", "query"],
+      "tags": [
+        "event",
+        "log",
+        "collector",
+        "permissions",
+        "query"
+      ],
       "text": "EvtQuery retrieves matching events from a channel or log. A null session targets the local computer. The result handle belongs to its creating thread and must be closed after use. Reading a channel requires appropriate access."
+    },
+    {
+      "id": "microsoft-tcp-state",
+      "title": "Microsoft TCP connection states",
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/system.net.networkinformation.tcpstate?view=net-10.0",
+      "text": "TCP observations have different states. SYN_SENT records an attempted connection awaiting a response; ESTABLISHED records an established connection. Closing states describe connection teardown. A polling snapshot is not a completed flow record, and these states do not establish the purpose or trustworthiness of a destination.",
+      "tags": [
+        "network",
+        "TCP",
+        "connection",
+        "state",
+        "snapshot"
+      ],
+      "source_version": "official documentation accessed 2026-10-17",
+      "retrieved_at": "2026-10-17"
+    },
+    {
+      "id": "aoe-online-ports",
+      "title": "Age of Empires II: Definitive Edition online multiplayer",
+      "url": "https://support.ageofempires.com/hc/en-us/articles/360047306372-How-do-I-create-a-multiplayer-match-in-Age-of-Empires-II-Definitive-Edition",
+      "text": "The official multiplayer guide describes online lobbies and selecting a hosting server region. Server connections are expected during online play. This general product documentation does not authenticate a particular executable, server address or captured connection.",
+      "tags": [
+        "network",
+        "online",
+        "multiplayer",
+        "server",
+        "ports"
+      ],
+      "source_version": "official documentation accessed 2026-10-17",
+      "retrieved_at": "2026-10-17"
     }
   ]
 }

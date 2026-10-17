@@ -1214,6 +1214,24 @@ input::placeholder {
 .severity-medium {
   background: #ddb57d;
 }
+.behavior-notes-panel .panel-heading { color: #bac6d6; }
+.behavior-context { padding: 12px 15px; border-bottom: 1px solid var(--border); }
+.behavior-context p { color: #aab3c1; font-size: 10px; line-height: 1.8; margin: 0 0 6px; }
+.behavior-context p:last-child { margin-bottom: 0; }
+.behavior-context .behavior-reference { color: #8592a5; font-size: 9px; }
+.behavior-context .badge { margin-top: 7px; }
+.behavior-picker { max-height: 160px; overflow: auto; }
+.behavior-choice { display: flex; align-items: center; gap: 9px; width: 100%; border: 0; border-bottom: 1px solid var(--border); padding: 12px 15px; background: #1a1e25; color: #b6c3d4; text-align: left; font-size: 10px; }
+.behavior-choice:hover, .behavior-choice.active { background: #252d38; }
+.behavior-choice > span:first-of-type { flex: 1; line-height: 1.6; }
+.behavior-choice > svg { flex-shrink: 0; }
+.behavior-choice .behavior-score { color: #aebbd0; font-family: Consolas, monospace; font-size: 10px; }
+.behavior-note-content { max-height: 390px; overflow: auto; }
+.behavior-detail .incident-detail-title > h3 { color: #d7dfe9; }
+.behavior-detail .score-card { background: #202731; border-color: #354152; }
+.behavior-detail .score-card strong { color: #c3cedd; }
+.behavior-detail .score-card code { color: #b1bed1; }
+.behavior-detail .score-note { color: #a8b5c7; }
 .incident-detail {
   padding: 17px 15px;
 }

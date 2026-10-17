@@ -1,5 +1,5 @@
 'use strict';
-const EXTERNAL_HOSTS = new Set(['learn.microsoft.com', 'attack.mitre.org', 'csr.lanl.gov']);
+const EXTERNAL_HOSTS = new Set(['learn.microsoft.com', 'attack.mitre.org', 'csr.lanl.gov', 'support.ageofempires.com']);
 const ALLOWED = new Set(['state', 'list_processes', 'watch', 'replay', 'pause', 'stop', 'settings', 'delete_session']);
 const SETTINGS = {
   retention_days: [1, 90], max_events: [500, 100000], poll_interval: [0.5, 10],
@@ -21,7 +21,7 @@ function validateRequest(method, input = {}) {
   if (['pause', 'delete_session'].includes(method)) acceptId();
   if (method === 'pause') { if (typeof input.paused !== 'boolean') throw new Error('Invalid pause state'); out.paused = input.paused; }
   if (method === 'watch') { if (!Number.isSafeInteger(input.pid) || input.pid <= 0 || input.pid > 0xffffffff) throw new Error('Invalid process'); out.pid = input.pid; }
-  if (method === 'replay') { if (input.scenario !== undefined && !['ordinary', 'investigation'].includes(input.scenario)) throw new Error('Invalid replay'); out.scenario = input.scenario || 'investigation'; }
+  if (method === 'replay') { if (input.scenario !== undefined && !['ordinary', 'investigation', 'network'].includes(input.scenario)) throw new Error('Invalid replay'); out.scenario = input.scenario || 'investigation'; }
   if (method === 'settings') for (const [key, value] of Object.entries(input)) {
     if (key === 'close_to_tray') { if (typeof value !== 'boolean') throw new Error('Invalid close preference'); out[key] = value; continue; }
     if (key === 'llm_provider') { if (value !== 'disabled') throw new Error('External requests require separate opt-in'); out[key] = value; continue; }
